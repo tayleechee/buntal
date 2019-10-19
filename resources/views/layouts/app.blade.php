@@ -10,8 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-     <script src="{{ asset('js/app.js') }}" defer></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -163,10 +162,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-          {!! $chart->script() !!}
-          {!! $chart2->script() !!}
-          {!! $chart3->script() !!}
     </div>
 
     <div id="errorModal" class="modal fade">
