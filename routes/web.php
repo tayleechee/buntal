@@ -43,3 +43,7 @@ Route::post('/fillForm/processStep1', 'FillFormController@processStep1');
 Route::post('/fillForm/processStep2', 'FillFormController@processStep2');
 
 Route::get('/villagerRecords', 'VillagerRecordsController@index')->name('villagerRecords.index');
+
+Route::get('/getVillagerRecords', 'VillagerRecordsController@getVillagerRecords')->name('villagerRecords.getVillagerRecords');
+
+Route::get('/villager/{id}', 'VillagerDetailController@index')->name('villagerDetail.index');

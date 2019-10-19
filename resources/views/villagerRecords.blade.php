@@ -33,6 +33,50 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#viewRecordsDropdown").addClass("active");
+
+		var villagersTable = $('#villagersTable').DataTable({
+	        processing: true,
+	        serverSide: true,
+	        ajax: '{!! route('villagerRecords.getVillagerRecords') !!}',
+	        columns: [
+	        	{ data: null, "orderable": false, "searchable": false},
+	            { data: 'name' },
+	            { data: 'house.address' },
+	            { data: 'gender', "render": function(data, type, row) {
+		            	if (data == 'm') 
+		            		{return 'Male';} 
+		            	else if (data == 'f') 
+		            		{return 'Female';}
+		            	else
+		            		{return data};
+	            	} 
+	            },
+	            { data: 'race' },
+	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
+	            		var button = `<div class="text-center">
+	            						<button class="btn btn-outline-primary btn-sm viewVillagerDetailBtn" data-id="` + data + `">View Detail</button>
+	            					</div>
+	            					`;
+	            		return button;
+	            	}
+	            }
+	        ],
+	        "order": [[ 1, 'asc' ]]
+	    });
+
+	    villagersTable.on( 'draw.dt', function () {
+	    	var info = villagersTable.page.info();
+	    	var iterator = info.start;
+	    	console.log(iterator);
+	        villagersTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+	            cell.innerHTML = iterator+1;
+	            iterator++;
+	        } );
+	    } ).draw();
+	});
+
+	$(document).on("click", ".viewVillagerDetailBtn", function() {
+		window.location.href = "/villager/"+ $(this).attr("data-id");
 	});
 </script>
 
