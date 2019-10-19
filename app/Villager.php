@@ -8,4 +8,9 @@ class Villager extends Model
 {
     public $timestamps = false;
     protected $table = 'villagers';
+
+    public function house()
+    {
+    	return $this->belongsTo('App\House');
+    }
 }

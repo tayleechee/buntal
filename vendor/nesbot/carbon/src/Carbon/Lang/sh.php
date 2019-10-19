@@ -19,7 +19,6 @@
  * - Christopher Dell
  * - dmilisic
  * - danijel
- * - Miroslav Matkovic (mikki021)
  */
 return [
     'formats' => [
@@ -42,8 +41,8 @@ return [
     'h' => ':count čas|:count časa|:count časova',
     'minute' => ':count minut|:count minuta|:count minuta',
     'min' => ':count minut|:count minuta|:count minuta',
-    'second' => ':count sekund|:count sekunde|:count sekundi',
-    's' => ':count sekund|:count sekunde|:count sekundi',
+    'second' => ':count sekund|:count sekunda|:count sekundi',
+    's' => ':count sekund|:count sekunda|:count sekundi',
     'ago' => 'pre :time',
     'from_now' => 'za :time',
     'after' => 'nakon :time',
