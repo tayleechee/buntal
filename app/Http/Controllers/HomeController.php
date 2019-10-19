@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 //use App\Charts\GenderChart;
 //use App\Charts\PropertyChart;
 use App\Charts\Chartjs;
+use App\Charts\Highcharts;
 use Illuminate\Http\Request;
 use App\Villager;
+use App\House;
 class HomeController extends Controller
 {
     /**
@@ -26,6 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $villagerCount = Villager::get()->count();
+        $houseCount = House::get()->count();
+
         $data_single = Villager::wheremarital_status('single')->count();
         $data_kahwin = Villager::wheremarital_status('kahwin')->count();
         $data_duda = Villager::wheremarital_status('duda')->count();
@@ -36,25 +41,29 @@ class HomeController extends Controller
         $data_noProperty = Villager::whereis_property_owner('0')->count();
         $data_haveProperty = Villager::whereis_property_owner('1')->count();
 
-        $chart = new Chartjs;
-        $chart->title("Marital Status");
-        $chart->labels(['bujang', 'kahwin','duda']);
-        $chart->dataset('Marital Status', 'bar', [$data_single,$data_kahwin,$data_duda]);
+        $maritalChart = new Chartjs;
+        $maritalChart->title("Marital Status");
+        $maritalChart->labels(['bujang', 'kahwin','duda']);
+        $maritalChart->dataset('Marital Status', 'bar', [$data_single,$data_kahwin,$data_duda])->options([
+            'backgroundColor' => ['#9B59B6', '#2ECC71', '#FFB74D']
+        ]);
 
-        $chart2 = new Chartjs;
-        $chart2->title("Gender");
-        $chart2->labels(['Lelaki', 'Perempuan']);
-        $chart2->displayAxes(false);
-        $chart2->dataset('Gender', 'pie', [$data_male,$data_female])->options([
-                'backgroundColor' => ['#33A1FF', '#FF333B'],
-            ]);
+        $genderChart = new Chartjs;
+        $genderChart->title("Gender");
+        $genderChart->labels(['Lelaki', 'Perempuan']);
+        $genderChart->displayAxes(false);
+        $genderChart->dataset('Gender', 'pie', [$data_male,$data_female])->options([
+            'backgroundColor' => ['#33A1FF', '#FF333B'],
+        ]);
 
-        $chart3 = new Chartjs;
-        $chart3->title("Property Owner");
-        $chart3->labels(['Yes', 'No']);
-        $chart3->dataset('Property Owner','bar', [$data_noProperty,$data_haveProperty]);
+        $propertyOwnerChart = new Chartjs;
+        $propertyOwnerChart->title("Property Owner");
+        $propertyOwnerChart->labels(['Yes', 'No']);
+        $propertyOwnerChart->dataset('Property Owner','bar', [$data_noProperty,$data_haveProperty])->options([
+            'backgroundColor' => ['#333399', '#FF0066']
+        ]);
 
-        return view('home', compact('chart','chart2','chart3'));
+        return view('home', compact('maritalChart','genderChart','propertyOwnerChart', 'villagerCount', 'houseCount'));
     }
 
     
