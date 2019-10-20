@@ -31,7 +31,7 @@ class HomeController extends Controller
         $villagerCount = Villager::get()->count();
         $houseCount = House::get()->count();
 
-        $data_single = Villager::wheremarital_status('single')->count();
+        $data_single = Villager::wheremarital_status('bujang')->count();
         $data_kahwin = Villager::wheremarital_status('kahwin')->count();
         $data_duda = Villager::wheremarital_status('duda')->count();
 
