@@ -56,8 +56,8 @@
 
     <div class="row">
         <div class="col-md-6 mb-4">
-            <div class="card">
-                <div class="card-body border-left-blue box-shadow light-border">
+            <div class="card border-left-blue box-shadow light-border">
+                <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col mr-2">
                             <div class="font-weight-bold dashboard-header-blue">Total Penduduk</div>
@@ -71,8 +71,8 @@
             </div>
         </div>
         <div class="col-md-6 mb-4">
-            <div class="card">
-                <div class="card-body border-left-green box-shadow light-border">
+            <div class="card border-left-green box-shadow light-border">
+                <div class="card-body ">
                     <div class="row align-items-center">
                         <div class="col mr-2">
                             <div class="font-weight-bold dashboard-header-green">Total Houses</div>
