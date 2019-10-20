@@ -1,0 +1,82 @@
+<?php $__env->startSection('content'); ?>
+<!-- DataTable JS -->
+<script src="<?php echo e(URL::asset('DataTables/datatables.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('DataTables/FixedHeader-3.1.4/js/dataTables.fixedHeader.min.js')); ?>"></script>
+
+<!-- DataTable CSS -->
+<link href="<?php echo e(URL::asset('DataTables/datatables.min.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(URL::asset('DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap.min.css')); ?>" rel="stylesheet">
+
+<div class="container">
+	<div class="mt-3">
+		<h5>View All Villager Records</h5>
+	</div>
+
+	<table class="mt-4 table table-hover table-bordered table-sm" id="villagersTable">
+		<thead>
+			<tr class="text-center">
+				<th class="th-sm">No.</th>
+				<th class="th-sm">Name</th>
+				<th class="th-sm">Address</th>
+				<th class="th-sm">Gender</th>
+				<th class="th-sm">Race</th>
+				<th class="th-sm">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#viewRecordsDropdown").addClass("active");
+
+		var villagersTable = $('#villagersTable').DataTable({
+	        processing: true,
+	        serverSide: true,
+	        ajax: '<?php echo route('villagerRecords.getVillagerRecords'); ?>',
+	        columns: [
+	        	{ data: null, "orderable": false, "searchable": false},
+	            { data: 'name' },
+	            { data: 'house.address' },
+	            { data: 'gender', "render": function(data, type, row) {
+		            	if (data == 'm') 
+		            		{return 'Male';} 
+		            	else if (data == 'f') 
+		            		{return 'Female';}
+		            	else
+		            		{return data};
+	            	} 
+	            },
+	            { data: 'race' },
+	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
+	            		var button = `<div class="text-center">
+	            						<button class="btn btn-outline-primary btn-sm viewVillagerDetailBtn" data-id="` + data + `">View Detail</button>
+	            					</div>
+	            					`;
+	            		return button;
+	            	}
+	            }
+	        ],
+	        "order": [[ 1, 'asc' ]]
+	    });
+
+	    villagersTable.on( 'draw.dt', function () {
+	    	var info = villagersTable.page.info();
+	    	var iterator = info.start;
+	    	console.log(iterator);
+	        villagersTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+	            cell.innerHTML = iterator+1;
+	            iterator++;
+	        } );
+	    } ).draw();
+	});
+
+	$(document).on("click", ".viewVillagerDetailBtn", function() {
+		window.location.href = "/villager/"+ $(this).attr("data-id");
+	});
+</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Elvin\Desktop\buntal\resources\views/villagerRecords.blade.php ENDPATH**/ ?>
