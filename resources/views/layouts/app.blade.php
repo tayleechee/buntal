@@ -122,8 +122,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="ml-3 nav-item">
-                            <a href="#" class="nav-link">View Records</a>
+                        <li class="ml-3 nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="viewRecordsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              View Records
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="viewRecordsDropdown">
+                              <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Villagers</a>
+                              <a class="dropdown-item" href="#">Houses</a>
+                            </div>
                         </li>
                         <li class="ml-3 nav-item">
                             <a href="#" class="nav-link">Generate Report</a>
