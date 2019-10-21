@@ -58,7 +58,7 @@ class HomeController extends Controller
 
         $propertyOwnerChart = new Chartjs;
         $propertyOwnerChart->title("Property Owner");
-        $propertyOwnerChart->labels(['Yes', 'No']);
+        $propertyOwnerChart->labels(['No', 'Yes']);
         $propertyOwnerChart->dataset('Property Owner','bar', [$data_noProperty,$data_haveProperty])->options([
             'backgroundColor' => ['#333399', '#FF0066']
         ]);
