@@ -21,7 +21,7 @@
     }
 
     .box-shadow {
-        box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important
+        box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important
     }
 
     .light-border {
@@ -89,23 +89,26 @@
     </div>
 
 
-    @if ( isset($maritalChart) && isset($genderChart) && isset($propertyOwnerChart) )    
-    <div class="row">
-        <div class="col-4" >
-          {!! $maritalChart->container() !!}
-        </div>
-        <div class="col-4" >
-          {!! $genderChart->container() !!}
-        </div>
-        <div class="col-4">
-          {!! $propertyOwnerChart->container() !!}
-        </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-    {!! $maritalChart->script() !!}
-    {!! $genderChart->script() !!}
-    {!! $propertyOwnerChart->script() !!}
-    @endif
+    @if ( isset($maritalChart) && isset($genderChart) && isset($propertyOwnerChart) )
+    <div class="container">
+        <div class="card" style="padding: 1em; margin-top: -1em; margin-bottom: 1em;">
+            <div class="row">
+                <div class="col-4">
+                    {!! $maritalChart->container() !!}
+                </div>
+                <div class="col-4">
+                    {!! $genderChart->container() !!}
+                </div>
+                <div class="col-4">
+                    {!! $propertyOwnerChart->container() !!}
+                </div>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+            {!! $maritalChart->script() !!}
+            {!! $genderChart->script() !!}
+            {!! $propertyOwnerChart->script() !!}
+            @endif
 
-</div>
-@endsection
+        </div>
+        @endsection
+    </div>

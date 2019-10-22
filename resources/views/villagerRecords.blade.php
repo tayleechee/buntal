@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@section('css')
+<style type="text/css">
+  .card {
+	  padding: 1em;
+  }
+</style>
+@endsection
 @section('content')
 <!-- DataTable JS -->
 <script src="{{ URL::asset('DataTables/datatables.min.js')}}"></script>
@@ -13,9 +19,9 @@
 	<div class="mt-3">
 		<h5>View All Villager Records</h5>
 	</div>
-
+	<div class="card">
 	<table class="mt-4 table table-hover table-bordered table-sm" id="villagersTable">
-		<thead>
+		<thead class="thead-dark">
 			<tr class="text-center">
 				<th class="th-sm">No.</th>
 				<th class="th-sm">Name</th>
@@ -28,6 +34,7 @@
 		<tbody>
 		</tbody>
 	</table>
+	</div>
 </div>
 
 <script type="text/javascript">

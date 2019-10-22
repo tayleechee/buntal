@@ -18,6 +18,24 @@
         padding:0 10px;
         border-bottom:none;
     }
+
+	.scheduler-border{
+		background-color: #fff;
+		border-radius:5px;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	}
+
+	.family_member_form_div {
+		box-shadow: 5px 8px 6px -5px rgba(0,0,0,0.2);
+	}
+
+	.step1 {
+		margin-left: -0.6em;
+	}
+
+	.label1 {
+		margin-left: 0.4em;
+	}
 </style>
 @endsection
 
@@ -37,34 +55,35 @@
 	<h2>Step 2</h2>
 </div>
 
-<div class="container mt-5">
+<div class="container">
 	<form id="step2_form">
 		{{ csrf_field() }}
 		<div class="form-group row">
 			<label for="step2_address" class="col-form-label font-weight-bold">Address</label>
 			<input type="text" id="step2_address" name="step2_address" value="<?php echo isset($step1_address) ? $step1_address : ''  ?>" class="form-control" readonly>
 		</div>
-
+<div class="form-row">
 		<div class="form-group row">
-			<label for="step2_householdIncome" class="col-form-label col-sm-2 pl-0 font-weight-bold">Household Income (RM)</label>
+			<label for="step2_householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Household Income (RM)</label>
 			<div class="col pr-0">
-				<input type="text" id="step2_householdIncome" name="step2_householdIncome" value="<?php echo isset($step1_householdIncome) ? $step1_householdIncome : ''  ?>" class="form-control" readonly>
+				<input type="text" id="step2_householdIncome" name="step2_householdIncome" value="<?php echo isset($step1_householdIncome) ? $step1_householdIncome : ''  ?>" class="step1 col-sm-8 form-control" readonly>
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="step2_numberOfFamily" class="col-form-label col-sm-2 pl-0 font-weight-bold">Number of Family</label>
+			<label for="step2_numberOfFamily" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Number of Family</label>
 			<div class="col pr-0">
-				<input type="text" id="step2_numberOfFamily" name="step2_numberOfFamily" value="<?php echo isset($step1_numberOfFamily) ? $step1_numberOfFamily : ''  ?>" class="form-control" readonly>
+				<input type="text" id="step2_numberOfFamily" name="step2_numberOfFamily" value="<?php echo isset($step1_numberOfFamily) ? $step1_numberOfFamily : ''  ?>" class="step1 col-sm-8 form-control" readonly>
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="step2_numberOfFamilyMember" class="col-form-label col-sm-2 pl-0 font-weight-bold">Number of Family Member</label>
+			<label for="step2_numberOfFamilyMember" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Number of Family Member</label>
 			<div class="col pr-0">
-				<input type="text" id="step2_numberOfFamilyMember" name="step2_numberOfFamilyMember" value="<?php echo isset($step1_numberOfFamilyMember) ? $step1_numberOfFamilyMember : ''  ?>" class="form-control" readonly>
+				<input type="text" id="step2_numberOfFamilyMember" name="step2_numberOfFamilyMember" value="<?php echo isset($step1_numberOfFamilyMember) ? $step1_numberOfFamilyMember : ''  ?>" class="step1 col-sm-8 form-control" readonly>
 			</div>
 		</div>
+</div>
 
 		<div id="step2_member_forms_area">
 		</div>
