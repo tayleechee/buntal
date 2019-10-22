@@ -418,6 +418,7 @@ class ComposerStaticInitfa0ccab070ab25524e7e26058da29cde
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FillFormController' => __DIR__ . '/../..' . '/app/Http/Controllers/FillFormController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\StatisticsController' => __DIR__ . '/../..' . '/app/Http/Controllers/StatisticsController.php',
         'App\\Http\\Controllers\\VillagerDetailController' => __DIR__ . '/../..' . '/app/Http/Controllers/VillagerDetailController.php',
         'App\\Http\\Controllers\\VillagerRecordsController' => __DIR__ . '/../..' . '/app/Http/Controllers/VillagerRecordsController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

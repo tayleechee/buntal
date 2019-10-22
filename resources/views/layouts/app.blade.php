@@ -132,7 +132,7 @@
                             </div>
                         </li>
                         <li class="ml-3 nav-item">
-                            <a href="#" class="nav-link">Generate Report</a>
+                            <a href="{{route('statistics.index')}}" class="nav-link">Generate Report</a>
                         </li>
                     </ul>
 

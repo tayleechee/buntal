@@ -47,3 +47,10 @@ Route::get('/villagerRecords', 'VillagerRecordsController@index')->name('village
 Route::get('/getVillagerRecords', 'VillagerRecordsController@getVillagerRecords')->name('villagerRecords.getVillagerRecords');
 
 Route::get('/villager/{id}', 'VillagerDetailController@index')->name('villagerDetail.index');
+
+// statistics routes
+Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
+Route::get('/statistics/populationByGender', 'StatisticsController@populationByGender')->name('statistics.populationByGender');
+Route::get('/statistics/populationByAgeRange', 'StatisticsController@populationByAgeRange')->name('statistics.populationByAgeRange');
+Route::get('/statistics/populationByEducationLevel', 'StatisticsController@populationByEducationLevel')->name('statistics.populationByEducationLevel');
+Route::get('/statistics/populationByMaritalStatus', 'StatisticsController@populationByMaritalStatus')->name('statistics.populationByMaritalStatus');
