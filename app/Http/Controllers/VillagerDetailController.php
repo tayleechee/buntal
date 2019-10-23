@@ -83,5 +83,7 @@ class VillagerDetailController extends Controller
 		$villager->is_property_owner = $request->propertyOwner;
 
 		$villager->save();
+
+		flash('Changes Saved!')->success();
     }
 }

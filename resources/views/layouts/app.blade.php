@@ -189,6 +189,7 @@
         </nav>
 
         <main class="py-4">
+            @include('flash::message')
             @yield('content')
         </main>
     </div>
@@ -260,7 +261,9 @@
         }
 
         $(function () {
-          $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
+            $('#flash-overlay-modal').modal();
+            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+            $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
         })
     </script>
 </body>

@@ -191,6 +191,7 @@
         </nav>
 
         <main class="py-4">
+            <?php echo $__env->make('flash::message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php echo $__env->yieldContent('content'); ?>
         </main>
     </div>
@@ -262,7 +263,9 @@
         }
 
         $(function () {
-          $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
+            $('#flash-overlay-modal').modal();
+            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+            $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
         })
     </script>
 </body>
