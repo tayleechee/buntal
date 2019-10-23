@@ -19,6 +19,12 @@
         border-bottom:none;
     }
 
+	.scheduler-border{
+		background-color: #fff;
+		border-radius:5px;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	}
+
     .form-input-div {
     	border: 1px solid #ced4da;
     	background: #F7F7FB ;
