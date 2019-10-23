@@ -25,6 +25,9 @@
     <!-- Popper JS -->
     <script src="<?php echo e(asset('js/popper.min.js')); ?>"></script>
 
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo e(asset('bootstrap-4.3.1-dist/css/bootstrap.min.css')); ?>"> -->
+
     <!-- Bootstrap JS -->
     <script src="<?php echo e(asset('bootstrap-4.3.1-dist/js/bootstrap.min.js')); ?>"></script>
 
@@ -36,6 +39,12 @@
 
     <!-- CSS Loader -->
     <link href="<?php echo e(asset('css-loader/css-loader.css')); ?>" rel="stylesheet">
+
+    <!-- loaders-css CSS -->
+    <link href="<?php echo e(asset('loaders-css/loaders.min.css')); ?>" rel="stylesheet">
+
+    <!-- loaders-css JS -->
+    <script src="<?php echo e(asset('loaders-css/loaders.css.js')); ?>"></script>
 
     <!-- Google Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -101,6 +110,24 @@
             font-size: 20px;
             color: #808080
         }
+
+        @keyframes  spinner-border {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .spinner-border {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            vertical-align: text-bottom;
+            border: .25em solid currentColor;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spinner-border .75s linear infinite;
+            animation: spinner-border .75s linear infinite;
+        }
     </style>
 
     <?php echo $__env->yieldContent('css'); ?>
@@ -133,7 +160,7 @@
                             </div>
                         </li>
                         <li class="ml-3 nav-item">
-                            <a href="#" class="nav-link">Generate Report</a>
+                            <a href="<?php echo e(route('statistics.index')); ?>" class="nav-link">View Statistics</a>
                         </li>
                     </ul>
 
@@ -164,6 +191,7 @@
         </nav>
 
         <main class="py-4">
+            <?php echo $__env->make('flash::message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php echo $__env->yieldContent('content'); ?>
         </main>
     </div>
@@ -185,6 +213,22 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <div class="spinner-border my-2" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <!-- <div class="loader-inner ball-pulse my-2"></div> -->
+            <div clas="loader-txt">
+              <p id="loadingModal_msg" style="font-weight: 600">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <?php echo $__env->yieldContent('template'); ?>
@@ -219,7 +263,9 @@
         }
 
         $(function () {
-          $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
+            $('#flash-overlay-modal').modal();
+            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+            $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
         })
     </script>
 </body>

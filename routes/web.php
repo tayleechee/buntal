@@ -47,6 +47,8 @@ Route::get('/villagerRecords', 'VillagerRecordsController@index')->name('village
 Route::get('/getVillagerRecords', 'VillagerRecordsController@getVillagerRecords')->name('villagerRecords.getVillagerRecords');
 
 Route::get('/villager/{id}', 'VillagerDetailController@index')->name('villagerDetail.index');
+Route::get('/getVillagerDetail', 'VillagerDetailController@getVillagerDetail');
+Route::post('/setVillagerDetail', 'VillagerDetailController@setVillagerDetail');
 
 // statistics routes
 Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
@@ -54,3 +56,8 @@ Route::get('/statistics/populationByGender', 'StatisticsController@populationByG
 Route::get('/statistics/populationByAgeRange', 'StatisticsController@populationByAgeRange')->name('statistics.populationByAgeRange');
 Route::get('/statistics/populationByEducationLevel', 'StatisticsController@populationByEducationLevel')->name('statistics.populationByEducationLevel');
 Route::get('/statistics/populationByMaritalStatus', 'StatisticsController@populationByMaritalStatus')->name('statistics.populationByMaritalStatus');
+Route::get('/statistics/monthlyHouseholdIncome', 'StatisticsController@monthlyHouseholdIncome')->name('statistics.monthlyHouseholdIncome');
+Route::post('/statistics/birthRateByYear', 'StatisticsController@birthRateByYear');
+Route::post('/statistics/birthRateByRangeOfYears', 'StatisticsController@birthRateByRangeOfYears');
+Route::post('/statistics/deathRateByYear', 'StatisticsController@deathRateByYear');
+Route::post('/statistics/deathRateByRangeOfYears', 'StatisticsController@deathRateByRangeOfYears');

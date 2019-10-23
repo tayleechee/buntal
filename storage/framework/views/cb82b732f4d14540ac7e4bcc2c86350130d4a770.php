@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#birthRateByYearBtn").click(function () {
@@ -49,19 +47,19 @@
 	</div>
 	<div id="population">
 		Population <br>
-		<a href="{{route('statistics.populationByGender')}}" class="btn btn-primary">By Gender</a>
+		<a href="<?php echo e(route('statistics.populationByGender')); ?>" class="btn btn-primary">By Gender</a>
 		
-		<a href="{{route('statistics.populationByAgeRange')}}" class="btn btn-primary">By Age Range</a>
+		<a href="<?php echo e(route('statistics.populationByAgeRange')); ?>" class="btn btn-primary">By Age Range</a>
 		
-		<a href="{{route('statistics.populationByEducationLevel')}}" class="btn btn-primary">By Education Level</a>
+		<a href="<?php echo e(route('statistics.populationByEducationLevel')); ?>" class="btn btn-primary">By Education Level</a>
 		
-		<a href="{{route('statistics.populationByMaritalStatus')}}" class="btn btn-primary">By Marital Status</a>
+		<a href="<?php echo e(route('statistics.populationByMaritalStatus')); ?>" class="btn btn-primary">By Marital Status</a>
 		<br><br>
 	</div>
 
     <div id="income">
 		Monthly Household Income <br>		
-		<a href="{{route('statistics.monthlyHouseholdIncome')}}" class="btn btn-primary">Monthly Household Income</a>		
+		<a href="<?php echo e(route('statistics.monthlyHouseholdIncome')); ?>" class="btn btn-primary">Monthly Household Income</a>		
 		<br><br>
 	</div>
 	
@@ -73,8 +71,8 @@
 		</div>
 		<div id="birthRateByYear" style="display:none;">	
 			Birth Rate <br>	View by Year <br>
-			<form method="POST" action="{{url('/statistics/birthRateByYear')}}">
-				@csrf 
+			<form method="POST" action="<?php echo e(url('/statistics/birthRateByYear')); ?>">
+				<?php echo csrf_field(); ?> 
 				<div style="margin:10px 0 20px;">
 					Select Year:
 					<input name="year" class="form-control col-1" style="display:inline;margin:0 20px;" required />		
@@ -85,8 +83,8 @@
 		</div>	
 		<div id="birthRateByRangeOfYears" style="display:none;">	
 			Birth Rate <br>	View by Range of Years <br>
-			<form method="POST" action="{{url('/statistics/birthRateByRangeOfYears')}}">
-				@csrf 
+			<form method="POST" action="<?php echo e(url('/statistics/birthRateByRangeOfYears')); ?>">
+				<?php echo csrf_field(); ?> 
 				<div style="margin:10px 0 20px;">
 					From
 					<input name="startYear" class="form-control col-1" style="display:inline;margin:0 20px;" />		
@@ -107,8 +105,8 @@
 		</div>
 		<div id="deathRateByYear" style="display:none;">	
 			Death Rate <br>	View by Year <br>
-			<form method="POST" action="{{url('/statistics/deathRateByYear')}}">
-				@csrf 
+			<form method="POST" action="<?php echo e(url('/statistics/deathRateByYear')); ?>">
+				<?php echo csrf_field(); ?> 
 				<div style="margin:10px 0 20px;">
 					Select Year:
 					<input name="year" class="form-control col-1" style="display:inline;margin:0 20px;" required />		
@@ -119,8 +117,8 @@
 		</div>	
 		<div id="deathRateByRangeOfYears" style="display:none;">	
 			Death Rate <br>	View by Range of Years <br>
-			<form method="POST" action="{{url('/statistics/deathRateByRangeOfYears')}}">
-				@csrf 
+			<form method="POST" action="<?php echo e(url('/statistics/deathRateByRangeOfYears')); ?>">
+				<?php echo csrf_field(); ?> 
 				<div style="margin:10px 0 20px;">
 					From
 					<input name="startYear" class="form-control col-1" style="display:inline;margin:0 20px;" />		
@@ -133,4 +131,6 @@
 		</div>	
 	</div>		
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Elvin\Desktop\buntal\resources\views/statisticsIndex.blade.php ENDPATH**/ ?>
