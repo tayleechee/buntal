@@ -25,6 +25,9 @@
     <!-- Popper JS -->
     <script src="{{ asset('js/popper.min.js') }}"></script>
 
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-4.3.1-dist/css/bootstrap.min.css') }}"> -->
+
     <!-- Bootstrap JS -->
     <script src="{{ asset('bootstrap-4.3.1-dist/js/bootstrap.min.js') }}"></script>
 
@@ -36,6 +39,12 @@
 
     <!-- CSS Loader -->
     <link href="{{ asset('css-loader/css-loader.css') }}" rel="stylesheet">
+
+    <!-- loaders-css CSS -->
+    <link href="{{ asset('loaders-css/loaders.min.css') }}" rel="stylesheet">
+
+    <!-- loaders-css JS -->
+    <script src="{{ asset('loaders-css/loaders.css.js') }}"></script>
 
     <!-- Google Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -100,6 +109,24 @@
         #errorModal_msg {
             font-size: 20px;
             color: #808080
+        }
+
+        @keyframes spinner-border {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .spinner-border {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            vertical-align: text-bottom;
+            border: .25em solid currentColor;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spinner-border .75s linear infinite;
+            animation: spinner-border .75s linear infinite;
         }
     </style>
 
@@ -183,6 +210,22 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <div class="spinner-border my-2" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <!-- <div class="loader-inner ball-pulse my-2"></div> -->
+            <div clas="loader-txt">
+              <p id="loadingModal_msg" style="font-weight: 600">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     @yield('template')

@@ -34,7 +34,6 @@ class FillFormController extends Controller
 
     public function processStep2(Request $request)
     {
-    	//test
     	$rules = [
 		    'step2_address' => 'required',
 		    'step2_householdIncome' => 'required',

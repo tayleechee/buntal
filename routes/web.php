@@ -47,6 +47,8 @@ Route::get('/villagerRecords', 'VillagerRecordsController@index')->name('village
 Route::get('/getVillagerRecords', 'VillagerRecordsController@getVillagerRecords')->name('villagerRecords.getVillagerRecords');
 
 Route::get('/villager/{id}', 'VillagerDetailController@index')->name('villagerDetail.index');
+Route::get('/getVillagerDetail', 'VillagerDetailController@getVillagerDetail');
+Route::post('/setVillagerDetail', 'VillagerDetailController@setVillagerDetail');
 
 // statistics routes
 Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
