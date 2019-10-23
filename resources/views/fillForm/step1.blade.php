@@ -4,10 +4,9 @@
 <!-- Styles -->
 <style>
 	.card {
-		margin-left: 5em;
-		margin-right: 5em;
-		padding-bottom: 1em;
-		padding-top: 1em;
+		margin-left: 5%;
+		margin-right: 5%;
+		padding: 1em;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	}
 </style>

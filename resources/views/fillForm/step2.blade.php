@@ -26,7 +26,7 @@
 	}
 
 	.family_member_form_div {
-		box-shadow: 5px 8px 6px -5px rgba(0,0,0,0.2);
+		box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.2);
 	}
 
 	.step1 {
