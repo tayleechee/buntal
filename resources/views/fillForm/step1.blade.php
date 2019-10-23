@@ -9,6 +9,9 @@
 		padding: 1em;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	}
+	.step1 {
+		margin-left: 1%;
+	}
 </style>
 
 <div class="text-center">
@@ -30,8 +33,8 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group row">
-					<label for="step1_householdIncome" class="col-sm-12 col-form-label font-weight-bold pl-0">Household Income (RM)</label>
-					<input type="number" name="step1_householdIncome" id="step1_householdIncome" class="col-sm-8 form-control @error('step1_householdIncome') is-invalid @enderror" value="{{ old('step1_householdIncome') }}" required>
+					<label for="step1_householdIncome" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Household Income (RM)</label>
+					<input type="number" name="step1_householdIncome" id="step1_householdIncome" class="step1 col-sm-8 form-control @error('step1_householdIncome') is-invalid @enderror" value="{{ old('step1_householdIncome') }}" required>
 
 					@error('step1_householdIncome')
 					<span class="invalid-feedback" role="alert">
@@ -41,9 +44,9 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="step1_numberOfFamily" class="col-sm-12 col-form-label font-weight-bold pl-0">Number of Family</label>
+					<label for="step1_numberOfFamily" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Number of Family</label>
 					<div class="col pr-0 pl-0">
-						<input type="number" name="step1_numberOfFamily" id="step1_numberOfFamily" class="col-sm-8 form-control @error('step1_numberOfFamily') is-invalid @enderror" value="{{ old('step1_numberOfFamily') }}" required>
+						<input type="number" name="step1_numberOfFamily" id="step1_numberOfFamily" class="step1 col-sm-8 form-control @error('step1_numberOfFamily') is-invalid @enderror" value="{{ old('step1_numberOfFamily') }}" required>
 
 						@error('step1_numberOfFamily')
 						<span class="invalid-feedback" role="alert">
@@ -54,9 +57,9 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="step1_numberOfFamilyMember" class="col-sm-12 col-form-label font-weight-bold pl-0">Number of Family member</label>
+					<label for="step1_numberOfFamilyMember" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Number of Family member</label>
 					<div class="col pr-0 pl-0">
-						<input type="number" name="step1_numberOfFamilyMember" id="step1_numberOfFamilyMember" class="col-sm-8 form-control @error('step1_numberOfFamilyMember') is-invalid @enderror" value="{{ old('step1_numberOfFamilyMember') }}" required>
+						<input type="number" name="step1_numberOfFamilyMember" id="step1_numberOfFamilyMember" class="step1 col-sm-8 form-control @error('step1_numberOfFamilyMember') is-invalid @enderror" value="{{ old('step1_numberOfFamilyMember') }}" required>
 
 						@error('step1_numberOfFamilyMember')
 						<span class="invalid-feedback" role="alert">

@@ -25,10 +25,6 @@
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	}
 
-	.family_member_form_div {
-		box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.2);
-	}
-
 	.step1 {
 		margin-left: -0.6em;
 	}
