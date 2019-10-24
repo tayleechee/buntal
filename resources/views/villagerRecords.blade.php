@@ -64,7 +64,7 @@
 	            },
 	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
 	            		var button = `<div class="text-center">
-	            						<button class="btn btn-outline-primary btn-sm viewVillagerDetailBtn" data-id="` + data + `">View Detail</button>
+	            						<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + data + `">View Detail</button>
 	            					</div>
 	            					`;
 	            		return button;
