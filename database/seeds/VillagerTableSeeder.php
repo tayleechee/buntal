@@ -18,9 +18,93 @@ class VillagerTableSeeder extends Seeder
              'gender' => "m",
              'dob' => "1996-01-04",
              'race' => "Chinese",
-             'marital_status' => "single",
+             'marital_status' => "kahwin",
              'education_level' => "Degree",
-             'occupation' => "Student",
+             'occupation' => "Software Architect",
+             'is_property_owner' => "0",
+             'is_active' => "1",
+        ]);
+
+        DB::table('villagers')->insert([
+             'house_id' => "1",
+             'name' => "Sim Yu Ni",
+             'ic' => "961206135034",
+             'gender' => "f",
+             'dob' => "1996-12-06",
+             'race' => "cina",
+             'marital_status' => "kahwin",
+             'education_level' => "Degree",
+             'occupation' => "Interior Designer",
+             'is_property_owner' => "0",
+             'is_active' => "1",
+        ]);
+
+        DB::table('villagers')->insert([
+             'house_id' => "2",
+             'name' => "Ali Abang",
+             'ic' => "901101133713",
+             'gender' => "m",
+             'dob' => "1990-10-11",
+             'race' => "bumiputera",
+             'marital_status' => "bujang",
+             'education_level' => "Non-educated",
+             'occupation' => "Nelayan",
+             'is_property_owner' => "0",
+             'is_active' => "1",
+        ]);
+
+        DB::table('villagers')->insert([
+             'house_id' => "2",
+             'name' => "Abu Abang",
+             'ic' => "901101133719",
+             'gender' => "m",
+             'dob' => "1990-10-11",
+             'race' => "bumiputera",
+             'marital_status' => "bujang",
+             'education_level' => "Non-educated",
+             'occupation' => "Nelayan",
+             'is_property_owner' => "0",
+             'is_active' => "1",
+        ]);
+
+        DB::table('villagers')->insert([
+             'house_id' => "2",
+             'name' => "Rosiah Anak",
+             'ic' => "630705131222",
+             'gender' => "f",
+             'dob' => "1963-07-05",
+             'race' => "bumiputera",
+             'marital_status' => "kahwin",
+             'education_level' => "Primary School",
+             'occupation' => "Hawker",
+             'is_property_owner' => "1",
+             'is_active' => "1",
+        ]);
+
+        DB::table('villagers')->insert([
+             'house_id' => "2",
+             'name' => "Hank Anak",
+             'ic' => "620304131753",
+             'gender' => "f",
+             'dob' => "1962-03-04",
+             'race' => "bumiputera",
+             'marital_status' => "kahwin",
+             'education_level' => "Primary School",
+             'occupation' => "Nelayan",
+             'is_property_owner' => "1",
+             'is_active' => "1",
+        ]);
+
+        DB::table('villagers')->insert([
+             'house_id' => "2",
+             'name' => "Vincent Anak",
+             'ic' => "160808135877",
+             'gender' => "f",
+             'dob' => "2016-08-08",
+             'race' => "bumiputera",
+             'marital_status' => "bujang",
+             'education_level' => "N/A",
+             'occupation' => "-",
              'is_property_owner' => "0",
              'is_active' => "1",
         ]);

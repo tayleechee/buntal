@@ -15,6 +15,13 @@ class HouseTableSeeder extends Seeder
         	 'address' => "Lot 111, Kampung Buntal",
              'household_income' => "10000",
              'family_number' => "1",
+             'family_member_number' => "2"
+        ]);
+
+        DB::table('houses')->insert([
+             'address' => "Lot 101, Kampung Buntal",
+             'household_income' => "6000",
+             'family_number' => "1",
              'family_member_number' => "5"
         ]);
     }
