@@ -122,4 +122,19 @@ class VillagerDetailController extends Controller
 
 		flash('Marked as Dead!')->success();
     }
+
+    public function deleteVillager(Request $request)
+    {
+    	$id = $request->id;
+
+    	$villager = Villager::find($request->id);
+		if (!$villager) {
+			return Response::json("Villager Record Not Found.", 455);
+		}
+
+		$name = $villager->name;
+		$villager->delete();
+
+		flash($name."'s Record Deleted!")->success();
+    }
 }

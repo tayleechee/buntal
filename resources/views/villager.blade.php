@@ -56,7 +56,7 @@
 		<button type="button" class="btn btn-sm btn-primary mr-1" id="editBtn">Edit</button>
 		<button type="button" class="btn btn-sm btn-success d-none mr-1" id="saveBtn">Save</button>
 		<button type="button" class="btn btn-sm btn-secondary mr-1 d-none" id="cancelBtn">Cancel</button>
-		<button type="button" class="btn btn-sm btn-danger" id="deleteBtn">Delete</button>
+		<button type="button" class="btn btn-sm btn-danger" id="deleteBtn" data-toggle="modal" data-target="#confirmDeleteModal">Delete</button>
 		</div>
 		<form id="villagerDetail_form" name="villagerDetail_form">
 			{{ csrf_field() }}
@@ -327,6 +327,28 @@
 	</div>
 </div>
 
+<!-- Confirm Delete Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="confirmDeleteModal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+		  	<div class="modal-header">
+		        <h5 class="modal-title font-weight-bold">Confirm Delete?</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		    	</button>
+		  	</div>
+		  	<div class="modal-body">
+		    	<p class="font-weight-bold">Confirm to Delete? This cannot be undone.</p>
+		  	</div>
+		  	<div class="modal-footer">
+		        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Confirm</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		  	</div>
+	    </div>
+	</div>
+</div>
+
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		var form = document.getElementById("villagerDetail_form");
@@ -481,6 +503,7 @@
 				_token: _token
 			},
 			beforeSend: function() {
+				$("#markLiveModal").modal('hide');
 				$("#loading_div").attr("data-text", "Marking as Live...");
 				$("#loading_div").addClass("is-active");
 			},
@@ -516,6 +539,7 @@
 				_token: _token
 			},
 			beforeSend: function() {
+				$("#markDeadModal").modal('hide');
 				$("#loading_div").attr("data-text", "Marking as Dead...");
 				$("#loading_div").addClass("is-active");
 			},
@@ -525,6 +549,32 @@
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
 		        showAjaxErrorMessage(jqXHR, exception, "Unable to mark dead:<br>");
+		    }
+		});
+	});
+
+	$(document).on("click", "#confirmDeleteBtn", function(){
+		var _token = $('input[name="_token"]').val();
+		var id = $("#villager_id").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/deleteVillager",
+			data: {
+				id: id,
+				_token: _token
+			},
+			beforeSend: function() {
+				$("#confirmDeleteModal").modal('hide');
+				$("#loading_div").attr("data-text", "Deleting Villager Record...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				location.href = '/villagerRecords';
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to delete villager record:<br>");
 		    }
 		});
 	});

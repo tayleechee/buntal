@@ -51,6 +51,7 @@ Route::get('/getVillagerDetail', 'VillagerDetailController@getVillagerDetail');
 Route::post('/setVillagerDetail', 'VillagerDetailController@setVillagerDetail');
 Route::post('/markLive', 'VillagerDetailController@markLive');
 Route::post('/markDead', 'VillagerDetailController@markDead');
+Route::post('/deleteVillager', 'VillagerDetailController@deleteVillager');
 
 // statistics routes
 Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
