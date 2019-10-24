@@ -39,11 +39,9 @@ Route::get('/test', function() {
 });
 
 Route::post('/fillForm/processStep1', 'FillFormController@processStep1');
-
 Route::post('/fillForm/processStep2', 'FillFormController@processStep2');
 
 Route::get('/villagerRecords', 'VillagerRecordsController@index')->name('villagerRecords.index');
-
 Route::get('/getVillagerRecords', 'VillagerRecordsController@getVillagerRecords')->name('villagerRecords.getVillagerRecords');
 
 Route::get('/villager/{id}', 'VillagerDetailController@index')->name('villagerDetail.index');
@@ -52,6 +50,9 @@ Route::post('/setVillagerDetail', 'VillagerDetailController@setVillagerDetail');
 Route::post('/markLive', 'VillagerDetailController@markLive');
 Route::post('/markDead', 'VillagerDetailController@markDead');
 Route::post('/deleteVillager', 'VillagerDetailController@deleteVillager');
+
+Route::get('/houseRecords', 'HouseRecordsController@index')->name('houseRecords.index');
+Route::get('/getHouseRecords', 'HouseRecordsController@getHouseRecords')->name('houseRecords.getHouseRecords');
 
 // statistics routes
 Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
