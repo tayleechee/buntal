@@ -58,7 +58,10 @@
 		            		{return data};
 	            	} 
 	            },
-	            { data: 'race' },
+	            { data: 'race', "render": function(data, type, row) { 
+	            		return data.charAt(0).toUpperCase() + data.slice(1); 
+	            	} 
+	            },
 	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
 	            		var button = `<div class="text-center">
 	            						<button class="btn btn-outline-primary btn-sm viewVillagerDetailBtn" data-id="` + data + `">View Detail</button>
