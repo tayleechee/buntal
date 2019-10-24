@@ -3,7 +3,7 @@
 @section('css')
 <style type="text/css">
 	fieldset.scheduler-border {
-	    border: 1px groove #ddd !important;
+	    border: 1px solid #ddd !important;
 	    padding: 0 1.4em 1.4em 1.4em !important;
 	    margin: 0 0 1.5em 0 !important;
 	    -webkit-box-shadow:  0px 0px 0px 0px #000;
@@ -23,10 +23,6 @@
 		background-color: #fff;
 		border-radius:5px;
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	}
-
-	.family_member_form_div {
-		box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.2);
 	}
 
 	.step1 {
