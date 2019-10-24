@@ -25,7 +25,7 @@
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	}
 
-    .form-input-div {
+    .form-input-div, .form-nonhidden-input-div {
     	border: 1px solid #ced4da;
     	background: #F7F7FB ;
     	padding: .375rem 0.75rem;
@@ -48,16 +48,30 @@
 <div class="container">
 	<div class="mt-5 family_member_form_div">
 		<div class="text-right">
+		@if ( isset($villager) && empty($villager->death_date) )
+		<button type="button" class="btn btn-sm btn-dark mr-1 deadBtn" id="markDeadBtn" data-toggle="modal" data-target="#markDeadModal">Mark Dead</button>
+		@else
+		<button type="button" class="btn btn-sm btn-success mr-1 deadBtn" id="markLiveBtn" data-toggle="modal" data-target="#markLiveModal">Mark Alive</button>
+		@endif
 		<button type="button" class="btn btn-sm btn-primary mr-1" id="editBtn">Edit</button>
 		<button type="button" class="btn btn-sm btn-success d-none mr-1" id="saveBtn">Save</button>
 		<button type="button" class="btn btn-sm btn-secondary mr-1 d-none" id="cancelBtn">Cancel</button>
-		<button type="button" class="btn btn-sm btn-danger deleteMemberBtn">Delete</button>
+		<button type="button" class="btn btn-sm btn-danger" id="deleteBtn" data-toggle="modal" data-target="#confirmDeleteModal">Delete</button>
 		</div>
 		<form id="villagerDetail_form" name="villagerDetail_form">
 			{{ csrf_field() }}
 		<input type="hidden" name="villager_id" id="villager_id" value="<?php echo isset($villager->id) ? $villager->id : '' ?>">
 		<fieldset class="scheduler-border">
 			<legend class="family_member_legend scheduler-border">Villager Detail</legend>
+
+			@if ( isset($villager) && !empty($villager->death_date) )
+			<div class="form-group row pl-2 mt-3">
+				<label for="occupation" class="col-form-label col-2 form_occupation_label font-weight-bold">Death Date</label>
+				<div class="col form-nonhidden-input-div font-weight-bold">
+					{{ $villager->death_date }}
+				</div>
+			</div>
+			@endif
 
 			<div class="form-group row pl-2 mt-3">
 				<label for="name" class="col-form-label col-2 form_name_label">Name</label>
@@ -171,20 +185,10 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="education" class="col-form-label col-2 form_education_label">Education Level</label>
 				<div class="col form-input-col d-none">
-					<!-- <select name="education" id="education" class="form-control form_education" required>
-						<option value="non-educated">Non-educated</option>
-						<option value="primary">Primary School</option>
-						<option value="secondary">Secondary School</option>
-						<option value="form6">Form 6</option>
-						<option value="diploma">Diploma</option>
-						<option value="degree">Degree</option>
-						<option value="master">Master</option>
-						<option value="phd">PhD</option>
-					</select> -->
-					{!! Form::select('education', ['non-educated'=>'Non-educated', 'primary'=>'Primary School', 'secondary'=>'Secondary School', 'form6'=>'Form 6', 'diploma'=>'Diploma', 'degree'=>'Degree', 'master'=>'Master', 'phd'=>'PhD'], isset($villager->education_level) ? $villager->education_level : null, ['class'=>'form-control form_education', 'id'=>'education', 'required']) !!}
+					{!! Form::select('education', ['Non-educated'=>'Non-educated', 'Primary School'=>'Primary School', 'Secondary School'=>'Secondary School', 'Form 6'=>'Form 6', 'Diploma'=>'Diploma', 'Degree'=>'Degree', 'Master'=>'Master', 'PhD'=>'PhD', 'N/A'=>'N/A'], isset($villager->education_level) ? $villager->education_level : null, ['class'=>'form-control form_education', 'id'=>'education', 'required']) !!}
 				</div>
 				<div class="col form-input-div">
-					<?php echo isset($villager->education_level) ? ucfirst($villager->education_level) : ''  ?>
+					<?php echo isset($villager->education_level) ? $villager->education_level : ''  ?>
 				</div>
 			</div>
 
@@ -271,11 +275,79 @@
 					</div>
 				</div>
 			</div>
+
 		</fieldset>
 		</form>
 	</div>
 
 </div>
+
+<!-- Mark Dead Modal-->
+<div class="modal" tabindex="-1" role="dialog" id="markDeadModal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+		  	<div class="modal-header">
+		        <h5 class="modal-title font-weight-bold">Mark Dead</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		    	</button>
+		  	</div>
+		  	<div class="modal-body">
+		    	<form id="markDeadForm">
+		    		<label for="mark_death_date" class="font-weight-bold">Death Date:</label>
+		    		<input type="date" name="mark_death_date" id="mark_death_date" class="form-control" required>
+		    	</form>
+		  	</div>
+		  	<div class="modal-footer">
+		        <button type="button" class="btn btn-success" id="confirmMarkDeadBtn">Confirm</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		  	</div>
+	    </div>
+	</div>
+</div>
+
+<!-- Mark Live Modal-->
+<div class="modal" tabindex="-1" role="dialog" id="markLiveModal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+		  	<div class="modal-header">
+		        <h5 class="modal-title font-weight-bold">Mark Alive</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		    	</button>
+		  	</div>
+		  	<div class="modal-body">
+		    	<p class="font-weight-bold">Confirm to Mark Alive?</p>
+		  	</div>
+		  	<div class="modal-footer">
+		        <button type="button" class="btn btn-success" id="confirmMarkLiveBtn">Confirm</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		  	</div>
+	    </div>
+	</div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="confirmDeleteModal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+		  	<div class="modal-header">
+		        <h5 class="modal-title font-weight-bold">Confirm Delete?</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		    	</button>
+		  	</div>
+		  	<div class="modal-body">
+		    	<p class="font-weight-bold">Confirm to Delete? This cannot be undone.</p>
+		  	</div>
+		  	<div class="modal-footer">
+		        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Confirm</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		  	</div>
+	    </div>
+	</div>
+</div>
+
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -294,6 +366,8 @@
 		$(form).find(".form-input-div").addClass("d-none");
 		$(form).find(".form-radio-label").removeClass("padding-top-calc");
 
+		$(".deadBtn").addClass("d-none");
+		$("#deleteBtn").addClass("d-none");
 		$("#editBtn").addClass("d-none");
 		$("#cancelBtn").removeClass("d-none");
 		$("#saveBtn").removeClass("d-none");
@@ -379,6 +453,8 @@
 				$(form).find(".form-input-div").removeClass("d-none");
 				$(form).find(".form-radio-label").addClass("padding-top-calc");
 
+				$(".deadBtn").removeClass("d-none");
+				$("#deleteBtn").removeClass("d-none");
 				$("#editBtn").removeClass("d-none");
 				$("#cancelBtn").addClass("d-none");
 				$("#saveBtn").addClass("d-none");
@@ -411,6 +487,94 @@
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
 		        showAjaxErrorMessage(jqXHR, exception, "Unable to save changes:<br>");
+		    }
+		});
+	});
+
+	$(document).on("click", "#confirmMarkLiveBtn", function(){
+		var _token = $('input[name="_token"]').val();
+		var id = $("#villager_id").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/markLive",
+			data: {
+				id: id,
+				_token: _token
+			},
+			beforeSend: function() {
+				$("#markLiveModal").modal('hide');
+				$("#loading_div").attr("data-text", "Marking as Alive...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to mark alive:<br>");
+		    }
+		});
+	});
+
+	$(document).on("click", "#confirmMarkDeadBtn", function(){
+		var form = document.getElementById("markDeadForm");
+
+		if (!form.checkValidity())
+		{
+			form.reportValidity();
+			return;
+		}
+
+		var _token = $('input[name="_token"]').val();
+		var id = $("#villager_id").val();
+		var deathDate = $("#mark_death_date").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/markDead",
+			data: {
+				id: id,
+				deathDate: deathDate,
+				_token: _token
+			},
+			beforeSend: function() {
+				$("#markDeadModal").modal('hide');
+				$("#loading_div").attr("data-text", "Marking as Dead...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to mark dead:<br>");
+		    }
+		});
+	});
+
+	$(document).on("click", "#confirmDeleteBtn", function(){
+		var _token = $('input[name="_token"]').val();
+		var id = $("#villager_id").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/deleteVillager",
+			data: {
+				id: id,
+				_token: _token
+			},
+			beforeSend: function() {
+				$("#confirmDeleteModal").modal('hide');
+				$("#loading_div").attr("data-text", "Deleting Villager Record...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				location.href = '/villagerRecords';
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to delete villager record:<br>");
 		    }
 		});
 	});

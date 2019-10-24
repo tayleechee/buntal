@@ -21,17 +21,17 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>View All Villager Records</h5>
+		<h5>View All House Records</h5>
 	</div>
 	<div class="card">
-	<table class="mt-4 table table-bordered table-sm" id="villagersTable">
+	<table class="mt-4 table table-bordered table-sm" id="housesTable">
 		<thead class="thead-dark">
 			<tr class="text-center">
 				<th class="th-sm">No.</th>
-				<th class="th-sm">Name</th>
 				<th class="th-sm">Address</th>
-				<th class="th-sm">Gender</th>
-				<th class="th-sm">Race</th>
+				<th class="th-sm">No. of Family</th>
+				<th class="th-sm">No. of Family Member</th>
+				<th class="th-sm">Total Household Income</th>
 				<th class="th-sm">Action</th>
 			</tr>
 		</thead>
@@ -45,30 +45,19 @@
 	$(document).ready(function() {
 		$("#viewRecordsDropdown").addClass("active");
 
-		var villagersTable = $('#villagersTable').DataTable({
+		var housesTable = $('#housesTable').DataTable({
 	        processing: true,
 	        serverSide: true,
-	        ajax: '{!! route('villagerRecords.getVillagerRecords') !!}',
+	        ajax: '{!! route('houseRecords.getHouseRecords') !!}',
 	        columns: [
 	        	{ data: null, "orderable": false, "searchable": false},
-	            { data: 'name' },
-	            { data: 'house.address' },
-	            { data: 'gender', "render": function(data, type, row) {
-		            	if (data == 'm') 
-		            		{return 'Male';} 
-		            	else if (data == 'f') 
-		            		{return 'Female';}
-		            	else
-		            		{return data};
-	            	} 
-	            },
-	            { data: 'race', "render": function(data, type, row) { 
-	            		return data.charAt(0).toUpperCase() + data.slice(1); 
-	            	} 
-	            },
+	            { data: 'address' },
+	            { data: 'family_number' , "searchable": false},
+	            { data: 'alive_villagers_count', "searchable": false},
+	            { data: 'household_income', "searchable": false},
 	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
 	            		var button = `<div class="text-center">
-	            						<button class="btn btn-primary btn-sm viewVillagerDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View Detail"><i class="far fa-eye"></i></button>
+	            						<button class="btn btn-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View Detail"><i class="far fa-eye"></i></button>
 	            					</div>
 	            					`;
 	            		return button;
@@ -76,27 +65,22 @@
 	            }
 	        ],
 	        "order": [[ 1, 'asc' ]],
-	        "createdRow": function( row, data, dataIndex){
-                if( data['death_date'] !== undefined && data['death_date'] !== null){
-                    $(row).addClass('deadIndicatorRow');
-                }
-            }
 	    });
 
-	    villagersTable.on( 'draw.dt', function () {
+	    housesTable.on( 'draw.dt', function () {
 	    	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
-	    	var info = villagersTable.page.info();
+	    	var info = housesTable.page.info();
 	    	var iterator = info.start;
 	    	console.log(iterator);
-	        villagersTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+	        housesTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
 	            cell.innerHTML = iterator+1;
 	            iterator++;
 	        } );
 	    } );
 	});
 
-	$(document).on("click", ".viewVillagerDetailBtn", function() {
-		window.location.href = "/villager/"+ $(this).attr("data-id");
+	$(document).on("click", ".viewHouseDetailBtn", function() {
+		window.location.href = "/house/"+ $(this).attr("data-id");
 	});
 </script>
 

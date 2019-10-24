@@ -155,7 +155,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="viewRecordsDropdown">
                               <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Villagers</a>
-                              <a class="dropdown-item" href="#">Houses</a>
+                              <a class="dropdown-item" href="{{route('houseRecords.index')}}">Houses</a>
                             </div>
                         </li>
                         <li class="ml-3 nav-item">
