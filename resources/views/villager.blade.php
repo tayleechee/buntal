@@ -51,7 +51,7 @@
 		<button type="button" class="btn btn-sm btn-primary mr-1" id="editBtn">Edit</button>
 		<button type="button" class="btn btn-sm btn-success d-none mr-1" id="saveBtn">Save</button>
 		<button type="button" class="btn btn-sm btn-secondary mr-1 d-none" id="cancelBtn">Cancel</button>
-		<button type="button" class="btn btn-sm btn-danger deleteMemberBtn">Delete</button>
+		<button type="button" class="btn btn-sm btn-danger" id="deleteBtn">Delete</button>
 		</div>
 		<form id="villagerDetail_form" name="villagerDetail_form">
 			{{ csrf_field() }}
@@ -171,20 +171,10 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="education" class="col-form-label col-2 form_education_label">Education Level</label>
 				<div class="col form-input-col d-none">
-					<!-- <select name="education" id="education" class="form-control form_education" required>
-						<option value="non-educated">Non-educated</option>
-						<option value="primary">Primary School</option>
-						<option value="secondary">Secondary School</option>
-						<option value="form6">Form 6</option>
-						<option value="diploma">Diploma</option>
-						<option value="degree">Degree</option>
-						<option value="master">Master</option>
-						<option value="phd">PhD</option>
-					</select> -->
-					{!! Form::select('education', ['non-educated'=>'Non-educated', 'primary'=>'Primary School', 'secondary'=>'Secondary School', 'form6'=>'Form 6', 'diploma'=>'Diploma', 'degree'=>'Degree', 'master'=>'Master', 'phd'=>'PhD'], isset($villager->education_level) ? $villager->education_level : null, ['class'=>'form-control form_education', 'id'=>'education', 'required']) !!}
+					{!! Form::select('education', ['Non-educated'=>'Non-educated', 'Primary School'=>'Primary School', 'Secondary School'=>'Secondary School', 'Form 6'=>'Form 6', 'Diploma'=>'Diploma', 'Degree'=>'Degree', 'Master'=>'Master', 'PhD'=>'PhD', 'N/A'=>'N/A'], isset($villager->education_level) ? $villager->education_level : null, ['class'=>'form-control form_education', 'id'=>'education', 'required']) !!}
 				</div>
 				<div class="col form-input-div">
-					<?php echo isset($villager->education_level) ? ucfirst($villager->education_level) : ''  ?>
+					<?php echo isset($villager->education_level) ? $villager->education_level : ''  ?>
 				</div>
 			</div>
 
@@ -294,6 +284,7 @@
 		$(form).find(".form-input-div").addClass("d-none");
 		$(form).find(".form-radio-label").removeClass("padding-top-calc");
 
+		$("#deleteBtn").addClass("d-none");
 		$("#editBtn").addClass("d-none");
 		$("#cancelBtn").removeClass("d-none");
 		$("#saveBtn").removeClass("d-none");
@@ -379,6 +370,7 @@
 				$(form).find(".form-input-div").removeClass("d-none");
 				$(form).find(".form-radio-label").addClass("padding-top-calc");
 
+				$("#deleteBtn").removeClass("d-none");
 				$("#editBtn").removeClass("d-none");
 				$("#cancelBtn").addClass("d-none");
 				$("#saveBtn").addClass("d-none");

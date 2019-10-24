@@ -392,14 +392,15 @@
 				<label for="education_1" class="col-form-label col-2 form_education_label">Education Level</label>
 				<div class="col">
 					<select name="education_1" id="education_1" class="form-control form_education" required>
-						<option value="non-educated">Non-educated</option>
-						<option value="primary">Primary School</option>
-						<option value="secondary">Secondary School</option>
-						<option value="form6">Form 6</option>
-						<option value="diploma">Diploma</option>
-						<option value="degree">Degree</option>
-						<option value="master">Master</option>
-						<option value="phd">PhD</option>
+						<option value="Non-educated">Non-educated</option>
+						<option value="Primary School">Primary School</option>
+						<option value="Secondary School">Secondary School</option>
+						<option value="Form 6">Form 6</option>
+						<option value="Diploma">Diploma</option>
+						<option value="Degree">Degree</option>
+						<option value="Master">Master</option>
+						<option value="PhD">PhD</option>
+						<option value="N/A">N/A</option>
 					</select>
 				</div>
 			</div>

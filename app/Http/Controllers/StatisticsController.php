@@ -100,19 +100,20 @@ class StatisticsController extends Controller
 	
 	public function populationByEducationLevel()
 	{
-		$data_nonEducated = Villager::whereeducation_level('non-educated')->count();
-        $data_primary = Villager::whereeducation_level('primary')->count();
-		$data_secondary = Villager::whereeducation_level('secondary')->count();
-		$data_form6 = Villager::whereeducation_level('form6')->count();
-		$data_diploma = Villager::whereeducation_level('diploma')->count();
-		$data_degree = Villager::whereeducation_level('degree')->count();
-		$data_master = Villager::whereeducation_level('master')->count();
-		$data_phd = Villager::whereeducation_level('phd')->count();
+		$data_nonEducated = Villager::whereeducation_level('Non-educated')->count();
+        $data_primary = Villager::whereeducation_level('Primary School')->count();
+		$data_secondary = Villager::whereeducation_level('Secondary School')->count();
+		$data_form6 = Villager::whereeducation_level('Form 6')->count();
+		$data_diploma = Villager::whereeducation_level('Diploma')->count();
+		$data_degree = Villager::whereeducation_level('Degree')->count();
+		$data_master = Villager::whereeducation_level('Master')->count();
+		$data_phd = Villager::whereeducation_level('PhD')->count();
+		$data_na = Villager::whereeducation_level('N/A')->count();
 
 		$chart = new Chartjs;
         $chart->title("Education Level");
-        $chart->labels(['Non-Educated','Primary','Secondary','Form 6','Diploma','Degree','Master','PhD']);
-        $chart->dataset('Education Level', 'bar', [$data_nonEducated,$data_primary,$data_secondary,$data_form6,$data_diploma,$data_degree,$data_master,$data_phd])->options([
+        $chart->labels(['Non-Educated','Primary','Secondary','Form 6','Diploma','Degree','Master','PhD', 'N/A']);
+        $chart->dataset('Education Level', 'bar', [$data_nonEducated,$data_primary,$data_secondary,$data_form6,$data_diploma,$data_degree,$data_master,$data_phd,$data_na])->options([
             'backgroundColor' => ['#9B59B6', 
 				'#2ECC71', 
 				'rgb(255, 99, 132)',
