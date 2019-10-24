@@ -17,7 +17,7 @@ class StatisticsController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
 		return view('statisticsIndex');
@@ -25,8 +25,8 @@ class StatisticsController extends Controller
 	
 	public function populationByGender()
 	{
-		$data_male = Villager::wheregender('m')->count();
-        $data_female = Villager::wheregender('f')->count();
+		$data_male = Villager::wheregender('m')->where('death_date', null)->count();
+        $data_female = Villager::wheregender('f')->where('death_date', null)->count();
 
 		$chart = new Chartjs;
         $chart->title("Gender");
@@ -41,7 +41,7 @@ class StatisticsController extends Controller
 	
 	public function populationByAgeRange()
 	{
-		$villagers = Villager::all();
+		$villagers = Villager::where('death_date', null)->get();
 		$age_group_10 = 0;
 		$age_group_20 = 0;
 		$age_group_30 = 0;
@@ -105,15 +105,15 @@ class StatisticsController extends Controller
 	
 	public function populationByEducationLevel()
 	{
-		$data_nonEducated = Villager::whereeducation_level('Non-educated')->count();
-        $data_primary = Villager::whereeducation_level('Primary School')->count();
-		$data_secondary = Villager::whereeducation_level('Secondary School')->count();
-		$data_form6 = Villager::whereeducation_level('Form 6')->count();
-		$data_diploma = Villager::whereeducation_level('Diploma')->count();
-		$data_degree = Villager::whereeducation_level('Degree')->count();
-		$data_master = Villager::whereeducation_level('Master')->count();
-		$data_phd = Villager::whereeducation_level('PhD')->count();
-		$data_na = Villager::whereeducation_level('N/A')->count();
+		$data_nonEducated = Villager::whereeducation_level('Non-educated')->where('death_date', null)->count();
+        $data_primary = Villager::whereeducation_level('Primary School')->where('death_date', null)->count();
+		$data_secondary = Villager::whereeducation_level('Secondary School')->where('death_date', null)->count();
+		$data_form6 = Villager::whereeducation_level('Form 6')->where('death_date', null)->count();
+		$data_diploma = Villager::whereeducation_level('Diploma')->where('death_date', null)->count();
+		$data_degree = Villager::whereeducation_level('Degree')->where('death_date', null)->count();
+		$data_master = Villager::whereeducation_level('Master')->where('death_date', null)->count();
+		$data_phd = Villager::whereeducation_level('PhD')->where('death_date', null)->count();
+		$data_na = Villager::whereeducation_level('N/A')->where('death_date', null)->count();
 
 		$chart = new Chartjs;
         $chart->title("Education Level");
@@ -134,9 +134,9 @@ class StatisticsController extends Controller
 	
 	public function populationByMaritalStatus()
 	{
-		$data_single = Villager::wheremarital_status('single')->count();
-        $data_kahwin = Villager::wheremarital_status('kahwin')->count();
-        $data_duda = Villager::wheremarital_status('duda')->count();
+		$data_single = Villager::wheremarital_status('bujang')->where('death_date', null)->count();
+        $data_kahwin = Villager::wheremarital_status('kahwin')->where('death_date', null)->count();
+        $data_duda = Villager::wheremarital_status('duda')->where('death_date', null)->count();
 
 		$chart = new Chartjs;
         $chart->title("Marital Status");
@@ -196,7 +196,7 @@ class StatisticsController extends Controller
 	{
 		$year = $request->input('year');
 		
-		$villagers = Villager::whereYear('dob',$year)->get();
+		$villagers = Villager::whereYear('dob',$year)->where('death_date', null)->get();
 		$jan = 0;
 		$feb = 0;
 		$mar = 0;
@@ -268,7 +268,7 @@ class StatisticsController extends Controller
                  ->endOfDay()          
                  ->toDateTimeString(); 
 
-		$villagers  = Villager::whereBetween('dob', [$from, $to])->get();
+		$villagers  = Villager::whereBetween('dob', [$from, $to])->where('death_date', null)->get();
 
 		$years = collect([]);
 		
@@ -280,7 +280,7 @@ class StatisticsController extends Controller
 		$count_villager = collect([]);
 		for($i = $startYear; $i <= $endYear; $i++)
 		{
-			$count_villager->push(Villager::whereYear('dob',$i)->count());
+			$count_villager->push(Villager::whereYear('dob',$i)->where('death_date', null)->count());
 		}
 		
 		$chart = new Chartjs;
@@ -346,7 +346,7 @@ class StatisticsController extends Controller
 		$chart = new Chartjs;
         $chart->title("Death Rate by Year $year");
         $chart->labels(['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December']);
-        $chart->dataset('Birth Rate','line', [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec])->options([
+        $chart->dataset('Death Rate','line', [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec])->options([
 			"fill" => [false],
 			"borderColor"=>["rgb(75, 192, 192)"],
 			"lineTension"=>[0.1]

@@ -86,4 +86,40 @@ class VillagerDetailController extends Controller
 
 		flash('Changes Saved!')->success();
     }
+
+    public function markLive(Request $request)
+    {
+    	$id = $request->id;
+
+    	$villager = Villager::find($request->id);
+		if (!$villager) {
+			return Response::json("Villager Record Not Found.", 455);
+		}
+
+		$villager->death_date = null;
+		$villager->save();
+
+		flash('Marked as Live!')->success();
+    }
+
+    public function markDead(Request $request)
+    {
+    	$rules = [
+    		'id' => 'required',
+		    'deathDate' => 'required',
+		];
+
+		$validator = Validator::make($request->all(), $rules);
+		$validator->validate();
+
+		$villager = Villager::find($request->id);
+		if (!$villager) {
+			return Response::json("Villager Record Not Found.", 455);
+		}
+
+		$villager->death_date = $request->deathDate;
+		$villager->save();
+
+		flash('Marked as Dead!')->success();
+    }
 }

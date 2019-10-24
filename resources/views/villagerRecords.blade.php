@@ -2,7 +2,11 @@
 @section('css')
 <style type="text/css">
   .card {
-	  padding: 1em;
+	 	padding: 1em;
+  }
+
+  .deadIndicatorRow {
+  		background-color: #e8e8e8;
   }
 </style>
 @endsection
@@ -20,7 +24,7 @@
 		<h5>View All Villager Records</h5>
 	</div>
 	<div class="card">
-	<table class="mt-4 table table-hover table-bordered table-sm" id="villagersTable">
+	<table class="mt-4 table table-bordered table-sm" id="villagersTable">
 		<thead class="thead-dark">
 			<tr class="text-center">
 				<th class="th-sm">No.</th>
@@ -64,17 +68,23 @@
 	            },
 	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
 	            		var button = `<div class="text-center">
-	            						<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + data + `">View Detail</button>
+	            						<button class="btn btn-primary btn-sm viewVillagerDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View Detail"><i class="far fa-eye"></i></button>
 	            					</div>
 	            					`;
 	            		return button;
 	            	}
 	            }
 	        ],
-	        "order": [[ 1, 'asc' ]]
+	        "order": [[ 1, 'asc' ]],
+	        "createdRow": function( row, data, dataIndex){
+                if( data['death_date'] !== undefined && data['death_date'] !== null){
+                    $(row).addClass('deadIndicatorRow');
+                }
+            }
 	    });
 
 	    villagersTable.on( 'draw.dt', function () {
+	    	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
 	    	var info = villagersTable.page.info();
 	    	var iterator = info.start;
 	    	console.log(iterator);

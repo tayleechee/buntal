@@ -28,18 +28,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $villagerCount = Villager::get()->count();
+        $villagerCount = Villager::where('death_date', null)->count();
         $houseCount = House::get()->count();
 
-        $data_single = Villager::wheremarital_status('bujang')->count();
-        $data_kahwin = Villager::wheremarital_status('kahwin')->count();
-        $data_duda = Villager::wheremarital_status('duda')->count();
+        $data_single = Villager::wheremarital_status('bujang')->where('death_date', null)->count();
+        $data_kahwin = Villager::wheremarital_status('kahwin')->where('death_date', null)->count();
+        $data_duda = Villager::wheremarital_status('duda')->where('death_date', null)->count();
 
-        $data_male = Villager::wheregender('m')->count();
-        $data_female = Villager::wheregender('f')->count();
+        $data_male = Villager::wheregender('m')->where('death_date', null)->count();
+        $data_female = Villager::wheregender('f')->where('death_date', null)->count();
 
-        $data_noProperty = Villager::whereis_property_owner('0')->count();
-        $data_haveProperty = Villager::whereis_property_owner('1')->count();
+        $data_noProperty = Villager::whereis_property_owner('0')->where('death_date', null)->count();
+        $data_haveProperty = Villager::whereis_property_owner('1')->where('death_date', null)->count();
 
         $maritalChart = new Chartjs;
         $maritalChart->title("Marital Status");
