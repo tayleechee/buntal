@@ -51,7 +51,7 @@
 		@if ( isset($villager) && empty($villager->death_date) )
 		<button type="button" class="btn btn-sm btn-dark mr-1 deadBtn" id="markDeadBtn" data-toggle="modal" data-target="#markDeadModal">Mark Dead</button>
 		@else
-		<button type="button" class="btn btn-sm btn-success mr-1 deadBtn" id="markLiveBtn" data-toggle="modal" data-target="#markLiveModal">Mark Live</button>
+		<button type="button" class="btn btn-sm btn-success mr-1 deadBtn" id="markLiveBtn" data-toggle="modal" data-target="#markLiveModal">Mark Alive</button>
 		@endif
 		<button type="button" class="btn btn-sm btn-primary mr-1" id="editBtn">Edit</button>
 		<button type="button" class="btn btn-sm btn-success d-none mr-1" id="saveBtn">Save</button>
@@ -311,13 +311,13 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
-		        <h5 class="modal-title font-weight-bold">Mark Live</h5>
+		        <h5 class="modal-title font-weight-bold">Mark Alive</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		    	</button>
 		  	</div>
 		  	<div class="modal-body">
-		    	<p class="font-weight-bold">Confirm to Mark Live?</p>
+		    	<p class="font-weight-bold">Confirm to Mark Alive?</p>
 		  	</div>
 		  	<div class="modal-footer">
 		        <button type="button" class="btn btn-success" id="confirmMarkLiveBtn">Confirm</button>
@@ -504,7 +504,7 @@
 			},
 			beforeSend: function() {
 				$("#markLiveModal").modal('hide');
-				$("#loading_div").attr("data-text", "Marking as Live...");
+				$("#loading_div").attr("data-text", "Marking as Alive...");
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
@@ -512,7 +512,7 @@
 			},
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
-		        showAjaxErrorMessage(jqXHR, exception, "Unable to mark live:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to mark alive:<br>");
 		    }
 		});
 	});
