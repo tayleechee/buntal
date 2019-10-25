@@ -15,7 +15,7 @@ class CreateVillagersTable extends Migration
     {
         Schema::create('villagers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('house_id');
+            $table->bigInteger('house_id')->unsigned();
             $table->string('name');
             $table->string('ic');
             $table->char('gender', 1);
@@ -27,6 +27,8 @@ class CreateVillagersTable extends Migration
             $table->boolean('is_property_owner');
             $table->boolean('is_active');
             $table->string('death_date')->nullable();
+
+            $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade');
         });
     }
 
