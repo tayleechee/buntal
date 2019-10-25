@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@include('addMemberModal')
+@include('editMemberModal')
 
 @section('css')
 <style type="text/css">
@@ -114,7 +116,7 @@
 <div class="container">
 	<div class="text-right mt-5">
 		<div>
-			<button type="button" id="add_member_btn" class="btn btn-outline-success">Add Member</button>
+			<button type="button" id="add_member_btn" class="btn btn-outline-success" data-toggle="modal" data-target="#addMemberModal">Add Member</button>
 			<button type="button" id="edit_house_btn" class="btn btn-outline-primary">Edit House Detail</button>
 			<button type="button" id="save_house_btn" class="btn btn-success d-none">Save</button>
 			<button type="button" id="cancel_house_btn" class="btn btn-secondary d-none">Cancel</button>
@@ -174,7 +176,10 @@
 					@else
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
 					@endif
-					<div class="text-right"><button type="button" class="btn btn-sm btn-danger deleteMemberBtn">Delete</button></div>
+					<div class="text-right">
+						<button type="button" class="btn btn-sm btn-success editMemberBtn mr-1" data-id="{{ $villager->id }}">Edit</button>
+						<button type="button" class="btn btn-sm btn-danger deleteMemberBtn" data-id="{{ $villager->id }}">Delete</button>
+					</div>
 
 					@if ( isset($villager) && !empty($villager->death_date) )
 					<div class="form-group row pl-2 mt-3">
@@ -263,7 +268,7 @@
 </div>
 
 <!-- Confirm Delete House Modal -->
-<div class="modal" tabindex="-1" role="dialog" id="confirmDeleteHouseModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="confirmDeleteHouseModal">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
@@ -277,6 +282,27 @@
 		  	</div>
 		  	<div class="modal-footer">
 		        <button type="button" class="btn btn-danger" id="confirmDeleteHouseBtn">Confirm</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		  	</div>
+	    </div>
+	</div>
+</div>
+
+<!-- Confirm Delete Member Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="confirmDeleteMemberModal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+		  	<div class="modal-header">
+		        <h5 class="modal-title font-weight-bold">Confirm Delete?</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		    	</button>
+		  	</div>
+		  	<div class="modal-body">
+		    	<p class="font-weight-bold">You are about to delete this member. This cannot be undone.</p>
+		  	</div>
+		  	<div class="modal-footer">
+		        <button type="button" class="btn btn-danger" id="confirmDeleteMemberBtn">Confirm</button>
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 		  	</div>
 	    </div>
@@ -407,6 +433,167 @@
 		    }
 		});
 	});
+
+	$(document).on("click", "#addMemberSaveBtn", function(){
+		var form = document.getElementById("addMemberForm");
+		if (!form.checkValidity())
+		{
+			form.reportValidity();
+		}
+
+		$.ajax({
+			type: "POST",
+			url: "/addMember",
+			data: $("#addMemberForm").serialize(),
+			beforeSend: function() {
+				$("#loading_div").attr("data-text", "Adding new member...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to Add Member:<br>");
+		    }
+		});
+	});
+
+	$(document).on("click", ".deleteMemberBtn", function(){
+		var member_id = $(this).attr("data-id");
+		$("#confirmDeleteMemberBtn").attr("data-id", member_id);
+
+		$("#confirmDeleteMemberModal").modal('show');
+	});
+
+	$(document).on("click", "#confirmDeleteMemberBtn", function(){
+		var member_id = $(this).attr("data-id");
+		var _token = $('input[name="_token"]').val();
+
+		$.ajax({
+			type: "POST",
+			url: "/deleteVillager",
+			data: {
+				id: member_id,
+				_token: _token
+			},
+			beforeSend: function() {
+				$("#confirmDeleteModal").modal('hide');
+				$("#loading_div").attr("data-text", "Deleting Villager Record...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to delete villager record:<br>");
+		    }
+		});
+	});
+
+	$(document).on("click", ".editMemberBtn", function(){
+		var villager_id = $(this).attr("data-id");
+
+		$.ajax({
+			type: "GET",
+			url: '/getVillagerDetail',
+			data: {
+				id: villager_id,
+			},
+			beforeSend: function() {
+				$("#loadingModal").modal('show');
+			},
+			complete: function() {
+				$("#loadingModal").modal('hide');
+			},
+			success: function(data) {
+				$("#editMemberForm input[name=villager_id]").val(data.id);
+
+				if (typeof data.name !== 'undefined') {
+					$("#editMemberForm input[name=name]").val(data.name);
+				}
+				if (typeof data.ic !== 'undefined') {
+					$("#editMemberForm input[name=ic]").val(data.ic);
+				}
+				if (typeof data.gender !== 'undefined') {
+					if (data.gender == 'm') {
+						$("#editMemberForm select[name=gender]").val('male');
+					}
+					else if (data.gender == 'f') {
+						$("#editMemberForm select[name=gender]").val('female');
+					}
+				}
+				if (typeof data.dob !== 'undefined') {
+					$("#editMemberForm input[name=dob]").val(data.dob);
+				}
+				if (typeof data.race !== 'undefined') {
+					$("#editMemberForm select[name=race]").val(data.race);
+				}
+				if (typeof data.marital_status !== 'undefined') {
+					$("#editMemberForm select[name=marital]").val(data.marital_status);
+				}
+				if (typeof data.education_level !== 'undefined') {
+					$("#editMemberForm select[name=education]").val(data.education_level);
+				}
+				if (typeof data.occupation !== 'undefined') {
+					$("#editMemberForm input[name=occupation]").val(data.occupation);
+				}
+				if (typeof data.is_active !== 'undefined') {
+					if (data.is_active == 1) {
+						$("#editMemberForm input[name='active'][value='1']")[0].checked = true;
+					}
+					else if (data.is_active == 0) {
+						$("#editMemberForm input[name='active'][value='0']")[0].checked = true;
+					}
+				}
+				if (typeof data.is_property_owner !== 'undefined') {
+					if (data.is_property_owner == 1) {
+						$("#editMemberForm input[name='propertyOwner'][value='1']")[0].checked = true;
+					}
+					else if (data.is_property_owner == 0) {
+						$("#editMemberForm input[name='propertyOwner'][value='0']")[0].checked = true;
+					}
+				}
+
+				$("#loadingModal").modal('hide');
+				$("#editMemberModal").modal('show');
+			},
+			error: function (jqXHR, exception) {
+		        showAjaxErrorMessage(jqXHR, exception, "Failed to retrieve record. Please refresh:<br>");
+		    }
+		});
+	});
+
+	$(document).on("click", "#editMemberSaveBtn", function(){
+		var form = document.getElementById("editMemberForm");
+
+		if (!form.checkValidity())
+		{
+			form.reportValidity();
+			return;
+		}
+
+		$.ajax({
+			type: "POST",
+			url: "/setVillagerDetail",
+			data: $("#editMemberForm").serialize(),
+			beforeSend: function() {
+				$("editMemberModal").modal('hide');
+				$("#loading_div").attr("data-text", "Saving Changes...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to save changes:<br>");
+		    }
+		});
+	});
 </script>
 
+@yield('addMemberModal')
+@yield('editMemberModal')
 @endsection('content')

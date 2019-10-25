@@ -57,7 +57,8 @@ Route::get('/getHouseRecords', 'HouseRecordsController@getHouseRecords')->name('
 Route::get('/house/{id}', 'HouseDetailController@index')->name('houseDetail.index');
 Route::get('/getHouseDetail', 'HouseDetailController@getHouseDetail');
 Route::post('/setHouseDetail', 'HouseDetailController@setHouseDetail');
-Route::post('deleteHouse', 'HouseDetailController@deleteHouse');
+Route::post('/deleteHouse', 'HouseDetailController@deleteHouse');
+Route::post('/addMember', 'HouseDetailController@addMember');
 
 // statistics routes
 Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');

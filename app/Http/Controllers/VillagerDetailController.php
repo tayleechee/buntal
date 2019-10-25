@@ -84,7 +84,15 @@ class VillagerDetailController extends Controller
 
 		$villager->save();
 
-		flash('Changes Saved!')->success();
+		if (!empty($request->flash_by_overlay))
+		{
+			flash()->overlay('Changes Saved!', 'Edit Successful');
+		}
+		else
+		{
+			flash('Changes Saved!')->success();
+		}
+
     }
 
     public function markLive(Request $request)

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Response;
 use App\House;
+use App\Villager;
 
 class HouseDetailController extends Controller
 {
@@ -78,9 +79,61 @@ class HouseDetailController extends Controller
 		if (!$house) {
 			return Response::json("House Record Not Found.", 455);
 		}
-		
+
 		$house->delete();
 
 		flash("House Recorded Deleted!")->success();
+    }
+
+    public function addMember(Request $request)
+    {
+    	$rules = [
+    		'house_id' => 'required',
+		    'name' => 'required',
+		    'ic' => 'required',
+		    'dob' => 'required',
+		    'gender' => 'required',
+		    'marital' => 'required',
+		    'education' => 'required',
+		    'occupation' => 'required',
+		    'race' => 'required',
+		    'active' => 'required',
+		    'propertyOwner' => 'required',
+		];
+
+		$validator = Validator::make($request->all(), $rules);
+		$validator->validate();
+
+		$house_id = $request->house_id;
+		$house = House::find($house_id);
+
+		if (!$house) {
+			return Response::json("House Record Not Found.", 455);
+		}
+
+		$villager = new Villager;
+		$villager->house_id = $house_id;
+		$villager->name = $request->name;
+		$villager->ic = $request->ic;
+
+		if ($request->gender == 'male') {
+			$villager->gender = 'm';
+		}
+		else {
+			$villager->gender = 'f';
+		}
+
+		$villager->dob = $request->dob;
+		$villager->race = $request->race;
+		$villager->marital_status = $request->marital;
+		$villager->education_level = $request->education;
+		$villager->occupation = $request->occupation;
+		$villager->is_property_owner = $request->propertyOwner;
+		$villager->is_active = $request->active;
+		$villager->save();
+
+		flash('Member Added Successfully!')->success();		
+
+		return Response::json("Success", 200);
     }
 }
