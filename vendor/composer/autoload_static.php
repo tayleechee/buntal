@@ -451,7 +451,7 @@ class ComposerStaticInitfa0ccab070ab25524e7e26058da29cde
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\DynamicPdfController' => __DIR__ . '/../..' . '/app/Http/Controllers/DynamicPdfController.php',
+        'App\\Http\\Controllers\\DynamicPDFController' => __DIR__ . '/../..' . '/app/Http/Controllers/DynamicPdfController.php',
         'App\\Http\\Controllers\\FillFormController' => __DIR__ . '/../..' . '/app/Http/Controllers/FillFormController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\StatisticsController' => __DIR__ . '/../..' . '/app/Http/Controllers/StatisticsController.php',
