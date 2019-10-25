@@ -131,6 +131,23 @@
             -webkit-animation: spinner-border .75s linear infinite;
             animation: spinner-border .75s linear infinite;
         }
+
+        .navbar-nav li:hover > ul.dropdown-menu {
+            display:block;
+        }
+
+        .dropdown-submenu{
+            position:relative;
+        }
+
+        .dropdown-submenu>.dropdown-menu{
+            top:0;
+            left:100%;
+            margin-top:-9px;
+        }
+
+
+
     </style>
 
     @yield('css')
@@ -152,7 +169,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="ml-3 nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="viewRecordsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               View Records
                             </a>
@@ -161,30 +178,53 @@
                               <a class="dropdown-item" href="{{route('houseRecords.index')}}">Houses</a>
                             </div>
                         </li>
-                        <li class="ml-3 nav-item">
-                            <a href="{{route('statistics.index')}}" class="nav-link">View Statistics</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{route('statistics.index')}}" id="viewStatisticsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Statistics</a>
+                            <ul class="dropdown-menu" aria-labelledby="viewStatisticsDropdown">
+                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Population</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">By Gender</a></li>
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByAgeRange')}}">By Age Range</a></li>
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByEducationLevel')}}">By Education Level</a></li>
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByMaritalStatus')}}">By Marital Status</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" >Birth Rate</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" data-toggle="modal" data-target="#BirthRateByYear">By Year</a></li>
+                                        <li><a class="dropdown-item" data-toggle="modal" data-target="#BirthRateByRangeOfYears">By Range of Years</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Death Rate</a>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" data-toggle="modal" data-target="#DeathRateByYear">By Year</a></li>
+                                        <li><a class="dropdown-item" data-toggle="modal" data-target="#DeathRateByRangeOfYears">By Range of Years</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item" href="{{route('statistics.monthlyHouseholdIncome')}}">Monthly HouseHold Income</a></li>
+                            </ul>
                         </li>
+                        <button type="button" class="btn btn-default"><a href="{{route('dynamic_pdf')}}">Generate Report</a></button>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 @endauth
@@ -196,6 +236,126 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Birth Rate: By Year -->
+    <div class="modal fade" id="BirthRateByYear" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle"><strong>Birth Rate: By Year</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h6>Please input the year of birth to search.</h6>
+            <form method="POST" action="{{url('/statistics/birthRateByYear')}}">
+                @csrf
+                <div style="margin:10px 0 20px;">
+                    Year :
+                    <input name="year" class="form-control col-2" style="display:inline;margin:10 20px;" required />
+                </div>
+                <input type="submit" class="btn btn-primary" value="Submit" />
+            </form>
+        </div>
+        <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+        </div>
+    </div>
+    </div>
+
+    <!-- Birth Rate: By Range Of Year -->
+    <div class="modal fade" id="BirthRateByRangeOfYears" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Birth Rate: By Range of Years</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Please input the year of birth to search.</h6>
+                <form method="POST" action="{{url('/statistics/birthRateByRangeOfYears')}}">
+				@csrf
+				<div style="margin:10px 0 20px;">
+					From
+					<input name="startYear" class="form-control col-2" style="display:inline;margin:0 20px;" />
+					To
+					<input name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
+				</div>
+				<input type="submit" class="btn btn-primary" value="Submit" />
+			</form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Death Rate: By Range Of Year -->
+    <div class="modal fade" id="DeathRateByYear" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Death Rate: By Years</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Please input the year of death to search.</h6>
+                <form method="POST" action="{{url('/statistics/deathRateByYear')}}">
+				@csrf
+				<div style="margin:10px 0 20px;">
+					Select Year:
+					<input name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
+				</div>
+				<input type="submit" class="btn btn-primary" value="Submit" />
+			</form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Death Rate: By Range Of Year -->
+    <div class="modal fade" id="DeathRateByRangeOfYears" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><strong>Death Rate: By Range of Years</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h6>Please input the range of year of death to search.</h6>
+                <form method="POST" action="{{url('/statistics/deathRateByRangeOfYears')}}">
+				@csrf
+				<div style="margin:10px 0 20px;">
+					From
+					<input name="startYear" class="form-control col-2" style="display:inline;margin:0 20px;" />
+					To
+					<input name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
+				</div>
+				<input type="submit" class="btn btn-primary" value="Submit" />
+			    </form>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+                </div>
+            </div>
+        </div>
 
     <div id="errorModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
@@ -269,5 +429,21 @@
             $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
         })
     </script>
+    <script>
+        $(".dropdown-toggle").on("mouseenter", function () {
+            // make sure it is not shown:
+            if (!$(this).parent().hasClass("show")) {
+                $(this).click();
+            }
+        });
+
+        $(".btn-group, .dropdown").on("mouseleave", function () {
+        // make sure it is shown:
+          if ($(this).hasClass("show")){
+            $(this).children('.dropdown-toggle').first().click();
+        }
+        });
+    </script>
+
 </body>
 </html>

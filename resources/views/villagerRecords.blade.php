@@ -54,13 +54,13 @@
 	            { data: 'name' },
 	            { data: 'house.address' },
 	            { data: 'gender', "render": function(data, type, row) {
-		            	if (data == 'm') 
-		            		{return 'Male';} 
-		            	else if (data == 'f') 
+		            	if (data == 'm')
+		            		{return 'Male';}
+		            	else if (data == 'f')
 		            		{return 'Female';}
 		            	else
 		            		{return data};
-	            	} 
+	            	}
 	            },
 	            { data: 'race', "render": function(data, type, row) { 
 	            		return data.charAt(0).toUpperCase() + data.slice(1); 

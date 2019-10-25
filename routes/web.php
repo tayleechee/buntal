@@ -71,3 +71,7 @@ Route::post('/statistics/birthRateByYear', 'StatisticsController@birthRateByYear
 Route::post('/statistics/birthRateByRangeOfYears', 'StatisticsController@birthRateByRangeOfYears');
 Route::post('/statistics/deathRateByYear', 'StatisticsController@deathRateByYear');
 Route::post('/statistics/deathRateByRangeOfYears', 'StatisticsController@deathRateByRangeOfYears');
+
+//Dynamic pdf routes
+Route::get('/dynamic_pdf', 'DynamicPDFController@index')->name('dynamic_pdf');
+Route::get('/dynamic_pdf/pdf', 'DynamicPDFController@pdf');
