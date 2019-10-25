@@ -69,4 +69,18 @@ class HouseDetailController extends Controller
 
 		flash('Changes Saved!')->success();
     }
+
+    public function deleteHouse(Request $request)
+    {
+    	$id = $request->id;
+
+    	$house = House::find($request->id);
+		if (!$house) {
+			return Response::json("House Record Not Found.", 455);
+		}
+		
+		$house->delete();
+
+		flash("House Recorded Deleted!")->success();
+    }
 }

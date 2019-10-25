@@ -383,7 +383,29 @@
 	});
 
 	$(document).on("click", "#confirmDeleteHouseBtn", function(){
-		
+		var _token = $('input[name="_token"]').val();
+		var id = $("#house_id").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/deleteHouse",
+			data: {
+				id: id,
+				_token: _token
+			},
+			beforeSend: function() {
+				$("#confirmDeleteModal").modal('hide');
+				$("#loading_div").attr("data-text", "Deleting House Record...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				location.href = '/houseRecords';
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Unable to delete house record:<br>");
+		    }
+		});
 	});
 </script>
 
