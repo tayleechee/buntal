@@ -13,4 +13,9 @@ class House extends Model
     {
     	return $this->hasMany('App\Villager')->where('death_date', null);
     }
+
+    public function villagers()
+    {
+    	return $this->hasMany('App\Villager');
+    }
 }
