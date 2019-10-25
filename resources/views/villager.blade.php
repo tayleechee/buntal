@@ -283,7 +283,7 @@
 </div>
 
 <!-- Mark Dead Modal-->
-<div class="modal" tabindex="-1" role="dialog" id="markDeadModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="markDeadModal">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
@@ -307,7 +307,7 @@
 </div>
 
 <!-- Mark Live Modal-->
-<div class="modal" tabindex="-1" role="dialog" id="markLiveModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="markLiveModal">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
@@ -328,7 +328,7 @@
 </div>
 
 <!-- Confirm Delete Modal -->
-<div class="modal" tabindex="-1" role="dialog" id="confirmDeleteModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="confirmDeleteModal">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
@@ -412,7 +412,7 @@
 						$("#gender").val('female');
 					}
 				}
-				if (typeof data.ic !== 'undefined') {
+				if (typeof data.dob !== 'undefined') {
 					$("#dob").val(data.dob);
 				}
 				if (typeof data.race !== 'undefined') {

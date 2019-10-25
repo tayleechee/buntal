@@ -17,7 +17,7 @@ class VillagerTableSeeder extends Seeder
              'ic' => "960104130005",
              'gender' => "m",
              'dob' => "1996-01-04",
-             'race' => "Chinese",
+             'race' => "cina",
              'marital_status' => "kahwin",
              'education_level' => "Degree",
              'occupation' => "Software Architect",

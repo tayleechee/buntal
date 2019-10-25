@@ -78,7 +78,7 @@
 	        "order": [[ 1, 'asc' ]],
 	        "createdRow": function( row, data, dataIndex){
                 if( data['death_date'] !== undefined && data['death_date'] !== null){
-                    $(row).addClass('deadIndicatorRow');
+                    $(row).addClass('table-warning');
                 }
             }
 	    });

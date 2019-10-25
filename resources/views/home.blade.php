@@ -94,7 +94,7 @@
         <div class="card" style="padding: 1em; margin-top: -1em; margin-bottom: 1em;">
             <div class="row">
                 <div class="col-4">
-                    {!! $maritalChart->container() !!}
+                    {!! $activeChart->container() !!}
                 </div>
                 <div class="col-4">
                     {!! $genderChart->container() !!}
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-            {!! $maritalChart->script() !!}
+            {!! $activeChart->script() !!}
             {!! $genderChart->script() !!}
             {!! $propertyOwnerChart->script() !!}
             @endif

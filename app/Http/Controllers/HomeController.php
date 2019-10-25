@@ -41,6 +41,16 @@ class HomeController extends Controller
         $data_noProperty = Villager::whereis_property_owner('0')->where('death_date', null)->count();
         $data_haveProperty = Villager::whereis_property_owner('1')->where('death_date', null)->count();
 
+        $active_yes_count = Villager::whereis_active('1')->where('death_date', null)->count();
+        $active_no_count = Villager::whereis_active('0')->where('death_date', null)->count();
+
+        $activeChart = new Chartjs;
+        $activeChart->title("Active Status");
+        $activeChart->labels(['Yes', 'No']);
+        $activeChart->dataset('Active Status', 'bar', [$active_yes_count,$active_no_count])->options([
+            'backgroundColor' => ['#9B59B6', '#2ECC71']
+        ]);
+
         $maritalChart = new Chartjs;
         $maritalChart->title("Marital Status");
         $maritalChart->labels(['bujang', 'kahwin','duda']);
@@ -63,7 +73,7 @@ class HomeController extends Controller
             'backgroundColor' => ['#333399', '#FF0066']
         ]);
 
-        return view('home', compact('maritalChart','genderChart','propertyOwnerChart', 'villagerCount', 'houseCount'));
+        return view('home', compact('activeChart','maritalChart','genderChart','propertyOwnerChart', 'villagerCount', 'houseCount'));
     }
 
     
