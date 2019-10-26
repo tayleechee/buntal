@@ -267,8 +267,8 @@
             <form method="POST" action="{{url('/statistics/birthRateByYear')}}">
                 @csrf
                 <div style="margin:10px 0 20px;">
-                    Year :
-                    <input name="year" class="form-control col-2" style="display:inline;margin:10 20px;" required />
+                    Select Year:
+                    <input name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>

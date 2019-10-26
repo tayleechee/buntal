@@ -239,7 +239,7 @@ class StatisticsController extends Controller
 			else if ($month == 7)
 				$jul++;
 			else if ($month == 8)
-				$august++;
+				$aug++;
 			else if ($month == 9)
 				$sep++;
 			else if ($month == 10)
@@ -346,7 +346,7 @@ class StatisticsController extends Controller
 			else if ($month == 7)
 				$jul++;
 			else if ($month == 8)
-				$august++;
+				$aug++;
 			else if ($month == 9)
 				$sep++;
 			else if ($month == 10)
