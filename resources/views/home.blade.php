@@ -110,5 +110,5 @@
             @endif
 
         </div>
-        @endsection
     </div>
+@endsection

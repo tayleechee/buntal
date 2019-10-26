@@ -132,7 +132,11 @@
             animation: spinner-border .75s linear infinite;
         }
 
-        .navbar-nav li:hover > ul.dropdown-menu {
+        /*.navbar-nav li:hover > ul.dropdown-menu {
+            display:block;
+        }*/
+
+        .navbar-nav li.dropdown-submenu:hover > ul.dropdown-menu {
             display:block;
         }
 
@@ -169,7 +173,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
+                        <li class="ml-3 nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="viewRecordsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               View Records
                             </a>
@@ -179,9 +183,12 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{route('statistics.index')}}" id="viewStatisticsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Statistics</a>
+                            <a class="nav-link dropdown-toggle ml-3" href="{{route('statistics.index')}}" id="viewStatisticsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Statistics</a>
                             <ul class="dropdown-menu" aria-labelledby="viewStatisticsDropdown">
-                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Population</a>
+                                <li class="dropdown-submenu">
+                                    <div class="btn-group dropright">
+                                        <a href="#" class="dropdown-item dropdown-toggle">Population</a>
+                                    </div>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">By Gender</a></li>
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByAgeRange')}}">By Age Range</a></li>
@@ -189,22 +196,30 @@
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByMaritalStatus')}}">By Marital Status</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" >Birth Rate</a>
+                                <li class="dropdown-submenu">
+                                    <div class="btn-group dropright">
+                                        <a href="#" class="dropdown-item dropdown-toggle" >Birth Rate</a>
+                                    </div>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" data-toggle="modal" data-target="#BirthRateByYear">By Year</a></li>
-                                        <li><a class="dropdown-item" data-toggle="modal" data-target="#BirthRateByRangeOfYears">By Range of Years</a></li>
+                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByYear">By Year</a></li>
+                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByRangeOfYears">By Range of Years</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Death Rate</a>
+                                <li class="dropdown-submenu">
+                                    <div class="btn-group dropright">
+                                        <a href="#" class="dropdown-item dropdown-toggle">Death Rate</a>
+                                    </div>
                                     <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" data-toggle="modal" data-target="#DeathRateByYear">By Year</a></li>
-                                        <li><a class="dropdown-item" data-toggle="modal" data-target="#DeathRateByRangeOfYears">By Range of Years</a></li>
+                                    <li>
+                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByYear">By Year</a>
+                                    </li>
+                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByRangeOfYears">By Range of Years</a></li>
                                     </ul>
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('statistics.monthlyHouseholdIncome')}}">Monthly HouseHold Income</a></li>
                             </ul>
                         </li>
-                        <button type="button" class="btn btn-default"><a href="{{route('dynamic_pdf')}}">Generate Report</a></button>
+                        <li><a class="ml-2 nav-link nav-item" href="{{route('dynamic_pdf')}}">Generate Report</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -254,8 +269,8 @@
                 <div style="margin:10px 0 20px;">
                     Year :
                     <input name="year" class="form-control col-2" style="display:inline;margin:10 20px;" required />
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-                <input type="submit" class="btn btn-primary" value="Submit" />
             </form>
         </div>
         <!-- <div class="modal-footer">
@@ -286,7 +301,9 @@
 					To
 					<input name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
 				</div>
-				<input type="submit" class="btn btn-primary" value="Submit" />
+				<div class="text-right">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
 			</form>
             </div>
             <!-- <div class="modal-footer">
@@ -314,8 +331,8 @@
 				<div style="margin:10px 0 20px;">
 					Select Year:
 					<input name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
+                    <button type="submit" class="btn btn-primary">Submit</button>
 				</div>
-				<input type="submit" class="btn btn-primary" value="Submit" />
 			</form>
             </div>
             <!-- <div class="modal-footer">
@@ -346,7 +363,9 @@
 					To
 					<input name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
 				</div>
-				<input type="submit" class="btn btn-primary" value="Submit" />
+                <div class="text-right">
+				    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
 			    </form>
                 </div>
                 <!-- <div class="modal-footer">
@@ -429,7 +448,7 @@
             $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
         })
     </script>
-    <script>
+    <!-- <script>
         $(".dropdown-toggle").on("mouseenter", function () {
             // make sure it is not shown:
             if (!$(this).parent().hasClass("show")) {
@@ -443,7 +462,7 @@
             $(this).children('.dropdown-toggle').first().click();
         }
         });
-    </script>
+    </script> -->
 
 </body>
 </html>
