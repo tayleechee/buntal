@@ -278,7 +278,7 @@
 		    	</button>
 		  	</div>
 		  	<div class="modal-body">
-		    	<p class="font-weight-bold">You are about to delete this house? All residents will be deleted too.</p>
+		    	<p class="font-weight-bold">You are about to delete this house. All residents will be deleted too.</p>
 		  	</div>
 		  	<div class="modal-footer">
 		        <button type="button" class="btn btn-danger" id="confirmDeleteHouseBtn">Confirm</button>
