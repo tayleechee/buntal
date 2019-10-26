@@ -38,7 +38,7 @@
             <div class="col-md-7" align="right"><h4>Villagers Details Report</h4></div>
             <div class="col-md-5" align="right">
                 <div>
-                    <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger">Convert into PDF</a>
+                    <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Convert into PDF</a>
                 </div>
             </div>
     </div>
@@ -48,7 +48,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Ic</th>
+                    <th>IC</th>
                     <th>Gender</th>
                     <th>Race</th>
                 </tr>
