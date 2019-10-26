@@ -52,7 +52,7 @@ class HouseDetailController extends Controller
 		$validator = Validator::make($request->all(), $rules);
 		$validator->validate();
 
-		if (House::where('address', $request->address)->count() > 0)
+		if (House::where('address', $request->address)->where('id', '!=', $request->house_id)->count() > 0)
 		{
 			return Response::json("Address already used! No repeating address is allowed.", 412);
 		}
