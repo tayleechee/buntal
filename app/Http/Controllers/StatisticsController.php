@@ -104,7 +104,7 @@ class StatisticsController extends Controller
 		$label = [ 'RM2000 dan ke bawah', 'RM2001 - RM4000', 'RM4001 - RM6000', 'RM6001 - RM8000', 'RM8001 - RM10000', 'RM10001 dan ke atas' ];
 		$data = [ $income_group_1, $income_group_2, $income_group_3, $income_group_4, $income_group_5, $income_group_6 ];		
 		
-        $graph_title = 'Populasi Penduduk mengikut Pendapatan Isi Rumah Bulanan';		
+        $graph_title = 'Pendapatan Isi Rumah Bulanan';		
 		$total_of = 'Jumlah Isi Rumah';
 		$total = array_sum($data);
 		
@@ -244,7 +244,7 @@ class StatisticsController extends Controller
 		$data = [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec];		
 		
 		$graph_type = 'line';
-        $graph_title = 'Kadar Kelahiran bagi Tahun '.$year;
+        $graph_title = 'Bilangan Kelahiran bagi Tahun '.$year;
 		$x_axis = 'Bulan';
 		$total_of = 'Jumlah Penduduk';
 		$total = array_sum($data);
@@ -287,7 +287,7 @@ class StatisticsController extends Controller
 		$data = $count_villager->toArray();		
 		
 		$graph_type = 'line';
-        $graph_title = 'Kadar Kelahiran dari Tahun '.$startYear.' hingga Tahun '.$endYear;
+        $graph_title = 'Bilangan Kelahiran dari Tahun '.$startYear.' hingga Tahun '.$endYear;
 		$x_axis = 'Bulan';
 		$total_of = 'Jumlah Penduduk';
 		$total = array_sum($data);
@@ -347,7 +347,7 @@ class StatisticsController extends Controller
 		$data = [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec];		
 		
 		$graph_type = 'line';
-        $graph_title = 'Kadar Kematian bagi Tahun '.$year;
+        $graph_title = 'Bilangan Kematian bagi Tahun '.$year;
 		$x_axis = 'Bulan';
 		$total_of = 'Jumlah Penduduk';
 		$total = array_sum($data);
@@ -390,7 +390,7 @@ class StatisticsController extends Controller
 		$data = $count_villager->toArray();		
 		
 		$graph_type = 'line';
-        $graph_title = 'Kadar Kematian dari Tahun '.$startYear.' hingga Tahun '.$endYear;
+        $graph_title = 'Bilangan Kematian dari Tahun '.$startYear.' hingga Tahun '.$endYear;
 		$x_axis = 'Bulan';
 		$total_of = 'Jumlah Penduduk';
 		$total = array_sum($data);
