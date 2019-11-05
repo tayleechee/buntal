@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('css')
+<style type="text/css">
+body {
+	background-color: white !important;
+}	
+</style>
+@endsection('css')
+
 @section('content')
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
