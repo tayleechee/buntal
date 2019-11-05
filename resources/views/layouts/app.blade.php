@@ -199,20 +199,20 @@
                                 </li>
                                 <li class="dropdown-submenu">
                                     <div class="btn-group dropright">
-                                        <a href="#" class="dropdown-item dropdown-toggle" >Kadar Kelahiran</a>
+                                        <a href="#" class="dropdown-item dropdown-toggle" >Bilangan Kelahiran</a>
                                     </div>
                                     <ul class="dropdown-menu">
                                         <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByYear">Mengikut Tahun</a></li>
-                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByRangeOfYears">Mengikut Jangka Tahun</a></li>
+                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByRangeOfYears">Mengikut Lingkungan Tahun</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <div class="btn-group dropright">
-                                        <a href="#" class="dropdown-item dropdown-toggle">Kadar Kematian</a>
+                                        <a href="#" class="dropdown-item dropdown-toggle">Bilangan Kematian</a>
                                     </div>
                                     <ul class="dropdown-menu">
 										<li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByYear">Mengikut Tahun</a></li>
-										<li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByRangeOfYears">Mengikut Jangka Tahun</a></li>
+										<li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByRangeOfYears">Mengikut Lingkungan Tahun</a></li>
                                     </ul>
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('statistics.monthlyHouseholdIncome')}}">Pendapatan Isi Rumah Bulanan</a></li>
@@ -256,19 +256,19 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><strong>Birth Rate: By Year</strong></h5>
+            <h5 class="modal-title" id="exampleModalLongTitle"><strong>Bilangan Kelahiran mengikut Tahun</strong></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <h6>Please input the year of birth to search.</h6>
+            <h6>Sila nyatakan tahun untuk carian.</h6>
             <form id="birthByYearForm" method="POST" action="{{url('/statistics/birthRateByYear')}}">
                 @csrf
                 <div style="margin:10px 0 20px;">
-                    Select Year:
+                    Tahun:
                     <input id="birthYear" name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Hantar</button>
                 </div>
             </form>
         </div>
@@ -285,23 +285,23 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Birth Rate: By Range of Years</strong></h5>
+                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Bilangan Kelahiran mengikut Lingkungan Tahun</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h6>Please input the year of birth to search.</h6>
+                <h6>Sila nyatakan lingkungan tahun untuk carian.</h6>
                 <form method="POST" action="{{url('/statistics/birthRateByRangeOfYears')}}">
 				@csrf
 				<div style="margin:10px 0 20px;">
-					From
+					Dari Tahun
 					<input id="birthStartYear" name="startYear" class="form-control col-2" style="display:inline;margin:0 20px;" />
-					To
+					Hingga Tahun
 					<input id="birthEndYear" name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
 				</div>
 				<div class="text-right">
-                    <button id="submitBirthRangeBtn" class="btn btn-primary">Submit</button>
+                    <button id="submitBirthRangeBtn" class="btn btn-primary">Hantar</button>
                 </div>
 			</form>
             </div>
@@ -318,19 +318,19 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Death Rate: By Years</strong></h5>
+                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Bilangan Kematian mengikut Tahun</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h6>Please input the year of death to search.</h6>
+                <h6>Sila nyatakan tahun untuk carian.</h6>
                 <form id="deathByYearForm" method="POST" action="{{url('/statistics/deathRateByYear')}}">
 					@csrf
 					<div style="margin:10px 0 20px;">
-						Select Year:
+						Tahun:
 						<input id="deathYear" name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-primary">Hantar</button>
 					</div>
 				</form>
             </div>
@@ -347,23 +347,23 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><strong>Death Rate: By Range of Years</strong></h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle"><strong>Bilangan Kematian mengikut Lingkungan Tahun</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h6>Please input the range of year of death to search.</h6>
+                    <h6>Sila nyatakan lingkungan tahun untuk carian.</h6>
                 <form method="POST" action="{{url('/statistics/deathRateByRangeOfYears')}}">
 				@csrf
 				<div style="margin:10px 0 20px;">
-					From
+					Dari Tahun
 					<input id="deathStartYear" name="startYear" class="form-control col-2" style="display:inline;margin:0 20px;" />
-					To
+					Hingga Tahun
 					<input id="deathEndYear" name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
 				</div>
                 <div class="text-right">
-				    <button id="submitDeathRangeBtn" class="btn btn-primary">Submit</button>
+				    <button id="submitDeathRangeBtn" class="btn btn-primary">Hantar</button>
                 </div>
 			    </form>
                 </div>
