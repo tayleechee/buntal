@@ -4,45 +4,30 @@
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 window.onload = function() {
-CanvasJS.addColorSet("greenShades",
-[
-	"#2f304f",	
-	"#08aabf",
-	"#2F4F4F",
-	"#008080",
-	"#2E8B57",
-	"#3CB371",
-	"#90EE90" 
-]);
 var data = @json($data);
 var label = @json($label);
 var dps = [];
 var chart = new CanvasJS.Chart("chartContainer", {
-	colorSet: "greenShades",
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
 	exportEnabled: true,
 	animationEnabled: true,
 	title: {
 		text: "{!! $graph_title !!}"
 	},
-	axisY: {
-		title: "Bilangan Penduduk",
-		includeZero: true
-	},
-	axisX: {
-		title: "{!! $x_axis !!}",		
-        interval: 1
-	},
 	data: [{
-		type: "{!! $graph_type !!}",
-		toolTipContent: "<b>{label}</b>: {y}",
+		type: "pie",
+		startAngle: 50,
+		toolTipContent: "<b>{label}</b>: {y} – #percent% ",
+		showInLegend: "true",
+		legendText: "{label}",
 		indexLabelFontSize: 16,
-		indexLabelFontColor: "#424885",
-		indexLabelPlacement: "outside",
 		indexLabelFormatter: function(e) {
 		  if (e.dataPoint.y === 0 || e.dataPoint.y === null)
 			return "";
-		  else 
-			return e.dataPoint.y + " orang";		  
+		  else {
+			var percent = e.percent.toFixed(2);
+			return e.dataPoint.label + " - " + percent + "%";
+		  }
 		},
 		dataPoints: dps
 	}]

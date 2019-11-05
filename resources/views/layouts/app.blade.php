@@ -183,40 +183,39 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle ml-3" href="{{route('statistics.index')}}" id="viewStatisticsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Statistics</a>
+                            <a class="nav-link dropdown-toggle ml-3" href="{{route('statistics.index')}}" id="viewStatisticsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Statistik</a>
                             <ul class="dropdown-menu" aria-labelledby="viewStatisticsDropdown">
                                 <li class="dropdown-submenu">
                                     <div class="btn-group dropright">
-                                        <a href="#" class="dropdown-item dropdown-toggle">Population</a>
+                                        <a href="#" class="dropdown-item dropdown-toggle">Populasi</a>
                                     </div>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">By Gender</a></li>
-                                        <li><a class="dropdown-item" href="{{route('statistics.populationByAgeRange')}}">By Age Range</a></li>
-                                        <li><a class="dropdown-item" href="{{route('statistics.populationByEducationLevel')}}">By Education Level</a></li>
-                                        <li><a class="dropdown-item" href="{{route('statistics.populationByMaritalStatus')}}">By Marital Status</a></li>
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">Mengikut Jantina</a></li>										
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByRace')}}">Mengikut Kumpulan Etnik</a></li>
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByAgeRange')}}">Mengikut Kumpulan Umur</a></li>
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByEducationLevel')}}">Mengikut Tahap Pendidikan</a></li>
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByMaritalStatus')}}">Mengikut Status Perkahwinan</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <div class="btn-group dropright">
-                                        <a href="#" class="dropdown-item dropdown-toggle" >Birth Rate</a>
+                                        <a href="#" class="dropdown-item dropdown-toggle" >Kadar Kelahiran</a>
                                     </div>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByYear">By Year</a></li>
-                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByRangeOfYears">By Range of Years</a></li>
+                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByYear">Mengikut Tahun</a></li>
+                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#BirthRateByRangeOfYears">Mengikut Jangka Tahun</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <div class="btn-group dropright">
-                                        <a href="#" class="dropdown-item dropdown-toggle">Death Rate</a>
+                                        <a href="#" class="dropdown-item dropdown-toggle">Kadar Kematian</a>
                                     </div>
                                     <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByYear">By Year</a>
-                                    </li>
-                                        <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByRangeOfYears">By Range of Years</a></li>
+										<li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByYear">Mengikut Tahun</a></li>
+										<li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByRangeOfYears">Mengikut Jangka Tahun</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="dropdown-item" href="{{route('statistics.monthlyHouseholdIncome')}}">Monthly HouseHold Income</a></li>
+                                <li><a class="dropdown-item" href="{{route('statistics.monthlyHouseholdIncome')}}">Pendapatan Isi Rumah Bulanan</a></li>
                             </ul>
                         </li>
                         <li><a class="ml-2 nav-link nav-item" href="{{route('dynamic_pdf')}}">Generate Report</a></li>
@@ -264,11 +263,11 @@
         </div>
         <div class="modal-body">
             <h6>Please input the year of birth to search.</h6>
-            <form method="POST" action="{{url('/statistics/birthRateByYear')}}">
+            <form id="birthByYearForm" method="POST" action="{{url('/statistics/birthRateByYear')}}">
                 @csrf
                 <div style="margin:10px 0 20px;">
                     Select Year:
-                    <input name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
+                    <input id="birthYear" name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
@@ -297,12 +296,12 @@
 				@csrf
 				<div style="margin:10px 0 20px;">
 					From
-					<input name="startYear" class="form-control col-2" style="display:inline;margin:0 20px;" />
+					<input id="birthStartYear" name="startYear" class="form-control col-2" style="display:inline;margin:0 20px;" />
 					To
-					<input name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
+					<input id="birthEndYear" name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
 				</div>
 				<div class="text-right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button id="submitBirthRangeBtn" class="btn btn-primary">Submit</button>
                 </div>
 			</form>
             </div>
@@ -314,7 +313,7 @@
         </div>
     </div>
 
-    <!-- Death Rate: By Range Of Year -->
+    <!-- Death Rate: By Year -->
     <div class="modal fade" id="DeathRateByYear" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -326,14 +325,14 @@
             </div>
             <div class="modal-body">
                 <h6>Please input the year of death to search.</h6>
-                <form method="POST" action="{{url('/statistics/deathRateByYear')}}">
-				@csrf
-				<div style="margin:10px 0 20px;">
-					Select Year:
-					<input name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
-                    <button type="submit" class="btn btn-primary">Submit</button>
-				</div>
-			</form>
+                <form id="deathByYearForm" method="POST" action="{{url('/statistics/deathRateByYear')}}">
+					@csrf
+					<div style="margin:10px 0 20px;">
+						Select Year:
+						<input id="deathYear" name="year" class="form-control col-2" style="display:inline;margin:0 20px;" required />
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
             </div>
             <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -359,12 +358,12 @@
 				@csrf
 				<div style="margin:10px 0 20px;">
 					From
-					<input name="startYear" class="form-control col-2" style="display:inline;margin:0 20px;" />
+					<input id="deathStartYear" name="startYear" class="form-control col-2" style="display:inline;margin:0 20px;" />
 					To
-					<input name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
+					<input id="deathEndYear" name="endYear" class="form-control col-2" style="display:inline;margin-left:20px;" />
 				</div>
                 <div class="text-right">
-				    <button type="submit" class="btn btn-primary">Submit</button>
+				    <button id="submitDeathRangeBtn" class="btn btn-primary">Submit</button>
                 </div>
 			    </form>
                 </div>
@@ -414,6 +413,24 @@
     @yield('template')
 
     <script type="text/javascript">
+		$('#submitBirthRangeBtn').click(function (e) {
+			if ($('#birthStartYear').val() == $('#birthEndYear').val()) {
+				e.preventDefault();
+				$('#birthYear').val($('#birthStartYear').val());
+				$('#birthByYearForm').submit();  
+			}
+			else
+				$(this).form.submit();
+		});
+		$('#submitDeathRangeBtn').click(function (e) {
+			if ($('#deathStartYear').val() == $('#deathEndYear').val()) {
+				e.preventDefault();
+				$('#deathYear').val($('#deathStartYear').val());
+				$('#deathByYearForm').submit();  
+			}
+			else
+				$(this).form.submit();
+		});
         function showAjaxErrorMessage(jqXHR, exception, extra_msg) {
             if (extra_msg === undefined)
             {

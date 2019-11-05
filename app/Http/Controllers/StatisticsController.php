@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Arr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,24 +23,95 @@ class StatisticsController extends Controller
 		return view('statisticsIndex');
 	}
 	
+	/***** Pie Chart *****/
 	public function populationByGender()
 	{
-		$data_male = Villager::wheregender('m')->where('death_date', null)->count();
-        $data_female = Villager::wheregender('f')->where('death_date', null)->count();
-
-		$chart = new Chartjs;		
-        $chart->title("Population by Gender");
-        $chart->labels(['Lelaki', 'Perempuan']);
-        $chart->displayAxes(false);
-        $chart->dataset('Gender', 'pie', [$data_male,$data_female])->options([
-            'backgroundColor' => ['#33A1FF', '#ff6384']
-        ]);
-
-		$graph_title = "Population by Gender";
+		$label = ['Lelaki','Perempuan'];
+		$data = [
+			Villager::wheregender('m')->where('death_date', null)->count(),
+			Villager::wheregender('f')->where('death_date', null)->count()
+		];
 		
-        return view('statisticsGraph', compact('chart','graph_title'));
+		$graph_title = 'Populasi Penduduk mengikut Jantina';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
+		
+        return view('statisticsPieChart', compact('graph_title','label','data','total_of','total'));
 	}
 	
+	public function populationByRace()
+	{
+		$label = ['Melayu','Cina','India','Bumiputera','Lain-lain'];
+		$data = [
+			Villager::whererace('malay')->where('death_date', null)->count(),
+			Villager::whererace('cina')->where('death_date', null)->count(),
+			Villager::whererace('india')->where('death_date', null)->count(),
+			Villager::whererace('bumiputera')->where('death_date', null)->count(),
+			Villager::whererace('other')->where('death_date', null)->count()
+		];
+		
+		$graph_title = 'Populasi Penduduk mengikut Kumpulan Etnik';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
+		
+        return view('statisticsPieChart', compact('graph_title','label','data','total_of','total'));
+	}	
+	
+	public function populationByMaritalStatus()
+	{
+		$data_bujang = Villager::wheremarital_status('bujang')->where('death_date', null)->count();
+        $data_kahwin = Villager::wheremarital_status('kahwin')->where('death_date', null)->count();
+        $data_duda = Villager::wheremarital_status('duda')->where('death_date', null)->count();
+
+        $label = ['Bujang','Kahwin','Duda'];
+        $data = [$data_bujang,$data_kahwin,$data_duda];
+		
+        $graph_title = 'Populasi Penduduk mengikut Status Perkahwinan';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
+		
+        return view('statisticsPieChart', compact('graph_title','label','data','total_of','total'));
+	}
+	
+	public function monthlyHouseholdIncome()
+	{
+		$houses = House::all();
+		
+		$income_group_1 = 0;  	//2000 and below
+		$income_group_2 = 0;  	//2001 - 4000
+		$income_group_3 = 0;	//4001 - 6000
+		$income_group_4 = 0;	//6001 - 8000
+		$income_group_5 = 0;	//8001 - 10000
+		$income_group_6 = 0;	//10001 and above
+		
+		foreach($houses  as $house)
+		{
+			$income = $house->household_income;
+			if ($income <= 2000)
+				$income_group_1++;
+			else if ($income <= 4000)
+				$income_group_2++;
+			else if ($income <= 6000)
+				$income_group_3++;
+			else if ($income <= 8000)
+				$income_group_4++;
+			else if ($income <= 10000)
+				$income_group_5++;
+			else
+				$income_group_6++;
+		}
+
+		$label = [ 'RM2000 dan ke bawah', 'RM2001 - RM4000', 'RM4001 - RM6000', 'RM6001 - RM8000', 'RM8001 - RM10000', 'RM10001 dan ke atas' ];
+		$data = [ $income_group_1, $income_group_2, $income_group_3, $income_group_4, $income_group_5, $income_group_6 ];		
+		
+        $graph_title = 'Populasi Penduduk mengikut Pendapatan Isi Rumah Bulanan';		
+		$total_of = 'Jumlah Isi Rumah';
+		$total = array_sum($data);
+		
+        return view('statisticsPieChart', compact('graph_title','label','data','total_of','total'));
+	}	
+	
+	/***** Bar Graph *****/
 	public function populationByAgeRange()
 	{
 		$villagers = Villager::where('death_date', null)->get();
@@ -83,28 +154,18 @@ class StatisticsController extends Controller
 			else
 				$age_group_110++;
 		};
-
-		$chart = new Chartjs;
-        $chart->title("Population by Age Range");
-        $chart->labels(['0 - 10','11 - 20','21 - 30','31 - 40','41 - 50','51 - 60','61 - 70','71 - 80','81 - 90','91 - 100','101 - 110']);
-		$chart->dataset('Age Range', 'bar', [$age_group_10,$age_group_20,$age_group_30,$age_group_40,$age_group_50,$age_group_60,
-			$age_group_70,$age_group_80,$age_group_90,$age_group_100,$age_group_110])->options([
-            'backgroundColor' => ['#9B59B6', 
-				'#2ECC71', 
-				'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 206, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(153, 102, 255)',
-                'rgb(255, 159, 64)',
-				'rgb(174, 255, 99)',
-				'rgb(99, 255, 247)',
-				'rgb(255, 125, 99)']
-        ]);
 		
-        $graph_title = "Population by Age Range";
+        $label = ['0 - 10','11 - 20','21 - 30','31 - 40','41 - 50','51 - 60','61 - 70','71 - 80','81 - 90','91 - 100','101 - 110'];
+		$data = [$age_group_10,$age_group_20,$age_group_30,$age_group_40,$age_group_50,$age_group_60,$age_group_70,$age_group_80,$age_group_90,
+				 $age_group_100,$age_group_110];		
 		
-        return view('statisticsGraph', compact('chart','graph_title'));
+		$graph_type = 'column';
+        $graph_title = 'Bilangan Penduduk mengikut Kumpulan Umur';
+		$x_axis = 'Umur (Tahun)';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
+		
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
 	}
 	
 	public function populationByEducationLevel()
@@ -119,88 +180,17 @@ class StatisticsController extends Controller
 		$data_phd = Villager::whereeducation_level('PhD')->where('death_date', null)->count();
 		$data_na = Villager::whereeducation_level('N/A')->where('death_date', null)->count();
 
-		$chart = new Chartjs;
-        $chart->title("Education Level");
-        $chart->labels(['Non-Educated','Primary','Secondary','Form 6','Diploma','Degree','Master','PhD', 'N/A']);
-        $chart->dataset('Education Level', 'bar', [$data_nonEducated,$data_primary,$data_secondary,$data_form6,$data_diploma,$data_degree,$data_master,$data_phd,$data_na])->options([
-            'backgroundColor' => ['#9B59B6', 
-				'#2ECC71', 
-				'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 206, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(153, 102, 255)',
-                'rgb(255, 159, 64)']
-        ]);
+		$label = [ 'Non-Educated','Primary','Secondary','Form 6','Diploma','Degree','Master','PhD', 'N/A' ];
+		$data = [ $data_nonEducated,$data_primary,$data_secondary,$data_form6,$data_diploma,$data_degree,$data_master,$data_phd,$data_na ];		
 		
-        $graph_title = "Population by Education Level";
+		$graph_type = 'column';
+        $graph_title = 'Bilangan Penduduk mengikut Tahap Pendidikan';
+		$x_axis = 'Tahap Pendidikan';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
 		
-        return view('statisticsGraph', compact('chart','graph_title'));
-	}
-	
-	public function populationByMaritalStatus()
-	{
-		$data_single = Villager::wheremarital_status('bujang')->where('death_date', null)->count();
-        $data_kahwin = Villager::wheremarital_status('kahwin')->where('death_date', null)->count();
-        $data_duda = Villager::wheremarital_status('duda')->where('death_date', null)->count();
-
-		$chart = new Chartjs;
-        $chart->title("Population by Marital Status");
-        $chart->labels(['bujang', 'kahwin','duda']);
-        $chart->dataset('Marital Status', 'bar', [$data_single,$data_kahwin,$data_duda])->options([
-            'backgroundColor' => ['#9B59B6', '#2ECC71', '#FFB74D']
-        ]);
-		
-        $graph_title = "Population by Marital Status";
-		
-        return view('statisticsGraph', compact('chart','graph_title'));
-	}
-	
-	public function monthlyHouseholdIncome()
-	{
-		$houses = House::all();
-		
-		$income_group_1 = 0;  	//2000 and below
-		$income_group_2 = 0;  	//2001 - 4000
-		$income_group_3 = 0;	//4001 - 6000
-		$income_group_4 = 0;	//6001 - 8000
-		$income_group_5 = 0;	//8001 - 10000
-		$income_group_6 = 0;	//10001 and above
-		
-		foreach($houses  as $house)
-		{
-			$income = $house->household_income;
-			if ($income <= 2000)
-				$income_group_1++;
-			else if ($income <= 4000)
-				$income_group_2++;
-			else if ($income <= 6000)
-				$income_group_3++;
-			else if ($income <= 8000)
-				$income_group_4++;
-			else if ($income <= 10000)
-				$income_group_5++;
-			else
-				$income_group_6++;
-		}
-
-		$chart = new Chartjs;
-        $chart->title("Monthly Household Income");	
-        $chart->labels(['2000 dan ke bawah','2001 - 4000','4001 - 6000','6001 - 8000','8001 - 10000','10001 dan ke atas']);			
-        $chart->displayAxes(false);
-        $chart->dataset('Household Monthly Income', 'pie', [$income_group_1,$income_group_2,$income_group_3,$income_group_4,$income_group_5,$income_group_6])->options([
-            'backgroundColor' => ['rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 206, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(153, 102, 255)',
-                'rgb(255, 159, 64)']
-        ]);
-		
-        $graph_title = "Monthly Household Income";
-		
-        return view('statisticsGraph', compact('chart','graph_title'));
-	}
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
+	}	
 	
 	public function birthRateByYear(Request $request)
 	{
@@ -250,18 +240,16 @@ class StatisticsController extends Controller
 				$dec++;
 		}
 		
-		$chart = new Chartjs;
-        $chart->title("Birth Rate by Year $year");
-        $chart->labels(['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December']);
-        $chart->dataset('Birth Rate','line', [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec])->options([
-			"fill" => [false],
-			"borderColor"=>["rgb(75, 192, 192)"],
-			"lineTension"=>[0.1]
-		]);
+		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December'];
+		$data = [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec];		
 		
-        $graph_title = "Birth Rate by Year".$year;
+		$graph_type = 'line';
+        $graph_title = 'Kadar Kelahiran bagi Tahun '.$year;
+		$x_axis = 'Bulan';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
 		
-        return view('statisticsGraph', compact('chart','graph_title'));
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
 	}
 	
 	public function birthRateByRangeOfYears(Request $request)
@@ -295,18 +283,16 @@ class StatisticsController extends Controller
 			$count_villager->push(Villager::whereYear('dob',$i)->where('death_date', null)->count());
 		}
 		
-		$chart = new Chartjs;
-        $chart->title("Birth Rate From Year $startYear to Year $endYear");
-        $chart->labels($years);
-        $chart->dataset('Birth Rate','line', $count_villager)->options([
-			"fill" => [false],
-			"borderColor"=>["rgb(75, 192, 192)"],
-			"lineTension"=>[0.1]
-		]);
+        $label = $years->toArray();
+		$data = $count_villager->toArray();		
 		
-        $graph_title = "Birth Rate From Year ".$startYear." to Year ".$endYear;
+		$graph_type = 'line';
+        $graph_title = 'Kadar Kelahiran dari Tahun '.$startYear.' hingga Tahun '.$endYear;
+		$x_axis = 'Bulan';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
 		
-        return view('statisticsGraph', compact('chart','graph_title'));
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
 	}
 	
 	public function deathRateByYear(Request $request)
@@ -357,18 +343,16 @@ class StatisticsController extends Controller
 				$dec++;
 		}
 		
-		$chart = new Chartjs;
-        $chart->title("Death Rate by Year $year");
-        $chart->labels(['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December']);
-        $chart->dataset('Death Rate','line', [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec])->options([
-			"fill" => [false],
-			"borderColor"=>["rgb(75, 192, 192)"],
-			"lineTension"=>[0.1]
-		]);
+		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December'];
+		$data = [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec];		
 		
-        $graph_title = "Death Rate by Year".$year;
+		$graph_type = 'line';
+        $graph_title = 'Kadar Kematian bagi Tahun '.$year;
+		$x_axis = 'Bulan';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
 		
-        return view('statisticsGraph', compact('chart','graph_title'));
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
 	}
 	
 	public function deathRateByRangeOfYears(Request $request)
@@ -402,17 +386,15 @@ class StatisticsController extends Controller
 			$count_villager->push(Villager::whereYear('death_date',$i)->count());
 		}
 		
-		$chart = new Chartjs;
-        $chart->title("Death Rate From Year $startYear to Year $endYear");
-        $chart->labels($years);
-        $chart->dataset('Death Rate','line', $count_villager)->options([
-			"fill" => [false],
-			"borderColor"=>["rgb(75, 192, 192)"],
-			"lineTension"=>[0.1]
-		]);
+		$label = $years->toArray();
+		$data = $count_villager->toArray();		
 		
-        $graph_title = "Death Rate From Year ".$startYear." to Year ".$endYear;
+		$graph_type = 'line';
+        $graph_title = 'Kadar Kematian dari Tahun '.$startYear.' hingga Tahun '.$endYear;
+		$x_axis = 'Bulan';
+		$total_of = 'Jumlah Penduduk';
+		$total = array_sum($data);
 		
-        return view('statisticsGraph', compact('chart','graph_title'));
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
 	}
 }
