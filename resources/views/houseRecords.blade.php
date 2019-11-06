@@ -31,7 +31,7 @@
 				<th class="th-sm">Alamat</th>
 				<th class="th-sm">Bil. Keluarga</th>
 				<th class="th-sm">Bil. Ahli Keluarga</th>
-				<th class="th-sm">Pendapatan Isi Rumah</th>
+				<th class="th-sm">Pendapatan Isi Rumah (RM) </th>
 				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>

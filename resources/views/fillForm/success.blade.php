@@ -25,17 +25,17 @@
 
 <div class="container">
 	<div class="text-center" style="color:green">
-		<h3>Your response has been recorded successfully!</h3>
-		<h3>Thank you.</h3>
+		<h3>Tindak Balas anda telah berjaya direkodkan!</h3>
+		<h3>Terima Kasih.</h3>
 	</div>
 
 	<div class="text-center mt-4">
-		<h5>You will be redirected after <span id="redirect_counter">10</span> seconds.</h5>
-		<h5>Or click the button below to get redirected.</h5>
+		<h5>Anda akan diarahkan selepas <span id="redirect_counter">10</span> saat.</h5>
+		<h5>Atau klik butang di bawah untuk dialihkan semula.</h5>
 	</div>
 
 	<div class="text-center mt-4">
-		
+
 		<button class="btn btn-primary" onclick="location.href='/'">Redirect</button>
 	</div>
 </div>

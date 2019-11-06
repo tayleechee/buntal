@@ -67,9 +67,9 @@ class HomeController extends Controller
         ]);
 
         $propertyOwnerChart = new Chartjs;
-        $propertyOwnerChart->title("Pemilik Tanah");
+        $propertyOwnerChart->title("Pemilik Harta Tanah");
         $propertyOwnerChart->labels(['Ada', 'Tidak']);
-        $propertyOwnerChart->dataset('Pemilik Tanah','bar', [$data_noProperty,$data_haveProperty])->options([
+        $propertyOwnerChart->dataset('Pemilik Harta Tanah','bar', [$data_noProperty,$data_haveProperty])->options([
             'backgroundColor' => ['#333399', '#FF0066']
         ]);
 
