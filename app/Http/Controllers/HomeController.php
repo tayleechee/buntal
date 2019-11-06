@@ -45,9 +45,9 @@ class HomeController extends Controller
         $active_no_count = Villager::whereis_active('0')->where('death_date', null)->count();
 
         $activeChart = new Chartjs;
-        $activeChart->title("Active Status");
-        $activeChart->labels(['Yes', 'No']);
-        $activeChart->dataset('Active Status', 'bar', [$active_yes_count,$active_no_count])->options([
+        $activeChart->title("Penduduk Tetap");
+        $activeChart->labels(['Ada', 'Tidak']);
+        $activeChart->dataset('Penduduk Tetap', 'bar', [$active_yes_count,$active_no_count])->options([
             'backgroundColor' => ['#9B59B6', '#2ECC71']
         ]);
 
@@ -59,7 +59,7 @@ class HomeController extends Controller
         ]);
 
         $genderChart = new Chartjs;
-        $genderChart->title("Gender");
+        $genderChart->title("Jantina");
         $genderChart->labels(['Lelaki', 'Perempuan']);
         $genderChart->displayAxes(false);
         $genderChart->dataset('Gender', 'pie', [$data_male,$data_female])->options([
@@ -67,14 +67,14 @@ class HomeController extends Controller
         ]);
 
         $propertyOwnerChart = new Chartjs;
-        $propertyOwnerChart->title("Property Owner");
-        $propertyOwnerChart->labels(['No', 'Yes']);
-        $propertyOwnerChart->dataset('Property Owner','bar', [$data_noProperty,$data_haveProperty])->options([
+        $propertyOwnerChart->title("Pemilik Tanah");
+        $propertyOwnerChart->labels(['Ada', 'Tidak']);
+        $propertyOwnerChart->dataset('Pemilik Tanah','bar', [$data_noProperty,$data_haveProperty])->options([
             'backgroundColor' => ['#333399', '#FF0066']
         ]);
 
         return view('home', compact('activeChart','maritalChart','genderChart','propertyOwnerChart', 'villagerCount', 'houseCount'));
     }
 
-    
+
 }
