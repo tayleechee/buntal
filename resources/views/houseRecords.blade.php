@@ -21,18 +21,18 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>View All House Records</h5>
+		<h5>Ketelitian Rekod Rumah</h5>
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="housesTable">
 		<thead class="thead-dark">
 			<tr class="text-center">
-				<th class="th-sm">No.</th>
-				<th class="th-sm">Address</th>
-				<th class="th-sm">No. of Family</th>
-				<th class="th-sm">No. of Family Member</th>
-				<th class="th-sm">Total Household Income</th>
-				<th class="th-sm">Action</th>
+				<th class="th-sm">Bil.</th>
+				<th class="th-sm">Alamat</th>
+				<th class="th-sm">Bil. Keluarga</th>
+				<th class="th-sm">Bil. Ahli Keluarga</th>
+				<th class="th-sm">Pendapatan Isi Rumah</th>
+				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -55,7 +55,7 @@
 	            { data: 'family_number' , "searchable": false},
 	            { data: 'alive_villagers_count', "searchable": false},
 	            { data: 'household_income', "searchable": false},
-	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
+	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) {
 	            		var button = `<div class="text-center">
 	            						<button class="btn btn-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View Detail"><i class="far fa-eye"></i></button>
 	            					</div>
