@@ -202,7 +202,7 @@
 					@if ( isset($villager) && $index == 0 && $house->poc)
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span class="poc_legend_label"> (Ketua Rumah)</span></legend>
 					@elseif (!empty($villager->death_date))
-					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span style="color:grey"> (Meninngal)</span></legend>					
+					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span style="color:grey"> (Meninggal)</span></legend>					
 					@else
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
 					@endif
