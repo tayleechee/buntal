@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Villager;
 use App\HousePOC;
+use Response;
 
 class VillagerDetailController extends Controller
 {
@@ -32,7 +33,7 @@ class VillagerDetailController extends Controller
     public function getVillagerDetail(Request $request)
     {
     	$id = $request->id;
-    	$villager = Villager::find($id);
+    	$villager = Villager::with('poc')->find($id);
 
     	if (!$villager) {
     		return Response::json("Record Not Found.", 404);
@@ -62,6 +63,11 @@ class VillagerDetailController extends Controller
 		$villager = Villager::find($request->villager_id);
 		if (!$villager) {
 			return Response::json("Villager Record Not Found.", 455);
+		}
+
+		if ($villager->poc && empty($request->phone))
+		{
+			return Response::json("Ketua Rumah's phone number cannot be empty", 412);
 		}
 
 		$villager->name = $request->name;

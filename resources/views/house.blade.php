@@ -598,6 +598,17 @@
 					}
 				}
 
+				if (data.poc)
+				{
+					$(".form_phone_label").text("Phone");
+					$("#edit_phone").prop("required", true);
+				}
+				else
+				{
+					$(".form_phone_label").text("Phone (Optional)");
+					$("#edit_phone").prop("required", false);
+				}
+
 				$("#loadingModal").modal('hide');
 				$("#editMemberModal").modal('show');
 			},

@@ -60,6 +60,12 @@ class FillFormController extends Controller
 		$validator = Validator::make($request->all(), $rules, $messages);
 		$validator->validate();
 
+		$first_member = (object)$request->member[1];
+		if (empty($first_member->phone))
+		{
+			return Response::json("Ketua Rumah's phone cannot be empty.", 412);
+		}
+
 		$address = $request->step2_address;
 		if (House::where('address', $address)->count() > 0)
 		{

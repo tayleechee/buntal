@@ -114,6 +114,7 @@
    		{
    			clone.querySelector(".ketuaRumah_title").innerText = " (Ketua Rumah)";
    			clone.querySelector(".deleteMemberBtn").style.display = "none";
+   			clone.querySelector(".form_phone_label").innerText = "Phone";
    		}
 
    		var form_name_label = clone.querySelector(".form_name_label");

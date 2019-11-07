@@ -13,4 +13,9 @@ class Villager extends Model
     {
     	return $this->belongsTo('App\House');
     }
+
+    public function poc()
+    {
+    	return $this->hasOne('App\HousePOC');
+    }
 }
