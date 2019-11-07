@@ -16,6 +16,11 @@ class House extends Model
 
     public function villagers()
     {
-    	return $this->hasMany('App\Villager')->orderBy('death_date', 'desc');
+    	return $this->hasMany('App\Villager')->orderBy('death_date', 'asc');
+    }
+
+    public function poc()
+    {
+        return $this->hasOne('App\HousePOC');
     }
 }

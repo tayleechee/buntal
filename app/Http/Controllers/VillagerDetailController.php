@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Villager;
+use App\HousePOC;
 
 class VillagerDetailController extends Controller
 {
@@ -123,6 +124,11 @@ class VillagerDetailController extends Controller
 		$villager = Villager::find($request->id);
 		if (!$villager) {
 			return Response::json("Villager Record Not Found.", 455);
+		}
+
+		if ($house_poc = HousePOC::where('villager_id', $villager->id))
+		{
+			$house_poc->delete();
 		}
 
 		$villager->death_date = $request->deathDate;

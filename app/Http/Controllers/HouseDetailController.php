@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Response;
 use App\House;
 use App\Villager;
+use App\HousePOC;
 
 class HouseDetailController extends Controller
 {
@@ -24,6 +25,19 @@ class HouseDetailController extends Controller
     	if (!$house) {
     		abort(404);
     	}
+
+    	if ($house->poc)
+    		$house_poc_id = $house->poc->villager_id;
+
+    	foreach ($house->villagers as $key => $villager)
+    	{
+    		if ($house->poc && $villager->id == $house_poc_id)
+    		{
+    			$house->villagers->pull($key);
+    			$house->villagers->prepend($villager);
+    		}
+    	}
+
     	//dd($house->villagers);
     	return view('house', ['house' => $house]);
     }
@@ -47,6 +61,7 @@ class HouseDetailController extends Controller
 		    'address' => 'required',
 		    'householdIncome' => 'required',
 		    'numberOfFamily' => 'required',
+		    'poc' => 'required',
 		];
 
 		$validator = Validator::make($request->all(), $rules);
@@ -65,8 +80,17 @@ class HouseDetailController extends Controller
 		$house->address = $request->address;
 		$house->household_income = $request->householdIncome;
 		$house->family_number = $request->numberOfFamily;
-		
 		$house->save();
+
+		if (HousePOC::where('villager_id', $request->poc)->count() == 0)
+		{
+			HousePOC::where('house_id', $house->id)->delete();
+
+			$new_housePoc = new HousePOC;
+			$new_housePoc->house_id = $house->id;
+			$new_housePoc->villager_id = $request->poc;
+			$new_housePoc->save();
+		}
 
 		flash('Changes Saved!')->success();
     }

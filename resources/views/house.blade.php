@@ -107,12 +107,6 @@
 
 @section('content')
 
-@isset($step1_numberOfFamilyMember)
-	<script type="text/javascript">
-		var step1_numberOfFamilyMember = {{ $step1_numberOfFamilyMember }};
-	</script>
-@endif
-
 <div class="text-center">
 	<h2>House Details</h2>
 </div>
@@ -140,10 +134,34 @@
 			</div>
 			<div class="form-row">
 					<div class="form-group row">
+						<label for="ketuaRumah" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Ketua Rumah</label>
+						<div class="col pr-0">
+							@php
+
+							$aliveVillagers_assoarray = array();
+							$aliveVillagers_assoarray[""] = ["None"];
+							if ($house->aliveVillagers)
+							{
+								foreach ($house->aliveVillagers as $villager)
+								{
+									$aliveVillagers_assoarray[$villager->id] = $villager->name;
+								}
+							}
+
+							@endphp
+
+							{!! Form::select('poc', $aliveVillagers_assoarray, isset($house->poc) ? $house->poc->villager_id : null, ['class'=>'step1 col-sm-8 form-control form-edit d-none', 'id'=>'poc', 'required']) !!}
+							<div class="form-input-div col-sm-8 step1">
+								<?php echo isset($house->poc) ? $house->poc->villager->name : 'None'  ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row">
 						<label for="householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Household Income (RM)</label>
 						<div class="col pr-0">
-							<input type="number" id="householdIncome" name="householdIncome" value="<?php echo isset($house->household_income) ? $house->household_income : ''  ?>" class="step1 col-sm-8 form-control form-edit d-none">
-							<div class="form-input-div col-sm-8 step1" required>
+							<input type="number" id="householdIncome" name="householdIncome" value="<?php echo isset($house->household_income) ? $house->household_income : ''  ?>" class="step1 col-sm-8 form-control form-edit d-none" required>
+							<div class="form-input-div col-sm-8 step1">
 								<?php echo isset($house->household_income) ? $house->household_income : ''  ?>
 							</div>
 						</div>
@@ -152,8 +170,8 @@
 					<div class="form-group row">
 						<label for="numberOfFamily" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Number of Family</label>
 						<div class="col pr-0">
-							<input type="number" id="numberOfFamily" name="numberOfFamily" value="<?php echo isset($house->family_number) ? $house->family_number : ''  ?>" class="step1 col-sm-8 form-control form-edit d-none">
-							<div class="form-input-div col-sm-8 step1" required>
+							<input type="number" id="numberOfFamily" name="numberOfFamily" value="<?php echo isset($house->family_number) ? $house->family_number : ''  ?>" class="step1 col-sm-8 form-control form-edit d-none" required>
+							<div class="form-input-div col-sm-8 step1">
 								<?php echo isset($house->family_number) ? $house->family_number : ''  ?>
 							</div>
 						</div>
@@ -163,7 +181,7 @@
 						<label for="numberOfFamilyMember" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Number of Family Member</label>
 						<div class="col pr-0">
 							<div class="form-nonhidden-input-div col-sm-8" style="margin-left: -0.6em !important">
-								<?php echo isset($house->villagers) ? count($house->villagers) : 0  ?>
+								<?php echo isset($house->aliveVillagers) ? count($house->aliveVillagers) : 0  ?>
 							</div>
 						</div>
 					</div>
@@ -180,7 +198,7 @@
 					@else
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
 					@endif -->
-					@if ( isset($villager) && $index == 0)
+					@if ( isset($villager) && $index == 0 && $house->poc)
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span class="poc_legend_label"> (Ketua Rumah)</span></legend>
 					@else
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
