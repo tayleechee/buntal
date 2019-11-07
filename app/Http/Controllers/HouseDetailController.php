@@ -24,7 +24,7 @@ class HouseDetailController extends Controller
     	if (!$house) {
     		abort(404);
     	}
-
+    	//dd($house->villagers);
     	return view('house', ['house' => $house]);
     }
 

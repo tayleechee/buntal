@@ -98,6 +98,10 @@
 	input[type=text]:focus, textarea:focus {
 	  
 	}
+
+	.poc_legend_label {
+		color: blue;
+	}
 </style>
 @endsection
 
@@ -171,12 +175,18 @@
 			@foreach ($house->villagers as $index => $villager)
 			<div class="mt-5 family_member_form_div">
 				<fieldset class="scheduler-border">
-					@if ( isset($villager) && !empty($villager->death_date) )
+					<!-- @if ( isset($villager) && !empty($villager->death_date) )
 					<legend class="family_member_legend scheduler-border text-red">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
+					@else
+					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
+					@endif -->
+					@if ( isset($villager) && $index == 0)
+					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span class="poc_legend_label"> (Ketua Rumah)</span></legend>
 					@else
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
 					@endif
 					<div class="text-right">
+						<button type="button" class="btn btn-sm btn-primary viewMemberDetailBtn mr-1" data-id="{{ $villager->id }}">View Detail</button>
 						<button type="button" class="btn btn-sm btn-success editMemberBtn mr-1" data-id="{{ $villager->id }}">Edit</button>
 						<button type="button" class="btn btn-sm btn-danger deleteMemberBtn" data-id="{{ $villager->id }}">Delete</button>
 					</div>
@@ -310,6 +320,10 @@
 </div>
 
 <script type="text/javascript">
+	$(document).on("click", ".viewMemberDetailBtn", function(){
+		location.href = "/villager/"+ $(this).attr("data-id");
+	});
+
 	$(document).on("click", "#edit_house_btn", function(){
 		$(".form-input-div").addClass("d-none");
 		$(".form-edit").removeClass("d-none");
