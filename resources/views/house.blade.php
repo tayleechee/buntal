@@ -194,12 +194,15 @@
 			<div class="mt-5 family_member_form_div">
 				<fieldset class="scheduler-border">
 					<!-- @if ( isset($villager) && !empty($villager->death_date) )
-					<legend class="family_member_legend scheduler-border text-red">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
+					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
 					@else
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
 					@endif -->
+
 					@if ( isset($villager) && $index == 0 && $house->poc)
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span class="poc_legend_label"> (Ketua Rumah)</span></legend>
+					@elseif (!empty($villager->death_date))
+					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span style="color:grey"> (Meninngal)</span></legend>					
 					@else
 					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
 					@endif
