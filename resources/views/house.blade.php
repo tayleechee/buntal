@@ -139,7 +139,7 @@
 							@php
 
 							$aliveVillagers_assoarray = array();
-							$aliveVillagers_assoarray[""] = ["None"];
+							$aliveVillagers_assoarray[null] = "Please Select";
 							if ($house->aliveVillagers)
 							{
 								foreach ($house->aliveVillagers as $villager)
@@ -233,6 +233,13 @@
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
+						<label class="col-form-label col-2 form_phone_label">Phone</label>
+						<div class="col form-nonhidden-input-div col-form-label">
+							{{ $villager->phone }}
+						</div>
+					</div>
+
+					<div class="form-group row pl-2 mt-3">
 						<label class="col-form-label col-2 form_gender_label">Gender</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->gender=='m' ? 'Male' : 'Female' }}
@@ -256,7 +263,7 @@
 					<div class="form-group row pl-2 mt-3">
 						<label class="col-form-label col-2 form_marital_label">Marital Status</label>
 						<div class="col form-nonhidden-input-div col-form-label">
-							{{ $villager->marital_status == 'duda' ? 'Duda/Janda/Balu' : ucfirst($villager->marital_status) }}
+							{{ ucfirst($villager->marital_status) }}
 						</div>
 					</div>
 
@@ -547,6 +554,9 @@
 				}
 				if (typeof data.ic !== 'undefined') {
 					$("#editMemberForm input[name=ic]").val(data.ic);
+				}
+				if (typeof data.phone !== 'undefined') {
+					$("#editMemberForm input[name=phone]").val(data.phone);
 				}
 				if (typeof data.gender !== 'undefined') {
 					if (data.gender == 'm') {

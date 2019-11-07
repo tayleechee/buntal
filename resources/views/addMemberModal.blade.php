@@ -29,6 +29,13 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
+                <label for="phone" class="col-form-label col-2 form_phone_label">Phone (Optional)</label>
+                <div class="col">
+                  <input type="text" name="phone" id="phone" class="form-control form_phone" required>
+                </div>
+              </div>
+
+              <div class="form-group row pl-2 mt-3">
                 <label for="gender" class="col-form-label col-2 form_gender_label">Gender</label>
                 <div class="col">
                   <select name="gender" id="gender" class="form-control form_gender" required>
@@ -64,7 +71,8 @@
                   <select name="marital" id="marital" class="form-control form_marital" required>
                     <option value="bujang">Bujang</option>
                     <option value="kahwin">Kahwin</option>
-                    <option value="duda">Duda/Janda/Balu</option>
+                    <option value="duda">Duda</option>
+                    <option value="janda">Janda</option>
                   </select>
                 </div>
               </div>
@@ -87,9 +95,9 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
-                <label for="occupation" class="col-form-label col-2 form_occupation_label">Occupation</label>
+                <label for="occupation" class="col-form-label col-2 form_occupation_label">Occupation (optional)</label>
                 <div class="col">
-                  <input type="text" name="occupation" id="occupation" class="form-control form_occupation" required>
+                  <input type="text" name="occupation" id="occupation" class="form-control form_occupation">
                 </div>
               </div>
 

@@ -119,7 +119,6 @@ class HouseDetailController extends Controller
 		    'gender' => 'required',
 		    'marital' => 'required',
 		    'education' => 'required',
-		    'occupation' => 'required',
 		    'race' => 'required',
 		    'active' => 'required',
 		    'propertyOwner' => 'required',
@@ -151,9 +150,14 @@ class HouseDetailController extends Controller
 		$villager->race = $request->race;
 		$villager->marital_status = $request->marital;
 		$villager->education_level = $request->education;
-		$villager->occupation = $request->occupation;
 		$villager->is_property_owner = $request->propertyOwner;
 		$villager->is_active = $request->active;
+
+		if (isset($request->occupation))
+			$villager->occupation = $request->occupation;
+		if (isset($request->phone))
+			$villager->phone = $request->phone;
+
 		$villager->save();
 
 		flash('Member Added Successfully!')->success();		

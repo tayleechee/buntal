@@ -6,7 +6,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Add Family Member</h5>
+            <h5 class="modal-title">Edit Family Member</h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>        
         </div>
 
@@ -27,6 +27,13 @@
                 <label for="ic" class="col-form-label col-2 form_ic_label">IC</label>
                 <div class="col">
                   <input type="text" name="ic" id="edit_ic" class="form-control form_ic" required>
+                </div>
+              </div>
+
+              <div class="form-group row pl-2 mt-3">
+                <label for="phone" class="col-form-label col-2 form_phone_label">Phone (Optional)</label>
+                <div class="col">
+                  <input type="text" name="phone" id="edit_phone" class="form-control form_phone">
                 </div>
               </div>
 
@@ -66,7 +73,8 @@
                   <select name="marital" id="edit_marital" class="form-control form_marital" required>
                     <option value="bujang">Bujang</option>
                     <option value="kahwin">Kahwin</option>
-                    <option value="duda">Duda/Janda/Balu</option>
+                    <option value="duda">Duda</option>
+                    <option value="janda">Janda</option>
                   </select>
                 </div>
               </div>
@@ -89,9 +97,9 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
-                <label for="occupation" class="col-form-label col-2 form_occupation_label">Occupation</label>
+                <label for="occupation" class="col-form-label col-2 form_occupation_label">Occupation (Optional)</label>
                 <div class="col">
-                  <input type="text" name="occupation" id="edit_occupation" class="form-control form_occupation" required>
+                  <input type="text" name="occupation" id="edit_occupation" class="form-control form_occupation">
                 </div>
               </div>
 

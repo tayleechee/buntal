@@ -51,7 +51,6 @@ class VillagerDetailController extends Controller
 		    'gender' => 'required',
 		    'marital' => 'required',
 		    'education' => 'required',
-		    'occupation' => 'required',
 		    'race' => 'required',
 		    'active' => 'required',
 		    'propertyOwner' => 'required',
@@ -78,10 +77,19 @@ class VillagerDetailController extends Controller
 
 		$villager->marital_status = $request->marital;
 		$villager->education_level = $request->education;
-		$villager->occupation = $request->occupation;
 		$villager->race = $request->race;
 		$villager->is_active = $request->active;
 		$villager->is_property_owner = $request->propertyOwner;
+
+		if (isset($request->phone))
+			$villager->phone = $request->phone;
+		else
+			$villager->phone = null;
+
+		if (isset($request->occupation))
+			$villager->occupation = $request->occupation;
+		else
+			$villager->occupation = null;
 
 		$villager->save();
 

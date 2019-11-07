@@ -94,6 +94,16 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
+				<label for="ic" class="col-form-label col-2 form_ic_label">Phone</label>
+				<div class="col form-input-col d-none">
+					<input type="text" name="phone" id="phone" class="form-control form_phone" value="<?php echo isset($villager->phone) ? $villager->phone : ''  ?>" required>
+				</div>
+				<div class="col form-input-div text-left col-form-label">
+					<?php echo isset($villager->phone) ? $villager->phone : ''  ?>
+				</div>
+			</div>
+
+			<div class="form-group row pl-2 mt-3">
 				<label for="gender" class="col-form-label col-2 form_gender_label">Gender</label>
 				<div class="col form-input-col d-none">
 					<select name="gender" id="gender" class="form-control form_gender" required>
@@ -160,23 +170,13 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="marital" class="col-form-label col-2 form_marital_label">Marital Status</label>
 				<div class="col form-input-col d-none">
-					<!-- <select name="marital" id="marital" class="form-control form_marital" required>
-						<option value="bujang">Bujang</option>
-						<option value="kahwin">Kahwin</option>
-						<option value="duda">Duda/Janda/Balu</option>
-					</select> -->
-					{!! Form::select('marital', ['bujang'=>'Bujang', 'kahwin'=>'Kahwin', 'duda'=>'Duda/Janda/Balu'], isset($villager->marital_status) ? $villager->marital_status : null, ['class'=>'form-control form_marital', 'id'=>'marital', 'required']) !!}
+					{!! Form::select('marital', ['bujang'=>'Bujang', 'kahwin'=>'Kahwin', 'duda'=>'Duda', 'janda'=>'Janda'], isset($villager->marital_status) ? $villager->marital_status : null, ['class'=>'form-control form_marital', 'id'=>'marital', 'required']) !!}
 				</div>
 				<div class="col form-input-div text-left col-form-label">
 					<?php 
 						if (isset($villager->marital_status))
 						{
-							if ($villager->marital_status == 'duda') {
-								echo 'Duda/Janda/Balu';
-							}
-							else {
-								echo ucfirst($villager->marital_status);
-							}
+							echo ucfirst($villager->marital_status);
 						}
 					?>
 				</div>
@@ -403,6 +403,9 @@
 				}
 				if (typeof data.ic !== 'undefined') {
 					$("#ic").val(data.ic);
+				}
+				if (typeof data.phone !== 'undefined') {
+					$("#phone").val(data.phone);
 				}
 				if (typeof data.gender !== 'undefined') {
 					if (data.gender == 'm') {
