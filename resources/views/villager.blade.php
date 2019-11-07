@@ -36,10 +36,10 @@
     .padding-top-calc {
     	padding-top: calc(.375rem + 1px);
     }
-    
-    /*.form-group.row {
-    	align-items: center;
-    }*/
+
+    .ketuaRumah_title {
+    	color: blue;
+    }
 </style>
 @endsection
 
@@ -62,7 +62,11 @@
 			{{ csrf_field() }}
 		<input type="hidden" name="villager_id" id="villager_id" value="<?php echo isset($villager->id) ? $villager->id : '' ?>">
 		<fieldset class="scheduler-border">
+			@if ( isset($villager) && ($villager->poc))
+			<legend class="family_member_legend scheduler-border">Villager Detail<span class="ketuaRumah_title"> (Ketua Rumah)</span></legend>
+			@else
 			<legend class="family_member_legend scheduler-border">Villager Detail</legend>
+			@endif
 
 			@if ( isset($villager) && !empty($villager->death_date) )
 			<div class="form-group row pl-2 mt-3">
@@ -90,6 +94,24 @@
 				</div>
 				<div class="col form-input-div text-left col-form-label">
 					<?php echo isset($villager->ic) ? $villager->ic : ''  ?>
+				</div>
+			</div>
+
+			<div class="form-group row pl-2 mt-3">
+				@if ( isset($villager->poc) )
+				<label for="ic" class="col-form-label col-2 form_ic_label">Phone</label>
+				<div class="col form-input-col d-none">
+					<input type="text" name="phone" id="phone" class="form-control form_phone" value="<?php echo isset($villager->phone) ? $villager->phone : ''  ?>" required>
+				</div>
+				@else
+				<label for="ic" class="col-form-label col-2 form_ic_label">Phone (Optional)</label>
+				<div class="col form-input-col d-none">
+					<input type="text" name="phone" id="phone" class="form-control form_phone" value="<?php echo isset($villager->phone) ? $villager->phone : ''  ?>">
+				</div>
+				@endif
+				
+				<div class="col form-input-div text-left col-form-label">
+					<?php echo isset($villager->phone) ? $villager->phone : ''  ?>
 				</div>
 			</div>
 
@@ -160,23 +182,13 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="marital" class="col-form-label col-2 form_marital_label">Marital Status</label>
 				<div class="col form-input-col d-none">
-					<!-- <select name="marital" id="marital" class="form-control form_marital" required>
-						<option value="bujang">Bujang</option>
-						<option value="kahwin">Kahwin</option>
-						<option value="duda">Duda/Janda/Balu</option>
-					</select> -->
-					{!! Form::select('marital', ['bujang'=>'Bujang', 'kahwin'=>'Kahwin', 'duda'=>'Duda/Janda/Balu'], isset($villager->marital_status) ? $villager->marital_status : null, ['class'=>'form-control form_marital', 'id'=>'marital', 'required']) !!}
+					{!! Form::select('marital', ['bujang'=>'Bujang', 'kahwin'=>'Kahwin', 'duda'=>'Duda', 'janda'=>'Janda'], isset($villager->marital_status) ? $villager->marital_status : null, ['class'=>'form-control form_marital', 'id'=>'marital', 'required']) !!}
 				</div>
 				<div class="col form-input-div text-left col-form-label">
 					<?php 
 						if (isset($villager->marital_status))
 						{
-							if ($villager->marital_status == 'duda') {
-								echo 'Duda/Janda/Balu';
-							}
-							else {
-								echo ucfirst($villager->marital_status);
-							}
+							echo ucfirst($villager->marital_status);
 						}
 					?>
 				</div>
@@ -195,7 +207,7 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="occupation" class="col-form-label col-2 form_occupation_label">Occupation</label>
 				<div class="col form-input-col d-none">
-					<input type="text" name="occupation" id="occupation" class="form-control form_occupation" value="<?php echo isset($villager->occupation) ? $villager->occupation : ''  ?>" required>
+					<input type="text" name="occupation" id="occupation" class="form-control form_occupation" value="<?php echo isset($villager->occupation) ? $villager->occupation : ''  ?>">
 				</div>
 				<div class="col form-input-div">
 					<?php echo isset($villager->occupation) ? ucfirst($villager->occupation) : ''  ?>
@@ -404,6 +416,9 @@
 				if (typeof data.ic !== 'undefined') {
 					$("#ic").val(data.ic);
 				}
+				if (typeof data.phone !== 'undefined') {
+					$("#phone").val(data.phone);
+				}
 				if (typeof data.gender !== 'undefined') {
 					if (data.gender == 'm') {
 						$("#gender").val('male');
@@ -472,6 +487,12 @@
 			return;
 
 		var form = document.getElementById("villagerDetail_form");
+
+		if (!form.checkValidity())
+		{
+			form.reportValidity();
+			return;
+		}
 
 		$.ajax({
 			type: "POST",

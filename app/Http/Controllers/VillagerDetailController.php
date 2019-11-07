@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Villager;
+use App\HousePOC;
+use Response;
 
 class VillagerDetailController extends Controller
 {
@@ -31,7 +33,7 @@ class VillagerDetailController extends Controller
     public function getVillagerDetail(Request $request)
     {
     	$id = $request->id;
-    	$villager = Villager::find($id);
+    	$villager = Villager::with('poc')->find($id);
 
     	if (!$villager) {
     		return Response::json("Record Not Found.", 404);
@@ -50,7 +52,6 @@ class VillagerDetailController extends Controller
 		    'gender' => 'required',
 		    'marital' => 'required',
 		    'education' => 'required',
-		    'occupation' => 'required',
 		    'race' => 'required',
 		    'active' => 'required',
 		    'propertyOwner' => 'required',
@@ -62,6 +63,11 @@ class VillagerDetailController extends Controller
 		$villager = Villager::find($request->villager_id);
 		if (!$villager) {
 			return Response::json("Villager Record Not Found.", 455);
+		}
+
+		if ($villager->poc && empty($request->phone))
+		{
+			return Response::json("Ketua Rumah's phone number cannot be empty", 412);
 		}
 
 		$villager->name = $request->name;
@@ -77,10 +83,19 @@ class VillagerDetailController extends Controller
 
 		$villager->marital_status = $request->marital;
 		$villager->education_level = $request->education;
-		$villager->occupation = $request->occupation;
 		$villager->race = $request->race;
 		$villager->is_active = $request->active;
 		$villager->is_property_owner = $request->propertyOwner;
+
+		if (isset($request->phone))
+			$villager->phone = $request->phone;
+		else
+			$villager->phone = null;
+
+		if (isset($request->occupation))
+			$villager->occupation = $request->occupation;
+		else
+			$villager->occupation = null;
 
 		$villager->save();
 
@@ -123,6 +138,11 @@ class VillagerDetailController extends Controller
 		$villager = Villager::find($request->id);
 		if (!$villager) {
 			return Response::json("Villager Record Not Found.", 455);
+		}
+
+		if ($house_poc = HousePOC::where('villager_id', $villager->id))
+		{
+			$house_poc->delete();
 		}
 
 		$villager->death_date = $request->deathDate;
