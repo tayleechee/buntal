@@ -77,13 +77,14 @@ class HouseDetailController extends Controller
 			return Response::json("House Record Not Found.", 455);
 		}
 
-		$house->address = $request->address;
-		$house->household_income = $request->householdIncome;
-		$house->family_number = $request->numberOfFamily;
-		$house->save();
-
 		if (HousePOC::where('villager_id', $request->poc)->count() == 0)
 		{
+			$new_poc = Villager::find($request->poc);
+			if (empty($new_poc->phone))
+			{
+				return Response::json("New Ketua Rumah must have phone number filled! Please fill in phone number for ".$new_poc->name." first.", 455);
+			}
+
 			HousePOC::where('house_id', $house->id)->delete();
 
 			$new_housePoc = new HousePOC;
@@ -91,6 +92,11 @@ class HouseDetailController extends Controller
 			$new_housePoc->villager_id = $request->poc;
 			$new_housePoc->save();
 		}
+
+		$house->address = $request->address;
+		$house->household_income = $request->householdIncome;
+		$house->family_number = $request->numberOfFamily;
+		$house->save();
 
 		flash('Changes Saved!')->success();
     }
