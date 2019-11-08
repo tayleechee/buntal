@@ -366,7 +366,7 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="ic_1" class="col-form-label col-2 form_ic_label">IC</label>
 				<div class="col">
-					<input type="text" name="ic_1" id="ic_1" class="form-control form_ic" required>
+					<input type="text" name="ic_1" id="ic_1" class="form-control form_ic" pattern="\d{12}" title="12 numbers without -" required>
 				</div>
 			</div>
 
