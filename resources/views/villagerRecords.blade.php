@@ -40,6 +40,7 @@
 			<tr class="text-center">
 				<th class="th-sm">No.</th>
 				<th class="th-sm">Nama</th>
+				<th class="th-sm">IC</th>
 				<th class="th-sm">Alamat Rumah</th>
 				<th class="th-sm">Jantina</th>
 				<th class="th-sm">Bangsa</th>
@@ -84,6 +85,7 @@
 	        columns: [
 	        	{ data: null, "orderable": false, "searchable": false},
 	            { data: 'name' },
+	            { data: 'ic' },
 	            { data: 'house.address' },
 	            { data: 'gender', "render": function(data, type, row) {
 		            	if (data == 'm')
