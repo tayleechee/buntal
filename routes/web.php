@@ -74,5 +74,10 @@ Route::post('/statistics/deathRateByYear', 'StatisticsController@deathRateByYear
 Route::post('/statistics/deathRateByRangeOfYears', 'StatisticsController@deathRateByRangeOfYears');
 
 //Dynamic pdf routes
+Route::get('/dynamic_pdf/summaryReport', 'DynamicPDFController@summary_report')->name('dynamicpdf.summaryReport');
+Route::get('/dynamic_pdf/summaryReportPdf', 'DynamicPDFController@summary_report_pdf')->name('dynamicpdf.summaryReportPdf');
 Route::get('/dynamic_pdf', 'DynamicPDFController@index')->name('dynamic_pdf');
 Route::get('/dynamic_pdf/pdf', 'DynamicPDFController@pdf');
+Route::get('/dynamic_pdf/newborn', 'DynamicPDFController@newborn')->name('dynamicpdf.newborn');
+Route::get('/dynamic_pdf/death', 'DynamicPDFController@death')->name('dynamicpdf.death');
+Route::get('/dynamic_pdf/pdf_month/{type}', 'DynamicPDFController@pdf_month')->name('dynamicpdf.pdf_month');

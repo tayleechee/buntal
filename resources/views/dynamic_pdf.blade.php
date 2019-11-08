@@ -35,7 +35,7 @@
     </select>
 
     <div class="row">
-            <div class="col-md-7" align="right"><h4>Villagers Details Report</h4></div>
+            <div class="col-md-7" align="right"><h4>Penduduk Kampung Buntal</h4></div>
             <div class="col-md-5" align="right">
                 <div>
                     <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Convert into PDF</a>
@@ -43,24 +43,38 @@
             </div>
     </div>
     <br />
+	@php
+		$count = 1;
+	@endphp
+	<h5 class="font-weight-bold">Jumlah Penduduk: {{ $villager_count }} orang</h5>
     <div class="table-responsive">
             <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>IC</th>
-                    <th>Gender</th>
-                    <th>Race</th>
+					<th>#</th>
+                    <th>Nama</th>
+                    <th>No. K/P</th>
+                    <th>Jantina</th>
+                    <th>Kaum</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($villager_data as $villager)
+				@php
+					if ($villager->gender == 'm')
+						$gender = 'Lelaki';
+					else
+						$gender = 'Perempuan';					
+					$ethinicity = ucwords($villager->race);
+				@endphp
                 <tr>
+					<td>{{ $count }}</td>
                     <td>{{ $villager->name }}</td>
                     <td>{{ $villager->ic }}</td>
-                    <td>{{ $villager->gender }}</td>
-                    <td>{{ $villager->race }}</td>
+                    <td>{{ $gender }}</td>
+                    <td>{{ $ethinicity }}</td>
                 </tr>
+				@php $count++; @endphp
                 @endforeach
             </tbody>
             </table>

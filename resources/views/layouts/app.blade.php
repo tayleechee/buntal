@@ -181,8 +181,8 @@
                               <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Villagers</a>
                               <a class="dropdown-item" href="{{route('houseRecords.index')}}">Houses</a>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </li>                        
+						<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle ml-3" href="{{route('statistics.index')}}" id="viewStatisticsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Statistik</a>
                             <ul class="dropdown-menu" aria-labelledby="viewStatisticsDropdown">
                                 <li class="dropdown-submenu">
@@ -218,7 +218,24 @@
                                 <li><a class="dropdown-item" href="{{route('statistics.monthlyHouseholdIncome')}}">Pendapatan Isi Rumah Bulanan</a></li>
                             </ul>
                         </li>
-                        <li><a class="ml-2 nav-link nav-item" href="{{route('dynamic_pdf')}}">Generate Report</a></li>
+						<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle ml-3" href="{{route('statistics.index')}}" id="generateReportDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Report</a>
+                            <ul class="dropdown-menu" aria-labelledby=generateReportDropdown">
+								<li><a class="dropdown-item" href="{{route('dynamicpdf.summaryReport')}}">Ringkasan Laporan Demografi</a></li>
+								<li><a class="dropdown-item" href="{{route('dynamic_pdf')}}">General</a></li>
+                                <li class="dropdown-submenu">
+                                    <div class="btn-group dropright">
+                                        <a href="#" class="dropdown-item dropdown-toggle">Populasi</a>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">Mengikut Jantina</a></li>										
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByRace')}}">Mengikut Kaum</a></li>
+									</ul>
+                                </li>
+                                <li><a class="dropdown-item" href="{{route('dynamicpdf.newborn')}}">Kelahiran Bayi</a></li>
+								<li><a class="dropdown-item" href="{{route('dynamicpdf.death')}}">Kematian</a></li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

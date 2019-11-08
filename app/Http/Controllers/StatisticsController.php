@@ -197,7 +197,7 @@ class StatisticsController extends Controller
 	{
 		$year = $request->input('year');
 		
-		$villagers = Villager::whereYear('dob',$year)->where('death_date', null)->get();
+		$villagers = Villager::whereYear('dob',$year)->get();
 		$jan = 0;
 		$feb = 0;
 		$mar = 0;
@@ -269,7 +269,7 @@ class StatisticsController extends Controller
                  ->endOfDay()          
                  ->toDateTimeString(); 
 
-		$villagers  = Villager::whereBetween('dob', [$from, $to])->where('death_date', null)->get();
+		$villagers  = Villager::whereBetween('dob', [$from, $to])->get();
 
 		$years = collect([]);
 		

@@ -1,0 +1,182 @@
+@extends('layouts.app')
+
+@section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+<div class="container">
+    <div class="row">
+            <div class="col-md-8" align="left"><h3>Ringkasan Laporan Terkini Demografi Kampung Buntal {!! $year !!}</h3></div>
+            <div class="col-md-4" align="right">
+                <div>
+                    <a href="{{ url('dynamic_pdf/summaryReportPdf') }}" class="btn btn-danger" target="_blank">Convert into PDF</a>
+                </div>
+            </div>
+    </div>
+	<h4 class="font-weight-bold">Jumlah Penduduk: {!! $sum !!} orang</h4>
+	
+	<br />
+	<h5 class="font-weight-bold">Penduduk Tetap</h5>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered col-6">
+            <thead>
+                <tr>
+					<th style="width:50%">Status</th>
+                    <th style="width:50%">Bilangan Penduduk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+					<td>Ya</td>
+                    <td>{!! $permanent['y'] !!}</td>
+                </tr>
+				<tr>
+					<td>Tidak</td>
+                    <td>{!! $permanent['n'] !!}</td>
+                </tr>
+            </tbody>
+		</table>
+    </div>
+	
+    <br />
+	<h5 class="font-weight-bold">Jantina</h5>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered col-6">
+            <thead>
+                <tr>
+					<th style="width:50%">Jantina</th>
+                    <th style="width:50%">Bilangan Penduduk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+					<td>Lekaki</td>
+                    <td>{!! $gender['m'] !!}</td>
+                </tr>
+				<tr>
+					<td>Perempuran</td>
+                    <td>{!! $gender['f'] !!}</td>
+                </tr>
+            </tbody>
+		</table>
+    </div>
+	
+	<br />
+	<h5 class="font-weight-bold">Kaum</h5>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered col-6">
+            <thead>
+                <tr>
+					<th style="width:50%">Kaum</th>
+                    <th style="width:50%">Bilangan Penduduk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+					<td>Melayu</td>
+                    <td>{!! $race['melayu'] !!}</td>
+                </tr>
+				<tr>
+					<td>Bumiputera</td>
+                    <td>{!! $race['bumiputera'] !!}</td>
+                </tr>
+				<tr>
+					<td>Cina</td>
+                    <td>{!! $race['cina'] !!}</td>
+                </tr>
+				<tr>
+					<td>India</td>
+                    <td>{!! $race['india'] !!}</td>
+                </tr>
+				<tr>
+					<td>Lain-lain</td>
+                    <td>{!! $race['lain'] !!}</td>
+                </tr>
+            </tbody>
+		</table>
+    </div>
+	
+	<br />
+	<h5 class="font-weight-bold">Status Perkahwinan</h5>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered col-6">
+            <thead>
+                <tr>
+					<th style="width:50%">Status Perkahwinan</th>
+                    <th style="width:50%">Bilangan Penduduk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+					<td>Bujang</td>
+                    <td>{!! $marital['bujang'] !!}</td>
+                </tr>
+				<tr>
+					<td>Kahwin</td>
+                    <td>{!! $marital['kahwin'] !!}</td>
+                </tr>
+				<tr>
+					<td>Duda</td>
+                    <td>{!! $marital['duda'] !!}</td>
+                </tr>
+				<tr>
+					<td>Janda</td>
+                    <td>{!! $marital['janda'] !!}</td>
+                </tr>
+            </tbody>
+		</table>
+    </div>
+	
+	<br />
+	<h5 class="font-weight-bold">Memiliki Tanah</h5>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered col-6">
+            <thead>
+                <tr>
+					<th style="width:50%">Status</th>
+                    <th style="width:50%">Bilangan Penduduk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+					<td>Ya</td>
+                    <td>{!! $property['y'] !!}</td>
+                </tr>
+				<tr>
+					<td>Tidak</td>
+                    <td>{!! $property['n'] !!}</td>
+                </tr>
+            </tbody>
+		</table>
+    </div>	
+	
+	<br />
+	<h5 class="font-weight-bold">Kelahiran & Kematian</h5>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered col-8">
+            <thead>
+                <tr>
+					<th style="width:30%">Bulan</th>
+                    <th style="width:35%">Kelahiran (Bilangan Orang)</th>
+					<th style="width:35%">Kematian (Bilangan Orang)</th>
+                </tr>
+            </thead>
+            <tbody>
+				@for($i=0;$i<12;$i++)
+				<tr>
+					<td>{!! $label[$i] !!}</td>
+                    <td>{!! $count_newborn[$i] !!}</td>
+					<td>{!! $count_death[$i] !!}</td>
+                </tr>
+				@endfor
+				<tr class="font-weight-bold">
+					<td>Jumlah</td>
+                    <td>{!! $sum_newborn !!}</td>
+					<td>{!! $sum_death !!}</td>
+                </tr>
+            </tbody>
+		</table>
+    </div>	
+</div>
+@endsection
