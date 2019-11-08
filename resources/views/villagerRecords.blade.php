@@ -70,6 +70,17 @@
 	            },
 	            {
 	                extend: 'pdfHtml5',
+	                customize: function (doc) {
+						doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+						var objLayout = {};
+						objLayout['hLineWidth'] = function(i) { return .5; };
+						objLayout['vLineWidth'] = function(i) { return .5; };
+						objLayout['hLineColor'] = function(i) { return '#aaa'; };
+						objLayout['vLineColor'] = function(i) { return '#aaa'; };
+						objLayout['paddingLeft'] = function(i) { return 4; };
+						objLayout['paddingRight'] = function(i) { return 4; };
+						doc.content[1].layout = objLayout;
+					},
 	                exportOptions: {
 			            columns: 'th:not(:last-child, :first-child)'
 			        }
