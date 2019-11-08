@@ -60,7 +60,7 @@
 		var villagersTable = $('#villagersTable').DataTable({
 	        processing: true,
 	        serverSide: true,
-	        dom: 'Bfrtip',
+	        dom: 'Bf<"col mt-2 pl-0 pr-0 d-flex justify-content-start"l>rtip',
 	        buttons: [
 	            {
 	                extend: 'excelHtml5',
