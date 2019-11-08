@@ -186,7 +186,8 @@ class DynamicPDFController extends Controller
 					<td style="border:1px solid;padding:8px;">Janda</td>
                     <td style="border:1px solid;padding:8px;">'.$marital['janda'].'</td>
                 </tr>
-			</table>			
+			</table>	
+			<br>			
 			<h5 class="font-weight-bold">Memiliki Tanah</h5>
 			<table width="50%" style="border-collapse:collapse;border:0px;">
 				<tr>
