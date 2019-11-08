@@ -61,10 +61,11 @@ class StatisticsController extends Controller
 	{
 		$data_bujang = Villager::wheremarital_status('bujang')->where('death_date', null)->count();
         $data_kahwin = Villager::wheremarital_status('kahwin')->where('death_date', null)->count();
-        $data_duda = Villager::wheremarital_status('duda')->where('death_date', null)->count();
+        $data_duda = Villager::wheremarital_status('duda')->where('death_date', null)->count();		
+        $data_janda = Villager::wheremarital_status('janda')->where('death_date', null)->count();
 
-        $label = ['Bujang','Kahwin','Duda'];
-        $data = [$data_bujang,$data_kahwin,$data_duda];
+        $label = ['Bujang','Kahwin','Duda','Janda'];
+        $data = [$data_bujang,$data_kahwin,$data_duda,$data_janda];
 		
         $graph_title = 'Populasi Penduduk mengikut Status Perkahwinan';
 		$total_of = 'Jumlah Penduduk';
