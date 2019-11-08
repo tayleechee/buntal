@@ -1,23 +1,34 @@
 @extends('layouts.app')
 @section('css')
 <style type="text/css">
-  .card {
+	.card {
 	 	padding: 1em;
-  }
+	}
 
-  .deadIndicatorRow {
-  		background-color: #e8e8e8;
-  }
+	.deadIndicatorRow {
+			background-color: #e8e8e8;
+	}
+
+	div.dataTables_processing {
+			z-index: 1
+	}
 </style>
 @endsection
 @section('content')
 <!-- DataTable JS -->
 <script src="{{ URL::asset('DataTables/datatables.min.js')}}"></script>
 <script src="{{ URL::asset('DataTables/FixedHeader-3.1.4/js/dataTables.fixedHeader.min.js')}}"></script>
-
+<script src="{{ URL::asset('DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js')}}"></script>
+<script type="text/javascript" src="{{ URL::asset('DataTables/pdfmake/pdfmake.min.js')}}"></script>
+<script type="text/javascript" src="{{ URL::asset('DataTables/pdfmake/vfs_fonts.js')}}"></script>
+<script type="text/javascript" src="{{ URL::asset('DataTables/jszip.min.js')}}"></script>
+<script src="{{ URL::asset('DataTables/Buttons-1.6.1/js/buttons.flash.min.js')}}"></script>
+<script src="{{ URL::asset('DataTables/Buttons-1.6.1/js/buttons.html5.min.js')}}"></script>
+<script src="{{ URL::asset('DataTables/Buttons-1.6.1/js/buttons.print.min.js')}}"></script>
 <!-- DataTable CSS -->
 <link href="{{ URL::asset('DataTables/datatables.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css')}}">
 
 <div class="container">
 	<div class="mt-3">
@@ -48,6 +59,27 @@
 		var villagersTable = $('#villagersTable').DataTable({
 	        processing: true,
 	        serverSide: true,
+	        dom: 'Bfrtip',
+	        buttons: [
+	            {
+	                extend: 'excelHtml5',
+	                exportOptions: {
+	                    columns: 'th:not(:last-child, :first-child)'
+	                }
+	            },
+	            {
+	                extend: 'pdfHtml5',
+	                exportOptions: {
+			            columns: 'th:not(:last-child, :first-child)'
+			        }
+	            },
+	            {
+	                extend: 'print',
+	                exportOptions: {
+	                    columns: 'th:not(:last-child, :first-child)'
+	                }
+	            },
+	        ],
 	        ajax: '{!! route('villagerRecords.getVillagerRecords') !!}',
 	        columns: [
 	        	{ data: null, "orderable": false, "searchable": false},
