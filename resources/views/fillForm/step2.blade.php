@@ -52,7 +52,7 @@
 @endif
 
 <div class="text-center">
-	<h2>Step 2</h2>
+	<h2>Langkah 2</h2>
 </div>
 
 <div class="container">
@@ -64,7 +64,7 @@
 		</div>
 <div class="form-row">
 		<div class="form-group row">
-			<label for="step2_householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Pendapatan Rumah (RM)</label>
+			<label for="step2_householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Pendapatan Isi Rumah (RM)</label>
 			<div class="col pr-0">
 				<input type="text" id="step2_householdIncome" name="step2_householdIncome" value="<?php echo isset($step1_householdIncome) ? $step1_householdIncome : ''  ?>" class="step1 col-sm-8 form-control" readonly>
 			</div>
@@ -202,7 +202,7 @@
 	}
 
 	function deleteMember(element) {
-		var confirm = window.confirm("Adakah anda pasti untuk padamkan maklumat penduduk ini?");
+		var confirm = window.confirm("Adakah anda pasti memadamkan ahli ini?");
 		if (!confirm)
 			return;
 
@@ -335,7 +335,7 @@
 	});
 
 	$(document).ready(function (){
-		function initializeMemberForms() 
+		function initializeMemberForms()
 		{
 			for (var i = 0; i < step1_numberOfFamilyMember; i++)
 			{
@@ -423,7 +423,7 @@
 				<label for="education_1" class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label>
 				<div class="col">
 					<select name="education_1" id="education_1" class="form-control form_education" required>
-						<option value="Non-educated">Tiada</option>
+						<option value="Non-educated">Tidak Berpendidikan</option>
 						<option value="Primary School">Sekolah Rendah</option>
 						<option value="Secondary School">Sekolah Menengah</option>
 						<option value="Form 6">Tingkatan 6</option>

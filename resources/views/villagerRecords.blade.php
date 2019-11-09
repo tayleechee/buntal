@@ -21,7 +21,7 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>Rekod Penduduk</h5>
+		<h5>Ketelitian Rekod Penduduk</h5>
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="villagersTable">
@@ -62,11 +62,11 @@
 		            		{return data};
 	            	}
 	            },
-	            { data: 'race', "render": function(data, type, row) { 
-	            		return data.charAt(0).toUpperCase() + data.slice(1); 
-	            	} 
+	            { data: 'race', "render": function(data, type, row) {
+	            		return data.charAt(0).toUpperCase() + data.slice(1);
+	            	}
 	            },
-	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
+	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) {
 	            		var button = `<div class="text-center">
 	            						<button class="btn btn-primary btn-sm viewVillagerDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View Detail"><i class="far fa-eye"></i></button>
 	            					</div>

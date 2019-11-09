@@ -32,13 +32,13 @@ class DynamicPDFController extends Controller
     {
      $villager_data = $this->get_villager_data();
      $output = '
-     <h3 align="center">Villager Details</h3>
+     <h3 align="center">Ketelitian Penduduk</h3>
      <table width="100%" style="border-collapse: collapse; border: 0px;">
       <tr>
-    <th style="border: 1px solid; padding:12px;" width="20%">Name</th>
+    <th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
     <th style="border: 1px solid; padding:12px;" width="30%">Ic</th>
-    <th style="border: 1px solid; padding:12px;" width="15%">Gender</th>
-    <th style="border: 1px solid; padding:12px;" width="15%">Race</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Bangsa</th>
    </tr>
      ';
      foreach($villager_data as $villager)

@@ -14,31 +14,31 @@
 <div class="container">
     <select name="column_select" id="column_select">
         <option value="col1">Populasi</option>
-        <option value="col2">Bayi</option>
+        <option value="col2">Baru Lahir</option>
         <option value="col3">Kematian</option>
     </select>
 
     <select name="layout_select" id="layout_select">
         <!--Below shows when '1 column' is selected is hidden otherwise-->
-        <option value="col1" id="ByGenderOpt">Jantina</option>
-        <option value="col1">Umur</option>
-        <option value="col1">Pendidikan</option>
-        <option value="col1">Status Perkahwinan</option>
+        <option value="col1" id="ByGenderOpt">Mengikuti Jantina</option>
+        <option value="col1">Mengikuti Julat Umur</option>
+        <option value="col1">Mengikuti Peringkat Pendidikan</option>
+        <option value="col1">Mengikuti Status Perkahwinan</option>
 
         <!--Below shows when '2 column' is selected is hidden otherwise-->
-        <option value="col2">Tahun</option>
-        <option value="col2">Bulan</option>
+        <option value="col2">Mengikuti Tahun</option>
+        <option value="col2">Mengikuti Bulan Dalam Satu Tahun</option>
 
         <!--Below shows when '3 column' is selected is hidden otherwise-->
-        <option value="col3">Tahun</option>
-        <option value="col3">Bulan</option>
+        <option value="col3">Mengikuti Tahun</option>
+        <option value="col3">Mengikuti Bulan Dalam Satu Tahun</option>
     </select>
 
     <div class="row">
-            <div class="col-md-7" align="right"><h4>Laporan Matlumat Penduduk</h4></div>
+            <div class="col-md-7" align="right"><h4>Ketelitian Rekod Penduduk</h4></div>
             <div class="col-md-5" align="right">
                 <div>
-                    <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Format PDF</a>
+                    <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Tukar ke PDF</a>
                 </div>
             </div>
     </div>

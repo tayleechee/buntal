@@ -33,7 +33,7 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group row">
-					<label for="step1_householdIncome" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Pendapatan Rumah (RM)</label>
+					<label for="step1_householdIncome" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Pendapatan Isi Rumah (RM)</label>
 					<input type="number" name="step1_householdIncome" id="step1_householdIncome" class="step1 col-sm-8 form-control @error('step1_householdIncome') is-invalid @enderror" value="{{ old('step1_householdIncome') }}" required>
 
 					@error('step1_householdIncome')

@@ -21,7 +21,7 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>Rekod Maklumat Rumah</h5>
+		<h5>Ketelitian Rekod Rumah</h5>
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="housesTable">

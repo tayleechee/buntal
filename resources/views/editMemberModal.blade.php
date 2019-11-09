@@ -2,7 +2,7 @@
 <!-- Modal -->
   <div class="modal fade" id="editMemberModal" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -132,7 +132,7 @@
               </div>
           </form>
         </div>
-        
+
 
         <div class="modal-footer">
           <button type="button" id="editMemberSaveBtn" class="btn btn-primary">Simpan</button>
