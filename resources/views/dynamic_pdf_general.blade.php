@@ -15,7 +15,7 @@
 	<div align="right">
 		<a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Simpan sebagai PDF</a>
 	</div>   
-	<h1 align="center">Penduduk Kampung Buntal</h1>
+	<h1 align="center">Senarai Penduduk Kampung Buntal</h1>
     <br />
 	@php
 		$count = 1;
