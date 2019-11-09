@@ -185,7 +185,7 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="education" class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label>
 				<div class="col form-input-col d-none">
-					{!! Form::select('education', ['Non-educated'=>'Tidak Berpendidikan Formal', 'Primary School'=>'Pendidikan Rendah', 'Secondary School'=>'Pendidikan Menengah', 'Form 6'=>'Tingkatan 6', 'Diploma'=>'Diploma', 'Degree'=>'Ijazah Sarjana Muda', 'Master'=>'Ijazah Sarjana', 'PhD'=>'Doktor Falsafah', 'N/A'=>'Tidak Kaitan'], isset($villager->education_level) ? $villager->education_level : null, ['class'=>'form-control form_education', 'id'=>'education', 'required']) !!}
+					{!! Form::select('education', ['Non-educated'=>'Tidak Berpendidikan Formal', 'Primary School'=>'Pendidikan Rendah', 'Secondary School'=>'Pendidikan Menengah', 'Form 6'=>'Tingkatan 6', 'Diploma'=>'Diploma', 'Degree'=>'Ijazah Sarjana Muda', 'Master'=>'Ijazah Sarjana', 'PhD'=>'Doktor Falsafah', 'N/A'=>'Tiada Kaitan'], isset($villager->education_level) ? $villager->education_level : null, ['class'=>'form-control form_education', 'id'=>'education', 'required']) !!}
 				</div>
 				<div class="col form-input-div">
 					<?php 
@@ -218,7 +218,7 @@
 									echo 'Doktor Falsafah';
 									break;
 								case 'N/A':
-									echo 'Tidak Kaitan';
+									echo 'Tiada Kaitan';
 									break;
 							}
 						}

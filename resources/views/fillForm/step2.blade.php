@@ -453,7 +453,7 @@
 						<option value="Degree">Ijazah Sarjana Muda</option>
 						<option value="Master">Ijazah Sarjana</option>
 						<option value="PhD">Doktor Falsafah</option>
-						<option value="N/A">Tidak Kaitan</option>
+						<option value="N/A">Tiada Kaitan</option>
 					</select>
 				</div>
 			</div>

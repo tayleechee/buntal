@@ -82,7 +82,7 @@ class HouseDetailController extends Controller
 			$new_poc = Villager::find($request->poc);
 			if (empty($new_poc->phone))
 			{
-				return Response::json("Nombor telefon ketua rumah mesti diisi. Sila isi nombor telefon ".$new_poc->name." first.", 455); //New Ketua Rumah must have phone number filled! Please fill in phone number for
+				return Response::json("Nombor telefon ketua rumah mesti diisi. Sila isi nombor telefon ".$new_poc->name." dulu.", 455); //New Ketua Rumah must have phone number filled! Please fill in phone number for
 			}
 
 			HousePOC::where('house_id', $house->id)->delete();
