@@ -185,10 +185,44 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="education" class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label>
 				<div class="col form-input-col d-none">
-					{!! Form::select('education', ['Non-educated'=>'Non-educated', 'Primary School'=>'Primary School', 'Secondary School'=>'Secondary School', 'Form 6'=>'Form 6', 'Diploma'=>'Diploma', 'Degree'=>'Degree', 'Master'=>'Master', 'PhD'=>'PhD', 'N/A'=>'N/A'], isset($villager->education_level) ? $villager->education_level : null, ['class'=>'form-control form_education', 'id'=>'education', 'required']) !!}
+					{!! Form::select('education', ['Non-educated'=>'Tidak Berpendidikan Formal', 'Primary School'=>'Pendidikan Rendah', 'Secondary School'=>'Pendidikan Menengah', 'Form 6'=>'Tingkatan 6', 'Diploma'=>'Diploma', 'Degree'=>'Ijazah Sarjana Muda', 'Master'=>'Ijazah Sarjana', 'PhD'=>'Doktor Falsafah', 'N/A'=>'Tidak Kaitan'], isset($villager->education_level) ? $villager->education_level : null, ['class'=>'form-control form_education', 'id'=>'education', 'required']) !!}
 				</div>
 				<div class="col form-input-div">
-					<?php echo isset($villager->education_level) ? $villager->education_level : ''  ?>
+					<?php 
+						if ($villager->education_level)
+						{
+							switch($villager->education_level)
+							{
+								case 'Non-educated': 
+									echo 'Tidak Berpendidikan Formal'; 
+									break;
+								case 'Primary School':
+									echo 'Pendidikan Rendah';
+									break;
+								case 'Secondary School':
+									echo 'Pendidikan Menengah';
+									break;
+								case 'Form 6':
+									echo 'Tingkatan 6';
+									break;
+								case 'Diploma':
+									echo 'Diploma';
+									break;
+								case 'Degree':
+									echo 'Ijazah Sarjana Muda';
+									break;
+								case 'Master':
+									echo 'Ijazah Sarjana';
+									break;
+								case 'PhD':
+									echo 'Doktor Falsafah';
+									break;
+								case 'N/A':
+									echo 'Tidak Kaitan';
+									break;
+							}
+						}
+					?>
 				</div>
 			</div>
 
