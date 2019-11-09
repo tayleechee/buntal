@@ -59,9 +59,9 @@ class HomeController extends Controller
         ]);
 
         $maritalChart = new Chartjs;
-        $maritalChart->title("Marital Status");
+        $maritalChart->title("Status Perkahwinan");
         $maritalChart->labels(['bujang', 'kahwin','duda']);
-        $maritalChart->dataset('Marital Status', 'bar', [$data_single,$data_kahwin,$data_duda])->options([
+        $maritalChart->dataset('Status Perkahwinan', 'bar', [$data_single,$data_kahwin,$data_duda])->options([
             'backgroundColor' => ['#9B59B6', '#2ECC71', '#FFB74D']
         ]);
 

@@ -22,7 +22,7 @@
 		<form action="{{ action('FillFormController@processStep1') }}" method="POST">
 			{{ csrf_field() }}
 			<div class="form-group row">
-				<label for="step1_address" class="col-form-label font-weight-bold">Alamat</label>
+				<label for="step1_address" class="col-form-label font-weight-bold">Alamat Rumah</label>
 				<input name="step1_address" id="step1_address" class="form-control @error('step1_address') is-invalid @enderror" value="{{ old('step1_address') }}" required>
 
 				@error('step1_address')

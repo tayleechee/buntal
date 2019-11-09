@@ -59,7 +59,7 @@
 	<form id="step2_form">
 		{{ csrf_field() }}
 		<div class="form-group row">
-			<label for="step2_address" class="col-form-label font-weight-bold">Alamat</label>
+			<label for="step2_address" class="col-form-label font-weight-bold">Alamat Rumah</label>
 			<input type="text" id="step2_address" name="step2_address" value="<?php echo isset($step1_address) ? $step1_address : ''  ?>" class="form-control" readonly>
 		</div>
 <div class="form-row">
@@ -114,7 +114,7 @@
    		{
    			clone.querySelector(".ketuaRumah_title").innerText = " (Ketua Rumah)";
    			clone.querySelector(".deleteMemberBtn").style.display = "none";
-   			clone.querySelector(".form_phone_label").innerText = "Phone";
+   			clone.querySelector(".form_phone_label").innerText = "Telefon";
    		}
 
    		var form_name_label = clone.querySelector(".form_name_label");
@@ -321,7 +321,7 @@
 			url: url,
 			data: form.serialize(),
 			beforeSend: function() {
-				$("#loading_div").attr("data-text", "Processing...");
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
@@ -329,7 +329,7 @@
 			},
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
-		        showAjaxErrorMessage(jqXHR, exception, "Unable to Submit Form:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
 		    }
 		});
 	});
@@ -354,7 +354,7 @@
 	<div class="mt-5 family_member_form_div">
 		<fieldset class="scheduler-border">
 			<legend class="family_member_legend scheduler-border">Ahli Keluarga <span class="legend_count">1</span><span class="ketuaRumah_title"></span></legend>
-			<div class="text-right"><button type="button" class="btn btn-sm btn-danger deleteMemberBtn">Delete</button></div>
+			<div class="text-right"><button type="button" class="btn btn-sm btn-danger deleteMemberBtn">Padam</button></div>
 
 			<div class="form-group row pl-2 mt-3">
 				<label for="name_1" class="col-form-label col-2 form_name_label">Nama</label>
@@ -371,7 +371,7 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="phone_1" class="col-form-label col-2 form_phone_label">Phone (optional)</label>
+				<label for="phone_1" class="col-form-label col-2 form_phone_label">Telefon (Tidak Wajib)</label>
 				<div class="col">
 					<input type="text" name="phone_1" id="phone_1" class="form-control form_phone">
 				</div>
@@ -398,7 +398,7 @@
 				<label for="race_1" class="col-form-label col-2 form_race_label">Bangsa</label>
 				<div class="col">
 					<select name="race_1" id="race_1" class="form-control form_race" required>
-						<option value="malay">Malay</option>
+						<option value="malay">Melayu</option>
 						<option value="cina">Cina</option>
 						<option value="india">India</option>
 						<option value="bumiputera">Bumiputera</option>
@@ -426,7 +426,7 @@
 						<option value="Non-educated">Tidak Berpendidikan</option>
 						<option value="Primary School">Sekolah Rendah</option>
 						<option value="Secondary School">Sekolah Menengah</option>
-						<option value="Form 6">Form 6</option>
+						<option value="Form 6">Tingkatan 6</option>
 						<option value="Diploma">Diploma</option>
 						<option value="Degree">Degree</option>
 						<option value="Master">Master</option>
@@ -437,7 +437,7 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="occupation_1" class="col-form-label col-2 form_occupation_label">Perkerjaan (optional)</label>
+				<label for="occupation_1" class="col-form-label col-2 form_occupation_label">Pekerjaan (Tidak Wajib)</label>
 				<div class="col">
 					<input type="text" name="occupation_1" id="occupation_1" class="form-control form_occupation">
 				</div>
@@ -448,7 +448,7 @@
 				<div class="ml-3">
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="active_yes_1" name="active_1" class="custom-control-input active_yes" value="1" required>
-						<label class="custom-control-label active_yes_label" for="active_yes_1">Ada</label>
+						<label class="custom-control-label active_yes_label" for="active_yes_1">Ya</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="active_no_1" name="active_1" class="custom-control-input active_no" value="0">
@@ -462,7 +462,7 @@
 				<div class="ml-3">
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="propertyOwner_yes_1" name="propertyOwner_1" class="custom-control-input propertyOwner_yes" value="1" required>
-						<label class="custom-control-label propertyOwner_yes_label" for="propertyOwner_yes_1">Ada</label>
+						<label class="custom-control-label propertyOwner_yes_label" for="propertyOwner_yes_1">Ya</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="propertyOwner_no_1" name="propertyOwner_1" class="custom-control-input propertyOwner_no" value="0">
