@@ -12,6 +12,10 @@
 	div.dataTables_processing {
 			z-index: 1
 	}
+
+	.datatables_length label {
+		display: inline-block;
+	}
 </style>
 @endsection
 @section('content')
@@ -34,6 +38,11 @@
 <div class="container">
 	<div class="mt-3">
 		<h5>Senarai Rekod Penduduk</h5>
+		<!-- <div style="display:inline-block; border: 1px solid black; padding: 15px">
+			<div style="background-color: #fffacc; width: 60px; height: 30px; display:inline-block;vertical-align: middle">
+			</div>
+			<span>Sudah Meninggal</span>
+		</div> -->
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="villagersTable">
@@ -61,7 +70,7 @@
 		var villagersTable = $('#villagersTable').DataTable({
 	        processing: true,
 	        serverSide: true,
-	        dom: 'Bf<"col mt-2 pl-0 pr-0 d-flex justify-content-start"l>rtip',
+	        dom: 'Bf<"col mt-2 pl-0 pr-0 d-flex legendRow justify-content-start align-items-center"l>rtip',
 	        buttons: [
 	            {
 	                extend: 'excelHtml5',
@@ -142,6 +151,15 @@
 	            iterator++;
 	        } );
 	    } );
+
+	    var toAppend = '<div style="border: 1px solid #dadada; padding: 5px 10px; margin-left: auto">' +
+			'<div style="background-color: #fffacc; width: 60px; height: 30px; margin-right: 10px;' +
+			'display:inline-block;vertical-align: middle">' +
+			'</div>' +
+			'<span>Sudah Meninggal</span>' +
+			'</div>';
+
+		$(".legendRow").append(toAppend);
 	});
 
 	$(document).on("click", ".viewVillagerDetailBtn", function() {
