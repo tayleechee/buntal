@@ -72,13 +72,19 @@ class HomeController extends Controller
         $genderChart->labels(['Melayu', 'Cina','Bumiputra','India','Lain']);
         $genderChart->displayAxes(false);
         $genderChart->dataset('Bangsa', 'pie', [$data_malay,$data_cina,$data_bumiputra,$data_india,$data_lain])->options([
-                'plugins' =>  $this->rawObjects[] = new Raw("{
-                                datalabels: {
-                                    color: 'blue',
-                                }
-                            }"),
                 'backgroundColor' => ['#FCCEEF', '#CDDAFA','#AAFFDA','#E6FE9A','#FFD19B'],
                 'borderColor' => ['#C11B92','#1F51CD','#37AA78','#96B437','#A6763E'],
+        ]);
+        $genderChart->options([
+             'plugins' => '{datalabels: {
+                                    formatter: function(value, context) {
+                                        if (value == 0)
+                                            return "";
+                                        else
+                                            return value;
+                                    }
+                                }
+                            }',
         ]);
 
         $propertyOwnerChart = new Chartjs;
