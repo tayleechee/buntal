@@ -420,11 +420,11 @@
 				<label for="race_1" class="col-form-label col-2 form_race_label">Bangsa</label>
 				<div class="col">
 					<select name="race_1" id="race_1" class="form-control form_race" required>
-						<option value="malay">Melayu</option>
+						<option value="melayu">Melayu</option>
 						<option value="cina">Cina</option>
 						<option value="india">India</option>
 						<option value="bumiputera">Bumiputera</option>
-						<option value="other">Lain-lain</option>
+						<option value="lain-lain">Lain-lain</option>
 					</select>
 				</div>
 			</div>

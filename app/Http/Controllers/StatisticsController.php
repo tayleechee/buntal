@@ -43,11 +43,11 @@ class StatisticsController extends Controller
 	{
 		$label = ['Melayu','Cina','India','Bumiputera','Lain-lain'];
 		$data = [
-			Villager::whererace('malay')->where('death_date', null)->count(),
+			Villager::whererace('melayu')->where('death_date', null)->count(),
 			Villager::whererace('cina')->where('death_date', null)->count(),
 			Villager::whererace('india')->where('death_date', null)->count(),
 			Villager::whererace('bumiputera')->where('death_date', null)->count(),
-			Villager::whererace('other')->where('death_date', null)->count()
+			Villager::whererace('lain-lain')->where('death_date', null)->count()
 		];
 		
 		$graph_title = 'Populasi Penduduk mengikut Kaum';

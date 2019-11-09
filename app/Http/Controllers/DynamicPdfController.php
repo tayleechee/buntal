@@ -51,11 +51,11 @@ class DynamicPDFController extends Controller
 		$gender['f'] = Villager::wheregender('f')->where('death_date', null)->count();
 		
 		$race = [];
-		$race['melayu'] = Villager::whererace('malay')->where('death_date', null)->count();
+		$race['melayu'] = Villager::whererace('melayu')->where('death_date', null)->count();
 		$race['cina'] = Villager::whererace('cina')->where('death_date', null)->count();
 		$race['india'] = Villager::whererace('india')->where('death_date', null)->count();
 		$race['bumiputera'] = Villager::whererace('bumiputera')->where('death_date', null)->count();
-		$race['lain'] = Villager::whererace('other')->where('death_date', null)->count();
+		$race['lain'] = Villager::whererace('lain-lain')->where('death_date', null)->count();
 
 		$marital = [];
 		$marital['bujang'] = Villager::wheremarital_status('bujang')->where('death_date', null)->count();
@@ -286,7 +286,7 @@ class DynamicPDFController extends Controller
     function get_malay_data()
     {
 		$villager_data = Villager::where('death_date', null)
-			->where('race','=','malay')
+			->where('race','=','melayu')
 			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
@@ -322,7 +322,7 @@ class DynamicPDFController extends Controller
     function get_lain_data()
     {
 		$villager_data = Villager::where('death_date', null)
-			->where('race','=','other')
+			->where('race','=','lain-lain')
 			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
@@ -461,7 +461,7 @@ class DynamicPDFController extends Controller
      $num_lain=0;
      foreach($villager_data as $villager)
      {
-        if($villager->race == 'malay')
+        if($villager->race == 'melayu')
             $num_melayu ++;
         else if($villager->race == 'bumiputera')
             $num_bumi ++;
@@ -469,7 +469,7 @@ class DynamicPDFController extends Controller
             $num_cina ++;
         else if($villager->race == 'india')
             $num_india ++;
-        else if($villager->race == 'other')
+        else if($villager->race == 'lain-lain')
             $num_lain ++;
      }
      $output .= '
