@@ -160,14 +160,7 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="race" class="col-form-label col-2 form_race_label">Bangsa</label>
 				<div class="col form-input-col d-none">
-					<!-- <select name="race" id="race" class="form-control form_race" required>
-						<option value="malay">Malay</option>
-						<option value="cina">Cina</option>
-						<option value="india">India</option>
-						<option value="bumiputera">Bumiputera</option>
-						<option value="other">Lain-lain</option>
-					</select> -->
-					{!! Form::select('race', ['malay' => 'Malay', 'cina' => 'Cina', 'india' =>  'India', 'bumiputera' => 'Bumiputera', 'other' => 'Lain-lain'], isset($villager->race) ? $villager->race : null, ['class'=>'form-control form_race', 'id'=>'race', 'required']) !!}
+					{!! Form::select('race', ['melayu' => 'Malay', 'cina' => 'Cina', 'india' =>  'India', 'bumiputera' => 'Bumiputera', 'lain-lain' => 'Lain-lain'], isset($villager->race) ? $villager->race : null, ['class'=>'form-control form_race', 'id'=>'race', 'required']) !!}
 				</div>
 				<div class="col form-input-div text-left col-form-label">
 					<?php echo isset($villager->race) ? ucfirst($villager->race) : ''  ?>

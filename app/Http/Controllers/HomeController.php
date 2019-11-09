@@ -44,11 +44,11 @@ class HomeController extends Controller
         $active_yes_count = Villager::whereis_active('1')->where('death_date', null)->count();
         $active_no_count = Villager::whereis_active('0')->where('death_date', null)->count();
 
-        $data_malay = Villager::whererace('malay')->where('death_date', null)->count();
+        $data_malay = Villager::whererace('melayu')->where('death_date', null)->count();
         $data_cina = Villager::whererace('cina')->where('death_date', null)->count();
         $data_bumiputra = Villager::whererace('bumiputera')->where('death_date', null)->count();
         $data_india = Villager::whererace('india')->where('death_date', null)->count();
-        $data_lain = Villager::whererace('other')->where('death_date', null)->count();
+        $data_lain = Villager::whererace('lain-lain')->where('death_date', null)->count();
 
         $activeChart = new Chartjs;
         $activeChart->title("Penduduk Tetap");
@@ -67,7 +67,7 @@ class HomeController extends Controller
 
         $genderChart = new Chartjs;
         $genderChart->title("Bangsa");
-        $genderChart->labels(['Malay', 'Cina','Bumiputra','India','Lain']);
+        $genderChart->labels(['Melayu', 'Cina','Bumiputra','India','Lain']);
         $genderChart->displayAxes(false);
         $genderChart->dataset('Bangsa', 'pie', [$data_malay,$data_cina,$data_bumiputra,$data_india,$data_lain])->options([
             'backgroundColor' => ['#FCCEEF', '#CDDAFA','#AAFFDA','#E6FE9A','#FFD19B'],
