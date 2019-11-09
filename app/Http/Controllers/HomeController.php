@@ -48,7 +48,8 @@ class HomeController extends Controller
         $activeChart->title("Penduduk Tetap");
         $activeChart->labels(['Ada', 'Tidak']);
         $activeChart->dataset('Penduduk Tetap', 'bar', [$active_yes_count,$active_no_count])->options([
-            'backgroundColor' => ['#9B59B6', '#2ECC71']
+            'backgroundColor' => ['#F5BAFC', '#D2FF90'],
+            'borderColor' => ['#C835D9','#9EF222']
         ]);
 
         $maritalChart = new Chartjs;
@@ -70,7 +71,8 @@ class HomeController extends Controller
         $propertyOwnerChart->title("Pemilik Harta Tanah");
         $propertyOwnerChart->labels(['Ada', 'Tidak']);
         $propertyOwnerChart->dataset('Pemilik Harta Tanah','bar', [$data_noProperty,$data_haveProperty])->options([
-            'backgroundColor' => ['#333399', '#FF0066']
+            'backgroundColor' => ['#B9DBFA', '#FFABE7'],
+            'borderColor' => ['#2D7AC1','#AA408C']
         ]);
 
         return view('home', compact('activeChart','maritalChart','genderChart','propertyOwnerChart', 'villagerCount', 'houseCount'));
