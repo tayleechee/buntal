@@ -113,6 +113,38 @@ class StatisticsController extends Controller
 	}	
 	
 	/***** Bar Graph *****/
+	public function populationByVoter()
+	{
+		$villagers = Villager::where('death_date', null)->get();
+		$is_voter = 0;
+		$not_voter = 0;
+		
+		foreach($villagers as $villager)
+		{
+			$birthday = Carbon::parse($villager->dob);
+			$age = $birthday->diffInYears(Carbon::now());
+			
+			if ($age >= 18)
+			{
+				if ($villager->is_voter == 1)
+					$is_voter++;
+				else
+					$not_voter++;
+			}
+		}
+		
+		$label = ['Sudah Dafter','Belum Daftar'];
+		$data = [$is_voter,$not_voter];
+		
+		$graph_type = 'column';
+		$graph_title = 'Pendaftaran sebagai Pengundi';
+		$x_axis = '';
+		$total_of = 'Bilangan Penduduk yang Layak untuk Mendaftar sebagai Pengundi';
+		$total = array_sum($data);
+		
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
+	}	
+	
 	public function populationByAgeRange()
 	{
 		$villagers = Villager::where('death_date', null)->get();

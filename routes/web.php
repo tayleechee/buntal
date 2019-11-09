@@ -70,6 +70,7 @@ Route::get('/statistics/populationByRace', 'StatisticsController@populationByRac
 Route::get('/statistics/populationByAgeRange', 'StatisticsController@populationByAgeRange')->name('statistics.populationByAgeRange');
 Route::get('/statistics/populationByEducationLevel', 'StatisticsController@populationByEducationLevel')->name('statistics.populationByEducationLevel');
 Route::get('/statistics/populationByMaritalStatus', 'StatisticsController@populationByMaritalStatus')->name('statistics.populationByMaritalStatus');
+Route::get('/statistics/populationByVoter', 'StatisticsController@populationByVoter')->name('statistics.voter');
 Route::get('/statistics/monthlyHouseholdIncome', 'StatisticsController@monthlyHouseholdIncome')->name('statistics.monthlyHouseholdIncome');
 Route::post('/statistics/birthRateByYear', 'StatisticsController@birthRateByYear');
 Route::post('/statistics/birthRateByRangeOfYears', 'StatisticsController@birthRateByRangeOfYears');
