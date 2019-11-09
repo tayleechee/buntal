@@ -247,6 +247,43 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
+				<label class="pl-3 padding-top-calc form-radio-label">Sudahkah anda daftar sebagai pengundi?</label>
+				<div class="ml-3">
+					<div class="custom-control custom-radio custom-control-inline d-none">
+						@if (isset($villager->is_voter) && ($villager->is_voter == '1'))
+						<input type="radio" id="is_voter_yes" name="is_voter" class="custom-control-input is_voter_yes" value="1" checked required>
+						@else
+						<input type="radio" id="is_voter_yes" name="is_voter" class="custom-control-input is_voter_yes" value="1" required>
+						@endif
+
+						<label class="custom-control-label is_voter_yes_label" for="is_voter_yes">Yes</label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline d-none">
+						@if (isset($villager->is_voter) && ($villager->is_voter == '0'))
+						<input type="radio" id="is_voter_no" name="is_voter" class="custom-control-input is_voter_no" checked value="0">
+						@else
+						<input type="radio" id="is_voter_no" name="is_voter" class="custom-control-input is_voter_no" value="0">
+						@endif
+						
+						<label class="custom-control-label is_voter_no_label" for="is_voter_no">No</label>
+					</div>
+					<div class="col form-input-div">
+						<?php 
+							if (isset($villager->is_voter))
+							{
+								if ($villager->is_voter == '1') {
+									echo 'Ya';
+								}
+								else {
+									echo 'Tidak';
+								}
+							}
+						?>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row pl-2 mt-3">
 				<label class="pl-3 form-radio-label padding-top-calc">Adakah anda mempunyai tanah yang bergeran?</label>
 				<div class="ml-3">
 					<div class="custom-control custom-radio custom-control-inline d-none">
@@ -436,6 +473,14 @@
 					}
 					else if (data.is_active == 0) {
 						$("input[name='active'][value='0']")[0].checked = true;
+					}
+				}
+				if (typeof data.is_voter !== 'undefined') {
+					if (data.is_voter == 1) {
+						$("input[name='is_voter'][value='1']")[0].checked = true;
+					}
+					else if (data.is_voter == 0) {
+						$("input[name='is_voter'][value='0']")[0].checked = true;
 					}
 				}
 				if (typeof data.is_property_owner !== 'undefined') {

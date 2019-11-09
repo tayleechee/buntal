@@ -118,6 +118,20 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
+                <label class="pl-3">Sudahkah anda daftar sebagai pengundi?</label>
+                <div class="ml-3">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="is_voter_yes_1" name="is_voter" class="custom-control-input is_voter_yes" value="1" required>
+                    <label class="custom-control-label is_voter_yes_label" for="is_voter_yes_1">Yes</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="is_voter_no_1" name="is_voter" class="custom-control-input is_voter_no" value="0">
+                    <label class="custom-control-label is_voter_no_label" for="is_voter_no_1">No</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row pl-2 mt-3">
                 <label class="pl-3">Adakah anda mempunyai tanah yang bergeran?</label>
                 <div class="ml-3">
                   <div class="custom-control custom-radio custom-control-inline">
