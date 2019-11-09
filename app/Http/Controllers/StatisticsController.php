@@ -133,7 +133,7 @@ class StatisticsController extends Controller
 			}
 		}
 		
-		$label = ['Sudah Dafter','Belum Daftar'];
+		$label = ['Sudah Daftar','Belum Daftar'];
 		$data = [$is_voter,$not_voter];
 		
 		$graph_type = 'column';
@@ -213,8 +213,8 @@ class StatisticsController extends Controller
 		$data_phd = Villager::whereeducation_level('PhD')->where('death_date', null)->count();
 		$data_na = Villager::whereeducation_level('N/A')->where('death_date', null)->count();
 
-		$label = [ 'Non-Educated','Primary','Secondary','Form 6','Diploma','Degree','Master','PhD', 'N/A' ];
-		$data = [ $data_nonEducated,$data_primary,$data_secondary,$data_form6,$data_diploma,$data_degree,$data_master,$data_phd,$data_na ];		
+		$label = ['Tidak Berpendidikan Formal','Pendidikan Rendah','Pendidikan Menengah','Tingkatan 6','Diploma','Ijazah Sarjana Muda','Ijazah Sarjana Muda','Doktor Falsafah', 'Tiada Kaitan'];
+		$data = [$data_nonEducated,$data_primary,$data_secondary,$data_form6,$data_diploma,$data_degree,$data_master,$data_phd,$data_na];		
 		
 		$graph_type = 'column';
         $graph_title = 'Bilangan Penduduk mengikut Tahap Pendidikan';
