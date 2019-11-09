@@ -57,14 +57,14 @@
 	        buttons: [
 	            {
 	                extend: 'excelHtml5',
-	                title: 'List of Ketua Rumah',
+	                title: 'Senarai Ketua Rumah',
 	                exportOptions: {
 	                    columns: 'th:not(:last-child, :first-child)'
 	                }
 	            },
 	            {
 	                extend: 'pdfHtml5',
-	                title: 'List of Ketua Rumah',
+	                title: 'Senarai Ketua Rumah',
 	                customize: function (doc) {
 						doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
 						var objLayout = {};
@@ -82,7 +82,7 @@
 	            },
 	            {
 	                extend: 'print',
-	                title: 'List of Ketua Rumah',
+	                title: 'Senarai Ketua Rumah',
 	                exportOptions: {
 	                    columns: 'th:not(:last-child, :first-child)'
 	                }
