@@ -304,7 +304,7 @@
 											echo 'Doktor Falsafah';
 											break;
 										case 'N/A':
-											echo 'Tidak Kaitan';
+											echo 'Tiada Kaitan';
 											break;
 									}
 								}
