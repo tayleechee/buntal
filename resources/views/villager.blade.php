@@ -32,10 +32,6 @@
     .padding-top-calc {
     	padding-top: calc(.375rem + 1px);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> translation to BM.
     .ketuaRumah_title {
     	color: blue;
     }
@@ -62,15 +58,9 @@
 		<input type="hidden" name="villager_id" id="villager_id" value="<?php echo isset($villager->id) ? $villager->id : '' ?>">
 		<fieldset class="scheduler-border">
 			@if ( isset($villager) && ($villager->poc))
-<<<<<<< HEAD
-			<legend class="family_member_legend scheduler-border">Villager Detail<span class="ketuaRumah_title"> (Ketua Rumah)</span></legend>
-			@else
-			<legend class="family_member_legend scheduler-border">Villager Detail</legend>
-=======
 			<legend class="family_member_legend scheduler-border">Maklumat Penduduk<span class="ketuaRumah_title"> (Ketua Rumah)</span></legend>
 			@else
 			<legend class="family_member_legend scheduler-border">Maklumat Penduduk</legend>
->>>>>>> translation to BM.
 			@endif
 
 			@if ( isset($villager) && !empty($villager->death_date) )
