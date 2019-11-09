@@ -393,7 +393,7 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="phone_1" class="col-form-label col-2 form_phone_label">Telefon (Tidak Wajib)</label>
+				<label for="phone_1" class="col-form-label col-2 form_phone_label">Telefon (Bukan Wajib)</label>
 				<div class="col">
 					<input type="text" name="phone_1" id="phone_1" class="form-control form_phone">
 				</div>
@@ -417,7 +417,7 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="race_1" class="col-form-label col-2 form_race_label">Bangsa</label>
+				<label for="race_1" class="col-form-label col-2 form_race_label">Kaum</label>
 				<div class="col">
 					<select name="race_1" id="race_1" class="form-control form_race" required>
 						<option value="melayu">Melayu</option>
@@ -442,7 +442,7 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="education_1" class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label>
+				<label for="education_1" class="col-form-label col-2 form_education_label">Tahap Pendidikan</label>
 				<div class="col">
 					<select name="education_1" id="education_1" class="form-control form_education" required>
 						<option value="Non-educated"> Tidak Berpendidikan Formal</option>
@@ -459,7 +459,7 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="occupation_1" class="col-form-label col-2 form_occupation_label">Pekerjaan (Tidak Wajib)</label>
+				<label for="occupation_1" class="col-form-label col-2 form_occupation_label">Pekerjaan (Bukan Wajib)</label>
 				<div class="col">
 					<input type="text" name="occupation_1" id="occupation_1" class="form-control form_occupation">
 				</div>
@@ -484,11 +484,11 @@
 				<div class="ml-3">
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="is_voter_yes_1" name="is_voter_1" class="custom-control-input is_voter_yes" value="1" required>
-						<label class="custom-control-label is_voter_yes_label" for="is_voter_yes_1">Yes</label>
+						<label class="custom-control-label is_voter_yes_label" for="is_voter_yes_1">Ya</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="is_voter_no_1" name="is_voter_1" class="custom-control-input is_voter_no" value="0">
-						<label class="custom-control-label is_voter_no_label" for="is_voter_no_1">No</label>
+						<label class="custom-control-label is_voter_no_label" for="is_voter_no_1">Tidak</label>
 					</div>
 				</div>
 			</div>

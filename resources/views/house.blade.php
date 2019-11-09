@@ -116,10 +116,10 @@
 	<div class="text-right mt-5">
 		<div>
 			<button type="button" id="add_member_btn" class="btn btn-outline-success" data-toggle="modal" data-target="#addMemberModal">Tambah Ahli Keluarga</button> <!--Add member-->
-			<button type="button" id="edit_house_btn" class="btn btn-outline-primary">Edit Butiran Rumah</button> <!--Edit House Detail-->
+			<button type="button" id="edit_house_btn" class="btn btn-outline-primary">Ubah Butiran Rumah</button> <!--Edit House Detail-->
 			<button type="button" id="save_house_btn" class="btn btn-success d-none">Simpan</button> <!--Save-->
 			<button type="button" id="cancel_house_btn" class="btn btn-secondary d-none">Batal</button> <!--Cancel-->
-			<button type="button" id="delete_house_btn" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteHouseModal">Batal Rumah</button>
+			<button type="button" id="delete_house_btn" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteHouseModal">Padam</button>
 		</div>
 	</div>
 	<form id="house_form">
@@ -159,7 +159,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Pendapatan Rumah (RM)</label> <!--Household Income-->
+						<label for="householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Pendapatan Isi Rumah Bulanan (RM)</label> <!--Household Income-->
 						<div class="col pr-0">
 							<input type="number" id="householdIncome" name="householdIncome" value="<?php echo isset($house->household_income) ? $house->household_income : ''  ?>" class="step1 col-sm-8 form-control form-edit d-none" required>
 							<div class="form-input-div col-sm-8 step1">
@@ -209,8 +209,8 @@
 					@endif
 					<div class="text-right">
 						<button type="button" class="btn btn-sm btn-primary viewMemberDetailBtn mr-1" data-id="{{ $villager->id }}">View Detail</button>
-						<button type="button" class="btn btn-sm btn-success editMemberBtn mr-1" data-id="{{ $villager->id }}">Edit</button>
-						<button type="button" class="btn btn-sm btn-danger deleteMemberBtn" data-id="{{ $villager->id }}">Delete</button>
+						<button type="button" class="btn btn-sm btn-success editMemberBtn mr-1" data-id="{{ $villager->id }}">Ubah</button>
+						<button type="button" class="btn btn-sm btn-danger deleteMemberBtn" data-id="{{ $villager->id }}">Padam</button>
 					</div>
 
 					@if ( isset($villager) && !empty($villager->death_date) )
@@ -230,14 +230,14 @@
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_ic_label">IC</label>
+						<label class="col-form-label col-2 form_ic_label">No. K/P</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->ic }}
 						</div>
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_phone_label">Phone</label>
+						<label class="col-form-label col-2 form_phone_label">No. Telefon</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->phone }}
 						</div>
@@ -258,7 +258,7 @@
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label for="race" class="col-form-label col-2 form_race_label">Bangsa</label>
+						<label for="race" class="col-form-label col-2 form_race_label">Kaum</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							<?php 
 								if ($villager->education_level)
@@ -352,13 +352,13 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
-		        <h5 class="modal-title font-weight-bold">Sahkan Padam?</h5> <!--Confirm Delete-->
+		        <h5 class="modal-title font-weight-bold">Sah Padamkan Rekod Rumah Ini?</h5> <!--Confirm Delete-->
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		    	</button>
 		  	</div>
 		  	<div class="modal-body">
-		    	<p class="font-weight-bold">Anda hendak memadamkan rumah ini. Semua penduduk akan dipadamkan juga.</p> <!--You are about to delete this house. All residents will be deleted too.-->
+		    	<p class="font-weight-bold">Adakah anda pasti untuk padamkan rekod rumah ini?</p> <!--You are about to delete this house. All residents will be deleted too.-->
 		  	</div>
 		  	<div class="modal-footer">
 		        <button type="button" class="btn btn-danger" id="confirmDeleteHouseBtn">Ya</button>
@@ -373,13 +373,13 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
-		        <h5 class="modal-title font-weight-bold">Sahkan Padam?</h5>
+		        <h5 class="modal-title font-weight-bold">Sah Padamkan Rekod Ahli Keluarga Ini?</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		    	</button>
 		  	</div>
 		  	<div class="modal-body">
-		    	<p class="font-weight-bold">Anda akan memadamkan ahli ini. Perkara ini Tidak boleh diubah.</p>
+		    	<p class="font-weight-bold">Adakah anda pasti untuk padamkan rekod ahli keluarga ini?</p>
 		  	</div>
 		  	<div class="modal-footer">
 		        <button type="button" class="btn btn-danger" id="confirmDeleteMemberBtn">Ya</button>
@@ -410,7 +410,7 @@
 	});
 
 	$(document).on("click", "#cancel_house_btn", function(){
-		var confirm = window.confirm("Sah untuk membatal? Perubahan tidak akan disimpan.");
+		var confirm = window.confirm("Sah untuk batalkan? Jika ya, perubahan yang dibuat tidak akan disimpan.");
 
 		if (!confirm)
 			return;
@@ -654,12 +654,12 @@
 
 				if (data.poc)
 				{
-					$(".form_phone_label").text("Phone");
+					$(".form_phone_label").text("No. Telefon");
 					$("#edit_phone").prop("required", true);
 				}
 				else
 				{
-					$(".form_phone_label").text("Phone (Optional)");
+					$(".form_phone_label").text("No. Telefon (Bukan Wajib)");
 					$("#edit_phone").prop("required", false);
 				}
 
@@ -687,7 +687,7 @@
 			data: $("#editMemberForm").serialize(),
 			beforeSend: function() {
 				$("editMemberModal").modal('hide');
-				$("#loading_div").attr("data-text", "Disimpan..."); //Saving changes
+				$("#loading_div").attr("data-text", "Sedang diproseskan..."); //Saving changes
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {

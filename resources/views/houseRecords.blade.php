@@ -31,7 +31,7 @@
 				<th class="th-sm">Alamat Rumah</th>
 				<th class="th-sm">No. Keluarga</th>
 				<th class="th-sm">No. Ahli Keluarga</th>
-				<th class="th-sm">Jumlah Pendapatan Rumah (RM)</th>
+				<th class="th-sm">Pendapatan Isi Rumah Bulanan (RM)</th>
 				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>
