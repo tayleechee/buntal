@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Response;
 use App\House;
 use App\Villager;
+use App\HousePOC;
 
 class HouseDetailController extends Controller
 {
@@ -25,6 +26,19 @@ class HouseDetailController extends Controller
     		abort(404);
     	}
 
+    	if ($house->poc)
+    		$house_poc_id = $house->poc->villager_id;
+
+    	foreach ($house->villagers as $key => $villager)
+    	{
+    		if ($house->poc && $villager->id == $house_poc_id)
+    		{
+    			$house->villagers->pull($key);
+    			$house->villagers->prepend($villager);
+    		}
+    	}
+
+    	//dd($house->villagers);
     	return view('house', ['house' => $house]);
     }
 
@@ -47,6 +61,7 @@ class HouseDetailController extends Controller
 		    'address' => 'required',
 		    'householdIncome' => 'required',
 		    'numberOfFamily' => 'required',
+		    'poc' => 'required',
 		];
 
 		$validator = Validator::make($request->all(), $rules);
@@ -62,10 +77,25 @@ class HouseDetailController extends Controller
 			return Response::json("House Record Not Found.", 455);
 		}
 
+		if (HousePOC::where('villager_id', $request->poc)->count() == 0)
+		{
+			$new_poc = Villager::find($request->poc);
+			if (empty($new_poc->phone))
+			{
+				return Response::json("New Ketua Rumah must have phone number filled! Please fill in phone number for ".$new_poc->name." first.", 455);
+			}
+
+			HousePOC::where('house_id', $house->id)->delete();
+
+			$new_housePoc = new HousePOC;
+			$new_housePoc->house_id = $house->id;
+			$new_housePoc->villager_id = $request->poc;
+			$new_housePoc->save();
+		}
+
 		$house->address = $request->address;
 		$house->household_income = $request->householdIncome;
 		$house->family_number = $request->numberOfFamily;
-		
 		$house->save();
 
 		flash('Changes Saved!')->success();
@@ -95,7 +125,6 @@ class HouseDetailController extends Controller
 		    'gender' => 'required',
 		    'marital' => 'required',
 		    'education' => 'required',
-		    'occupation' => 'required',
 		    'race' => 'required',
 		    'active' => 'required',
 		    'propertyOwner' => 'required',
@@ -127,9 +156,14 @@ class HouseDetailController extends Controller
 		$villager->race = $request->race;
 		$villager->marital_status = $request->marital;
 		$villager->education_level = $request->education;
-		$villager->occupation = $request->occupation;
 		$villager->is_property_owner = $request->propertyOwner;
 		$villager->is_active = $request->active;
+
+		if (isset($request->occupation))
+			$villager->occupation = $request->occupation;
+		if (isset($request->phone))
+			$villager->phone = $request->phone;
+
 		$villager->save();
 
 		flash('Member Added Successfully!')->success();		

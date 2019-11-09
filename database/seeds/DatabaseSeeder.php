@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(HouseTableSeeder::class);
         $this->call(VillagerTableSeeder::class);
+        $this->call(HousePOCSeeder::class);
     }
 }

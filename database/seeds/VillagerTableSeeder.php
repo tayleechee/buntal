@@ -15,6 +15,7 @@ class VillagerTableSeeder extends Seeder
         	 'house_id' => "1",
              'name' => "Elvin Heng",
              'ic' => "960104130005",
+             'phone' => "0167159613",
              'gender' => "m",
              'dob' => "1996-01-04",
              'race' => "cina",
@@ -43,6 +44,7 @@ class VillagerTableSeeder extends Seeder
              'house_id' => "2",
              'name' => "Ali Abang",
              'ic' => "901101133713",
+             'phone' => "0105056633",
              'gender' => "m",
              'dob' => "1990-10-11",
              'race' => "bumiputera",
@@ -104,7 +106,6 @@ class VillagerTableSeeder extends Seeder
              'race' => "bumiputera",
              'marital_status' => "bujang",
              'education_level' => "N/A",
-             'occupation' => "-",
              'is_property_owner' => "0",
              'is_active' => "1",
         ]);

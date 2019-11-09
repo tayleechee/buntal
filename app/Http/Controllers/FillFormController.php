@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Response;
 use App\House;
 use App\Villager;
+use App\HousePOC;
 
 class FillFormController extends Controller
 {
@@ -45,7 +46,6 @@ class FillFormController extends Controller
 		    'member.*.gender' => 'required',
 		    'member.*.marital' => 'required',
 		    'member.*.education' => 'required',
-		    'member.*.occupation' => 'required',
 		    'member.*.race' => 'required',
 		    'member.*.active' => 'required',
 		    'member.*.propertyOwner' => 'required',
@@ -59,6 +59,12 @@ class FillFormController extends Controller
 
 		$validator = Validator::make($request->all(), $rules, $messages);
 		$validator->validate();
+
+		$first_member = (object)$request->member[1];
+		if (empty($first_member->phone))
+		{
+			return Response::json("Ketua Rumah's phone cannot be empty.", 412);
+		}
 
 		$address = $request->step2_address;
 		if (House::where('address', $address)->count() > 0)
@@ -76,7 +82,7 @@ class FillFormController extends Controller
 		$members = $request->member;
 		$house_id = $house->id;
 		try {
-			foreach($members as $member)
+			foreach($members as $index => $member)
 			{
 				$member = (object)$member;
 
@@ -96,11 +102,26 @@ class FillFormController extends Controller
 				$villager->race = $member->race;
 				$villager->marital_status = $member->marital;
 				$villager->education_level = $member->education;
-				$villager->occupation = $member->occupation;
 				$villager->is_property_owner = $member->propertyOwner;
 				$villager->is_active = $member->active;
+
+				if (isset($member->occupation))
+					$villager->occupation = $member->occupation;
+				if (isset($member->phone))
+					$villager->phone = $member->phone;
+
 				$villager->save();
+
+				if ($index == 1) 
+				{
+					$first_member_id = $villager->id;
+				}
 			}
+			
+			$house_poc = new HousePOC;
+			$house_poc->house_id = $house_id;
+			$house_poc->villager_id = $first_member_id;
+			$house_poc->save();
 		}
 		catch (\Exception $e) {
 			$house->delete();

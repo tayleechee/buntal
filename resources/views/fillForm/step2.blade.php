@@ -32,6 +32,10 @@
 	.label1 {
 		margin-left: 0.4em;
 	}
+
+	.ketuaRumah_title {
+		color: blue;
+	}
 </style>
 @endsection
 
@@ -105,6 +109,13 @@
 
    		clone.querySelector(".family_member_form_div").setAttribute("id", "family_member_form_div_"+mem_num_plus);
    		clone.querySelector(".legend_count").innerText = mem_num_plus;
+   		
+   		if (mem_num_plus == 1)
+   		{
+   			clone.querySelector(".ketuaRumah_title").innerText = " (Ketua Rumah)";
+   			clone.querySelector(".deleteMemberBtn").style.display = "none";
+   			clone.querySelector(".form_phone_label").innerText = "Phone";
+   		}
 
    		var form_name_label = clone.querySelector(".form_name_label");
    		form_name_label.setAttribute("for", "member["+mem_num_plus+"][name]");
@@ -117,6 +128,12 @@
    		var form_ic = clone.querySelector(".form_ic");
    		form_ic.setAttribute("id", "member["+mem_num_plus+"][ic]");
    		form_ic.setAttribute("name", "member["+mem_num_plus+"][ic]");
+
+   		var form_phone_label = clone.querySelector(".form_phone_label");
+   		form_phone_label.setAttribute("for", "member["+mem_num_plus+"][phone]");
+   		var form_phone = clone.querySelector(".form_phone");
+   		form_phone.setAttribute("id", "member["+mem_num_plus+"][phone]");
+   		form_phone.setAttribute("name", "member["+mem_num_plus+"][phone]");
 
    		var form_gender_label = clone.querySelector(".form_gender_label");
    		form_gender_label.setAttribute("for", "member["+mem_num_plus+"][gender]");
@@ -217,6 +234,12 @@
 	   		var form_ic = target_form_div.querySelector(".form_ic");
 	   		form_ic.setAttribute("id", "member["+mem_num_minus+"][ic]");
 	   		form_ic.setAttribute("name", "member["+mem_num_minus+"][ic]");
+
+	   		var form_phone_label = target_form_div.querySelector(".form_phone_label");
+	   		form_phone_label.setAttribute("for", "member["+mem_num_minus+"][phone]");
+	   		var form_phone = target_form.div.querySelector(".form_phone");
+	   		form_phone.setAttribute("id", "member["+mem_num_minus+"][phone]");
+	   		form_phone.setAttribute("name", "member["+mem_num_minus+"][phone]");
 
 	   		var form_gender_label = target_form_div.querySelector(".form_gender_label");
 	   		form_gender_label.setAttribute("for", "member["+mem_num_minus+"][gender]");
@@ -330,7 +353,7 @@
 <template id="family_member_form_template">
 	<div class="mt-5 family_member_form_div">
 		<fieldset class="scheduler-border">
-			<legend class="family_member_legend scheduler-border">Ahli Keluarga <span class="legend_count">1</span></legend>
+			<legend class="family_member_legend scheduler-border">Ahli Keluarga <span class="legend_count">1</span><span class="ketuaRumah_title"></span></legend>
 			<div class="text-right"><button type="button" class="btn btn-sm btn-danger deleteMemberBtn">Delete</button></div>
 
 			<div class="form-group row pl-2 mt-3">
@@ -344,6 +367,13 @@
 				<label for="ic_1" class="col-form-label col-2 form_ic_label">IC</label>
 				<div class="col">
 					<input type="text" name="ic_1" id="ic_1" class="form-control form_ic" required>
+				</div>
+			</div>
+
+			<div class="form-group row pl-2 mt-3">
+				<label for="phone_1" class="col-form-label col-2 form_phone_label">Phone (optional)</label>
+				<div class="col">
+					<input type="text" name="phone_1" id="phone_1" class="form-control form_phone">
 				</div>
 			</div>
 
@@ -383,7 +413,8 @@
 					<select name="marital_1" id="marital_1" class="form-control form_marital" required>
 						<option value="bujang">Bujang</option>
 						<option value="kahwin">Kahwin</option>
-						<option value="duda">Duda/Janda/Balu</option>
+						<option value="duda">Duda</option>
+						<option value="janda">Janda</option>
 					</select>
 				</div>
 			</div>
@@ -406,9 +437,9 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="occupation_1" class="col-form-label col-2 form_occupation_label">Perkerjaan</label>
+				<label for="occupation_1" class="col-form-label col-2 form_occupation_label">Perkerjaan (optional)</label>
 				<div class="col">
-					<input type="text" name="occupation_1" id="occupation_1" class="form-control form_occupation" required>
+					<input type="text" name="occupation_1" id="occupation_1" class="form-control form_occupation">
 				</div>
 			</div>
 

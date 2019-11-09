@@ -54,8 +54,11 @@
 	            { data: 'address' },
 	            { data: 'family_number' , "searchable": false},
 	            { data: 'alive_villagers_count', "searchable": false},
-	            { data: 'household_income', "searchable": false},
-	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) {
+	            { data: 'household_income', "searchable": false, "render": function(data, type, row){
+	            		return "RM " + data;
+		            }
+		        },
+	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
 	            		var button = `<div class="text-center">
 	            						<button class="btn btn-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View Detail"><i class="far fa-eye"></i></button>
 	            					</div>
