@@ -37,7 +37,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		includeZero: true
 	},
 	axisX: {
-		title: "{!! $x_axis !!}",		
+		title: "{!! $x_axis !!}",	
+		labelAngle: 0,		
         interval: 1
 	},
 	data: [{

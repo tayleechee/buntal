@@ -113,6 +113,38 @@ class StatisticsController extends Controller
 	}	
 	
 	/***** Bar Graph *****/
+	public function populationByVoter()
+	{
+		$villagers = Villager::where('death_date', null)->get();
+		$is_voter = 0;
+		$not_voter = 0;
+		
+		foreach($villagers as $villager)
+		{
+			$birthday = Carbon::parse($villager->dob);
+			$age = $birthday->diffInYears(Carbon::now());
+			
+			if ($age >= 18)
+			{
+				if ($villager->is_voter == 1)
+					$is_voter++;
+				else
+					$not_voter++;
+			}
+		}
+		
+		$label = ['Sudah Daftar','Belum Daftar'];
+		$data = [$is_voter,$not_voter];
+		
+		$graph_type = 'column';
+		$graph_title = 'Pendaftaran sebagai Pengundi';
+		$x_axis = '';
+		$total_of = 'Bilangan Penduduk yang Layak untuk Mendaftar sebagai Pengundi';
+		$total = array_sum($data);
+		
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
+	}	
+	
 	public function populationByAgeRange()
 	{
 		$villagers = Villager::where('death_date', null)->get();
@@ -181,8 +213,8 @@ class StatisticsController extends Controller
 		$data_phd = Villager::whereeducation_level('PhD')->where('death_date', null)->count();
 		$data_na = Villager::whereeducation_level('N/A')->where('death_date', null)->count();
 
-		$label = [ 'Non-Educated','Primary','Secondary','Form 6','Diploma','Degree','Master','PhD', 'N/A' ];
-		$data = [ $data_nonEducated,$data_primary,$data_secondary,$data_form6,$data_diploma,$data_degree,$data_master,$data_phd,$data_na ];		
+		$label = ['Tidak Berpendidikan Formal','Pendidikan Rendah','Pendidikan Menengah','Tingkatan 6','Diploma','Ijazah Sarjana Muda','Ijazah Sarjana Muda','Doktor Falsafah', 'Tiada Kaitan'];
+		$data = [$data_nonEducated,$data_primary,$data_secondary,$data_form6,$data_diploma,$data_degree,$data_master,$data_phd,$data_na];		
 		
 		$graph_type = 'column';
         $graph_title = 'Bilangan Penduduk mengikut Tahap Pendidikan';

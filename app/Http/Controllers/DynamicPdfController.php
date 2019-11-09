@@ -236,6 +236,151 @@ class DynamicPDFController extends Controller
 		return $pdf->stream();
 	}
 	
+	function voter_report()
+    {
+		$villagers = Villager::where('death_date', null)->get();
+		$voter = [];
+		$non_voter = [];
+		
+		foreach($villagers as $villager)
+		{
+			$birthday = Carbon::parse($villager->dob);
+			$age = $birthday->diffInYears(Carbon::now());
+			
+			if ($age >= 18)
+			{
+				if ($villager->is_voter == 1)
+					array_push($voter, $villager);
+				else
+					array_push($non_voter, $villager);
+			}
+		}
+		
+		$count_voter = count($voter);
+		$count_non_voter = count($non_voter);
+		$sum = $count_voter + $count_non_voter;
+		
+		return view('dynamic_pdf_voter', compact('sum','count_voter','count_non_voter','voter','non_voter'));
+    }
+	
+	function voter_report_pdf()
+	{
+		$villagers = Villager::where('death_date', null)->get();
+		$voter = [];
+		$non_voter = [];
+		
+		foreach($villagers as $villager)
+		{
+			$birthday = Carbon::parse($villager->dob);
+			$age = $birthday->diffInYears(Carbon::now());
+			
+			if ($age >= 18)
+			{
+				if ($villager->is_voter == 1)
+					array_push($voter, $villager);
+				else
+					array_push($non_voter, $villager);
+			}
+		}
+		
+		$count_voter = count($voter);
+		$count_non_voter = count($non_voter);
+		$sum = $count_voter + $count_non_voter;
+		
+		$output = '
+			<h3 align="center">Pendaftaran sebagai Pengundi</h3>
+			<h4 style="font-weight:bold;">Jumlah Penduduk yang Layak untuk Daftar sebagai Pengundi: '.$sum.' orang</h4>
+			<table width="50%" style="border-collapse:collapse;border:0px;">
+				<tr>
+					<th style="border:1px solid;padding:8px;width:50%">Status</th>
+                    <th style="border:1px solid;padding:8px;width:50%">Bilangan Penduduk</th>
+				</tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">Sudah Daftar</td>
+					<td style="border:1px solid;padding:8px;">'.$count_voter.'</td>
+				</tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">Belum Daftar</td>
+					<td style="border:1px solid;padding:8px;">'.$count_non_voter.'</td>
+				</tr>
+			</table>
+		';
+		
+		if ($count_non_voter != 0)
+		{
+			$output .= '
+			<h4>Senarai Penduduk yang Belum Daftar sebagai Pengundi</h4>
+			<table width="100%" style="border-collapse: collapse; border: 1px;">
+				<tr>
+					<th style="border: 1px solid; padding:12px;" width="10%">#</th>
+					<th style="border: 1px solid; padding:12px;" width="30%">Nama</th>
+					<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
+				</tr>
+			';
+			 
+			$count = 1;
+			foreach($non_voter as $villager)
+			{
+				if ($villager->gender == 'm')
+					$gender = 'Lelaki';
+				else
+					$gender = 'Perempuan';
+				$output .= '
+					<tr>
+						<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+						<td style="border: 1px solid; padding:12px;">'.$villager->name.'</td>
+						<td style="border: 1px solid; padding:12px;">'.$villager->ic.'</td>
+						<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+						<td style="border: 1px solid; padding:12px;">'.ucwords($villager->race).'</td>
+					</tr>
+				  ';
+				$count++;
+			}
+			$output .= '</table>';
+		}
+		
+		if ($count_voter != 0)
+		{
+			$output .= '
+			<h4>Senarai Penduduk yang Sudah Daftar sebagai Pengundi</h4>
+			<table width="100%" style="border-collapse: collapse; border: 1px;">
+				<tr>
+					<th style="border: 1px solid; padding:12px;" width="10%">#</th>
+					<th style="border: 1px solid; padding:12px;" width="30%">Nama</th>
+					<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
+				</tr>
+			';
+			 
+			$count = 1;
+			foreach($voter as $villager)
+			{
+				if ($villager->gender == 'm')
+					$gender = 'Lelaki';
+				else
+					$gender = 'Perempuan';
+				$output .= '
+					<tr>
+						<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+						<td style="border: 1px solid; padding:12px;">'.$villager->name.'</td>
+						<td style="border: 1px solid; padding:12px;">'.$villager->ic.'</td>
+						<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+						<td style="border: 1px solid; padding:12px;">'.ucwords($villager->race).'</td>
+					</tr>
+				  ';
+				$count++;
+			}
+			$output .= '</table>';
+		}
+		
+		$pdf = \App::make('dompdf.wrapper');
+		$pdf->loadHTML($output);
+		return $pdf->stream();
+	}
+	
 	function population_report()
     {
 		$villager_data = $this->get_villager_data();
@@ -349,10 +494,9 @@ class DynamicPDFController extends Controller
      $f_villager_data = $this->get_f_villager_data();
 
      $output = '
-     <h3 align="center">Villager By Gender</h3>
+     <h3 align="center">Penduduk Kampung Buntal mengikut Jantina</h3>
      <h4 style="font-weight:bold;">Jumlah Penduduk: '.$villager_data->count().' orang</h4>
      <table width="100%" style="border-collapse: collapse; border: 1px;">
-        $count = 1;
         <tr>
             <th style="border: 1px solid; padding:12px;" width="10%">Jantina</th>
             <th style="border: 1px solid; padding:12px;" width="20%">Bilangan Penduduk</th>
@@ -380,13 +524,12 @@ class DynamicPDFController extends Controller
       ';
      $output .= '</table>';
      $output .= '
-     <h3 align="left">Jantina Lelaki</h3>
+     <h4 align="left">Jantina Lelaki</h3>
      <table width="100%" style="border-collapse: collapse; border: 1px;">
-        $count = 1;
         <tr>
             <th style="border: 1px solid; padding:12px;" width="5%">#</th>
             <th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
-            <th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+            <th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
             <th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
         </tr>
      ';
@@ -406,13 +549,12 @@ class DynamicPDFController extends Controller
      $output .= '</table>';
 
      $output .= '
-     <h3 align="left">Jantina Perempuan</h3>
+     <h4 align="left">Jantina Perempuan</h3>
      <table width="100%" style="border-collapse: collapse; border: 1px;">
-        $count = 1;
         <tr>
             <th style="border: 1px solid; padding:12px;" width="5%">#</th>
             <th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
-            <th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+            <th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
             <th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
         </tr>
      ';
@@ -444,10 +586,9 @@ class DynamicPDFController extends Controller
      $lain_villager_data = $this->get_lain_data();
 
      $output = '
-     <h3 align="center">Villager By Gender</h3>
+     <h3 align="center">Penduduk Kampung Buntal mengikut Kaum</h3>
      <h4 style="font-weight:bold;">Jumlah Penduduk: '.$villager_data->count().' orang</h4>
      <table width="100%" style="border-collapse: collapse; border: 1px;">
-        $count = 1;
         <tr>
             <th style="border: 1px solid; padding:12px;" width="10%">Kaum</th>
             <th style="border: 1px solid; padding:12px;" width="20%">Bilangan</th>
@@ -499,13 +640,12 @@ class DynamicPDFController extends Controller
 	 if (count($malay_villager_data) != 0)
 	 {
 		 $output .= '
-		 <h3 align="left">Kaum Melayu</h3>
+		 <h4 align="left">Kaum Melayu</h4>
 		 <table width="100%" style="border-collapse: collapse; border: 1px;">
-			$count = 1;
 			<tr>
 				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
 				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
-				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
 				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
 			</tr>
 		 ';	 
@@ -533,13 +673,12 @@ class DynamicPDFController extends Controller
 	 if (count($bumi_villager_data) != 0)
 	 {
 		 $output .= '
-		 <h3 align="left">Kaum Bumiputera</h3>
+		 <h4 align="left">Kaum Bumiputera</h4>
 		 <table width="100%" style="border-collapse: collapse; border: 1px;">
-			$count = 1;
 			<tr>
 				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
 				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
-				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
 				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
 			</tr>
 		 ';	 
@@ -567,13 +706,12 @@ class DynamicPDFController extends Controller
 	 if (count($cina_villager_data) != 0)
 	 {
 		 $output .= '
-		 <h3 align="left">Kaum Cina</h3>
+		 <h4 align="left">Kaum Cina</h4>
 		 <table width="100%" style="border-collapse: collapse; border: 1px;">
-			$count = 1;
 			<tr>
 				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
 				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
-				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
 				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
 			</tr>
 		 ';
@@ -601,13 +739,12 @@ class DynamicPDFController extends Controller
 	 if (count($india_villager_data) != 0)
 	 {
 		 $output .= '
-		 <h3 align="left">Kaum India</h3>
+		 <h4 align="left">Kaum India</h4>
 		 <table width="100%" style="border-collapse: collapse; border: 1px;">
-			$count = 1;
 			<tr>
 				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
 				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
-				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
 				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
 			</tr>
 		 ';
@@ -635,13 +772,12 @@ class DynamicPDFController extends Controller
 	 if (count($lain_villager_data) != 0)
 	 {
 		 $output .= '
-		 <h3 align="left">Kaum Lain</h3>
+		 <h4 align="left">Kaum Lain</h4>
 		 <table width="100%" style="border-collapse: collapse; border: 1px;">
-			$count = 1;
 			<tr>
 				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
 				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
-				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
 				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
 			</tr>
 		 ';

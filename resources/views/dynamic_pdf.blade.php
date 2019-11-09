@@ -21,8 +21,8 @@
 		</div>
 		<div class="col-md-5" align="right">
 			<div>
-				<a href="{{ url('dynamic_pdf/pdf_gender') }}" class="btn btn-danger col11 kotak" target="_blank">Simpan sebagai PDF</a>
-				<a href="{{ url('dynamic_pdf/pdf_race') }}" class="btn btn-danger col12 kotak" target="_blank" style="display:none;">Simpan sebagai PDF</a>
+				<a href="{{ url('dynamic_pdf/pdf_gender') }}" class="btn btn-danger col11 kotak" target="_blank">Simpan PDF</a>
+				<a href="{{ url('dynamic_pdf/pdf_race') }}" class="btn btn-danger col12 kotak" target="_blank" style="display:none;">Simpan PDF</a>
 			</div>
 		</div>
     </div>

@@ -22,14 +22,14 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
-                <label for="ic" class="col-form-label col-2 form_ic_label">IC</label>
+                <label for="ic" class="col-form-label col-2 form_ic_label">No. K/P</label>
                 <div class="col">
                   <input type="text" name="ic" id="ic" class="form-control form_ic" pattern="\d{12}" required>
                 </div>
               </div>
 
               <div class="form-group row pl-2 mt-3">
-                <label for="phone" class="col-form-label col-2 form_phone_label">Telefon (Optional)</label>
+                <label for="phone" class="col-form-label col-2 form_phone_label">No. Telefon (Optional)</label>
                 <div class="col">
                   <input type="text" name="phone" id="phone" class="form-control form_phone">
                 </div>
@@ -39,8 +39,8 @@
                 <label for="gender" class="col-form-label col-2 form_gender_label">Jantina</label>
                 <div class="col">
                   <select name="gender" id="gender" class="form-control form_gender" required>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="male">Lelaki</option>
+                    <option value="female">Perempuan</option>
                   </select>
                 </div>
               </div>
@@ -53,7 +53,7 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
-                <label for="race" class="col-form-label col-2 form_race_label">Bangsa</label>
+                <label for="race" class="col-form-label col-2 form_race_label">Kaum</label>
                 <div class="col">
                   <select name="race" id="race" class="form-control form_race" required>
                     <option value="melayu">Melayu</option>
@@ -95,7 +95,7 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
-                <label for="occupation" class="col-form-label col-2 form_occupation_label">Pekerjaan (Optional)</label>
+                <label for="occupation" class="col-form-label col-2 form_occupation_label">Pekerjaan (Bukan Wajib)</label>
                 <div class="col">
                   <input type="text" name="occupation" id="occupation" class="form-control form_occupation">
                 </div>
@@ -120,11 +120,11 @@
                 <div class="ml-3">
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="is_voter_yes" name="is_voter" class="custom-control-input is_voter_yes" value="1" required>
-                    <label class="custom-control-label is_voter_yes_label" for="is_voter_yes">Yes</label>
+                    <label class="custom-control-label is_voter_yes_label" for="is_voter_yes">Ya</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="is_voter_no" name="is_voter" class="custom-control-input is_voter_no" value="0">
-                    <label class="custom-control-label is_voter_no_label" for="is_voter_no">No</label>
+                    <label class="custom-control-label is_voter_no_label" for="is_voter_no">Tidak</label>
                   </div>
                 </div>
               </div>

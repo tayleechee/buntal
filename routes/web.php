@@ -70,6 +70,7 @@ Route::get('/statistics/populationByRace', 'StatisticsController@populationByRac
 Route::get('/statistics/populationByAgeRange', 'StatisticsController@populationByAgeRange')->name('statistics.populationByAgeRange');
 Route::get('/statistics/populationByEducationLevel', 'StatisticsController@populationByEducationLevel')->name('statistics.populationByEducationLevel');
 Route::get('/statistics/populationByMaritalStatus', 'StatisticsController@populationByMaritalStatus')->name('statistics.populationByMaritalStatus');
+Route::get('/statistics/populationByVoter', 'StatisticsController@populationByVoter')->name('statistics.voter');
 Route::get('/statistics/monthlyHouseholdIncome', 'StatisticsController@monthlyHouseholdIncome')->name('statistics.monthlyHouseholdIncome');
 Route::post('/statistics/birthRateByYear', 'StatisticsController@birthRateByYear');
 Route::post('/statistics/birthRateByRangeOfYears', 'StatisticsController@birthRateByRangeOfYears');
@@ -81,6 +82,8 @@ Route::get('/dynamic_pdf', 'DynamicPDFController@population_report')->name('dyna
 Route::get('/dynamic_pdf/general', 'DynamicPDFController@general')->name('dynamicpdf.general');
 Route::get('/dynamic_pdf/summaryReport', 'DynamicPDFController@summary_report')->name('dynamicpdf.summaryReport');
 Route::get('/dynamic_pdf/summaryReportPdf', 'DynamicPDFController@summary_report_pdf')->name('dynamicpdf.summaryReportPdf');
+Route::get('/dynamic_pdf/voterReport', 'DynamicPDFController@voter_report')->name('dynamicpdf.voterReport');
+Route::get('/dynamic_pdf/voterReportPdf', 'DynamicPDFController@voter_report_pdf')->name('dynamicpdf.voterReportPdf');
 Route::get('/dynamic_pdf/pdf', 'DynamicPDFController@pdf');
 Route::get('/dynamic_pdf/pdf_gender', 'DynamicPDFController@pdf_gender');
 Route::get('/dynamic_pdf/pdf_race', 'DynamicPDFController@pdf_race');
