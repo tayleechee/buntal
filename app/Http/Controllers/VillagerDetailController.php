@@ -36,7 +36,7 @@ class VillagerDetailController extends Controller
     	$villager = Villager::with('poc')->find($id);
 
     	if (!$villager) {
-    		return Response::json("Record Not Found.", 404);
+    		return Response::json("Maklumat penduduk tidak dijumpai.", 404); //Record Not Found
     	}
 
     	return $villager;
@@ -62,7 +62,7 @@ class VillagerDetailController extends Controller
 
 		$villager = Villager::find($request->villager_id);
 		if (!$villager) {
-			return Response::json("Villager Record Not Found.", 455);
+			return Response::json("Maklumat penduduk tidak dijumpai.", 455);
 		}
 
 		if ($villager->poc && empty($request->phone))
@@ -101,11 +101,11 @@ class VillagerDetailController extends Controller
 
 		if (!empty($request->flash_by_overlay))
 		{
-			flash()->overlay('Changes Saved!', 'Edit Successful');
+			flash()->overlay('Berjaya Disimpan!');//'Changes Saved!', 'Edit Successful'
 		}
 		else
 		{
-			flash('Changes Saved!')->success();
+			flash('Berjaya Disimpan!')->success();
 		}
 
     }
@@ -116,13 +116,13 @@ class VillagerDetailController extends Controller
 
     	$villager = Villager::find($request->id);
 		if (!$villager) {
-			return Response::json("Villager Record Not Found.", 455);
+			return Response::json("Maklumat penduduk tidak dijumpai.", 455);
 		}
 
 		$villager->death_date = null;
 		$villager->save();
 
-		flash('Marked as Live!')->success();
+		flash('Berjaya Disimpan!')->success(); //Marked as Alive
     }
 
     public function markDead(Request $request)
@@ -137,7 +137,7 @@ class VillagerDetailController extends Controller
 
 		$villager = Villager::find($request->id);
 		if (!$villager) {
-			return Response::json("Villager Record Not Found.", 455);
+			return Response::json("Maklumat penduduk tidak dijumpai.", 455); //Villager Record Not Found
 		}
 
 		if ($house_poc = HousePOC::where('villager_id', $villager->id))
@@ -148,7 +148,7 @@ class VillagerDetailController extends Controller
 		$villager->death_date = $request->deathDate;
 		$villager->save();
 
-		flash('Marked as Dead!')->success();
+		flash('Berjaya Disimpan.')->success(); //Marked as Dead!
     }
 
     public function deleteVillager(Request $request)
@@ -157,12 +157,12 @@ class VillagerDetailController extends Controller
 
     	$villager = Villager::find($request->id);
 		if (!$villager) {
-			return Response::json("Villager Record Not Found.", 455);
+			return Response::json("Maklumat penduduk tidak dijumpai.", 455);
 		}
 
 		$name = $villager->name;
 		$villager->delete();
 
-		flash($name."'s Record Deleted!")->success();
+		flash($name."'s Berjaya Dikemaskini!")->success(); //Record Deleted
     }
 }

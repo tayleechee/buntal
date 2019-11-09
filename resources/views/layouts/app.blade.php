@@ -175,11 +175,11 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="ml-3 nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="viewRecordsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              View Records
+                              Pandangan Rekod
                             </a>
                             <div class="dropdown-menu" aria-labelledby="viewRecordsDropdown">
-                              <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Villagers</a>
-                              <a class="dropdown-item" href="{{route('houseRecords.index')}}">Houses</a>
+                              <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Penduduk</a>
+                              <a class="dropdown-item" href="{{route('houseRecords.index')}}">Rumah</a>
                             </div>
                         </li>                        
 						<li class="nav-item dropdown">
@@ -190,7 +190,7 @@
                                         <a href="#" class="dropdown-item dropdown-toggle">Populasi</a>
                                     </div>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">Mengikut Jantina</a></li>										
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">Mengikut Jantina</a></li>
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByRace')}}">Mengikut Kumpulan Etnik</a></li>
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByAgeRange')}}">Mengikut Kumpulan Umur</a></li>
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByEducationLevel')}}">Mengikut Tahap Pendidikan</a></li>
@@ -426,7 +426,7 @@
 			if ($('#birthStartYear').val() == $('#birthEndYear').val()) {
 				e.preventDefault();
 				$('#birthYear').val($('#birthStartYear').val());
-				$('#birthByYearForm').submit();  
+				$('#birthByYearForm').submit();
 			}
 			else
 				$(this).form.submit();
@@ -435,7 +435,7 @@
 			if ($('#deathStartYear').val() == $('#deathEndYear').val()) {
 				e.preventDefault();
 				$('#deathYear').val($('#deathStartYear').val());
-				$('#deathByYearForm').submit();  
+				$('#deathByYearForm').submit();
 			}
 			else
 				$(this).form.submit();

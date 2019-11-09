@@ -15,14 +15,14 @@
 </style>
 
 <div class="text-center">
-	<h2>Step 1</h2>
+	<h2>Langkah 1</h2>
 </div>
 <div class="card">
 	<div class="container">
 		<form action="{{ action('FillFormController@processStep1') }}" method="POST">
 			{{ csrf_field() }}
 			<div class="form-group row">
-				<label for="step1_address" class="col-form-label font-weight-bold">Address</label>
+				<label for="step1_address" class="col-form-label font-weight-bold">Alamat Rumah</label>
 				<input name="step1_address" id="step1_address" class="form-control @error('step1_address') is-invalid @enderror" value="{{ old('step1_address') }}" required>
 
 				@error('step1_address')
@@ -33,7 +33,7 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group row">
-					<label for="step1_householdIncome" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Household Income (RM)</label>
+					<label for="step1_householdIncome" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Pendapatan Isi Rumah (RM)</label>
 					<input type="number" name="step1_householdIncome" id="step1_householdIncome" class="step1 col-sm-8 form-control @error('step1_householdIncome') is-invalid @enderror" value="{{ old('step1_householdIncome') }}" required>
 
 					@error('step1_householdIncome')
@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="step1_numberOfFamily" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Number of Family</label>
+					<label for="step1_numberOfFamily" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Bilangan Keluarga</label>
 					<div class="col pr-0 pl-0">
 						<input type="number" name="step1_numberOfFamily" id="step1_numberOfFamily" class="step1 col-sm-8 form-control @error('step1_numberOfFamily') is-invalid @enderror" value="{{ old('step1_numberOfFamily') }}" required>
 
@@ -57,7 +57,7 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="step1_numberOfFamilyMember" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Number of Family member</label>
+					<label for="step1_numberOfFamilyMember" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Bilangan Ahli Keluarga</label>
 					<div class="col pr-0 pl-0">
 						<input type="number" name="step1_numberOfFamilyMember" id="step1_numberOfFamilyMember" class="step1 col-sm-8 form-control @error('step1_numberOfFamilyMember') is-invalid @enderror" value="{{ old('step1_numberOfFamilyMember') }}" required>
 
@@ -70,7 +70,7 @@
 				</div>
 			</div>
 			<div class="text-center float-sm-right">
-				<button type="submit" class="btn btn-primary">Next</button>
+				<button type="submit" class="btn btn-primary">Seterusnya</button>
 			</div>
 		</form>
 	</div>

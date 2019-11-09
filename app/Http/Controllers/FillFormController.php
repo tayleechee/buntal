@@ -21,10 +21,10 @@ class FillFormController extends Controller
 		];
 
 		$messages = [
-			'step1_address.unique' => 'This address is already used! Try another one.',
-			'step1_householdIncome.required' => 'This field is required.',
-			'step1_numberOfFamily.required' => 'This field is required.',
-			'step1_numberOfFamilyMember.required' => 'This field is required.',
+			'step1_address.unique' => 'Alamat Rumah ini telah didaftar.',
+			'step1_householdIncome.required' => 'Wajib!.',
+			'step1_numberOfFamily.required' => 'Wajib!',
+			'step1_numberOfFamilyMember.required' => 'Wajib!',
 		];
 
 		$validator = Validator::make($request->all(), $rules, $messages);
@@ -52,9 +52,9 @@ class FillFormController extends Controller
 		];
 
 		$messages = [
-			'step2_householdIncome.required' => 'This field is required.',
-			'step2_numberOfFamily.required' => 'This field is required.',
-			'step2_numberOfFamilyMember.required' => 'This field is required.',
+			'step2_householdIncome.required' => 'Wajib!',
+			'step2_numberOfFamily.required' => 'Wajib!',
+			'step2_numberOfFamilyMember.required' => 'Wajib!',
 		];
 
 		$validator = Validator::make($request->all(), $rules, $messages);
@@ -63,13 +63,13 @@ class FillFormController extends Controller
 		$first_member = (object)$request->member[1];
 		if (empty($first_member->phone))
 		{
-			return Response::json("Ketua Rumah's phone cannot be empty.", 412);
+			return Response::json("Telefon nombor Ketua Rumah perlu diisi.", 412);
 		}
 
 		$address = $request->step2_address;
 		if (House::where('address', $address)->count() > 0)
 		{
-			return Response::json("Address already used.", 412);
+			return Response::json("Alamat Rumah ini sudah wujud.", 412);
 		}
 
 		$house = new House;
