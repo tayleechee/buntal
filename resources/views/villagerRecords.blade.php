@@ -31,7 +31,7 @@
 				<th class="th-sm">Nama</th>
 				<th class="th-sm">Alamat Rumah</th>
 				<th class="th-sm">Jantina</th>
-				<th class="th-sm">Bangsa</th>
+				<th class="th-sm">Kaum</th>
 				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>
@@ -55,9 +55,9 @@
 	            { data: 'house.address' },
 	            { data: 'gender', "render": function(data, type, row) {
 		            	if (data == 'm')
-		            		{return 'Male';}
+		            		{return 'Lelaki';}
 		            	else if (data == 'f')
-		            		{return 'Female';}
+		            		{return 'Perempuan';}
 		            	else
 		            		{return data};
 	            	}

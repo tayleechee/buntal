@@ -50,7 +50,7 @@ class StatisticsController extends Controller
 			Villager::whererace('other')->where('death_date', null)->count()
 		];
 		
-		$graph_title = 'Populasi Penduduk mengikut Kumpulan Etnik';
+		$graph_title = 'Populasi Penduduk mengikut Kaum';
 		$total_of = 'Jumlah Penduduk';
 		$total = array_sum($data);
 		

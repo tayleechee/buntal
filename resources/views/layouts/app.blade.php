@@ -175,7 +175,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="ml-3 nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="viewRecordsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Pandangan Rekod
+                              Paparan Rekod
                             </a>
                             <div class="dropdown-menu" aria-labelledby="viewRecordsDropdown">
                               <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Penduduk</a>
@@ -191,7 +191,7 @@
                                     </div>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">Mengikut Jantina</a></li>
-                                        <li><a class="dropdown-item" href="{{route('statistics.populationByRace')}}">Mengikut Kumpulan Etnik</a></li>
+                                        <li><a class="dropdown-item" href="{{route('statistics.populationByRace')}}">Mengikut Kaum</a></li>
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByAgeRange')}}">Mengikut Kumpulan Umur</a></li>
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByEducationLevel')}}">Mengikut Tahap Pendidikan</a></li>
                                         <li><a class="dropdown-item" href="{{route('statistics.populationByMaritalStatus')}}">Mengikut Status Perkahwinan</a></li>

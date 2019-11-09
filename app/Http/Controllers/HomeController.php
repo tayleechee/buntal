@@ -52,7 +52,7 @@ class HomeController extends Controller
 
         $activeChart = new Chartjs;
         $activeChart->title("Penduduk Tetap");
-        $activeChart->labels(['Ada', 'Tidak']);
+        $activeChart->labels(['Ya', 'Tidak']);
         $activeChart->dataset('Penduduk Tetap', 'bar', [$active_yes_count,$active_no_count])->options([
             'backgroundColor' => ['#F5BAFC', '#D2FF90'],
             'borderColor' => ['#C835D9','#9EF222']
@@ -66,8 +66,8 @@ class HomeController extends Controller
         ]);
 
         $genderChart = new Chartjs;
-        $genderChart->title("Bangsa");
-        $genderChart->labels(['Malay', 'Cina','Bumiputra','India','Lain']);
+        $genderChart->title("Kaum");
+        $genderChart->labels(['Melayu', 'Cina','Bumiputra','India','Lain']);
         $genderChart->displayAxes(false);
         $genderChart->dataset('Bangsa', 'pie', [$data_malay,$data_cina,$data_bumiputra,$data_india,$data_lain])->options([
             'backgroundColor' => ['#FCCEEF', '#CDDAFA','#AAFFDA','#E6FE9A','#FFD19B'],
@@ -76,7 +76,7 @@ class HomeController extends Controller
 
         $propertyOwnerChart = new Chartjs;
         $propertyOwnerChart->title("Pemilik Harta Tanah");
-        $propertyOwnerChart->labels(['Ada', 'Tidak']);
+        $propertyOwnerChart->labels(['Ya', 'Tidak']);
         $propertyOwnerChart->dataset('Pemilik Harta Tanah','bar', [$data_noProperty,$data_haveProperty])->options([
             'backgroundColor' => ['#B9DBFA', '#FFABE7'],
             'borderColor' => ['#2D7AC1','#AA408C']
