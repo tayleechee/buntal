@@ -70,7 +70,7 @@
 							<td>{!! $count !!}</td>
 							<td>{!! $d->name !!}</td>
 							<td>{!! $d->ic !!}</td>
-							@if ($type == "newborn")
+							@if ($type == "kelahiran")
 								<td>{!! $d->dob !!}</td>
 							@else
 								<td>{!! $d->death_date !!}</td>
