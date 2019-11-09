@@ -33,7 +33,7 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>Ketelitian Rekod Penduduk</h5>
+		<h5>Senarai Rekod Penduduk</h5>
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="villagersTable">

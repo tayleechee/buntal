@@ -25,7 +25,7 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>View All Ketua Rumah</h5>
+		<h5>Senarai Ketua Rumah</h5>
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="ketuaRumahTable">
@@ -34,9 +34,9 @@
 				<th class="th-sm">No.</th>
 				<th class="th-sm">Nama</th>
 				<th class="th-sm">Alamat Rumah</th>
-				<th class="th-sm">IC</th>
-				<th class="th-sm">Telefon</th>
-				<th class="th-sm">Action</th>
+				<th class="th-sm">No. K/P</th>
+				<th class="th-sm">No. Telefon</th>
+				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -96,11 +96,11 @@
 	        	{ data: 'villager.phone'},
 	        	{ data: 'house_id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
 	            		var button = `	<div class="d-flex justify-content-center">
-	            						<div class="text-center mr-2">
-	            							<button class="btn btn-outline-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View House Detail">View House</button>
+	            						<div class="text-center mr-1">
+	            							<button class="btn btn-outline-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View House Detail">Lihat Butiran Rumah</button>
 	            						</div>
 	            						<div class="text-center">
-	            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="View Ketua Rumah Detail">View KR</button>
+	            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="View Ketua Rumah Detail">Lihat Butiran Individu</button>
 	            						</div>
 	            						</div>
 	            					`;
