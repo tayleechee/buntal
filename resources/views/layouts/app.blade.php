@@ -225,6 +225,7 @@
                             <ul class="dropdown-menu" aria-labelledby=generateReportDropdown">
 								<li><a class="dropdown-item" href="{{route('dynamicpdf.summaryReport')}}">Ringkasan Laporan Demografi</a></li>
 								<li><a class="dropdown-item" href="{{route('dynamicpdf.general')}}">Ringkasan Data Penduduk</a></li>
+								<li><a class="dropdown-item" href="{{route('dynamicpdf.voterReport')}}">Pendaftaran sebagai Pengundi</a></li>
                                 <li><a class="dropdown-item" href="{{route('dynamicpdf.populationReport')}}">Populasi</a></li>
                                 <li><a class="dropdown-item" href="{{route('dynamicpdf.newborn')}}">Kelahiran Bayi</a></li>
 								<li><a class="dropdown-item" href="{{route('dynamicpdf.death')}}">Kematian</a></li>
