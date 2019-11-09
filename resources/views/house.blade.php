@@ -260,7 +260,41 @@
 					<div class="form-group row pl-2 mt-3">
 						<label for="race" class="col-form-label col-2 form_race_label">Bangsa</label>
 						<div class="col form-nonhidden-input-div col-form-label">
-							{{ ucfirst($villager->race) }}
+							<?php 
+								if ($villager->education_level)
+								{
+									switch($villager->education_level)
+									{
+										case 'Non-educated': 
+											echo 'Tidak Berpendidikan Formal'; 
+											break;
+										case 'Primary School':
+											echo 'Pendidikan Rendah';
+											break;
+										case 'Secondary School':
+											echo 'Pendidikan Menengah';
+											break;
+										case 'Form 6':
+											echo 'Tingkatan 6';
+											break;
+										case 'Diploma':
+											echo 'Diploma';
+											break;
+										case 'Degree':
+											echo 'Ijazah Sarjana Muda';
+											break;
+										case 'Master':
+											echo 'Ijazah Sarjana';
+											break;
+										case 'PhD':
+											echo 'Doktor Falsafah';
+											break;
+										case 'N/A':
+											echo 'Tidak Kaitan';
+											break;
+									}
+								}
+							?>
 						</div>
 					</div>
 

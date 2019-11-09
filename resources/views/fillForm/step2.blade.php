@@ -445,15 +445,15 @@
 				<label for="education_1" class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label>
 				<div class="col">
 					<select name="education_1" id="education_1" class="form-control form_education" required>
-						<option value="Non-educated">Tidak Berpendidikan</option>
-						<option value="Primary School">Sekolah Rendah</option>
-						<option value="Secondary School">Sekolah Menengah</option>
+						<option value="Non-educated"> Tidak Berpendidikan Formal</option>
+						<option value="Primary School">Pendidikan Rendah</option>
+						<option value="Secondary School">Pendidikan Menengah</option>
 						<option value="Form 6">Tingkatan 6</option>
 						<option value="Diploma">Diploma</option>
-						<option value="Degree">Degree</option>
-						<option value="Master">Master</option>
-						<option value="PhD">PhD</option>
-						<option value="N/A">N/A</option>
+						<option value="Degree">Ijazah Sarjana Muda</option>
+						<option value="Master">Ijazah Sarjana</option>
+						<option value="PhD">Doktor Falsafah</option>
+						<option value="N/A">Tidak Kaitan</option>
 					</select>
 				</div>
 			</div>
