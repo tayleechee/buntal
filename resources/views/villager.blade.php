@@ -380,7 +380,7 @@
 	    return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 	$(document).on("click", "#cancelBtn", function() {
-		var confirm = window.confirm("Confirm to cancel? Changes will be discarded.");
+		var confirm = window.confirm("Sah untuk membatal? Perubahan tidak akan disimpan.");
 		if (!confirm)
 			return;
 		var villager_id = document.getElementById("villager_id").getAttribute("value");

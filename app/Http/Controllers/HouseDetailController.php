@@ -48,7 +48,7 @@ class HouseDetailController extends Controller
     	$house = House::find($id);
 
     	if (!$house) {
-    		return Response::json("Record Not Found.", 404);
+    		return Response::json("Rekod tidak dijumpai.", 404);
     	}
 
     	return $house;
@@ -69,12 +69,12 @@ class HouseDetailController extends Controller
 
 		if (House::where('address', $request->address)->where('id', '!=', $request->house_id)->count() > 0)
 		{
-			return Response::json("Address already used! No repeating address is allowed.", 412);
+			return Response::json("Alamat Rumah ini sudah wujud! Pengulangan Alamat Rumah tidak dibenarkan.", 412);
 		}
 
 		$house = House::find($request->house_id);
 		if (!$house) {
-			return Response::json("House Record Not Found.", 455);
+			return Response::json("Rekod rumah tidak dijumpai.", 455);
 		}
 
 		if (HousePOC::where('villager_id', $request->poc)->count() == 0)
@@ -82,7 +82,7 @@ class HouseDetailController extends Controller
 			$new_poc = Villager::find($request->poc);
 			if (empty($new_poc->phone))
 			{
-				return Response::json("New Ketua Rumah must have phone number filled! Please fill in phone number for ".$new_poc->name." first.", 455);
+				return Response::json("Nombor telefon ketua rumah mesti diisi. Sila isi nombor telefon ".$new_poc->name." first.", 455); //New Ketua Rumah must have phone number filled! Please fill in phone number for
 			}
 
 			HousePOC::where('house_id', $house->id)->delete();
@@ -107,12 +107,12 @@ class HouseDetailController extends Controller
 
     	$house = House::find($request->id);
 		if (!$house) {
-			return Response::json("House Record Not Found.", 455);
+			return Response::json("Rekod maklumat rumah tidak dijumpai.", 455);
 		}
 
 		$house->delete();
 
-		flash("House Recorded Deleted!")->success();
+		flash("Rekod maklumat rumah dipadam!")->success();
     }
 
     public function addMember(Request $request)
@@ -137,7 +137,7 @@ class HouseDetailController extends Controller
 		$house = House::find($house_id);
 
 		if (!$house) {
-			return Response::json("House Record Not Found.", 455);
+			return Response::json("Rekod maklumat rumah tidak dijumpai.", 455);
 		}
 
 		$villager = new Villager;
@@ -166,7 +166,7 @@ class HouseDetailController extends Controller
 
 		$villager->save();
 
-		flash('Member Added Successfully!')->success();		
+		flash('Telah Berjaya!')->success();		
 
 		return Response::json("Success", 200);
     }

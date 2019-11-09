@@ -202,7 +202,7 @@
 	}
 
 	function deleteMember(element) {
-		var confirm = window.confirm("Adakah anda pasti untuk membantalkan maklumat penduduk ini?");
+		var confirm = window.confirm("Adakah anda pasti untuk padamkan maklumat penduduk ini?");
 		if (!confirm)
 			return;
 

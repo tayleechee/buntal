@@ -25,12 +25,12 @@
 
 <div class="container">
 	<div class="text-center" style="color:green">
-		<h3>Your response has been recorded successfully!</h3>
+		<h3>Respon ando telah berjaya direkodkan!</h3>
 		<h3>Thank you.</h3>
 	</div>
 
 	<div class="text-center mt-4">
-		<h5>You will be redirected after <span id="redirect_counter">10</span> seconds.</h5>
+		<h5>You will be redirected after <span id="redirect_counter">10</span> second.</h5>
 		<h5>Or click the button below to get redirected.</h5>
 	</div>
 
