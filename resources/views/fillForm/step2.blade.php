@@ -52,33 +52,33 @@
 @endif
 
 <div class="text-center">
-	<h2>Step 2</h2>
+	<h2>Langkah 2</h2>
 </div>
 
 <div class="container">
 	<form id="step2_form">
 		{{ csrf_field() }}
 		<div class="form-group row">
-			<label for="step2_address" class="col-form-label font-weight-bold">Address</label>
+			<label for="step2_address" class="col-form-label font-weight-bold">Alamat</label>
 			<input type="text" id="step2_address" name="step2_address" value="<?php echo isset($step1_address) ? $step1_address : ''  ?>" class="form-control" readonly>
 		</div>
 <div class="form-row">
 		<div class="form-group row">
-			<label for="step2_householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Household Income (RM)</label>
+			<label for="step2_householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Pendapatan Isi Rumah (RM)</label>
 			<div class="col pr-0">
 				<input type="text" id="step2_householdIncome" name="step2_householdIncome" value="<?php echo isset($step1_householdIncome) ? $step1_householdIncome : ''  ?>" class="step1 col-sm-8 form-control" readonly>
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="step2_numberOfFamily" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Number of Family</label>
+			<label for="step2_numberOfFamily" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Bilangan Keluarga</label>
 			<div class="col pr-0">
 				<input type="text" id="step2_numberOfFamily" name="step2_numberOfFamily" value="<?php echo isset($step1_numberOfFamily) ? $step1_numberOfFamily : ''  ?>" class="step1 col-sm-8 form-control" readonly>
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="step2_numberOfFamilyMember" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Number of Family Member</label>
+			<label for="step2_numberOfFamilyMember" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Bilangan Ahli Keluarga</label>
 			<div class="col pr-0">
 				<input type="text" id="step2_numberOfFamilyMember" name="step2_numberOfFamilyMember" value="<?php echo isset($step1_numberOfFamilyMember) ? $step1_numberOfFamilyMember : ''  ?>" class="step1 col-sm-8 form-control" readonly>
 			</div>
@@ -89,11 +89,11 @@
 		</div>
 
 		<div class="text-center">
-			<button type="button" id="add_member_btn" class="btn btn-success" data-toggle="tooltip" title="Add Family Member"><i class="fas fa-plus-circle"></i></button>
+			<button type="button" id="add_member_btn" class="btn btn-success" data-toggle="tooltip" title="Tambah Ahli Keluarga"><i class="fas fa-plus-circle"></i></button>
 		</div>
 
 		<div class="text-center mt-4">
-			<button type="submit" id="submit_form_btn" class="btn btn-primary">Submit</button>
+			<button type="submit" id="submit_form_btn" class="btn btn-primary">Hantar</button>
 		</div>
 	</form>
 </div>
@@ -202,7 +202,7 @@
 	}
 
 	function deleteMember(element) {
-		var confirm = window.confirm("Are you sure to delete this member?");
+		var confirm = window.confirm("Adakah anda pasti memadamkan ahli ini?");
 		if (!confirm)
 			return;
 
@@ -335,7 +335,7 @@
 	});
 
 	$(document).ready(function (){
-		function initializeMemberForms() 
+		function initializeMemberForms()
 		{
 			for (var i = 0; i < step1_numberOfFamilyMember; i++)
 			{
@@ -353,11 +353,11 @@
 <template id="family_member_form_template">
 	<div class="mt-5 family_member_form_div">
 		<fieldset class="scheduler-border">
-			<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">1</span><span class="ketuaRumah_title"></span></legend>
+			<legend class="family_member_legend scheduler-border">Ahli Keluarga <span class="legend_count">1</span><span class="ketuaRumah_title"></span></legend>
 			<div class="text-right"><button type="button" class="btn btn-sm btn-danger deleteMemberBtn">Delete</button></div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="name_1" class="col-form-label col-2 form_name_label">Name</label>
+				<label for="name_1" class="col-form-label col-2 form_name_label">Nama</label>
 				<div class="col">
 					<input type="text" name="name_1" id="name_1" class="form-control form_name" required>
 				</div>
@@ -378,24 +378,24 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="gender_1" class="col-form-label col-2 form_gender_label">Gender</label>
+				<label for="gender_1" class="col-form-label col-2 form_gender_label">Jantina</label>
 				<div class="col">
 					<select name="gender_1" id="gender_1" class="form-control form_gender" required>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
+						<option value="male">Lelaki</option>
+						<option value="female">Perempuan</option>
 					</select>
 				</div>
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="dob_1" class="col-form-label col-2 form_dob_label">Date of Birth</label>
+				<label for="dob_1" class="col-form-label col-2 form_dob_label">Tarikh Lahir</label>
 				<div class="col">
 					<input type="date" name="dob_1" id="dob_1" class="form-control form_dob" required>
 				</div>
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="race_1" class="col-form-label col-2 form_race_label">Race</label>
+				<label for="race_1" class="col-form-label col-2 form_race_label">Bangsa</label>
 				<div class="col">
 					<select name="race_1" id="race_1" class="form-control form_race" required>
 						<option value="malay">Malay</option>
@@ -408,7 +408,7 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="marital_1" class="col-form-label col-2 form_marital_label">Marital Status</label>
+				<label for="marital_1" class="col-form-label col-2 form_marital_label">Status Perkahwinan</label>
 				<div class="col">
 					<select name="marital_1" id="marital_1" class="form-control form_marital" required>
 						<option value="bujang">Bujang</option>
@@ -420,12 +420,12 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="education_1" class="col-form-label col-2 form_education_label">Education Level</label>
+				<label for="education_1" class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label>
 				<div class="col">
 					<select name="education_1" id="education_1" class="form-control form_education" required>
-						<option value="Non-educated">Non-educated</option>
-						<option value="Primary School">Primary School</option>
-						<option value="Secondary School">Secondary School</option>
+						<option value="Non-educated">Tidak Berpendidikan</option>
+						<option value="Primary School">Sekolah Rendah</option>
+						<option value="Secondary School">Sekolah Menengah</option>
 						<option value="Form 6">Form 6</option>
 						<option value="Diploma">Diploma</option>
 						<option value="Degree">Degree</option>
@@ -437,7 +437,7 @@
 			</div>
 
 			<div class="form-group row pl-2 mt-3">
-				<label for="occupation_1" class="col-form-label col-2 form_occupation_label">Occupation (optional)</label>
+				<label for="occupation_1" class="col-form-label col-2 form_occupation_label">Perkerjaan (optional)</label>
 				<div class="col">
 					<input type="text" name="occupation_1" id="occupation_1" class="form-control form_occupation">
 				</div>
@@ -448,11 +448,11 @@
 				<div class="ml-3">
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="active_yes_1" name="active_1" class="custom-control-input active_yes" value="1" required>
-						<label class="custom-control-label active_yes_label" for="active_yes_1">Yes</label>
+						<label class="custom-control-label active_yes_label" for="active_yes_1">Ada</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="active_no_1" name="active_1" class="custom-control-input active_no" value="0">
-						<label class="custom-control-label active_no_label" for="active_no_1">No</label>
+						<label class="custom-control-label active_no_label" for="active_no_1">Tidak</label>
 					</div>
 				</div>
 			</div>
@@ -462,11 +462,11 @@
 				<div class="ml-3">
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="propertyOwner_yes_1" name="propertyOwner_1" class="custom-control-input propertyOwner_yes" value="1" required>
-						<label class="custom-control-label propertyOwner_yes_label" for="propertyOwner_yes_1">Yes</label>
+						<label class="custom-control-label propertyOwner_yes_label" for="propertyOwner_yes_1">Ada</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="propertyOwner_no_1" name="propertyOwner_1" class="custom-control-input propertyOwner_no" value="0">
-						<label class="custom-control-label propertyOwner_no_label" for="propertyOwner_no_1">No</label>
+						<label class="custom-control-label propertyOwner_no_label" for="propertyOwner_no_1">Tidak</label>
 					</div>
 				</div>
 			</div>

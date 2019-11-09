@@ -44,11 +44,18 @@ class HomeController extends Controller
         $active_yes_count = Villager::whereis_active('1')->where('death_date', null)->count();
         $active_no_count = Villager::whereis_active('0')->where('death_date', null)->count();
 
+        $data_malay = Villager::whererace('malay')->where('death_date', null)->count();
+        $data_cina = Villager::whererace('cina')->where('death_date', null)->count();
+        $data_bumiputra = Villager::whererace('bumiputra')->where('death_date', null)->count();
+        $data_india = Villager::whererace('india')->where('death_date', null)->count();
+        $data_lain = Villager::whererace('other')->where('death_date', null)->count();
+
         $activeChart = new Chartjs;
-        $activeChart->title("Active Status");
-        $activeChart->labels(['Yes', 'No']);
-        $activeChart->dataset('Active Status', 'bar', [$active_yes_count,$active_no_count])->options([
-            'backgroundColor' => ['#9B59B6', '#2ECC71']
+        $activeChart->title("Penduduk Tetap");
+        $activeChart->labels(['Ada', 'Tidak']);
+        $activeChart->dataset('Penduduk Tetap', 'bar', [$active_yes_count,$active_no_count])->options([
+            'backgroundColor' => ['#F5BAFC', '#D2FF90'],
+            'borderColor' => ['#C835D9','#9EF222']
         ]);
 
         $maritalChart = new Chartjs;
@@ -59,22 +66,24 @@ class HomeController extends Controller
         ]);
 
         $genderChart = new Chartjs;
-        $genderChart->title("Gender");
-        $genderChart->labels(['Lelaki', 'Perempuan']);
+        $genderChart->title("Bangsa");
+        $genderChart->labels(['Malay', 'Cina','Bumiputra','India','Lain']);
         $genderChart->displayAxes(false);
-        $genderChart->dataset('Gender', 'pie', [$data_male,$data_female])->options([
-            'backgroundColor' => ['#33A1FF', '#FF333B'],
+        $genderChart->dataset('Bangsa', 'pie', [$data_malay,$data_cina,$data_bumiputra,$data_india,$data_lain])->options([
+            'backgroundColor' => ['#FCCEEF', '#CDDAFA','#AAFFDA','#E6FE9A','#FFD19B'],
+              'borderColor' => ['#C11B92','#1F51CD','#37AA78','#96B437','#A6763E']
         ]);
 
         $propertyOwnerChart = new Chartjs;
-        $propertyOwnerChart->title("Property Owner");
-        $propertyOwnerChart->labels(['No', 'Yes']);
-        $propertyOwnerChart->dataset('Property Owner','bar', [$data_noProperty,$data_haveProperty])->options([
-            'backgroundColor' => ['#333399', '#FF0066']
+        $propertyOwnerChart->title("Pemilik Harta Tanah");
+        $propertyOwnerChart->labels(['Ada', 'Tidak']);
+        $propertyOwnerChart->dataset('Pemilik Harta Tanah','bar', [$data_noProperty,$data_haveProperty])->options([
+            'backgroundColor' => ['#B9DBFA', '#FFABE7'],
+            'borderColor' => ['#2D7AC1','#AA408C']
         ]);
 
         return view('home', compact('activeChart','maritalChart','genderChart','propertyOwnerChart', 'villagerCount', 'houseCount'));
     }
 
-    
+
 }
