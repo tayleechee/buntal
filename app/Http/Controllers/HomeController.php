@@ -9,6 +9,8 @@ use App\Charts\Highcharts;
 use Illuminate\Http\Request;
 use App\Villager;
 use App\House;
+use Balping\JsonRaw\Raw;
+
 class HomeController extends Controller
 {
     /**
@@ -70,8 +72,13 @@ class HomeController extends Controller
         $genderChart->labels(['Melayu', 'Cina','Bumiputra','India','Lain']);
         $genderChart->displayAxes(false);
         $genderChart->dataset('Bangsa', 'pie', [$data_malay,$data_cina,$data_bumiputra,$data_india,$data_lain])->options([
-            'backgroundColor' => ['#FCCEEF', '#CDDAFA','#AAFFDA','#E6FE9A','#FFD19B'],
-              'borderColor' => ['#C11B92','#1F51CD','#37AA78','#96B437','#A6763E']
+                'plugins' =>  $this->rawObjects[] = new Raw("{
+                                datalabels: {
+                                    color: 'blue',
+                                }
+                            }"),
+                'backgroundColor' => ['#FCCEEF', '#CDDAFA','#AAFFDA','#E6FE9A','#FFD19B'],
+                'borderColor' => ['#C11B92','#1F51CD','#37AA78','#96B437','#A6763E'],
         ]);
 
         $propertyOwnerChart = new Chartjs;
@@ -79,7 +86,7 @@ class HomeController extends Controller
         $propertyOwnerChart->labels(['Ya', 'Tidak']);
         $propertyOwnerChart->dataset('Pemilik Harta Tanah','bar', [$data_noProperty,$data_haveProperty])->options([
             'backgroundColor' => ['#B9DBFA', '#FFABE7'],
-            'borderColor' => ['#2D7AC1','#AA408C']
+            'borderColor' => ['#2D7AC1','#AA408C'],
         ]);
 
         return view('home', compact('activeChart','maritalChart','genderChart','propertyOwnerChart', 'villagerCount', 'houseCount'));

@@ -260,6 +260,20 @@
 					<div class="form-group row pl-2 mt-3">
 						<label for="race" class="col-form-label col-2 form_race_label">Kaum</label>
 						<div class="col form-nonhidden-input-div col-form-label">
+							{{ ucfirst($villager->race) }}
+						</div>
+					</div>
+
+					<div class="form-group row pl-2 mt-3">
+						<label class="col-form-label col-2 form_marital_label">Status Perkahwinan</label> <!--Marital Status-->
+						<div class="col form-nonhidden-input-div col-form-label">
+							{{ ucfirst($villager->marital_status) }}
+						</div>
+					</div>
+
+					<div class="form-group row pl-2 mt-3">
+						<label class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label> <!--Education Level-->
+						<div class="col form-nonhidden-input-div col-form-label">
 							<?php 
 								if ($villager->education_level)
 								{
@@ -295,20 +309,6 @@
 									}
 								}
 							?>
-						</div>
-					</div>
-
-					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_marital_label">Status Perkahwinan</label> <!--Marital Status-->
-						<div class="col form-nonhidden-input-div col-form-label">
-							{{ ucfirst($villager->marital_status) }}
-						</div>
-					</div>
-
-					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label> <!--Education Level-->
-						<div class="col form-nonhidden-input-div col-form-label">
-							{{ $villager->education_level }}
 						</div>
 					</div>
 
