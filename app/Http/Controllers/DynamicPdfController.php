@@ -261,7 +261,7 @@ class DynamicPDFController extends Controller
 
     function get_villager_data()
     {
-		$villager_data = Villager::where('death_date', null)->get();
+		$villager_data = Villager::where('death_date', null)->orderBy('dob', 'asc')->get();
 		return $villager_data;
     }
 
@@ -269,6 +269,7 @@ class DynamicPDFController extends Controller
     {
 		$villager_data = Villager::where('death_date', null)
 			->where('gender','=','m')
+			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
     }
@@ -277,6 +278,7 @@ class DynamicPDFController extends Controller
     {
 		$villager_data = Villager::where('death_date', null)
 			->where('gender','=','f')
+			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
     }
@@ -285,6 +287,7 @@ class DynamicPDFController extends Controller
     {
 		$villager_data = Villager::where('death_date', null)
 			->where('race','=','malay')
+			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
     }
@@ -293,6 +296,7 @@ class DynamicPDFController extends Controller
     {
 		$villager_data = Villager::where('death_date', null)
 			->where('race','=','bumiputera')
+			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
     }
@@ -301,6 +305,7 @@ class DynamicPDFController extends Controller
     {
 		$villager_data = Villager::where('death_date', null)
 			->where('race','=','cina')
+			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
     }
@@ -309,6 +314,7 @@ class DynamicPDFController extends Controller
     {
 		$villager_data = Villager::where('death_date', null)
 			->where('race','=','india')
+			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
     }
@@ -317,6 +323,7 @@ class DynamicPDFController extends Controller
     {
 		$villager_data = Villager::where('death_date', null)
 			->where('race','=','other')
+			->orderBy('dob', 'asc')
 			->get();
 		return $villager_data;
     }
