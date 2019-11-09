@@ -1,9 +1,13 @@
 @extends('layouts.app')
 @section('css')
 <style type="text/css">
-  .card {
+	.card {
 	 	padding: 1em;
-  }
+	}
+
+	div.dataTables_processing {
+		z-index: 1
+	}
 </style>
 @endsection
 @section('content')
