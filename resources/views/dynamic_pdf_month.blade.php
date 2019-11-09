@@ -13,7 +13,7 @@
 
 <div class="container">
 	<div align="right">
-		<a href="{{ url('dynamic_pdf/pdf_month/'.$type) }}" class="btn btn-danger" target="_blank">Simpan sebagai PDF</a>
+		<a href="{{ url('dynamic_pdf/pdf_month/'.$type) }}" class="btn btn-danger" target="_blank">Simpan PDF</a>
 	</div> 	
 	<h1 align="center">{!! $title !!}</h1>
     <br />

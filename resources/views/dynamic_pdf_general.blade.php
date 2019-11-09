@@ -13,7 +13,7 @@
 
 <div class="container">	
 	<div align="right">
-		<a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Simpan sebagai PDF</a>
+		<a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Simpan PDF</a>
 	</div>   
 	<h1 align="center">Senarai Penduduk Kampung Buntal</h1>
     <br />

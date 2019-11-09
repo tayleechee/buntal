@@ -7,7 +7,7 @@
 
 <div class="container">
 	<div align="right">
-		<a href="{{ url('dynamic_pdf/summaryReportPdf') }}" class="btn btn-danger" target="_blank">Simpan sebagai PDF</a>
+		<a href="{{ url('dynamic_pdf/summaryReportPdf') }}" class="btn btn-danger" target="_blank">Simpan PDF</a>
 	</div> 	
 	<br>
 	<h1 align="center">Ringkasan Laporan Terkini</h1>
