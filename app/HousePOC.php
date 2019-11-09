@@ -13,4 +13,9 @@ class HousePOC extends Model
     {
     	return $this->belongsTo('App\Villager');
     }
+
+    public function house()
+    {
+    	return $this->belongsTo('App\House');
+    }
 }

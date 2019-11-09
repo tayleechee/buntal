@@ -1,17 +1,9 @@
 @extends('layouts.app')
 @section('css')
 <style type="text/css">
-	.card {
+  .card {
 	 	padding: 1em;
-	}
-
-	.deadIndicatorRow {
-			background-color: #e8e8e8;
-	}
-
-	div.dataTables_processing {
-			z-index: 1
-	}
+  }
 </style>
 @endsection
 @section('content')
@@ -33,19 +25,18 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>Ketelitian Rekod Penduduk</h5>
+		<h5>View All Ketua Rumah</h5>
 	</div>
 	<div class="card">
-	<table class="mt-4 table table-bordered table-sm" id="villagersTable">
+	<table class="mt-4 table table-bordered table-sm" id="ketuaRumahTable">
 		<thead class="thead-dark">
 			<tr class="text-center">
 				<th class="th-sm">No.</th>
 				<th class="th-sm">Nama</th>
-				<th class="th-sm">IC</th>
 				<th class="th-sm">Alamat Rumah</th>
-				<th class="th-sm">Jantina</th>
-				<th class="th-sm">Bangsa</th>
-				<th class="th-sm">Tindakan</th>
+				<th class="th-sm">IC</th>
+				<th class="th-sm">Telefon</th>
+				<th class="th-sm">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -58,21 +49,22 @@
 	$(document).ready(function() {
 		$("#viewRecordsDropdown").addClass("active");
 
-		var villagersTable = $('#villagersTable').DataTable({
+		var ketuaRumahTable = $('#ketuaRumahTable').DataTable({
 	        processing: true,
 	        serverSide: true,
+	        ajax: '{!! route('ketuaRumahRecords.getKetuaRumahRecords') !!}',
 	        dom: 'Bf<"col mt-2 pl-0 pr-0 d-flex justify-content-start"l>rtip',
 	        buttons: [
 	            {
 	                extend: 'excelHtml5',
-	                title: 'List of Penduduk',
+	                title: 'List of Ketua Rumah',
 	                exportOptions: {
 	                    columns: 'th:not(:last-child, :first-child)'
 	                }
 	            },
 	            {
 	                extend: 'pdfHtml5',
-	                title: 'List of Penduduk',
+	                title: 'List of Ketua Rumah',
 	                customize: function (doc) {
 						doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
 						var objLayout = {};
@@ -90,58 +82,48 @@
 	            },
 	            {
 	                extend: 'print',
-	                title: 'List of Penduduk',
+	                title: 'List of Ketua Rumah',
 	                exportOptions: {
 	                    columns: 'th:not(:last-child, :first-child)'
 	                }
 	            },
 	        ],
-	        ajax: '{!! route('villagerRecords.getVillagerRecords') !!}',
 	        columns: [
 	        	{ data: null, "orderable": false, "searchable": false},
-	            { data: 'name' },
-	            { data: 'ic' },
-	            { data: 'house.address' },
-	            { data: 'gender', "render": function(data, type, row) {
-		            	if (data == 'm')
-		            		{return 'Male';}
-		            	else if (data == 'f')
-		            		{return 'Female';}
-		            	else
-		            		{return data};
-	            	}
-	            },
-	            { data: 'race', "render": function(data, type, row) {
-	            		return data.charAt(0).toUpperCase() + data.slice(1);
-	            	}
-	            },
-	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) {
-	            		var button = `<div class="text-center">
-	            						<button class="btn btn-primary btn-sm viewVillagerDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View Detail"><i class="far fa-eye"></i></button>
-	            					</div>
+	        	{ data: 'villager.name'},
+	        	{ data: 'house.address' },
+	        	{ data: 'villager.ic' },
+	        	{ data: 'villager.phone'},
+	        	{ data: 'house_id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
+	            		var button = `	<div class="d-flex justify-content-center">
+	            						<div class="text-center mr-2">
+	            							<button class="btn btn-outline-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View House Detail">View House</button>
+	            						</div>
+	            						<div class="text-center">
+	            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="View Ketua Rumah Detail">View KR</button>
+	            						</div>
+	            						</div>
 	            					`;
 	            		return button;
 	            	}
 	            }
 	        ],
 	        "order": [[ 1, 'asc' ]],
-	        "createdRow": function( row, data, dataIndex){
-                if( data['death_date'] !== undefined && data['death_date'] !== null){
-                    $(row).addClass('table-warning');
-                }
-            }
 	    });
 
-	    villagersTable.on( 'draw.dt', function () {
+	    ketuaRumahTable.on( 'draw.dt', function () {
 	    	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
-	    	var info = villagersTable.page.info();
+	    	var info = ketuaRumahTable.page.info();
 	    	var iterator = info.start;
-	    	console.log(iterator);
-	        villagersTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+	        ketuaRumahTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
 	            cell.innerHTML = iterator+1;
 	            iterator++;
 	        } );
 	    } );
+	});
+
+	$(document).on("click", ".viewHouseDetailBtn", function() {
+		window.location.href = "/house/"+ $(this).attr("data-id");
 	});
 
 	$(document).on("click", ".viewVillagerDetailBtn", function() {

@@ -54,6 +54,9 @@ Route::post('/deleteVillager', 'VillagerDetailController@deleteVillager');
 Route::get('/houseRecords', 'HouseRecordsController@index')->name('houseRecords.index');
 Route::get('/getHouseRecords', 'HouseRecordsController@getHouseRecords')->name('houseRecords.getHouseRecords');
 
+Route::get('/ketuaRumahRecords', 'KetuaRumahRecordsController@index')->name('ketuaRumahRecords.index');
+Route::get('/getKetuaRumahRecords', 'KetuaRumahRecordsController@getKetuaRumahRecords')->name('ketuaRumahRecords.getKetuaRumahRecords');
+
 Route::get('/house/{id}', 'HouseDetailController@index')->name('houseDetail.index');
 Route::get('/getHouseDetail', 'HouseDetailController@getHouseDetail');
 Route::post('/setHouseDetail', 'HouseDetailController@setHouseDetail');
