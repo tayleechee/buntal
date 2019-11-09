@@ -572,10 +572,10 @@
 				}
 				if (typeof data.gender !== 'undefined') {
 					if (data.gender == 'm') {
-						$("#editMemberForm select[name=gender]").val('Lelaki');
+						$("#editMemberForm select[name=gender]").val('male');
 					}
 					else if (data.gender == 'f') {
-						$("#editMemberForm select[name=gender]").val('Perempuan');
+						$("#editMemberForm select[name=gender]").val('female');
 					}
 				}
 				if (typeof data.dob !== 'undefined') {
