@@ -160,7 +160,7 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="race" class="col-form-label col-2 form_race_label">Kaum</label>
 				<div class="col form-input-col d-none">
-					{!! Form::select('race', ['melayu' => 'Malay', 'cina' => 'Cina', 'india' =>  'India', 'bumiputera' => 'Bumiputera', 'lain-lain' => 'Lain-lain'], isset($villager->race) ? $villager->race : null, ['class'=>'form-control form_race', 'id'=>'race', 'required']) !!}
+					{!! Form::select('race', ['melayu' => 'Melayu', 'cina' => 'Cina', 'india' =>  'India', 'bumiputera' => 'Bumiputera', 'lain-lain' => 'Lain-lain'], isset($villager->race) ? $villager->race : null, ['class'=>'form-control form_race', 'id'=>'race', 'required']) !!}
 				</div>
 				<div class="col form-input-div text-left col-form-label">
 					<?php echo isset($villager->race) ? ucfirst($villager->race) : ''  ?>
