@@ -24,6 +24,7 @@ class VillagerTableSeeder extends Seeder
              'occupation' => "Software Architect",
              'is_property_owner' => "0",
              'is_active' => "1",
+             'is_voter' => "1",
         ]);
 
         DB::table('villagers')->insert([

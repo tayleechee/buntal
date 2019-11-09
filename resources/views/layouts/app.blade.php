@@ -180,6 +180,7 @@
                             <div class="dropdown-menu" aria-labelledby="viewRecordsDropdown">
                               <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Penduduk</a>
                               <a class="dropdown-item" href="{{route('houseRecords.index')}}">Rumah</a>
+                              <a class="dropdown-item" href="{{route('ketuaRumahRecords.index')}}">Ketua Rumah</a>
                             </div>
                         </li>                        
 						<li class="nav-item dropdown">

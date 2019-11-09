@@ -293,6 +293,13 @@
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
+						<label class="pl-3">Sudahkah anda daftar sebagai pengundi?</label>
+						<div class="col form-nonhidden-input-div col-form-label">
+							{{ $villager->is_voter==1 ? 'Ya' : 'Tidak' }}
+						</div>
+					</div>
+
+					<div class="form-group row pl-2 mt-3">
 						<label class="pl-3">Adakah anda mempunyai tanah yang bergeran?</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->is_property_owner==1 ? 'Ya' : 'Tidak' }}
@@ -482,6 +489,7 @@
 		if (!form.checkValidity())
 		{
 			form.reportValidity();
+			return;
 		}
 
 		$.ajax({
@@ -564,10 +572,10 @@
 				}
 				if (typeof data.gender !== 'undefined') {
 					if (data.gender == 'm') {
-						$("#editMemberForm select[name=gender]").val('Lelaki');
+						$("#editMemberForm select[name=gender]").val('male');
 					}
 					else if (data.gender == 'f') {
-						$("#editMemberForm select[name=gender]").val('Perempuan');
+						$("#editMemberForm select[name=gender]").val('female');
 					}
 				}
 				if (typeof data.dob !== 'undefined') {
@@ -591,6 +599,14 @@
 					}
 					else if (data.is_active == 0) {
 						$("#editMemberForm input[name='active'][value='0']")[0].checked = true;
+					}
+				}
+				if (typeof data.is_voter !== 'undefined') {
+					if (data.is_voter == 1) {
+						$("#editMemberForm input[name='is_voter'][value='1']")[0].checked = true;
+					}
+					else if (data.is_voter == 0) {
+						$("#editMemberForm input[name='is_voter'][value='0']")[0].checked = true;
 					}
 				}
 				if (typeof data.is_property_owner !== 'undefined') {

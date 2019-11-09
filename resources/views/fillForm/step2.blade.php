@@ -182,6 +182,17 @@
    		active_no_input.setAttribute("id", "active_no_"+mem_num_plus);
    		active_no_input.setAttribute("name", "member["+mem_num_plus+"][active]");
 
+   		var is_voter_yes_label = clone.querySelector(".is_voter_yes_label");
+   		is_voter_yes_label.setAttribute("for", "is_voter_yes_"+mem_num_plus);
+   		var is_voter_yes_input = clone.querySelector(".is_voter_yes");
+   		is_voter_yes_input.setAttribute("id", "is_voter_yes_"+mem_num_plus);
+   		is_voter_yes_input.setAttribute("name", "member["+mem_num_plus+"][is_voter]");
+   		var is_voter_no_label = clone.querySelector(".is_voter_no_label");
+   		is_voter_no_label.setAttribute("for", "is_voter_no_"+mem_num_plus);
+   		var is_voter_no_input = clone.querySelector(".is_voter_no");
+   		is_voter_no_input.setAttribute("id", "is_voter_no_"+mem_num_plus);
+   		is_voter_no_input.setAttribute("name", "member["+mem_num_plus+"][is_voter]");
+
    		var propertyOwner_yes_label = clone.querySelector(".propertyOwner_yes_label");
    		propertyOwner_yes_label.setAttribute("for", "propertyOwner_yes_"+mem_num_plus);
    		var propertyOwner_yes_input = clone.querySelector(".propertyOwner_yes");
@@ -237,7 +248,7 @@
 
 	   		var form_phone_label = target_form_div.querySelector(".form_phone_label");
 	   		form_phone_label.setAttribute("for", "member["+mem_num_minus+"][phone]");
-	   		var form_phone = target_form.div.querySelector(".form_phone");
+	   		var form_phone = target_form_div.querySelector(".form_phone");
 	   		form_phone.setAttribute("id", "member["+mem_num_minus+"][phone]");
 	   		form_phone.setAttribute("name", "member["+mem_num_minus+"][phone]");
 
@@ -287,6 +298,17 @@
 	   		var active_no_input = target_form_div.querySelector(".active_no");
 	   		active_no_input.setAttribute("id", "active_no_"+mem_num_minus);
 	   		active_no_input.setAttribute("name", "member["+mem_num_minus+"][active]");
+
+	   		var is_voter_yes_label = target_form_div.querySelector(".is_voter_yes_label");
+	   		is_voter_yes_label.setAttribute("for", "is_voter_yes_"+mem_num_minus);
+	   		var is_voter_yes_input = target_form_div.querySelector(".is_voter_yes");
+	   		is_voter_yes_input.setAttribute("id", "is_voter_yes_"+mem_num_minus);
+	   		is_voter_yes_input.setAttribute("name", "member["+mem_num_minus+"][is_voter]");
+	   		var is_voter_no_label = target_form_div.querySelector(".is_voter_no_label");
+	   		is_voter_no_label.setAttribute("for", "is_voter_no_"+mem_num_minus);
+	   		var is_voter_no_input = target_form_div.querySelector(".is_voter_no");
+	   		is_voter_no_input.setAttribute("id", "is_voter_no_"+mem_num_minus);
+	   		is_voter_no_input.setAttribute("name", "member["+mem_num_minus+"][is_voter]");
 
 	   		var propertyOwner_yes_label = target_form_div.querySelector(".propertyOwner_yes_label");
 	   		propertyOwner_yes_label.setAttribute("for", "propertyOwner_yes_"+mem_num_minus);
@@ -366,7 +388,7 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="ic_1" class="col-form-label col-2 form_ic_label">IC</label>
 				<div class="col">
-					<input type="text" name="ic_1" id="ic_1" class="form-control form_ic" required>
+					<input type="text" name="ic_1" id="ic_1" class="form-control form_ic" pattern="\d{12}" title="12 numbers without -" required>
 				</div>
 			</div>
 
@@ -453,6 +475,20 @@
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="active_no_1" name="active_1" class="custom-control-input active_no" value="0">
 						<label class="custom-control-label active_no_label" for="active_no_1">Tidak</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row pl-2 mt-3">
+				<label class="pl-3">Sudahkah anda daftar sebagai pengundi?</label>
+				<div class="ml-3">
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="is_voter_yes_1" name="is_voter_1" class="custom-control-input is_voter_yes" value="1" required>
+						<label class="custom-control-label is_voter_yes_label" for="is_voter_yes_1">Yes</label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="is_voter_no_1" name="is_voter_1" class="custom-control-input is_voter_no" value="0">
+						<label class="custom-control-label is_voter_no_label" for="is_voter_no_1">No</label>
 					</div>
 				</div>
 			</div>

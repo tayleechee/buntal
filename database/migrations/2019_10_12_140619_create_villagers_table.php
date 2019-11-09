@@ -27,6 +27,7 @@ class CreateVillagersTable extends Migration
             $table->string('occupation')->nullable();
             $table->boolean('is_property_owner');
             $table->boolean('is_active');
+            $table->boolean('is_voter')->nullable()->default('0');
             $table->string('death_date')->nullable();
 
             $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade');

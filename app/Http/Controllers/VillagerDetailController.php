@@ -55,6 +55,7 @@ class VillagerDetailController extends Controller
 		    'race' => 'required',
 		    'active' => 'required',
 		    'propertyOwner' => 'required',
+		    'is_voter' => 'required',
 		];
 
 		$validator = Validator::make($request->all(), $rules);
@@ -86,6 +87,7 @@ class VillagerDetailController extends Controller
 		$villager->race = $request->race;
 		$villager->is_active = $request->active;
 		$villager->is_property_owner = $request->propertyOwner;
+		$villager->is_voter = $request->is_voter;
 
 		if (isset($request->phone))
 			$villager->phone = $request->phone;

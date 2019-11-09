@@ -49,6 +49,7 @@ class FillFormController extends Controller
 		    'member.*.race' => 'required',
 		    'member.*.active' => 'required',
 		    'member.*.propertyOwner' => 'required',
+		    'member.*.is_voter' => 'required',
 		];
 
 		$messages = [
@@ -104,6 +105,7 @@ class FillFormController extends Controller
 				$villager->education_level = $member->education;
 				$villager->is_property_owner = $member->propertyOwner;
 				$villager->is_active = $member->active;
+				$villager->is_voter = $member->is_voter;
 
 				if (isset($member->occupation))
 					$villager->occupation = $member->occupation;
