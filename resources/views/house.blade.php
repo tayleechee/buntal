@@ -53,7 +53,8 @@
     	border: 1px solid #ddd !important;
     	border-radius: 5px;
     	background-color: white;
-    	padding: 1.4em 1.4em 1.4em 1.4em !important;
+    	padding-left: 2.5em !important;
+		padding-right: 2.5em;
 	    margin: 0.8em 0 1.5em 0 !important;
 	    -webkit-box-shadow:  0px 0px 0px 0px #000;
 	            box-shadow:  0px 0px 0px 0px #000;
@@ -108,17 +109,17 @@
 @section('content')
 
 <div class="text-center">
-	<h2>House Details</h2>
+	<h2>Maklumat Rumah</h2> <!--House Detail-->
 </div>
 
 <div class="container">
 	<div class="text-right mt-5">
 		<div>
-			<button type="button" id="add_member_btn" class="btn btn-outline-success" data-toggle="modal" data-target="#addMemberModal">Add Member</button>
-			<button type="button" id="edit_house_btn" class="btn btn-outline-primary">Edit House Detail</button>
-			<button type="button" id="save_house_btn" class="btn btn-success d-none">Save</button>
-			<button type="button" id="cancel_house_btn" class="btn btn-secondary d-none">Cancel</button>
-			<button type="button" id="delete_house_btn" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteHouseModal">Delete House</button>
+			<button type="button" id="add_member_btn" class="btn btn-outline-success" data-toggle="modal" data-target="#addMemberModal">Tambah Ahli Keluarga</button> <!--Add member-->
+			<button type="button" id="edit_house_btn" class="btn btn-outline-primary">Edit Butiran Rumah</button> <!--Edit House Detail-->
+			<button type="button" id="save_house_btn" class="btn btn-success d-none">Simpan</button> <!--Save-->
+			<button type="button" id="cancel_house_btn" class="btn btn-secondary d-none">Batal</button> <!--Cancel-->
+			<button type="button" id="delete_house_btn" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteHouseModal">Batal Rumah</button>
 		</div>
 	</div>
 	<form id="house_form">
@@ -126,7 +127,7 @@
 		<input type="hidden" name="house_id" id="house_id" value="{{ $house->id }}">
 		<div class="house-basic-details">
 			<div class="form-group row">
-				<label for="address" class="col-form-label font-weight-bold">Address</label>
+				<label for="address" class="col-form-label font-weight-bold">Alamat Rumah</label> <!--House Address-->
 				<input type="text" id="address" name="address" value="<?php echo isset($house->address) ? $house->address : ''  ?>" class="form-control form-address-edit d-none" required>
 				<div class="col-12 form-input-div">
 					<?php echo isset($house->address) ? $house->address : ''  ?>
@@ -158,7 +159,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Household Income (RM)</label>
+						<label for="householdIncome" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Pendapatan Rumah (RM)</label> <!--Household Income-->
 						<div class="col pr-0">
 							<input type="number" id="householdIncome" name="householdIncome" value="<?php echo isset($house->household_income) ? $house->household_income : ''  ?>" class="step1 col-sm-8 form-control form-edit d-none" required>
 							<div class="form-input-div col-sm-8 step1">
@@ -168,7 +169,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="numberOfFamily" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Number of Family</label>
+						<label for="numberOfFamily" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold" >Bilangan Keluarga</label> <!--number of family-->
 						<div class="col pr-0">
 							<input type="number" id="numberOfFamily" name="numberOfFamily" value="<?php echo isset($house->family_number) ? $house->family_number : ''  ?>" class="step1 col-sm-8 form-control form-edit d-none" required>
 							<div class="form-input-div col-sm-8 step1">
@@ -178,10 +179,10 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="numberOfFamilyMember" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Number of Family Member</label>
+						<label for="numberOfFamilyMember" class="label1 col-form-label col-sm-12 pl-0 font-weight-bold">Bilangan Ahli Keluarga</label>
 						<div class="col pr-0">
 							<div class="form-nonhidden-input-div col-sm-8" style="margin-left: -0.6em !important">
-								<?php echo isset($house->aliveVillagers) ? count($house->aliveVillagers) : 0  ?>
+								<?php echo isset($house->aliveVillagers) ? count($house->aliveVillagers) : 0  ?>						
 							</div>
 						</div>
 					</div>
@@ -200,11 +201,11 @@
 					@endif -->
 
 					@if ( isset($villager) && $index == 0 && $house->poc)
-					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span class="poc_legend_label"> (Ketua Rumah)</span></legend>
+					<legend class="family_member_legend scheduler-border">Ahli Keluarga <span class="legend_count">{{ ($index+1) }}</span><span class="poc_legend_label"> (Ketua Rumah)</span></legend>
 					@elseif (!empty($villager->death_date))
-					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span><span style="color:grey"> (Meninggal)</span></legend>					
+					<legend class="family_member_legend scheduler-border">Ahli Keluarga <span class="legend_count">{{ ($index+1) }}</span><span style="color:grey"> (Meninggal)</span></legend>					
 					@else
-					<legend class="family_member_legend scheduler-border">Family Member <span class="legend_count">{{ ($index+1) }}</span></legend>
+					<legend class="family_member_legend scheduler-border">Ahli Keluarga <span class="legend_count">{{ ($index+1) }}</span></legend> <!--Family Member-->
 					@endif
 					<div class="text-right">
 						<button type="button" class="btn btn-sm btn-primary viewMemberDetailBtn mr-1" data-id="{{ $villager->id }}">View Detail</button>
@@ -214,7 +215,7 @@
 
 					@if ( isset($villager) && !empty($villager->death_date) )
 					<div class="form-group row pl-2 mt-3">
-						<label for="occupation" class="col-form-label col-2 form_occupation_label font-weight-bold">Death Date</label>
+						<label for="occupation" class="col-form-label col-2 form_occupation_label font-weight-bold">Tarikh Kematian</label> <!--Death date-->
 						<div class="col form-nonhidden-input-div font-weight-bold">
 							{{ $villager->death_date }}
 						</div>
@@ -222,7 +223,7 @@
 					@endif
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_name_label">Name</label>
+						<label class="col-form-label col-2 form_name_label">Nama</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->name }}
 						</div>
@@ -243,42 +244,42 @@
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_gender_label">Gender</label>
+						<label class="col-form-label col-2 form_gender_label">Jantina</label>
 						<div class="col form-nonhidden-input-div col-form-label">
-							{{ $villager->gender=='m' ? 'Male' : 'Female' }}
+							{{ $villager->gender=='m' ? 'Lelaki' : 'Perempuan' }}
 						</div>
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_dob_label">Date of Birth</label>
+						<label class="col-form-label col-2 form_dob_label">Tarikh Lahir</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->dob }}
 						</div>
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label for="race" class="col-form-label col-2 form_race_label">Race</label>
+						<label for="race" class="col-form-label col-2 form_race_label">Bangsa</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ ucfirst($villager->race) }}
 						</div>
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_marital_label">Marital Status</label>
+						<label class="col-form-label col-2 form_marital_label">Status Perkahwinan</label> <!--Marital Status-->
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ ucfirst($villager->marital_status) }}
 						</div>
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_education_label">Education Level</label>
+						<label class="col-form-label col-2 form_education_label">Peringkat Pendidikan</label> <!--Education Level-->
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->education_level }}
 						</div>
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_occupation_label">Occupation</label>
+						<label class="col-form-label col-2 form_occupation_label">Pekerjaan</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->occupation }}
 						</div>
@@ -287,14 +288,14 @@
 					<div class="form-group row pl-2 mt-3">
 						<label class="pl-3">Adakah anda bermaustatin tetap di alamat ini?</label>
 						<div class="col form-nonhidden-input-div col-form-label">
-							{{ $villager->is_active==1 ? 'Yes' : 'No' }}
+							{{ $villager->is_active==1 ? 'Ya' : 'Tidak' }}
 						</div>
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
 						<label class="pl-3">Adakah anda mempunyai tanah yang bergeran?</label>
 						<div class="col form-nonhidden-input-div col-form-label">
-							{{ $villager->is_property_owner==1 ? 'Yes' : 'No' }}
+							{{ $villager->is_property_owner==1 ? 'Ya' : 'Tidak' }}
 						</div>
 					</div>
 				</fieldset>
@@ -310,17 +311,17 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
-		        <h5 class="modal-title font-weight-bold">Confirm Delete?</h5>
+		        <h5 class="modal-title font-weight-bold">Sahkan Padam?</h5> <!--Confirm Delete-->
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		    	</button>
 		  	</div>
 		  	<div class="modal-body">
-		    	<p class="font-weight-bold">You are about to delete this house. All residents will be deleted too.</p>
+		    	<p class="font-weight-bold">Anda hendak memadamkan rumah ini. Semua penduduk akan dipadamkan juga.</p> <!--You are about to delete this house. All residents will be deleted too.-->
 		  	</div>
 		  	<div class="modal-footer">
-		        <button type="button" class="btn btn-danger" id="confirmDeleteHouseBtn">Confirm</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		        <button type="button" class="btn btn-danger" id="confirmDeleteHouseBtn">Ya</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
 		  	</div>
 	    </div>
 	</div>
@@ -331,17 +332,17 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 		  	<div class="modal-header">
-		        <h5 class="modal-title font-weight-bold">Confirm Delete?</h5>
+		        <h5 class="modal-title font-weight-bold">Sahkan Padam?</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		    	</button>
 		  	</div>
 		  	<div class="modal-body">
-		    	<p class="font-weight-bold">You are about to delete this member. This cannot be undone.</p>
+		    	<p class="font-weight-bold">Anda akan memadamkan ahli ini. Perkara ini Tidak boleh diubah.</p>
 		  	</div>
 		  	<div class="modal-footer">
-		        <button type="button" class="btn btn-danger" id="confirmDeleteMemberBtn">Confirm</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		        <button type="button" class="btn btn-danger" id="confirmDeleteMemberBtn">Ya</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
 		  	</div>
 	    </div>
 	</div>
@@ -368,7 +369,7 @@
 	});
 
 	$(document).on("click", "#cancel_house_btn", function(){
-		var confirm = window.confirm("Confirm to cancel? Changes will be discarded.");
+		var confirm = window.confirm("Sah untuk membatal? Perubahan tidak akan disimpan.");
 
 		if (!confirm)
 			return;
@@ -412,7 +413,7 @@
 				$(".house-basic-details").removeClass("highlighted-bold");
 			},
 			error: function (jqXHR, exception) {
-		        showAjaxErrorMessage(jqXHR, exception, "Failed to retrieve record. Please refresh:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Maklumat gagal diperolehi. Sila cuba lagi:<br>");
 		    }
 		});
 	});
@@ -425,7 +426,7 @@
 			return;
 		}
 
-		var confirm = window.confirm("Are you sure to save the changes?");
+		var confirm = window.confirm("Adakah anda pasti menyimpan perubahan?");
 
 		if (!confirm)
 			return;
@@ -437,7 +438,7 @@
 			url: "/setHouseDetail",
 			data: $("#house_form").serialize(),
 			beforeSend: function() {
-				$("#loading_div").attr("data-text", "Saving Changes...");
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
@@ -445,7 +446,7 @@
 			},
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
-		        showAjaxErrorMessage(jqXHR, exception, "Unable to save changes:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
 		    }
 		});
 	});
@@ -463,7 +464,7 @@
 			},
 			beforeSend: function() {
 				$("#confirmDeleteModal").modal('hide');
-				$("#loading_div").attr("data-text", "Deleting House Record...");
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
@@ -471,7 +472,7 @@
 			},
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
-		        showAjaxErrorMessage(jqXHR, exception, "Unable to delete house record:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
 		    }
 		});
 	});
@@ -488,7 +489,7 @@
 			url: "/addMember",
 			data: $("#addMemberForm").serialize(),
 			beforeSend: function() {
-				$("#loading_div").attr("data-text", "Adding new member...");
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
@@ -496,7 +497,7 @@
 			},
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
-		        showAjaxErrorMessage(jqXHR, exception, "Unable to Add Member:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
 		    }
 		});
 	});
@@ -521,7 +522,7 @@
 			},
 			beforeSend: function() {
 				$("#confirmDeleteModal").modal('hide');
-				$("#loading_div").attr("data-text", "Deleting Villager Record...");
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
@@ -529,7 +530,7 @@
 			},
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
-		        showAjaxErrorMessage(jqXHR, exception, "Unable to delete villager record:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
 		    }
 		});
 	});
@@ -563,10 +564,10 @@
 				}
 				if (typeof data.gender !== 'undefined') {
 					if (data.gender == 'm') {
-						$("#editMemberForm select[name=gender]").val('male');
+						$("#editMemberForm select[name=gender]").val('Lelaki');
 					}
 					else if (data.gender == 'f') {
-						$("#editMemberForm select[name=gender]").val('female');
+						$("#editMemberForm select[name=gender]").val('Perempuan');
 					}
 				}
 				if (typeof data.dob !== 'undefined') {
@@ -616,7 +617,7 @@
 				$("#editMemberModal").modal('show');
 			},
 			error: function (jqXHR, exception) {
-		        showAjaxErrorMessage(jqXHR, exception, "Failed to retrieve record. Please refresh:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Maklumat tidak dijumpai. Sila cuba lagi:<br>");
 		    }
 		});
 	});
@@ -636,7 +637,7 @@
 			data: $("#editMemberForm").serialize(),
 			beforeSend: function() {
 				$("editMemberModal").modal('hide');
-				$("#loading_div").attr("data-text", "Saving Changes...");
+				$("#loading_div").attr("data-text", "Disimpan..."); //Saving changes
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
@@ -644,7 +645,7 @@
 			},
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
-		        showAjaxErrorMessage(jqXHR, exception, "Unable to save changes:<br>");
+		        showAjaxErrorMessage(jqXHR, exception, "Gagal disimpan:<br>"); //Gagal disimpan
 		    }
 		});
 	});

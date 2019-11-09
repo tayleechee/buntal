@@ -21,18 +21,18 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>View All House Records</h5>
+		<h5>Rekod Maklumat Rumah</h5>
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="housesTable">
 		<thead class="thead-dark">
 			<tr class="text-center">
 				<th class="th-sm">No.</th>
-				<th class="th-sm">Address</th>
-				<th class="th-sm">No. of Family</th>
-				<th class="th-sm">No. of Family Member</th>
-				<th class="th-sm">Total Household Income</th>
-				<th class="th-sm">Action</th>
+				<th class="th-sm">Alamat Rumah</th>
+				<th class="th-sm">No. Keluarga</th>
+				<th class="th-sm">No. Ahli Keluarga</th>
+				<th class="th-sm">Jumlah Pendapatan Rumah (RM)</th>
+				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -60,7 +60,7 @@
 		        },
 	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
 	            		var button = `<div class="text-center">
-	            						<button class="btn btn-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View Detail"><i class="far fa-eye"></i></button>
+	            						<button class="btn btn-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="Papar Maklumat"><i class="far fa-eye"></i></button>
 	            					</div>
 	            					`;
 	            		return button;

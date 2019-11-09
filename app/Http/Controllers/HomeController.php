@@ -45,31 +45,31 @@ class HomeController extends Controller
         $active_no_count = Villager::whereis_active('0')->where('death_date', null)->count();
 
         $activeChart = new Chartjs;
-        $activeChart->title("Active Status");
-        $activeChart->labels(['Yes', 'No']);
-        $activeChart->dataset('Active Status', 'bar', [$active_yes_count,$active_no_count])->options([
+        $activeChart->title("Status Aktif");
+        $activeChart->labels(['Ya', 'Tidak']);
+        $activeChart->dataset('Status Aktif', 'bar', [$active_yes_count,$active_no_count])->options([
             'backgroundColor' => ['#9B59B6', '#2ECC71']
         ]);
 
         $maritalChart = new Chartjs;
-        $maritalChart->title("Marital Status");
+        $maritalChart->title("Status Perkahwinan");
         $maritalChart->labels(['bujang', 'kahwin','duda']);
-        $maritalChart->dataset('Marital Status', 'bar', [$data_single,$data_kahwin,$data_duda])->options([
+        $maritalChart->dataset('Status Perkahwinan', 'bar', [$data_single,$data_kahwin,$data_duda])->options([
             'backgroundColor' => ['#9B59B6', '#2ECC71', '#FFB74D']
         ]);
 
         $genderChart = new Chartjs;
-        $genderChart->title("Gender");
+        $genderChart->title("Jantina");
         $genderChart->labels(['Lelaki', 'Perempuan']);
         $genderChart->displayAxes(false);
-        $genderChart->dataset('Gender', 'pie', [$data_male,$data_female])->options([
+        $genderChart->dataset('Jantina', 'pie', [$data_male,$data_female])->options([
             'backgroundColor' => ['#33A1FF', '#FF333B'],
         ]);
 
         $propertyOwnerChart = new Chartjs;
-        $propertyOwnerChart->title("Property Owner");
-        $propertyOwnerChart->labels(['No', 'Yes']);
-        $propertyOwnerChart->dataset('Property Owner','bar', [$data_noProperty,$data_haveProperty])->options([
+        $propertyOwnerChart->title("Pemilik Harta");
+        $propertyOwnerChart->labels(['Ya', 'Tidak']);
+        $propertyOwnerChart->dataset('Pemilik Harta','bar', [$data_noProperty,$data_haveProperty])->options([
             'backgroundColor' => ['#333399', '#FF0066']
         ]);
 

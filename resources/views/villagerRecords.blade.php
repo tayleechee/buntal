@@ -21,18 +21,18 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>View All Villager Records</h5>
+		<h5>Rekod Penduduk</h5>
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="villagersTable">
 		<thead class="thead-dark">
 			<tr class="text-center">
 				<th class="th-sm">No.</th>
-				<th class="th-sm">Name</th>
-				<th class="th-sm">Address</th>
-				<th class="th-sm">Gender</th>
-				<th class="th-sm">Race</th>
-				<th class="th-sm">Action</th>
+				<th class="th-sm">Nama</th>
+				<th class="th-sm">Alamat Rumah</th>
+				<th class="th-sm">Jantina</th>
+				<th class="th-sm">Bangsa</th>
+				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -13,32 +13,32 @@
 
 <div class="container">
     <select name="column_select" id="column_select">
-        <option value="col1">Population</option>
-        <option value="col2">New Born</option>
-        <option value="col3">Deaths</option>
+        <option value="col1">Populasi</option>
+        <option value="col2">Bayi</option>
+        <option value="col3">Kematian</option>
     </select>
 
     <select name="layout_select" id="layout_select">
         <!--Below shows when '1 column' is selected is hidden otherwise-->
-        <option value="col1" id="ByGenderOpt">By Gender</option>
-        <option value="col1">By Age Range</option>
-        <option value="col1">By Education Level</option>
-        <option value="col1">By Marital Status</option>
+        <option value="col1" id="ByGenderOpt">Jantina</option>
+        <option value="col1">Umur</option>
+        <option value="col1">Pendidikan</option>
+        <option value="col1">Status Perkahwinan</option>
 
         <!--Below shows when '2 column' is selected is hidden otherwise-->
-        <option value="col2">By Year</option>
-        <option value="col2">By Month In a Year</option>
+        <option value="col2">Tahun</option>
+        <option value="col2">Bulan</option>
 
         <!--Below shows when '3 column' is selected is hidden otherwise-->
-        <option value="col3">By Year</option>
-        <option value="col3">By Month In a Year</option>
+        <option value="col3">Tahun</option>
+        <option value="col3">Bulan</option>
     </select>
 
     <div class="row">
-            <div class="col-md-7" align="right"><h4>Villagers Details Report</h4></div>
+            <div class="col-md-7" align="right"><h4>Laporan Matlumat Penduduk</h4></div>
             <div class="col-md-5" align="right">
                 <div>
-                    <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Convert into PDF</a>
+                    <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Format PDF</a>
                 </div>
             </div>
     </div>
@@ -47,10 +47,10 @@
             <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Nama</th>
                     <th>IC</th>
-                    <th>Gender</th>
-                    <th>Race</th>
+                    <th>Jantina</th>
+                    <th>Bangsa</th>
                 </tr>
             </thead>
             <tbody>

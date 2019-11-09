@@ -61,7 +61,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="font-weight-bold dashboard-header-blue">Total Penduduk</div>
+                            <div class="font-weight-bold dashboard-header-blue">Jumlah Penduduk</div>
                             <div class="col mr-2 px-0" style="font-size: 1.75rem">{{$villagerCount}}</div>
                         </div>
                         <div class="col-auto">
@@ -76,7 +76,7 @@
                 <div class="card-body ">
                     <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="font-weight-bold dashboard-header-green">Total Houses</div>
+                            <div class="font-weight-bold dashboard-header-green">Jumlah Rumah</div>
                             <div class="col mr-2 px-0" style="font-size: 1.75rem">{{$houseCount}}</div>
                         </div>
                         <div class="col-auto">
