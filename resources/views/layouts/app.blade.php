@@ -181,8 +181,8 @@
                               <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Penduduk</a>
                               <a class="dropdown-item" href="{{route('houseRecords.index')}}">Rumah</a>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </li>                        
+						<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle ml-3" href="{{route('statistics.index')}}" id="viewStatisticsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Statistik</a>
                             <ul class="dropdown-menu" aria-labelledby="viewStatisticsDropdown">
                                 <li class="dropdown-submenu">
@@ -218,7 +218,16 @@
                                 <li><a class="dropdown-item" href="{{route('statistics.monthlyHouseholdIncome')}}">Pendapatan Isi Rumah Bulanan</a></li>
                             </ul>
                         </li>
-                        <li><a class="ml-2 nav-link nav-item" href="{{route('dynamic_pdf')}}">Menjana Laporan</a></li>
+						<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle ml-3" href="{{route('dynamicpdf.summaryReport')}}" id="generateReportDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laporan Terkini</a>
+                            <ul class="dropdown-menu" aria-labelledby=generateReportDropdown">
+								<li><a class="dropdown-item" href="{{route('dynamicpdf.summaryReport')}}">Ringkasan Laporan Demografi</a></li>
+								<li><a class="dropdown-item" href="{{route('dynamicpdf.general')}}">Ringkasan Data Penduduk</a></li>
+                                <li><a class="dropdown-item" href="{{route('dynamicpdf.populationReport')}}">Populasi</a></li>
+                                <li><a class="dropdown-item" href="{{route('dynamicpdf.newborn')}}">Kelahiran Bayi</a></li>
+								<li><a class="dropdown-item" href="{{route('dynamicpdf.death')}}">Kematian</a></li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
