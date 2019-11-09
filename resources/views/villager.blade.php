@@ -85,7 +85,7 @@
 			<div class="form-group row pl-2 mt-3">
 				<label for="ic" class="col-form-label col-2 form_ic_label">IC</label>
 				<div class="col form-input-col d-none">
-					<input type="text" name="ic" id="ic" class="form-control form_ic" value="<?php echo isset($villager->ic) ? $villager->ic : ''  ?>" required>
+					<input type="text" name="ic" id="ic" class="form-control form_ic" value="<?php echo isset($villager->ic) ? $villager->ic : ''  ?>" pattern="\d{12}" title="12 numbers without -" required>
 				</div>
 				<div class="col form-input-div text-left col-form-label">
 					<?php echo isset($villager->ic) ? $villager->ic : ''  ?>
