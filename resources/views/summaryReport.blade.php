@@ -6,15 +6,14 @@
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <div class="container">
-    <div class="row">
-            <div class="col-md-8" align="left"><h3>Ringkasan Laporan Terkini Demografi Kampung Buntal {!! $year !!}</h3></div>
-            <div class="col-md-4" align="right">
-                <div>
-                    <a href="{{ url('dynamic_pdf/summaryReportPdf') }}" class="btn btn-danger" target="_blank">Convert into PDF</a>
-                </div>
-            </div>
-    </div>
-	<h4 class="font-weight-bold">Jumlah Penduduk: {!! $sum !!} orang</h4>
+	<div align="right">
+		<a href="{{ url('dynamic_pdf/summaryReportPdf') }}" class="btn btn-danger" target="_blank">Simpan sebagai PDF</a>
+	</div> 	
+	<br>
+	<h1 align="center">Ringkasan Laporan Terkini</h1>
+	<h1 align="center">Demografi Kampung Buntal Tahun {!! $year !!}</h1>
+	<br>
+	<h5 class="font-weight-bold">Jumlah Penduduk: {!! $sum !!} orang</h5>
 	
 	<br />
 	<h5 class="font-weight-bold">Penduduk Tetap</h5>

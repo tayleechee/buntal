@@ -219,19 +219,11 @@
                             </ul>
                         </li>
 						<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle ml-3" href="{{route('statistics.index')}}" id="generateReportDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Report</a>
+                            <a class="nav-link dropdown-toggle ml-3" href="{{route('dynamicpdf.summaryReport')}}" id="generateReportDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laporan Terkini</a>
                             <ul class="dropdown-menu" aria-labelledby=generateReportDropdown">
 								<li><a class="dropdown-item" href="{{route('dynamicpdf.summaryReport')}}">Ringkasan Laporan Demografi</a></li>
-								<li><a class="dropdown-item" href="{{route('dynamic_pdf')}}">General</a></li>
-                                <li class="dropdown-submenu">
-                                    <div class="btn-group dropright">
-                                        <a href="#" class="dropdown-item dropdown-toggle">Populasi</a>
-                                    </div>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('statistics.populationByGender')}}">Mengikut Jantina</a></li>										
-                                        <li><a class="dropdown-item" href="{{route('statistics.populationByRace')}}">Mengikut Kaum</a></li>
-									</ul>
-                                </li>
+								<li><a class="dropdown-item" href="{{route('dynamicpdf.general')}}">Ringkasan Data Penduduk</a></li>
+                                <li><a class="dropdown-item" href="{{route('dynamicpdf.populationReport')}}">Populasi</a></li>
                                 <li><a class="dropdown-item" href="{{route('dynamicpdf.newborn')}}">Kelahiran Bayi</a></li>
 								<li><a class="dropdown-item" href="{{route('dynamicpdf.death')}}">Kematian</a></li>
                             </ul>

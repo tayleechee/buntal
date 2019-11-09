@@ -12,14 +12,10 @@
   </style>
 
 <div class="container">
-    <div class="row">
-            <div class="col-md-7" align="right"><h4>{!! $title !!}</h4></div>
-            <div class="col-md-5" align="right">
-                <div>
-                    <a href="{{ url('dynamic_pdf/pdf_month/'.$type) }}" class="btn btn-danger" target="_blank">Convert into PDF</a>
-                </div>
-            </div>
-    </div>
+	<div align="right">
+		<a href="{{ url('dynamic_pdf/pdf_month/'.$type) }}" class="btn btn-danger" target="_blank">Simpan sebagai PDF</a>
+	</div> 	
+	<h1 align="center">{!! $title !!}</h1>
     <br />
 	<h5 class="font-weight-bold">Jumlah {!! $type !!}: {!! $sum !!} orang</h5>
 	<div class="table-responsive">

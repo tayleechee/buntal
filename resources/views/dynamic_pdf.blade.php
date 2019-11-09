@@ -12,72 +12,350 @@
   </style>
 
 <div class="container">
-    <select name="column_select" id="column_select">
-        <option value="col1">Population</option>
-        <option value="col2">New Born</option>
-        <option value="col3">Deaths</option>
-    </select>
-
-    <select name="layout_select" id="layout_select">
-        <!--Below shows when '1 column' is selected is hidden otherwise-->
-        <option value="col1" id="ByGenderOpt">By Gender</option>
-        <option value="col1">By Age Range</option>
-        <option value="col1">By Education Level</option>
-        <option value="col1">By Marital Status</option>
-
-        <!--Below shows when '2 column' is selected is hidden otherwise-->
-        <option value="col2">By Year</option>
-        <option value="col2">By Month In a Year</option>
-
-        <!--Below shows when '3 column' is selected is hidden otherwise-->
-        <option value="col3">By Year</option>
-        <option value="col3">By Month In a Year</option>
-    </select>
-
-    <div class="row">
-            <div class="col-md-7" align="right"><h4>Penduduk Kampung Buntal</h4></div>
-            <div class="col-md-5" align="right">
-                <div>
-                    <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Convert into PDF</a>
-                </div>
-            </div>
+	<div class="row">
+		<div class="col-md-7">
+			<select name="column_select" id="column_select">
+				<option value="col11">Mengikut Jantina</option>
+				<option value="col12">Mengikut Kaum</option>
+			</select>
+		</div>
+		<div class="col-md-5" align="right">
+			<div>
+				<a href="{{ url('dynamic_pdf/pdf_gender') }}" class="btn btn-danger col11 kotak" target="_blank">Simpan sebagai PDF</a>
+				<a href="{{ url('dynamic_pdf/pdf_race') }}" class="btn btn-danger col12 kotak" target="_blank" style="display:none;">Simpan sebagai PDF</a>
+			</div>
+		</div>
     </div>
-    <br />
-	@php
+    <br>
+
+    @php
 		$count = 1;
 	@endphp
-	<h5 class="font-weight-bold">Jumlah Penduduk: {{ $villager_count }} orang</h5>
-    <div class="table-responsive">
+
+    <div class="Table-responsive col11 kotak">
+    <h1 align='center'>Penduduk Kampung Buntal mengikut Jantina</h1>
+    <br>
+    <h5 class="font-weight-bold">Jumlah Penduduk: {{ $villager_count }} orang</h5>
+    <br>
+            <table class="table table-striped table-bordered col-6">
+                <thead>
+                    <tr>
+                        <th>Jantina</th>
+                        <th>Bilangan Penduduk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                    $num_male=0;
+                    $num_female=0;
+                    @endphp
+                    @foreach($villager_data as $villager)
+                    @php
+                        if($villager->gender == 'm')
+                            $num_male ++;
+                        else
+                            $num_female++;
+                    @endphp
+                    @endforeach
+                    <tr>
+                        <td> Lelaki </td>
+                        <td>{{ $num_male }}</td>
+                    </tr>
+                    <tr>
+                        <td> Perempuan </td>
+                        <td>{{ $num_female }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+
             <table class="table table-striped table-bordered">
+            <h5>Jantina Lelaki</h5>
             <thead>
                 <tr>
-					<th>#</th>
-                    <th>Nama</th>
-                    <th>No. K/P</th>
-                    <th>Jantina</th>
-                    <th>Kaum</th>
+                    <th style="width:10%">#</th>
+                    <th style="width:35%">Nama</th>
+                    <th style="width:35%">No K/P</th>
+                    <th style="width:20%">Kaum</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($villager_data as $villager)
-				@php
-					if ($villager->gender == 'm')
-						$gender = 'Lelaki';
-					else
-						$gender = 'Perempuan';					
-					$ethinicity = ucwords($villager->race);
-				@endphp
-                <tr>
-					<td>{{ $count }}</td>
-                    <td>{{ $villager->name }}</td>
-                    <td>{{ $villager->ic }}</td>
-                    <td>{{ $gender }}</td>
-                    <td>{{ $ethinicity }}</td>
-                </tr>
-				@php $count++; @endphp
+                @foreach($m_villager_data as $male_villager)
+				@php $race = ucwords($male_villager->race); @endphp
+                     <tr>
+                        <td>{{ $count }}</td>
+                        <td>{{ $male_villager->name }}</td>
+                        <td>{{ $male_villager->ic }}</td>
+                        <td>{{ $race }}</td>
+                     </tr>
+                @php $count++; @endphp
                 @endforeach
             </tbody>
             </table>
+
+            <br>
+            @php
+		    $count = 1;
+	        @endphp
+            <table class="table table-striped table-bordered">
+            <h5>Jantina Perempuan</h5>
+            <thead>
+                <tr>
+                    <th style="width:10%">#</th>
+                    <th style="width:35%">Nama</th>
+                    <th style="width:35%">No K/P</th>
+                    <th style="width:20%">Kaum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($f_villager_data as $female_villager)
+				@php $race = ucwords($female_villager->race); @endphp
+                     <tr>
+                        <td>{{ $count }}</td>
+                        <td>{{ $female_villager->name }}</td>
+                        <td>{{ $female_villager->ic }}</td>
+                        <td>{{ $race }}</td>
+                     </tr>
+                @php $count++; @endphp
+                @endforeach
+            </tbody>
+            </table>
+    </div>
+
+    <div class="Table-responsive col12 kotak ">
+    <h1>Penduduk Kampung Buntal mengikut Kaum</h1>
+    <br><br>
+    <h5 class="font-weight-bold">Jumlah Penduduk: {{ $villager_count }} orang</h5>
+    <br>
+    <table class="table table-striped table-bordered col-6">
+                <thead>
+                    <tr>
+                        <th>Kaum</th>
+                        <th>Bilangan Penduduk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                    $num_melayu=0;
+                    $num_bumi=0;
+                    $num_cina=0;
+                    $num_india=0;
+                    $num_lain=0;
+                    @endphp
+                    @foreach($villager_data as $villager)
+                    @php
+                        if($villager->race == 'malay')
+                            $num_melayu ++;
+                        else if($villager->race == 'bumiputera')
+                            $num_bumi ++;
+                        else if($villager->race == 'cina')
+                            $num_cina ++;
+                        else if($villager->race == 'india')
+                            $num_india ++;
+                        else if($villager->race == 'other')
+                            $num_lain ++;
+                    @endphp
+                    @endforeach
+                    <tr>
+                        <td> Melayu </td>
+                        <td>{{ $num_melayu }}</td>
+                    </tr>
+                    <tr>
+                        <td> Bumiputera </td>
+                        <td>{{ $num_bumi }}</td>
+                    </tr>
+                    <tr>
+                        <td> Cina </td>
+                        <td>{{ $num_cina }}</td>
+                    </tr>
+                    <tr>
+                        <td> India </td>
+                        <td>{{ $num_india }}</td>
+                    </tr>
+                    <tr>
+                        <td> Lain - lain </td>
+                        <td>{{ $num_lain }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+			
+            @php
+		    $count = 1;
+	        @endphp
+			@if(count($malay_villager_data) != 0)
+            <table class="table table-striped table-bordered">
+            <h5>Kaum Melayu</h5>
+            <thead>
+                <tr>
+                    <th style="width:10%">#</th>
+                    <th style="width:35%">Nama</th>
+                    <th style="width:35%">No K/P</th>
+                    <th style="width:20%">Jantina</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($malay_villager_data as $malay_villager)
+                @php
+                if ($malay_villager->gender == 'm')
+						$gender = 'Lelaki';
+					else
+						$gender = 'Perempuan';
+                @endphp
+                     <tr>
+                        <td>{{ $count }}</td>
+                        <td>{{ $malay_villager->name }}</td>
+                        <td>{{ $malay_villager->ic }}</td>
+                        <td>{{ $gender }}</td>
+                     </tr>
+                @php $count++; @endphp
+                @endforeach
+
+            </tbody>
+            </table>
+            <br>
+			@endif
+			
+            @php
+		    $count = 1;
+	        @endphp
+			@if(count($bumi_villager_data) != 0)
+            <table class="table table-striped table-bordered">
+            <h5>Kaum Bumiputera</h5>
+            <thead>
+                <tr>
+                    <th style="width:10%"th>
+                    <th style="width:35%">Nama</th>
+                    <th style="width:35%">No K/P</th>
+                    <th style="width:20%">Jantina</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($bumi_villager_data as $bumi_villager)
+                @php
+                if ($bumi_villager->gender == 'm')
+						$gender = 'Lelaki';
+					else
+						$gender = 'Perempuan';
+                @endphp
+                     <tr>
+                        <td>{{ $count }}</td>
+                        <td>{{ $bumi_villager->name }}</td>
+                        <td>{{ $bumi_villager->ic }}</td>
+                        <td>{{ $gender }}</td>
+                     </tr>
+                @php $count++; @endphp
+                @endforeach
+            </tbody>
+            </table>
+            <br>
+			@endif
+			
+            @php
+		    $count = 1;
+	        @endphp
+			@if(count($cina_villager_data) != 0)
+            <table class="table table-striped table-bordered">
+            <h5>Kaum Cina</h5>
+            <thead>
+                <tr>
+                    <th style="width:10%">#</th>
+                    <th style="width:35%">Nama</th>
+                    <th style="width:35%">No K/P</th>
+                    <th style="width:20%">Jantina</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($cina_villager_data as $cina_villager)
+                @php
+                if ($cina_villager->gender == 'm')
+						$gender = 'Lelaki';
+					else
+						$gender = 'Perempuan';
+                @endphp
+                     <tr>
+                        <td>{{ $count }}</td>
+                        <td>{{ $cina_villager->name }}</td>
+                        <td>{{ $cina_villager->ic }}</td>
+                        <td>{{ $gender }}</td>
+                     </tr>
+                @php $count++; @endphp
+                @endforeach
+
+            </tbody>
+            </table>
+            <br>
+			@endif
+			
+            @php
+		    $count = 1;
+	        @endphp
+			@if(count($india_villager_data) != 0)
+            <table class="table table-striped table-bordered">
+            <h5>Kaum India</h5>
+            <thead>
+                <tr>
+                    <th style="width:10%">#</th>
+                    <th style="width:35%">Nama</th>
+                    <th style="width:35%">No K/P</th>
+                    <th style="width:20%">Jantina</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($india_villager_data as $india_villager)
+                @php
+                if ($india_villager->gender == 'm')
+						$gender = 'Lelaki';
+					else
+						$gender = 'Perempuan';
+                @endphp
+                     <tr>
+                        <td>{{ $count }}</td>
+                        <td>{{ $india_villager->name }}</td>
+                        <td>{{ $india_villager->ic }}</td>
+                        <td>{{ $gender }}</td>
+                     </tr>
+                @php $count++; @endphp
+                @endforeach
+            </tbody>
+            </table>
+            <br>
+			@endif
+			
+            @php
+		    $count = 1;
+	        @endphp
+			@if(count($lain_villager_data) != 0)
+            <table class="table table-striped table-bordered">
+            <h5>Kaum Lain</h5>
+            <thead>
+                <tr>
+                    <th style="width:10%">#</th>
+                    <th style="width:35%">Nama</th>
+                    <th style="width:35%">No K/P</th>
+                    <th style="width:20%">Jantina</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($lain_villager_data as $lain_villager)
+                @php
+                if ($lain_villager->gender == 'm')
+						$gender = 'Lelaki';
+					else
+						$gender = 'Perempuan';
+                @endphp
+                     <tr>
+                        <td>{{ $count }}</td>
+                        <td>{{ $lain_villager->name }}</td>
+                        <td>{{ $lain_villager->ic }}</td>
+                        <td>{{ $gender }}</td>
+                     </tr>
+                @php $count++; @endphp
+                @endforeach
+            </tbody>
+            </table>
+			@endif
     </div>
 </div>
 
@@ -101,7 +379,17 @@
             $("#layout_select").html(addoptarr.join(''))
         }).change();
 
-
+        $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+                $(".kotak").not("." + optionValue).hide();
+                $("." + optionValue).show();
+            } else{
+                $(".kotak").hide();
+            }
+        });
+    }).change();
     });
 </script>
 

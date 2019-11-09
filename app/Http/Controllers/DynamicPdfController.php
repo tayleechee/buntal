@@ -10,12 +10,12 @@ use App\Villager;
 use App\House;
 
 class DynamicPDFController extends Controller
-{
-    function index()
+{  
+	function general()
     {
 		$villager_data = $this->get_villager_data();
 		$villager_count = $villager_data->count();
-		return view('dynamic_pdf', compact('villager_data','villager_count'));
+		return view('dynamic_pdf_general', compact('villager_data','villager_count'));
     }
 	
 	function summary_report()
@@ -235,14 +235,430 @@ class DynamicPDFController extends Controller
 		$pdf->loadHTML($output);
 		return $pdf->stream();
 	}
+	
+	function population_report()
+    {
+		$villager_data = $this->get_villager_data();
+		$m_villager_data = $this->get_m_villager_data();
+		$f_villager_data = $this->get_f_villager_data();
+		$malay_villager_data = $this->get_malay_data();
+		$bumi_villager_data = $this->get_bumi_data();
+		$cina_villager_data = $this->get_cina_data();
+		$india_villager_data = $this->get_india_data();
+		$lain_villager_data = $this->get_lain_data();
+		$villager_count = $villager_data->count();
+		return view('dynamic_pdf', compact('villager_data',
+											'villager_count',
+											'm_villager_data',
+											'f_villager_data',
+											'malay_villager_data',
+											'bumi_villager_data',
+											'cina_villager_data',
+											'india_villager_data',
+											'lain_villager_data'
+											));
+    }
 
     function get_villager_data()
     {
-		$villager_data = DB::table('villagers')
-			->where('death_date', null)
-			->orderBy('dob', 'asc')
+		$villager_data = Villager::where('death_date', null)->get();
+		return $villager_data;
+    }
+
+    function get_m_villager_data()
+    {
+		$villager_data = Villager::where('death_date', null)
+			->where('gender','=','m')
 			->get();
 		return $villager_data;
+    }
+
+    function get_f_villager_data()
+    {
+		$villager_data = Villager::where('death_date', null)
+			->where('gender','=','f')
+			->get();
+		return $villager_data;
+    }
+
+    function get_malay_data()
+    {
+		$villager_data = Villager::where('death_date', null)
+			->where('race','=','malay')
+			->get();
+		return $villager_data;
+    }
+
+    function get_bumi_data()
+    {
+		$villager_data = Villager::where('death_date', null)
+			->where('race','=','bumiputera')
+			->get();
+		return $villager_data;
+    }
+
+    function get_cina_data()
+    {
+		$villager_data = Villager::where('death_date', null)
+			->where('race','=','cina')
+			->get();
+		return $villager_data;
+    }
+
+    function get_india_data()
+    {
+		$villager_data = Villager::where('death_date', null)
+			->where('race','=','india')
+			->get();
+		return $villager_data;
+    }
+
+    function get_lain_data()
+    {
+		$villager_data = Villager::where('death_date', null)
+			->where('race','=','other')
+			->get();
+		return $villager_data;
+    }
+
+    function pdf_gender()
+    {
+		$pdf = \App::make('dompdf.wrapper');
+		$pdf->loadHTML($this->convert_villager_gender_data_to_html());
+		return $pdf->stream();
+    }
+
+    function pdf_race()
+    {
+		$pdf = \App::make('dompdf.wrapper');
+		$pdf->loadHTML($this->convert_villager_race_data_to_html());
+		return $pdf->stream();
+    }
+
+    function convert_villager_gender_data_to_html()
+    {
+     $villager_data = $this->get_villager_data();
+     $m_villager_data = $this->get_m_villager_data();
+     $f_villager_data = $this->get_f_villager_data();
+
+     $output = '
+     <h3 align="center">Villager By Gender</h3>
+     <h4 style="font-weight:bold;">Jumlah Penduduk: '.$villager_data->count().' orang</h4>
+     <table width="100%" style="border-collapse: collapse; border: 1px;">
+        $count = 1;
+        <tr>
+            <th style="border: 1px solid; padding:12px;" width="10%">Jantina</th>
+            <th style="border: 1px solid; padding:12px;" width="20%">Bilangan Penduduk</th>
+        </tr>
+     ';
+     $count = 1;
+     $num_male=0;
+     $num_female=0;
+     foreach($villager_data as $villager)
+     {
+        if($villager->gender == 'm')
+            $num_male ++;
+        else
+            $num_female++;
+     }
+     $output .= '
+        <tr>
+            <td style="border: 1px solid; padding:12px;">Lelaki</td>
+            <td style="border: 1px solid; padding:12px;">'.$num_male.'</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid; padding:12px;">Perempuan</td>
+            <td style="border: 1px solid; padding:12px;">'.$num_female.'</td>
+        </tr>
+      ';
+     $output .= '</table>';
+     $output .= '
+     <h3 align="left">Jantina Lelaki</h3>
+     <table width="100%" style="border-collapse: collapse; border: 1px;">
+        $count = 1;
+        <tr>
+            <th style="border: 1px solid; padding:12px;" width="5%">#</th>
+            <th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+            <th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+            <th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
+        </tr>
+     ';
+     $count = 1;
+     foreach($m_villager_data as $male_villager)
+     {
+      $output .= '
+        <tr>
+            <td style="border: 1px solid; padding:12px;">'.$count.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$male_villager->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$male_villager->ic.'</td>
+            <td style="border: 1px solid; padding:12px;">'.ucwords($male_villager->race).'</td>
+        </tr>
+      ';
+      $count++;
+     }
+     $output .= '</table>';
+
+     $output .= '
+     <h3 align="left">Jantina Perempuan</h3>
+     <table width="100%" style="border-collapse: collapse; border: 1px;">
+        $count = 1;
+        <tr>
+            <th style="border: 1px solid; padding:12px;" width="5%">#</th>
+            <th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+            <th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+            <th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
+        </tr>
+     ';
+     $count = 1;
+     foreach($f_villager_data as $female_villager)
+     {
+      $output .= '
+        <tr>
+            <td style="border: 1px solid; padding:12px;">'.$count.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$female_villager->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$female_villager->ic.'</td>
+            <td style="border: 1px solid; padding:12px;">'.ucwords($female_villager->race).'</td>
+        </tr>
+      ';
+      $count++;
+     }
+     $output .= '</table>';
+
+     return $output;
+    }
+
+    function convert_villager_race_data_to_html()
+    {
+     $villager_data = $this->get_villager_data();
+     $malay_villager_data = $this->get_malay_data();
+     $bumi_villager_data = $this->get_bumi_data();
+     $cina_villager_data = $this->get_cina_data();
+     $india_villager_data = $this->get_india_data();
+     $lain_villager_data = $this->get_lain_data();
+
+     $output = '
+     <h3 align="center">Villager By Gender</h3>
+     <h4 style="font-weight:bold;">Jumlah Penduduk: '.$villager_data->count().' orang</h4>
+     <table width="100%" style="border-collapse: collapse; border: 1px;">
+        $count = 1;
+        <tr>
+            <th style="border: 1px solid; padding:12px;" width="10%">Kaum</th>
+            <th style="border: 1px solid; padding:12px;" width="20%">Bilangan</th>
+        </tr>
+     ';
+     $count = 1;
+     $num_melayu=0;
+     $num_bumi=0;
+     $num_cina=0;
+     $num_india=0;
+     $num_lain=0;
+     foreach($villager_data as $villager)
+     {
+        if($villager->race == 'malay')
+            $num_melayu ++;
+        else if($villager->race == 'bumiputera')
+            $num_bumi ++;
+        else if($villager->race == 'cina')
+            $num_cina ++;
+        else if($villager->race == 'india')
+            $num_india ++;
+        else if($villager->race == 'other')
+            $num_lain ++;
+     }
+     $output .= '
+        <tr>
+            <td style="border: 1px solid; padding:12px;">Melayu</td>
+            <td style="border: 1px solid; padding:12px;">'.$num_melayu.'</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid; padding:12px;">Bumiputera</td>
+            <td style="border: 1px solid; padding:12px;">'.$num_bumi.'</td>
+        </tr>
+        <tr>
+        <td style="border: 1px solid; padding:12px;">Cina</td>
+        <td style="border: 1px solid; padding:12px;">'.$num_cina.'</td>
+        </tr>
+        <tr>
+        <td style="border: 1px solid; padding:12px;">India</td>
+        <td style="border: 1px solid; padding:12px;">'.$num_india.'</td>
+        </tr>
+        <tr>
+        <td style="border: 1px solid; padding:12px;">Lain</td>
+        <td style="border: 1px solid; padding:12px;">'.$num_lain.'</td>
+        </tr>
+      ';
+     $output .= '</table>';
+
+	 if (count($malay_villager_data) != 0)
+	 {
+		 $output .= '
+		 <h3 align="left">Kaum Melayu</h3>
+		 <table width="100%" style="border-collapse: collapse; border: 1px;">
+			$count = 1;
+			<tr>
+				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+			</tr>
+		 ';	 
+	 
+		 $count = 1;
+		 foreach($malay_villager_data as $malay_villager)
+		 {
+		  if ($malay_villager->gender == 'm')
+			  $gender = 'Lelaki';
+		  else
+			  $gender = 'Perempuan';
+		  $output .= '
+			<tr>
+				<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$malay_villager->name.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$malay_villager->ic.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+			</tr>
+		  ';
+		  $count++;
+		 }
+		 $output .= '</table>';
+	 }
+	 
+	 if (count($bumi_villager_data) != 0)
+	 {
+		 $output .= '
+		 <h3 align="left">Kaum Bumiputera</h3>
+		 <table width="100%" style="border-collapse: collapse; border: 1px;">
+			$count = 1;
+			<tr>
+				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+			</tr>
+		 ';	 
+	 
+		 $count = 1;
+		 foreach($bumi_villager_data as $bumi_villager)
+		 {
+		  if ($bumi_villager->gender == 'm')
+			  $gender = 'Lelaki';
+		  else
+			  $gender = 'Perempuan';
+		  $output .= '
+			<tr>
+				<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$bumi_villager->name.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$bumi_villager->ic.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+			</tr>
+		  ';
+		  $count++;
+		 }
+		 $output .= '</table>';
+	 }
+	 
+	 if (count($cina_villager_data) != 0)
+	 {
+		 $output .= '
+		 <h3 align="left">Kaum Cina</h3>
+		 <table width="100%" style="border-collapse: collapse; border: 1px;">
+			$count = 1;
+			<tr>
+				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+			</tr>
+		 ';
+	 
+		 $count = 1;
+		 foreach($cina_villager_data as $cina_villager)
+		 {
+		  if ($cina_villager->gender == 'm')
+			  $gender = 'Lelaki';
+		  else
+			  $gender = 'Perempuan';
+		  $output .= '
+			<tr>
+				<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$cina_villager->name.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$cina_villager->ic.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+			</tr>
+		  ';
+		  $count++;
+		 }
+		 $output .= '</table>';
+	 }
+	 
+	 if (count($india_villager_data) != 0)
+	 {
+		 $output .= '
+		 <h3 align="left">Kaum India</h3>
+		 <table width="100%" style="border-collapse: collapse; border: 1px;">
+			$count = 1;
+			<tr>
+				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+			</tr>
+		 ';
+		 
+		 $count = 1;
+		 foreach($india_villager_data as $india_villager)
+		 {
+		  if ($india_villager->gender == 'm')
+			  $gender = 'Lelaki';
+		  else
+			  $gender = 'Perempuan';
+		  $output .= '
+			<tr>
+				<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$india_villager->name.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$india_villager->ic.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+			</tr>
+		  ';
+		  $count++;
+		 }
+		 $output .= '</table>';
+	 }
+	 
+	 if (count($lain_villager_data) != 0)
+	 {
+		 $output .= '
+		 <h3 align="left">Kaum Lain</h3>
+		 <table width="100%" style="border-collapse: collapse; border: 1px;">
+			$count = 1;
+			<tr>
+				<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+				<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+				<th style="border: 1px solid; padding:12px;" width="30%">NO K/P</th>
+				<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+			</tr>
+		 ';
+		 
+		 $count = 1;
+		 foreach($lain_villager_data as $lain_villager)
+		 {
+		  if ($lain_villager->gender == 'm')
+			  $gender = 'Lelaki';
+		  else
+			  $gender = 'Perempuan';
+		  $output .= '
+			<tr>
+				<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$lain_villager->name.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$lain_villager->ic.'</td>
+				<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+			</tr>
+		  ';
+		  $count++;
+		 }
+		 $output .= '</table>';
+	 }
+     return $output;
     }
 
     function pdf()
