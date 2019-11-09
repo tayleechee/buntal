@@ -46,7 +46,7 @@ class HomeController extends Controller
 
         $data_malay = Villager::whererace('malay')->where('death_date', null)->count();
         $data_cina = Villager::whererace('cina')->where('death_date', null)->count();
-        $data_bumiputra = Villager::whererace('bumiputra')->where('death_date', null)->count();
+        $data_bumiputra = Villager::whererace('bumiputera')->where('death_date', null)->count();
         $data_india = Villager::whererace('india')->where('death_date', null)->count();
         $data_lain = Villager::whererace('other')->where('death_date', null)->count();
 
