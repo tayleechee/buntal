@@ -208,7 +208,7 @@
 					<legend class="family_member_legend scheduler-border">Ahli Keluarga <span class="legend_count">{{ ($index+1) }}</span></legend> <!--Family Member-->
 					@endif
 					<div class="text-right">
-						<button type="button" class="btn btn-sm btn-primary viewMemberDetailBtn mr-1" data-id="{{ $villager->id }}">View Detail</button>
+						<button type="button" class="btn btn-sm btn-primary viewMemberDetailBtn mr-1" data-id="{{ $villager->id }}">Papar Maklumat</button>
 						<button type="button" class="btn btn-sm btn-success editMemberBtn mr-1" data-id="{{ $villager->id }}">Ubah</button>
 						<button type="button" class="btn btn-sm btn-danger deleteMemberBtn" data-id="{{ $villager->id }}">Padam</button>
 					</div>
@@ -237,7 +237,7 @@
 					</div>
 
 					<div class="form-group row pl-2 mt-3">
-						<label class="col-form-label col-2 form_phone_label">No. Telefon</label>
+						<label class="col-form-label col-2 form_phone_label">Telefon</label>
 						<div class="col form-nonhidden-input-div col-form-label">
 							{{ $villager->phone }}
 						</div>
@@ -654,12 +654,12 @@
 
 				if (data.poc)
 				{
-					$(".form_phone_label").text("No. Telefon");
+					$(".form_phone_label").text("Telefon");
 					$("#edit_phone").prop("required", true);
 				}
 				else
 				{
-					$(".form_phone_label").text("No. Telefon (Bukan Wajib)");
+					$(".form_phone_label").text("Telefon (Tidak Wajib)");
 					$("#edit_phone").prop("required", false);
 				}
 

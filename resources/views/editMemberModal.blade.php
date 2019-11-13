@@ -6,7 +6,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Ubah Ahli Keluarga</h5> <!--Edit Family Member-->
+            <h5 class="modal-title">Ahli Keluarga (Membuat Perubahan)</h5> <!--Edit Family Member-->
             <button type="button" class="close" data-dismiss="modal">&times;</button>        
         </div>
 

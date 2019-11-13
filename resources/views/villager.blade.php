@@ -94,12 +94,12 @@
 
 			<div class="form-group row pl-2 mt-3">
 				@if ( isset($villager->poc) )
-				<label for="ic" class="col-form-label col-2 form_ic_label">No. Telefon</label>
+				<label for="ic" class="col-form-label col-2 form_ic_label">Telefon</label>
 				<div class="col form-input-col d-none">
 					<input type="text" name="phone" id="phone" class="form-control form_phone" value="<?php echo isset($villager->phone) ? $villager->phone : ''  ?>" required>
 				</div>
 				@else
-				<label for="ic" class="col-form-label col-2 form_ic_label">No. Telefon (Bukan Wajib)</label>
+				<label for="ic" class="col-form-label col-2 form_ic_label">Telefon (Tidak Wajib)</label>
 				<div class="col form-input-col d-none">
 					<input type="text" name="phone" id="phone" class="form-control form_phone" value="<?php echo isset($villager->phone) ? $villager->phone : ''  ?>">
 				</div>

@@ -29,7 +29,7 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
-                <label for="phone" class="col-form-label col-2 form_phone_label">No. Telefon (Optional)</label>
+                <label for="phone" class="col-form-label col-2 form_phone_label">Telefon (Tidak Wajib)</label>
                 <div class="col">
                   <input type="text" name="phone" id="phone" class="form-control form_phone">
                 </div>
@@ -95,7 +95,7 @@
               </div>
 
               <div class="form-group row pl-2 mt-3">
-                <label for="occupation" class="col-form-label col-2 form_occupation_label">Pekerjaan (Bukan Wajib)</label>
+                <label for="occupation" class="col-form-label col-2 form_occupation_label">Pekerjaan (Tidak Wajib)</label>
                 <div class="col">
                   <input type="text" name="occupation" id="occupation" class="form-control form_occupation">
                 </div>

@@ -39,7 +39,7 @@
 				<th class="th-sm">Nama</th>
 				<th class="th-sm">Alamat Rumah</th>
 				<th class="th-sm">No. K/P</th>
-				<th class="th-sm">No. Telefon</th>
+				<th class="th-sm">Telefon</th>
 				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>

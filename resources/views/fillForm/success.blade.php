@@ -30,7 +30,7 @@
 	</div>
 
 	<div class="text-center mt-4">
-		<h5>Anda akan diarahkan selepas <span id="redirect_counter">10</span> saat.</h5>
+		<h5>Anda akan kembali ke halaman login selepas <span id="redirect_counter">10</span> saat.</h5>
 		<h5>Atau klik butang di bawah untuk dialihkan semula.</h5>
 	</div>
 
