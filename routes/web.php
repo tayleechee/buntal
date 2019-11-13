@@ -57,6 +57,14 @@ Route::get('/getHouseRecords', 'HouseRecordsController@getHouseRecords')->name('
 Route::get('/ketuaRumahRecords', 'KetuaRumahRecordsController@index')->name('ketuaRumahRecords.index');
 Route::get('/getKetuaRumahRecords', 'KetuaRumahRecordsController@getKetuaRumahRecords')->name('ketuaRumahRecords.getKetuaRumahRecords');
 
+Route::get('/adminRecords', 'AdminRecordsController@index')->name('adminRecords.index');
+Route::get('/getAdminRecords', 'AdminRecordsController@getAdminRecords')->name('adminRecords.getAdminRecords');
+Route::get('/getAdminDetail', 'AdminRecordsController@getAdminDetail')->name('adminRecords.getAdminDetail');
+Route::post('/addAdmin', 'AdminRecordsController@addAdmin')->name('adminRecords.addAdmin');
+Route::post('/editAdmin', 'AdminRecordsController@editAdmin')->name('adminRecords.editAdmin');
+Route::post('/editAdminPassword', 'AdminRecordsController@editAdminPassword')->name('adminRecords.editAdminPassword');
+Route::get('/deleteAdmin', 'AdminRecordsController@deleteAdmin')->name('adminRecords.deleteAdmin');
+
 Route::get('/house/{id}', 'HouseDetailController@index')->name('houseDetail.index');
 Route::get('/getHouseDetail', 'HouseDetailController@getHouseDetail');
 Route::post('/setHouseDetail', 'HouseDetailController@setHouseDetail');
