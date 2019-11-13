@@ -165,6 +165,6 @@ class VillagerDetailController extends Controller
 		$name = $villager->name;
 		$villager->delete();
 
-		flash($name."'s Berjaya Dikemaskini!")->success(); //Record Deleted
+		flash("Maklumat $name berjaya dikemaskini!")->success(); //Record Deleted
     }
 }
