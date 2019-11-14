@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Villager;
 use App\HousePOC;
+use App\Property;
 use Response;
+use Image;
 
 class VillagerDetailController extends Controller
 {
@@ -166,5 +168,88 @@ class VillagerDetailController extends Controller
 		$villager->delete();
 
 		flash("Maklumat $name berjaya dikemaskini!")->success(); //Record Deleted
+    }
+
+    public function getPropertyDetail(Request $request)
+    {
+    	$id = $request->id;
+
+    	$property = Property::find($id);
+
+    	if (!$property)
+    	{
+    		return Response::json("Maklumat tanah tidak dijumpai.", 455);
+    	}
+
+    	return $property;
+    }
+
+    public function editPropertyDetail(Request $request)
+    {
+    	$id = $request->id;
+
+    	$property = Property::find($id);
+
+    	if (!$property)
+    	{
+    		return Response::json("Maklumat tanah tidak dijumpai.", 455);
+    	}
+
+    	$property->keluasan = $request->keluasan;
+    	$property->kawasan = $request->kawasan;
+    	$property->type = $request->type;
+
+    	$property_id = $property->id;
+    	$villager_id = $property->villager_id;
+
+    	if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $filename = time()."_".$villager_id."_".$property_id.".".$photo->getClientOriginalExtension();
+            $filepath = '/image/upload/'.$filename;
+            Image::make($photo)->save(public_path($filepath));
+
+            $property->image_path = $filepath;
+    	}
+    	$property->save();
+
+    	flash("Maklumat tanah berjaya dikemaskini!")->success();
+
+    	return 200;
+    }
+
+    public function deletePropertyPhoto(Request $request)
+    {
+    	$id = $request->id;
+
+    	$property = Property::find($id);
+
+    	if (!$property)
+    	{
+    		return Response::json("Maklumat tanah tidak dijumpai.", 455);
+    	}
+
+    	$property->image_path = null;
+    	$property->save();
+
+    	flash("Maklumat tanah berjaya dikemaskini!")->success();
+
+    	return 200;
+    }
+
+    public function deleteProperty(Request $request)
+    {
+    	$id = $request->id;
+
+    	$property = Property::find($id);
+
+    	if (!$property)
+    	{
+    		return Response::json("Maklumat tanah tidak dijumpai.", 455);
+    	}
+
+    	$property->delete();
+    	flash("Maklumat tanah berjaya dikemaskini!")->success();
+
+    	return 200;
     }
 }
