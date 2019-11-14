@@ -53,6 +53,8 @@
 
         .title {
             font-size: 65px;
+            padding-left: 4em;
+            padding-right: 4em;
             color: #fff;
             position: relative;
             margin: 0 auto 1em;
