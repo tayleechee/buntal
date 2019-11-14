@@ -54,7 +54,7 @@ class AdminRecordsController extends Controller
 
     	if ($redundant_count > 0)
     	{
-    		return Response::json("Username already used!", 412);
+    		return Response::json("Username ini telah berada dalam sistem!", 412);
     	}
 
     	$admin = new User;
@@ -63,7 +63,7 @@ class AdminRecordsController extends Controller
     	$admin->password = Hash::make($request->password);
     	$admin->save();
 
-    	flash('Admin Added Successfully!')->success();
+    	flash('Telah Berjaya!')->success();
     }
 
     public function editAdmin(Request $request)
@@ -80,7 +80,7 @@ class AdminRecordsController extends Controller
 
     	if ($redundant_count > 0)
     	{
-    		return Response::json("Username already used!", 412);
+    		return Response::json("Username ini telah berada dalam sistem!", 412);
     	}
 
     	$admin = User::find($request->id);
@@ -95,7 +95,7 @@ class AdminRecordsController extends Controller
     		$admin->name = $request->name;
     		$admin->save();
 
-    		flash('Changes Saved!')->success();
+    		flash('Telah Berjaya!')->success();
     	}
     }
 
@@ -125,7 +125,7 @@ class AdminRecordsController extends Controller
 
     	if ($admin->is_superadmin)
     	{
-    		return Response::json('Superadmin cannot be deleted!', 412);
+    		return Response::json('Superadmin tidak dapat dipadam!', 412);
     	}
 
     	$admin->delete();
