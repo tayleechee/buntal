@@ -360,23 +360,23 @@
 							<div class="form-group row pl-2 mt-3">
 								<label class="pr-2 pl-3 padding-top-calc col-2">Jenis Tanah</label>
 								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radio" id="member[`+member_index+`][tanah][1][ncr]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="NCR" required>
-									<label for="member[`+member_index+`][tanah][1][ncr]" class="custom-control-label">NCR</label>
+									<input type="radio" id="tanah[<?php echo $property_index+1;  ?>][ncr]" name="tanah[<?php echo $property_index+1;  ?>][type]" class="custom-control-input tanah" value="NCR" required>
+									<label for="tanah[<?php echo $property_index+1;  ?>][ncr]" class="custom-control-label">NCR</label>
+								</div>
 
-									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input tanah" value="Geran">
-										<label class="custom-control-label">Geran</label>
-									</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input id="tanah[<?php echo $property_index+1;  ?>][geran]" name="tanah[<?php echo $property_index+1;  ?>][type]" type="radio" class="custom-control-input tanah" value="Geran">
+									<label for="tanah[<?php echo $property_index+1;  ?>][geran]" class="custom-control-label">Geran</label>
+								</div>
 
-									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input tanah" value="FL">
-										<label class="custom-control-label">FL</label>
-									</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="tanah[<?php echo $property_index+1;  ?>][fl]" name="tanah[<?php echo $property_index+1;  ?>][type]" class="custom-control-input tanah" value="FL">
+									<label for="tanah[<?php echo $property_index+1;  ?>][fl]" class="custom-control-label">FL</label>
+								</div>
 
-									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input tanah" value="Mix Zone">
-										<label class="custom-control-label">Mix Zone</label>
-									</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="tanah[<?php echo $property_index+1;  ?>][mixzone]" name="tanah[<?php echo $property_index+1;  ?>][type]" class="custom-control-input tanah" value="Mix Zone">
+									<label for="tanah[<?php echo $property_index+1;  ?>][mixzone]" class="custom-control-label">Mix Zone</label>
 								</div>
 								<div class="col form-input-div">
 									{{$property->type}}
