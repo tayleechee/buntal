@@ -46,7 +46,7 @@
 				<div class="form-group row">
 					<label for="step1_numberOfFamily" class="step1 col-sm-12 col-form-label font-weight-bold pl-0">Bilangan Keluarga</label>
 					<div class="col pr-0 pl-0">
-						<input type="number" name="step1_numberOfFamily" id="step1_numberOfFamily" class="step1 col-sm-8 form-control @error('step1_numberOfFamily') is-invalid @enderror" value="{{ old('step1_numberOfFamily') }}" required>
+						<input type="number" name="step1_numberOfFamily" id="step1_numberOfFamily" class="step1 col-sm-8 form-control @error('step1_numberOfFamily') is-invalid @enderror" style="margin-right:-2em" value="{{ old('step1_numberOfFamily') }}" required>
 
 						@error('step1_numberOfFamily')
 						<span class="invalid-feedback" role="alert">

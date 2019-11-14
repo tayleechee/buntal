@@ -130,6 +130,6 @@ class AdminRecordsController extends Controller
 
     	$admin->delete();
 
-    	flash('Admin Deleted!')->success();
+    	flash('Telah Berjaya')->success();
     }
 }
