@@ -10,6 +10,7 @@ use App\Charts\Chartjs;
 use App\Charts\Highcharts;
 use App\Villager;
 use App\House;
+use App\Property;
 
 class StatisticsController extends Controller
 {
@@ -140,6 +141,25 @@ class StatisticsController extends Controller
 		$graph_title = 'Pendaftaran sebagai Pengundi';
 		$x_axis = '';
 		$total_of = 'Bilangan Penduduk yang Layak untuk Mendaftar sebagai Pengundi';
+		$total = array_sum($data);
+		
+        return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
+	}	
+	
+	public function populationByPropertyPossession()
+	{
+		$data_ncr = Property::wheretype('NCR')->count();
+        $data_fl = Property::wheretype('Geran')->count();
+		$data_geran = Property::wheretype('FL')->count();
+		$data_mixzone = Property::wheretype('Mix Zone')->count();
+
+		$label = ['NCR','Geran','FL','Mix Zone'];
+		$data = [$data_ncr,$data_fl,$data_geran,$data_mixzone];		
+		
+		$graph_type = 'column';
+        $graph_title = 'Pemilikan Harta Tanah';
+		$x_axis = 'Jenis Tanah';
+		$total_of = 'Jumlah Penduduk yang memiliki tanah';
 		$total = array_sum($data);
 		
         return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
