@@ -11,11 +11,11 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');*/
+//Auth::routes();
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
@@ -57,11 +57,25 @@ Route::get('/getHouseRecords', 'HouseRecordsController@getHouseRecords')->name('
 Route::get('/ketuaRumahRecords', 'KetuaRumahRecordsController@index')->name('ketuaRumahRecords.index');
 Route::get('/getKetuaRumahRecords', 'KetuaRumahRecordsController@getKetuaRumahRecords')->name('ketuaRumahRecords.getKetuaRumahRecords');
 
+Route::get('/adminRecords', 'AdminRecordsController@index')->name('adminRecords.index');
+Route::get('/getAdminRecords', 'AdminRecordsController@getAdminRecords')->name('adminRecords.getAdminRecords');
+Route::get('/getAdminDetail', 'AdminRecordsController@getAdminDetail')->name('adminRecords.getAdminDetail');
+Route::post('/addAdmin', 'AdminRecordsController@addAdmin')->name('adminRecords.addAdmin');
+Route::post('/editAdmin', 'AdminRecordsController@editAdmin')->name('adminRecords.editAdmin');
+Route::post('/editAdminPassword', 'AdminRecordsController@editAdminPassword')->name('adminRecords.editAdminPassword');
+Route::get('/deleteAdmin', 'AdminRecordsController@deleteAdmin')->name('adminRecords.deleteAdmin');
+
 Route::get('/house/{id}', 'HouseDetailController@index')->name('houseDetail.index');
 Route::get('/getHouseDetail', 'HouseDetailController@getHouseDetail');
 Route::post('/setHouseDetail', 'HouseDetailController@setHouseDetail');
 Route::post('/deleteHouse', 'HouseDetailController@deleteHouse');
 Route::post('/addMember', 'HouseDetailController@addMember');
+
+Route::get('/getPropertyDetail', 'VillagerDetailController@getPropertyDetail');
+Route::post('/editPropertyDetail', 'VillagerDetailController@editPropertyDetail');
+Route::get('/deletePropertyPhoto', 'VillagerDetailController@deletePropertyPhoto');
+Route::get('/deleteProperty', 'VillagerDetailController@deleteProperty');
+Route::post('/addProperty', 'VillagerDetailController@addProperty');
 
 // statistics routes
 Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');

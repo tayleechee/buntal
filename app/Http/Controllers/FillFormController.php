@@ -8,6 +8,8 @@ use Response;
 use App\House;
 use App\Villager;
 use App\HousePOC;
+use App\Property;
+use Image;
 
 class FillFormController extends Controller
 {
@@ -113,11 +115,40 @@ class FillFormController extends Controller
 					$villager->phone = $member->phone;
 
 				$villager->save();
+				$villager_id = $villager->id;
 
 				if ($index == 1) 
 				{
-					$first_member_id = $villager->id;
+					$first_member_id = $villager_id;
 				}
+
+				if (isset($member->tanah))
+				{
+					$tanahs = $member->tanah;
+					foreach ($tanahs as $tanah_index => $tanah)
+					{
+						$tanah = (object)$tanah;
+						$property = new Property;
+						$property->kawasan = $tanah->kawasan;
+						$property->keluasan = $tanah->keluasan;
+						$property->type = $tanah->type;
+						$property->villager_id = $villager_id;
+						$property->save();
+
+						$property_id = $property->id;
+
+						if($request->hasFile('member.'.($index).'.tanah.'.($tanah_index).'.photo')){
+				            $photo = $request->file('member.'.($index).'.tanah.'.($tanah_index).'.photo');
+				            $filename = time()."_".$villager_id."_".$property_id.".".$photo->getClientOriginalExtension();
+				            $filepath = '/image/upload/'.$filename;
+				            Image::make($photo)->save(public_path($filepath));
+
+				            $property->image_path = $filepath;
+				            $property->save();
+			        	}
+					}
+				}
+				
 			}
 			
 			$house_poc = new HousePOC;
@@ -129,5 +160,7 @@ class FillFormController extends Controller
 			$house->delete();
 			return Response::json($e->getMessage(), 500);
 		}
+
+		return 200;
     }
 }

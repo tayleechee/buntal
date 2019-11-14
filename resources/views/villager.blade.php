@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('addPropertyModal')
 
 @section('css')
 <style type="text/css">
@@ -35,6 +36,16 @@
     .ketuaRumah_title {
     	color: blue;
     }
+
+    fieldset.scheduler-border.highlighted-bold {
+		-webkit-transition: all 0.30s ease-in-out;
+		-moz-transition: all 0.30s ease-in-out;
+		-ms-transition: all 0.30s ease-in-out;
+		-o-transition: all 0.30s ease-in-out;
+		outline: none;
+		box-shadow: 2px 2px 5px #AED6F1 !important;
+		border: 2px solid #AED6F1 !important;
+	}
 </style>
 @endsection
 
@@ -346,9 +357,106 @@
 					</div>
 				</div>
 			</div>
-
 		</fieldset>
 		</form>
+
+		@if($villager->is_property_owner == '1') 
+			<div class="mt-5">
+				<div class="text-center">
+					<button class="btn btn-success" id="addTanahBtn" data-id="{{$villager->id}}">Tambah Tanah</button>
+				</div>
+				<div class="tanah_parent_div">
+					@if(count($villager->property) > 0) 
+					@foreach ($villager->property as $property_index => $property)
+					<div class="tanah_show_div mt-5">
+						<div class="text-right">
+							<button type="button" class="btn btn-sm btn-primary mr-1 editTanahBtn" data-id="{{$property->id}}">Ubah</button>
+							<button type="button" class="btn btn-sm btn-success d-none mr-1 saveTanahBtn" data-id="{{$property->id}}">Simpan</button>
+							<button type="button" class="btn btn-sm btn-secondary mr-1 d-none cancelTanahBtn" data-id="{{$property->id}}">Batal</button>
+							@if ($property->image_path)
+							<button type="button" class="btn btn-sm btn-warning deleteTanahPhotoBtn" data-id="{{$property->id}}">Padam Photo</button>
+							@endif
+							<button type="button" class="btn btn-sm btn-danger deleteTanahBtn" data-id="{{$property->id}}">Padam</button>
+						</div>
+					<form id="tanah_{{$property_index+1}}_form" class="tanah_form">
+						{{ csrf_field() }}
+						<input type="hidden" name="id" value="{{$property->id}}">
+					<fieldset class="scheduler-border">
+						<legend class="scheduler-border">Tanah {{$property_index+1}}</legend>
+						<div class="tanah_div">
+
+							<div class="form-group row pl-2 mt-3">
+								<label class="pr-2 pl-3 padding-top-calc col-2">Jenis Tanah</label>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="tanah[<?php echo $property_index+1;  ?>][ncr]" name="type" class="custom-control-input tanah" value="NCR" required <?php if($property->type == 'NCR') echo 'checked' ?> >
+									<label for="tanah[<?php echo $property_index+1;  ?>][ncr]" class="custom-control-label">NCR</label>
+								</div>
+
+								<div class="custom-control custom-radio custom-control-inline">
+									<input id="tanah[<?php echo $property_index+1;  ?>][geran]" name="type" type="radio" class="custom-control-input tanah" value="Geran" <?php if($property->type == 'Geran') echo 'checked' ?> >
+									<label for="tanah[<?php echo $property_index+1;  ?>][geran]" class="custom-control-label">Geran</label>
+								</div>
+
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="tanah[<?php echo $property_index+1;  ?>][fl]" name="type" class="custom-control-input tanah" value="FL" <?php if($property->type == 'FL') echo 'checked' ?> >
+									<label for="tanah[<?php echo $property_index+1;  ?>][fl]" class="custom-control-label">FL</label>
+								</div>
+
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="tanah[<?php echo $property_index+1;  ?>][mixzone]" name="type" class="custom-control-input tanah" value="Mix Zone" <?php if($property->type == 'Mix Zone') echo 'checked' ?> >
+									<label for="tanah[<?php echo $property_index+1;  ?>][mixzone]" class="custom-control-label">Mix Zone</label>
+								</div>
+								<div class="col form-input-div">
+									{{$property->type}}
+								</div>
+							</div>
+
+
+							<div class="form-group row pl-2 mt-3">
+								<label class="pr-2 pl-3 padding-top-calc col-2">Kawasan</label>
+								<div class="col form-input-col d-none">
+									<input type="text" name="kawasan" class="form-control tanah_kawasan" value="{{$property->kawasan}}" required>
+								</div>
+								<div class="col form-input-div">
+									{{$property->kawasan}}
+								</div>
+							</div>
+
+							<div class="form-group row pl-2 mt-3">
+								<label class="pr-2 pl-3 padding-top-calc col-2">Keluasan (Ekar)</label>
+								<div class="col form-input-col d-none">
+									<input type="number" name="keluasan" class="form-control tanah_keluasan" value="{{$property->keluasan}}" step=".01" required>
+								</div>
+								<div class="col form-input-div">
+									{{$property->keluasan}}
+								</div>
+							</div>
+
+							<div class="form-group row pl-2 mt-3">
+								<label class="pr-2 pl-3 padding-top-calc col-2">Photo</label>
+								<div class="col form-input-col d-none">
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="tanah[{{$property_index+1}}][photo]" name="photo">
+									  	<label class="custom-file-label" for="tanah[{{$property_index+1}}][photo]">Choose Image (Upload only if wish to change)</label>
+								  	</div>
+								</div>
+								<div class="col form-input-div">
+									@if (!empty($property->image_path))
+										<img height="350" src="{{$property->image_path}}">
+									@else
+										Not Available
+									@endif
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					</form>
+					</div>
+					@endforeach
+					@endif
+				</div>
+			</div>
+			@endif
 	</div>
 
 </div>
@@ -419,6 +527,28 @@
 	</div>
 </div>
 
+<!-- Confirm Delete Tanah Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="confirmDeleteTanahModal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+		  	<div class="modal-header">
+		        <h5 class="modal-title font-weight-bold">Memadam Maklumat Tanah</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		    	</button>
+		  	</div>
+		  	<div class="modal-body">
+		    	<p class="font-weight-bold">Adakah anda pasti untuk memadam maklumat tanah ini? Tindakan ini tidak dapat diubah.</p> <!--Confirm to Delete? This cannot be undone.-->
+		  	</div>
+		  	<div class="modal-footer">
+		        <button type="button" class="btn btn-danger" id="confirmDeleteTanahBtn" data-id="">Sah</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+		  	</div>
+	    </div>
+	</div>
+</div>
+
+
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -426,6 +556,14 @@
 		$(form).find(".form-control").addClass("d-none");
 		$(form).find(".form-input-col").addClass("d-none");
 		$(form).find(".custom-control").addClass("d-none");
+
+		var tanahForms = document.getElementsByClassName("tanah_form");
+		for (var i = 0; i < tanahForms.length; i++)
+		{
+			$(tanahForms[i]).find(".form-control").addClass("d-none");
+			$(tanahForms[i]).find(".form-input-col").addClass("d-none");
+			$(tanahForms[i]).find(".custom-control").addClass("d-none");
+		}
 	});
 	$(document).on("click", "#editBtn", function() {
 		var form = document.getElementById("villagerDetail_form");
@@ -439,6 +577,9 @@
 		$("#editBtn").addClass("d-none");
 		$("#cancelBtn").removeClass("d-none");
 		$("#saveBtn").removeClass("d-none");
+
+		$(form).find("fieldset").addClass("highlighted-bold");
+		console.log($(form).find("fieldset"));
 	});
 	function ucfirst(string) {
 	    return string.charAt(0).toUpperCase() + string.slice(1);
@@ -529,6 +670,8 @@
 				$("#editBtn").removeClass("d-none");
 				$("#cancelBtn").addClass("d-none");
 				$("#saveBtn").addClass("d-none");
+
+				$(form).find("fieldset").removeClass("highlighted-bold");
 			},
 			error: function (jqXHR, exception) {
 		        showAjaxErrorMessage(jqXHR, exception, "Tidak berjaya, Sila cuba lagi:<br>"); //Failed to retrieve record. Please refresh
@@ -644,5 +787,244 @@
 		    }
 		});
 	});
+
+	$(document).on("click", ".editTanahBtn", function() {
+		var tanah_show_div = $(this).closest(".tanah_show_div");
+		var form = $(tanah_show_div).find("form");
+
+		$(form).find(".form-control").removeClass("d-none");
+		$(form).find(".form-input-col").removeClass("d-none");
+		$(form).find(".custom-control").removeClass("d-none");
+		$(form).find(".form-input-div").addClass("d-none");
+		$(form).find(".form-radio-label").removeClass("padding-top-calc");
+
+		$(tanah_show_div).find(".deleteTanahBtn").addClass("d-none");
+		$(tanah_show_div).find(".deleteTanahPhotoBtn").addClass("d-none");
+		$(tanah_show_div).find(".editTanahBtn").addClass("d-none");
+		$(tanah_show_div).find(".cancelTanahBtn").removeClass("d-none");
+		$(tanah_show_div).find(".saveTanahBtn").removeClass("d-none");
+
+		$(form).find("fieldset").addClass("highlighted-bold");
+	});
+
+	$(document).on("click", ".cancelTanahBtn", function(){
+		var confirm = window.confirm("Confirm to cancel? Your changes will be discarded.");
+		if (!confirm)
+		{
+			return;
+		}
+
+		var tanah_show_div = $(this).closest(".tanah_show_div");
+		var form = $(tanah_show_div).find("form");
+
+		var property_id = $(this).attr("data-id");
+
+		$.ajax({
+			type: "GET",
+			url: '/getPropertyDetail',
+			data: {
+				id: property_id,
+			},
+			beforeSend: function() {
+				$("#loadingModal").modal('show');
+			},
+			complete: function() {
+				$("#loadingModal").modal('hide');
+			},
+			success: function(data) {
+				if (typeof data.keluasan !== 'undefined') {
+					$(form).find(".tanah_keluasan").val(data.keluasan);
+				}
+				if (typeof data.kawasan !== 'undefined') {
+					$(form).find(".tanah_kawasan").val(data.kawasan);
+				}
+				if (typeof data.type !== 'undefined') {
+					if (data.type == 'NCR') {
+						$(form).find("input[name='type'][value='NCR']")[0].checked = true;
+					}
+					else if (data.type == 'Geran') {
+						$(form).find("input[name='type'][value='Geran']")[0].checked = true;
+					}
+					else if (data.type == 'FL') {
+						$(form).find("input[name='type'][value='FL']")[0].checked = true;
+					}
+					else if (data.type == 'Mix Zone') {
+						$(form).find("input[name='type'][value='Mix Zone']")[0].checked = true;
+					}
+				}
+
+				$(form).find(".form-control").addClass("d-none");
+				$(form).find(".form-input-col").addClass("d-none");
+				$(form).find(".custom-control").addClass("d-none");
+				$(form).find(".form-input-div").removeClass("d-none");
+				$(form).find(".form-radio-label").addClass("padding-top-calc");
+
+				$(tanah_show_div).find(".deleteTanahBtn").removeClass("d-none");
+				$(tanah_show_div).find(".deleteTanahPhotoBtn").removeClass("d-none");
+				$(tanah_show_div).find(".editTanahBtn").removeClass("d-none");
+				$(tanah_show_div).find(".cancelTanahBtn").addClass("d-none");
+				$(tanah_show_div).find(".saveTanahBtn").addClass("d-none");
+
+				$(form).find("fieldset").removeClass("highlighted-bold");
+				
+			},
+			error: function (jqXHR, exception) {
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak berjaya, Sila cuba lagi:<br>"); //Failed to retrieve record. Please refresh
+		    }
+		});
+	});
+
+	$(document).on("click", ".saveTanahBtn", function(){
+		var confirm = window.confirm("Confirm to save changes?");
+		if (!confirm)
+		{
+			return;
+		}
+
+		var tanah_show_div = $(this).closest(".tanah_show_div");
+		var form = $(tanah_show_div).find("form");
+		var form_js = form[0];
+
+		var property_id = $(this).attr("data-id");
+
+		if (!form_js.checkValidity())
+		{
+			form_js.reportValidity();
+			return;
+		}
+
+		var url = "/editPropertyDetail";
+
+		var formData = new FormData(form[0]);
+
+	    $.ajax({
+			type: "POST",
+			url: url,
+			data: formData,
+			dataType: "json",
+			processData: false,
+    		contentType: false,
+			beforeSend: function() {
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				window.location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
+		    }
+		});
+	});
+
+	$(document).on("click", ".deleteTanahPhotoBtn", function(){
+    	var confirm = window.confirm("Confirm to delete photo for this tanah? This cannot be undone.");
+    	if (!confirm)
+    	{
+    		return;
+    	}
+    	
+    	var property_id = $(this).attr("data-id");
+
+    	$.ajax({
+    		type: "GET",
+    		url: "/deletePropertyPhoto",
+    		data: {
+    			id: property_id,
+    		},
+    		beforeSend: function() {
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				window.location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
+		    }
+    	});
+    });
+
+    $(document).on("click", ".deleteTanahBtn", function(){
+    	var property_id = $(this).attr("data-id");
+    	$("#confirmDeleteTanahBtn").attr("data-id", property_id);
+
+    	$("#confirmDeleteTanahModal").modal('show');
+    });
+
+    $(document).on("click", "#confirmDeleteTanahBtn", function(){
+    	var property_id = $(this).attr('data-id');
+
+    	$.ajax({
+    		type: "GET",
+    		url: "/deleteProperty",
+    		data: {
+    			id: property_id,
+    		},
+    		beforeSend: function() {
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				window.location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
+		    }
+    	});
+    });
+
+    $(document).on("click", "#addTanahBtn", function(){
+    	var villager_id = $(this).attr("data-id");
+    	$("#addProperty_villager_id").attr("data-id", villager_id);
+    	$("#addPropertyModal").modal('show');
+    });
+
+    $(document).on("click", "#addPropertySaveBtn", function(){
+
+		var form = $("#addPropertyForm");
+		var form_js = form[0];
+
+		if (!form_js.checkValidity())
+		{
+			form_js.reportValidity();
+			return;
+		}
+
+		var formData = new FormData(form[0]);
+
+    	$.ajax({
+    		type: 'POST',
+    		url: '/addProperty',
+    		data: formData,
+			dataType: "json",
+			processData: false,
+    		contentType: false,
+			beforeSend: function() {
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				window.location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
+		    }
+    	});
+    });
+
+	$(document).on('change', '.custom-file-input', function(){
+        //get the file name
+        //var fileName = $(this).val();
+        var fileName = $(this).val().replace('C:\\fakepath\\', "")
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    });
 </script>
+
+@yield('addPropertyModal')
 @endsection
