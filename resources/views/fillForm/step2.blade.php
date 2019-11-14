@@ -204,6 +204,12 @@
    		propertyOwner_no_input.setAttribute("id", "propertyOwner_no_"+mem_num_plus);
    		propertyOwner_no_input.setAttribute("name", "member["+mem_num_plus+"][propertyOwner]");
 
+   		propertyOwner_yes_input.setAttribute("data-family-index", mem_num_plus);
+   		propertyOwner_no_input.setAttribute("data-family-index", mem_num_plus);
+
+   		var tanahForm = clone.querySelector("#tanahForm");
+   		tanahForm.setAttribute("id", "tanahForm_"+mem_num_plus);
+
    		var toShow_div = document.querySelector("#step2_member_forms_area");
    		toShow_div.appendChild(clone);
 
@@ -320,6 +326,12 @@
 	   		var propertyOwner_no_input = target_form_div.querySelector(".propertyOwner_no");
 	   		propertyOwner_no_input.setAttribute("id", "propertyOwner_no_"+mem_num_minus);
 	   		propertyOwner_no_input.setAttribute("name", "member["+mem_num_minus+"][propertyOwner]");
+
+	   		propertyOwner_yes_input.setAttribute("data-family-index", mem_num_minus);
+   			propertyOwner_no_input.setAttribute("data-family-index", mem_num_minus);
+
+	   		var tanahForm = clone.querySelector("#tanahForm");
+   			tanahForm.setAttribute("id", "tanahForm_"+mem_num_minus);
 		}
 
 		mem_num = mem_num-1;
@@ -366,6 +378,32 @@
 		}
 		initializeMemberForms();
 	});
+
+	$(document).on("change", ".propertyOwner", function(){
+		var value = $(this).val();
+
+		var toAppend = 	`
+							<fieldset class="scheduler-border">
+								<legend class="scheduler-border">
+									Tanah 1
+								</legend>
+								<div>
+									Testing one two three.
+								</div>
+							</fieldset>
+						`;
+						
+		var member_index = $(this).attr("data-family-index");
+		if (value == 1)
+		{
+			$("#tanahForm_"+member_index).html(toAppend);
+		}
+		else
+		{
+			$("#tanahForm_"+member_index).html("");
+		}
+	});
+
 </script>
 
 @endsection('content')
@@ -497,17 +535,18 @@
 				<label class="pl-3">Adakah anda mempunyai tanah yang bergeran?</label>
 				<div class="ml-3">
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="propertyOwner_yes_1" name="propertyOwner_1" class="custom-control-input propertyOwner_yes" value="1" required>
+						<input type="radio" id="propertyOwner_yes_1" name="propertyOwner_1" class="custom-control-input propertyOwner propertyOwner_yes" value="1" required>
 						<label class="custom-control-label propertyOwner_yes_label" for="propertyOwner_yes_1">Ya</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="propertyOwner_no_1" name="propertyOwner_1" class="custom-control-input propertyOwner_no" value="0">
+						<input type="radio" id="propertyOwner_no_1" name="propertyOwner_1" class="custom-control-input propertyOwner propertyOwner_no" value="0">
 						<label class="custom-control-label propertyOwner_no_label" for="propertyOwner_no_1">Tidak</label>
 					</div>
 				</div>
 			</div>
+
+			<div id="tanahForm"></div>
 		</fieldset>
 	</div>
 </template>
-
 @endsection
