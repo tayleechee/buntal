@@ -216,7 +216,7 @@ class DynamicPDFController extends Controller
 			<table width="50%" style="border-collapse:collapse;border:0px;">
 				<tr>
 					<th style="border:1px solid;padding:8px;width:50%">Jenis Tanah</th>
-                    <th style="border:1px solid;padding:8px;width:50%">Bilangan Penduduk</th>
+                    <th style="border:1px solid;padding:8px;width:50%">Bilangan Harta</th>
 				</tr>
 				<tr>
 					<td style="border:1px solid;padding:8px;">NCR</td>

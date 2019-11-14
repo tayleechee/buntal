@@ -155,7 +155,7 @@
             <thead>
                 <tr>
 					<th style="width:50%">Jenis Tanah</th>
-                    <th style="width:50%">Bilangan Penduduk</th>
+                    <th style="width:50%">Bilangan Harta</th>
                 </tr>
             </thead>
             <tbody>

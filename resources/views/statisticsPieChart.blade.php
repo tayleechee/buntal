@@ -54,7 +54,7 @@ chart.render();
 </script>
 <div class="container">
     <div class="row d-flex justify-content-center">	
-		<h3 class="font-weight-bold">{!! $total_of !!} : {!! $total !!}</h1>
+		<h3 class="font-weight-bold">{!! $total_of !!} : {!! $total !!}</h3>
         <div id="chartContainer" style="height:370px;width:90%;margin-top:25px;"></div>
     </div>
 </div>
