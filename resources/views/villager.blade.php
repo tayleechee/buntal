@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('addPropertyModal')
 
 @section('css')
 <style type="text/css">
@@ -979,4 +980,6 @@
         $(this).next('.custom-file-label').html(fileName);
     });
 </script>
+
+@yield('addPropertyModal')
 @endsection

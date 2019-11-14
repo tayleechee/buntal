@@ -122,29 +122,33 @@ class FillFormController extends Controller
 					$first_member_id = $villager_id;
 				}
 
-				$tanahs = $member->tanah;
-				foreach ($tanahs as $tanah_index => $tanah)
+				if (isset($member->tanah))
 				{
-					$tanah = (object)$tanah;
-					$property = new Property;
-					$property->kawasan = $tanah->kawasan;
-					$property->keluasan = $tanah->keluasan;
-					$property->type = $tanah->type;
-					$property->villager_id = $villager_id;
-					$property->save();
+					$tanahs = $member->tanah;
+					foreach ($tanahs as $tanah_index => $tanah)
+					{
+						$tanah = (object)$tanah;
+						$property = new Property;
+						$property->kawasan = $tanah->kawasan;
+						$property->keluasan = $tanah->keluasan;
+						$property->type = $tanah->type;
+						$property->villager_id = $villager_id;
+						$property->save();
 
-					$property_id = $property->id;
+						$property_id = $property->id;
 
-					if($request->hasFile('member.'.($index).'.tanah.'.($tanah_index).'.photo')){
-			            $photo = $request->file('member.'.($index).'.tanah.'.($tanah_index).'.photo');
-			            $filename = time()."_".$villager_id."_".$property_id.".".$photo->getClientOriginalExtension();
-			            $filepath = '/image/upload/'.$filename;
-			            Image::make($photo)->save(public_path($filepath));
+						if($request->hasFile('member.'.($index).'.tanah.'.($tanah_index).'.photo')){
+				            $photo = $request->file('member.'.($index).'.tanah.'.($tanah_index).'.photo');
+				            $filename = time()."_".$villager_id."_".$property_id.".".$photo->getClientOriginalExtension();
+				            $filepath = '/image/upload/'.$filename;
+				            Image::make($photo)->save(public_path($filepath));
 
-			            $property->image_path = $filepath;
-			            $property->save();
-		        	}
+				            $property->image_path = $filepath;
+				            $property->save();
+			        	}
+					}
 				}
+				
 			}
 			
 			$house_poc = new HousePOC;
