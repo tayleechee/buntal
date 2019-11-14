@@ -10,6 +10,7 @@ use App\Charts\Chartjs;
 use App\Charts\Highcharts;
 use App\Villager;
 use App\House;
+use App\Property;
 
 class StatisticsController extends Controller
 {
@@ -143,6 +144,26 @@ class StatisticsController extends Controller
 		$total = array_sum($data);
 		
         return view('statisticsGraph', compact('graph_type','graph_title','label','data','x_axis','total_of','total'));
+	}	
+	
+	public function populationByPropertyPossession()
+	{
+		$label_propertyPossession = ['Memiliki Harta Tanah','Tidak memiliki harta tanah'];
+		$data_propertyPossession = [
+			Villager::whereis_property_owner('1')->where('death_date', null)->count(),
+			Villager::whereis_property_owner('0')->where('death_date', null)->count()
+		];		
+		
+		$data_ncr = Property::wheretype('NCR')->count();
+        $data_fl = Property::wheretype('Geran')->count();
+		$data_geran = Property::wheretype('FL')->count();
+		$data_mixzone = Property::wheretype('Mix Zone')->count();
+
+		$label_land = ['NCR','Geran','FL','Mix Zone'];
+		$data_land = [$data_ncr,$data_fl,$data_geran,$data_mixzone];		
+		
+		
+        return view('statisticsProperty', compact('label_propertyPossession','data_propertyPossession','label_land','data_land'));
 	}	
 	
 	public function populationByAgeRange()

@@ -8,6 +8,7 @@ use PDF;
 use Carbon\Carbon;
 use App\Villager;
 use App\House;
+use App\Property;
 
 class DynamicPDFController extends Controller
 {  
@@ -29,13 +30,14 @@ class DynamicPDFController extends Controller
 		$race = $data[4];
 		$marital = $data[5];
 		$property = $data[6];
-		$label = $data[7];
-		$sum_newborn = $data[8];
-		$count_newborn = $data[9];
-		$sum_death = $data[10];
-		$count_death = $data[11];		
+		$property_type = $data[7];
+		$label = $data[8];
+		$sum_newborn = $data[9];
+		$count_newborn = $data[10];
+		$sum_death = $data[11];
+		$count_death = $data[12];		
 		
-		return view('summaryReport', compact('year','sum','permanent','gender','race','marital','property','label','sum_newborn','count_newborn','sum_death','count_death'));
+		return view('summaryReport', compact('year','sum','permanent','gender','race','marital','property','property_type','label','sum_newborn','count_newborn','sum_death','count_death'));
 	}
 	
 	function get_summary_data()
@@ -67,6 +69,12 @@ class DynamicPDFController extends Controller
         $property['y'] = Villager::whereis_property_owner('1')->where('death_date', null)->count();
 		$property['n'] = Villager::whereis_property_owner('0')->where('death_date', null)->count();
 		
+		$property_type = [];
+		$property_type['ncr'] = Property::wheretype('NCR')->count();
+        $property_type['geran'] = Property::wheretype('Geran')->count();
+		$property_type['fl'] = Property::wheretype('FL')->count();
+		$property_type['mix'] = Property::wheretype('Mix Zone')->count();
+		
 		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December'];
 		$year = date("Y");
 		
@@ -84,7 +92,7 @@ class DynamicPDFController extends Controller
 		$sum_death = $data[1];
 		$count_death = $data[2];
 		
-		return [$year,$sum,$permanent,$gender,$race,$marital,$property,$label,$sum_newborn,$count_newborn,$sum_death,$count_death];	
+		return [$year,$sum,$permanent,$gender,$race,$marital,$property,$property_type,$label,$sum_newborn,$count_newborn,$sum_death,$count_death];	
 	}
 	
 	function summary_report_pdf()
@@ -98,11 +106,12 @@ class DynamicPDFController extends Controller
 		$race = $data[4];
 		$marital = $data[5];
 		$property = $data[6];
-		$label = $data[7];
-		$sum_newborn = $data[8];
-		$count_newborn = $data[9];
-		$sum_death = $data[10];
-		$count_death = $data[11];
+		$property_type = $data[7];
+		$label = $data[8];
+		$sum_newborn = $data[9];
+		$count_newborn = $data[10];
+		$sum_death = $data[11];
+		$count_death = $data[12];
 		
 		$output = '
 			<h3 align="center">Ringkasan Laporan Terkini Demografi Kampung Buntal '.$year.'</h3>
@@ -201,6 +210,29 @@ class DynamicPDFController extends Controller
 				<tr>
 					<td style="border:1px solid;padding:8px;">Tidak</td>
                     <td style="border:1px solid;padding:8px;">'.$property['n'].'</td>
+                </tr>
+			</table>
+			<h5 class="font-weight-bold">Jumlah Harta Tanah: '.array_sum($property_type).'</h5>
+			<table width="50%" style="border-collapse:collapse;border:0px;">
+				<tr>
+					<th style="border:1px solid;padding:8px;width:50%">Jenis Tanah</th>
+                    <th style="border:1px solid;padding:8px;width:50%">Bilangan Harta</th>
+				</tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">NCR</td>
+                    <td style="border:1px solid;padding:8px;">'.$property_type['ncr'].'</td>
+                </tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">Geran</td>
+                    <td style="border:1px solid;padding:8px;">'.$property_type['geran'].'</td>
+                </tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">FL</td>
+                    <td style="border:1px solid;padding:8px;">'.$property_type['fl'].'</td>
+                </tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">Mix Zone</td>
+                    <td style="border:1px solid;padding:8px;">'.$property_type['mix'].'</td>
                 </tr>
 			</table>
 			<h5 class="font-weight-bold">Kelahiran & Kematian</h5>
