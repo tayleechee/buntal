@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Buntal IS</title>
+    <title>e-Buntal</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -124,9 +124,7 @@
             @endif -->
 
         <div class="content">
-            <div class="title m-b-md">
-                Buntal Sistem Informasi
-            </div>
+            <div class="title m-b-md">e-Buntal</div>
 
             <div class="container">
                 <div class="row justify-content-center">
