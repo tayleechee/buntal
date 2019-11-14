@@ -223,6 +223,7 @@
 										<li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#DeathRateByRangeOfYears">Mengikut Lingkungan Tahun</a></li>
                                     </ul>
                                 </li>								
+								<li><a class="dropdown-item" href="{{route('statistics.propertyPossession')}}">Pemilikan Harta Tanah</a></li>
 								<li><a class="dropdown-item" href="{{route('statistics.voter')}}">Pendaftaran sebagai Pengundi</a></li>
                                 <li><a class="dropdown-item" href="{{route('statistics.monthlyHouseholdIncome')}}">Pendapatan Isi Rumah Bulanan</a></li>
                             </ul>
