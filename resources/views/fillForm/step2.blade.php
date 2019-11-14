@@ -389,19 +389,26 @@
 
 	    e.preventDefault();
 
-	    var form = $(this);
+	    //var form = $(this);
 	    var url = "/fillForm/processStep2";
+
+	    var form = $(this).closest("form");
+		var formData = new FormData(form[0]);
 
 	    $.ajax({
 			type: "POST",
 			url: url,
-			data: form.serialize(),
+			data: formData,
+			dataType: "json",
+			processData: false,
+    		contentType: false,
 			beforeSend: function() {
 				$("#loading_div").attr("data-text", "Sila Tunggu...");
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
 				window.location.href = "/fillForm/success";
+				//$("#loading_div").removeClass("is-active");
 			},
 			error: function (jqXHR, exception) {
 				$("#loading_div").removeClass("is-active");
@@ -468,7 +475,7 @@
 											<label class="col-form-label col-2">Upload Image (Tidak Wajib)</label>
 											<div class="col">
 												<div class="custom-file">
-												  	<input type="file" class="custom-file-input" id="member[`+member_index+`][tanah][1][photo]" name="member[`+member_index+`][tanah][1][[photo]]">
+												  	<input type="file" class="custom-file-input" id="member[`+member_index+`][tanah][1][photo]" name="member[`+member_index+`][tanah][1][photo]">
 												  	<label class="custom-file-label" for="member[`+member_index+`][tanah][1][photo]">Choose Image to Upload</label>
 												</div>
 											</div>
