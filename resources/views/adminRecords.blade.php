@@ -186,6 +186,8 @@
 	$(document).on("click", "#addAdminSaveBtn", function(){
 		var form = document.getElementById("addAdminForm");
 
+		form.confirm_password.setCustomValidity("");
+
 		if (!form.checkValidity())
 		{
 			form.reportValidity();
@@ -288,6 +290,8 @@
 
 	$(document).on("click", "#editAdminPasswordSaveBtn", function(){
 		var form = document.getElementById("editAdminPasswordForm");
+
+		form.confirm_password.setCustomValidity("");
 
 		if (!form.checkValidity())
 		{

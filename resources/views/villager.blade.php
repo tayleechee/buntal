@@ -360,9 +360,13 @@
 		</fieldset>
 		</form>
 
-		@if(count($villager->property) > 0) 
-			<div>
+		@if($villager->is_property_owner == '1') 
+			<div class="mt-5">
+				<div class="text-center">
+					<button class="btn btn-success" data-toggle="modal" data-target="#addPropertyModal">Tambah Tanah</button>
+				</div>
 				<div class="tanah_parent_div">
+					@if(count($villager->property) > 0) 
 					@foreach ($villager->property as $property_index => $property)
 					<div class="tanah_show_div mt-5">
 						<div class="text-right">
@@ -449,6 +453,7 @@
 					</form>
 					</div>
 					@endforeach
+					@endif
 				</div>
 			</div>
 			@endif
