@@ -330,7 +330,49 @@
 	   		propertyOwner_yes_input.setAttribute("data-family-index", mem_num_minus);
    			propertyOwner_no_input.setAttribute("data-family-index", mem_num_minus);
 
-	   		var tanahForm = clone.querySelector("#tanahForm");
+   			var tanahParent = target_form_div.querySelector(".tanah_parent_div");
+   			if (tanahParent)
+   			{
+   				tanahParent.setAttribute("id", "tanah_"+mem_num_minus+"_parent_div");
+   				var tanah_show_div = target_form_div.querySelector(".tanah_show_div");
+   				tanah_show_div.setAttribute("id", "tanah_"+mem_num_minus+"_show_div");
+   				var tanahCount = target_form_div.querySelector(".tanah_count");
+   				tanahCount.setAttribute("id", "tanah_"+mem_num_minus+"_count");
+   				
+   				var tanah_div = target_form_div.querySelectorAll(".tanah_div");
+   				for (var i = 0; i < tanah_div.length; i++)
+   				{
+   					var old_id = tanah_div[i].getAttribute("id");
+   					var new_id = old_id.replace(/tanah_\d{1,}_/, "tanah_"+mem_num_minus+"_");
+   					tanah_div[i].setAttribute("id", new_id);
+   				}
+
+	   			var tanah_inputs = tanahParent.querySelectorAll("input:not([type='hidden'])");
+	   			for (var i = 0; i < tanah_inputs.length; i++)
+	   			{
+	   				var old_name = tanah_inputs[i].getAttribute("name");
+	   				var new_name = old_name.replace(/member\[\d{1,}\]/, "member["+mem_num_minus+"]");
+	   				var old_id = tanah_inputs[i].getAttribute("id");
+	   				var new_id = old_id.replace(/member\[\d{1,}\]/, "member["+mem_num_minus+"]");
+
+	   				tanah_inputs[i].setAttribute("name", new_name);
+	   				tanah_inputs[i].setAttribute("id", new_id);
+	   			}
+
+	   			var tanah_labels = tanahParent.querySelectorAll("label");
+	   			for (var i = 0; i < tanah_labels.length; i++)
+	   			{
+	   				var old_for = tanah_labels[i].getAttribute("for");
+	   				if (old_for) {
+	   					var new_for = old_for.replace(/member\[\d{1,}\]/, "member["+mem_num_minus+"]");
+	   					tanah_labels[i].setAttribute("for", new_for);
+	   				}
+	   				
+	   			}
+   			}
+   			
+
+	   		var tanahForm = target_form_div.querySelector(".tanahForm");
    			tanahForm.setAttribute("id", "tanahForm_"+mem_num_minus);
 		}
 
@@ -381,28 +423,174 @@
 
 	$(document).on("change", ".propertyOwner", function(){
 		var value = $(this).val();
-
-		var toAppend = 	`
-							<fieldset class="scheduler-border">
-								<legend class="scheduler-border">
-									Tanah 1
-								</legend>
-								<div>
-									Testing one two three.
-								</div>
-							</fieldset>
-						`;
-						
 		var member_index = $(this).attr("data-family-index");
+
+		var toAppend = 	`	
+							<div id="tanah_`+member_index+`_parent_div" class="tanah_parent_div" data-member-index="`+member_index+`">
+								<div id="tanah_`+member_index+`_show_div" class="tanah_show_div">
+								<input type="hidden" class="tanah_count" id="tanah_`+member_index+`_count" value="1">
+								<fieldset class="scheduler-border">
+									<legend class="scheduler-border">Tanah 1</legend>
+									<div id="tanah_`+member_index+`_1" class="tanah_div">
+										<label class="pr-2">Jenis Tanah</label>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" id="member[`+member_index+`][tanah][1][ncr]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="NCR" required>
+											<label for="member[`+member_index+`][tanah][1][ncr]" class="custom-control-label">NCR</label>
+										</div>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" id="member[`+member_index+`][tanah][1][geran]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="Geran">
+											<label for="member[`+member_index+`][tanah][1][geran]" class="custom-control-label">Geran</label>
+										</div>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" id="member[`+member_index+`][tanah][1][fl]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="FL">
+											<label for="member[`+member_index+`][tanah][1][fl]" class="custom-control-label">FL</label>
+										</div>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" id="member[`+member_index+`][tanah][1][mixzone]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="Mix Zone">
+											<label for="member[`+member_index+`][tanah][1][mixzone]" class="custom-control-label">Mix Zone</label>
+										</div>
+
+										<div class="form-group row mt-3">
+											<label for="member[`+member_index+`][tanah][1][kawasan]" class="col-form-label col-2 tanah_kawasan_label">Kawasan</label>
+											<div class="col">
+												<input type="text" name="member[`+member_index+`][tanah][1][kawasan]" id="member[`+member_index+`][tanah][1][kawasan]" class="form-control tanah_kawasan" required>
+											</div>
+										</div>
+
+										<div class="form-group row mt-3">
+											<label for="member[`+member_index+`][tanah][1][keluasan]" class="col-form-label col-2 tanah_keluasan_label">Keluasan (Ekar)</label>
+											<div class="col">
+												<input type="number" name="member[`+member_index+`][tanah][1][keluasan]" id="member[`+member_index+`][tanah][1][keluasan]" class="form-control tanah_keluasan" step=".01" required>
+											</div>
+										</div>
+
+										<div class="form-group row mt-3">
+											<label class="col-form-label col-2">Upload Image (Tidak Wajib)</label>
+											<div class="col">
+												<div class="custom-file">
+												  	<input type="file" class="custom-file-input" id="member[`+member_index+`][tanah][1][photo]" name="member[`+member_index+`][tanah][1][[photo]]">
+												  	<label class="custom-file-label" for="member[`+member_index+`][tanah][1][photo]">Choose Image to Upload</label>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</fieldset>
+								</div>
+								<div>
+									<div class="text-center buttons_div">
+										<button type="button" class="btn btn-sm btn-success add_tanah_btn" data-toggle="tooltip" title="Tambah Tanah"><i class="fas fa-plus-circle"></i></button>
+									</div>
+								</div>
+							</div>
+						`;
+
 		if (value == 1)
 		{
 			$("#tanahForm_"+member_index).html(toAppend);
+			$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
 		}
 		else
 		{
 			$("#tanahForm_"+member_index).html("");
 		}
 	});
+
+	$(document).on("click", ".add_tanah_btn", function(){
+		var parent_div = $(this).closest(".tanah_parent_div");
+		var member_index = $(parent_div).attr("data-member-index");
+		var show_div = $(parent_div).find(".tanah_show_div");
+		var tanah_index = Number($("#tanah_"+member_index+"_count").val()) + 1;
+
+		var toAppend = 	`
+						<fieldset class="scheduler-border">
+							<legend class="scheduler-border">Tanah `+tanah_index+`</legend>
+							<div id="tanah_`+member_index+`_`+tanah_index+`" class="tanah_div">
+								<label class="pr-2">Jenis Tanah</label>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][ncr]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="NCR" required>
+									<label for="member[`+member_index+`][tanah][`+tanah_index+`][ncr]" class="custom-control-label">NCR</label>
+								</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][geran]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="Geran">
+									<label for="member[`+member_index+`][tanah][`+tanah_index+`][geran]" class="custom-control-label">Geran</label>
+								</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][fl]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="FL">
+									<label for="member[`+member_index+`][tanah][`+tanah_index+`][fl]" class="custom-control-label">FL</label>
+								</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][mixzone]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="Mix Zone">
+									<label for="member[`+member_index+`][tanah][`+tanah_index+`][mixzone]" class="custom-control-label">Mix Zone</label>
+								</div>
+
+								<div class="form-group row mt-3">
+									<label for="member[`+member_index+`][tanah][`+tanah_index+`][kawasan]" class="col-form-label col-2 tanah_kawasan_label">Kawasan</label>
+									<div class="col">
+										<input type="text" name="member[`+member_index+`][tanah][`+tanah_index+`][kawasan]" id="member[`+member_index+`][tanah][`+tanah_index+`][kawasan]" class="form-control tanah_kawasan" required>
+									</div>
+								</div>
+
+								<div class="form-group row mt-3">
+									<label for="member[`+member_index+`][tanah][`+tanah_index+`][keluasan]" class="col-form-label col-2 tanah_keluasan_label">Keluasan (Ekar)</label>
+									<div class="col">
+										<input type="number" name="member[`+member_index+`][tanah][`+tanah_index+`][keluasan]" id="member[`+member_index+`][tanah][`+tanah_index+`][keluasan]" class="form-control tanah_keluasan" step=".01" required>
+									</div>
+								</div>
+
+								<div class="form-group row mt-3">
+									<label class="col-form-label col-2">Upload Image (Tidak Wajib)</label>
+									<div class="col">
+										<div class="custom-file">
+										  	<input type="file" class="custom-file-input" id="member[`+member_index+`][tanah][`+tanah_index+`][photo]" name="member[`+member_index+`][tanah][`+tanah_index+`][photo]">
+										  	<label class="custom-file-label" for="member[`+member_index+`][tanah][`+tanah_index+`][photo]">Choose Image to Upload</label>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</fieldset>
+						`;
+
+		show_div.append(toAppend);
+
+		var deleteButton = `
+							<button type="button" class="btn btn-sm btn-danger delete_tanah_btn" data-toggle="tooltip" title="Padam Extra Tanah"><i class="fas fa-trash-alt"></i></button>
+							`;
+		var buttons_div = $(parent_div).find(".buttons_div");
+		
+		if ($(buttons_div).find(".delete_tanah_btn").length == 0) {
+			buttons_div.append(deleteButton);
+		}
+		
+		$("#tanah_"+member_index+"_count").val(tanah_index);
+	});
+
+	$(document).on("click", ".delete_tanah_btn", function(){
+		var parent_div = $(this).closest(".tanah_parent_div");
+		var member_index = $(parent_div).attr("data-member-index");
+		var tanah_index = Number($("#tanah_"+member_index+"_count").val());
+		var tanah_div = $("#tanah_"+member_index+"_"+tanah_index);
+		var parent_fieldset = $(tanah_div).closest("fieldset");
+
+		if ( (tanah_index-1) < 2)
+		{
+			var buttons_div = $(parent_div).find(".buttons_div");
+			$(buttons_div).find(".delete_tanah_btn").remove();
+		}
+		
+		$("#tanah_"+member_index+"_count").val(tanah_index-1);
+
+		parent_fieldset.remove();
+	});
+
+	$(document).on('change', '.custom-file-input', function(){
+        //get the file name
+        //var fileName = $(this).val();
+        var fileName = $(this).val().replace('C:\\fakepath\\', "")
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
 
 </script>
 
@@ -545,7 +733,7 @@
 				</div>
 			</div>
 
-			<div id="tanahForm"></div>
+			<div id="tanahForm" class="tanahForm"></div>
 		</fieldset>
 	</div>
 </template>
