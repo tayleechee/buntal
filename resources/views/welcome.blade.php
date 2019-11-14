@@ -191,7 +191,7 @@
             </div> <!-- logo -->
             <div class="sidebar-menu">
                 <ul>
-                    <li><a href="#">LOGIN</a></li>
+                    <li><a href="/">e-Buntal</a></li>
                 </ul>
             </div> <!-- menu -->
             <div class="sidebar-social d-flex align-items-center justify-content-center">
