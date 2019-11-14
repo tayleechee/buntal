@@ -191,8 +191,11 @@
                     <a href="" class="btn btn-secondary">Form Insertion</a>
                 </div> -->
             <div class="mt-4" style="color:white">
-                Bukan admin? Sila isi borong. <a href="{{route('fillForm.step1')}}">Klik sini!</a>
+                Bukan admin? Sila isi borang. <a href="{{route('fillForm.step1')}}">Klik sini!</a> 
+                <p>Atau kembali ke halaman
+                <a href="/welcome">Buntal.</a></p>
             </div>
+           
         </div>
     </div>
 </body>

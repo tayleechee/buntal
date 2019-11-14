@@ -33,7 +33,7 @@
 		<h5>Senarai Rekod Admin</h5>
 	</div>
 	<div class="my-2 text-right">
-		<button class="btn btn-outline-primary" id="addAdminBtn">Add Admin</button>
+		<button class="btn btn-outline-primary" id="addAdminBtn">Tambah Admin</button>
 	</div>
 	<div class="card">
 	<table class="mt-4 table table-bordered table-sm" id="adminTable">
@@ -86,8 +86,8 @@
 	            { data: 'username' },
 	            { data: 'id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
 	            		var button = `<div class="text-center">
-	            						<button class="btn btn-primary btn-sm editAdminDetail" data-id="` + data + `" data-toggle="tooltip" title="Edit">Edit General</button>
-	            						<button class="btn btn-success btn-sm editAdminPassword" data-id="` + data + `" data-toggle="tooltip" title="Edit Password">Edit Password</button>
+	            						<button class="btn btn-primary btn-sm editAdminDetail" data-id="` + data + `" data-toggle="tooltip" title="Edit">Ubah Nama/Username</button>
+	            						<button class="btn btn-success btn-sm editAdminPassword" data-id="` + data + `" data-toggle="tooltip" title="Edit Password">Ubah Kata Laluan</button>
 	            					`;
 	            		if (row['is_superadmin'])
 	            		{
@@ -96,7 +96,7 @@
 	            		else
 	            		{
 	            			button += 	`
-            							<button class="btn btn-danger btn-sm deleteAdmin" data-id="` + data + `" data-toggle="tooltip" title="Delete Admin">Delete</button>
+            							<button class="btn btn-danger btn-sm deleteAdmin" data-id="` + data + `" data-toggle="tooltip" title="Delete Admin">Padam</button>
             							</div>
 	            						`
 	            		}

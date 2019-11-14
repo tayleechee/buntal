@@ -6,7 +6,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Add Admin</h5>
+            <h5 class="modal-title">Tambah Admin</h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>        
         </div>
 
@@ -15,7 +15,7 @@
               {{ csrf_field() }}
               
           <div class="form-group row pl-2 mt-3">
-            <label for="add_name" class="col-form-label col-2 form_ic_label">Name:</label>
+            <label for="add_name" class="col-form-label col-2 form_ic_label">Nama:</label>
             <div class="col">
               <input id="add_name" name="name" value="" class="form-control" required>
             </div>
@@ -29,14 +29,14 @@
           </div>
 
           <div class="form-group row pl-2 mt-3">
-            <label for="add_password" class="col-form-label col-2 form_ic_label">Password:</label>
+            <label for="add_password" class="col-form-label col-2 form_ic_label">Kata Laluan:</label>
             <div class="col">
               <input id="add_password" name="password" type="password" value="" class="form-control" required>
             </div>
           </div>
 
           <div class="form-group row pl-2 mt-3">
-            <label for="add_confirm_password" class="col-form-label col-2 form_ic_label">Confirm Password:</label>
+            <label for="add_confirm_password" class="col-form-label col-2 form_ic_label">Konform Kata Laluan:</label>
             <div class="col">
               <input id="add_confirm_password" name="confirm_password" type="password" value="" class="form-control" required>
             </div>

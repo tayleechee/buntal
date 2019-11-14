@@ -6,7 +6,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Edit Admin</h5>
+            <h5 class="modal-title">Perubahan Maklumat Admin</h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>        
         </div>
 
@@ -15,7 +15,7 @@
               {{ csrf_field() }}
             <input type="hidden" id="edit_id" name="id">    
           <div class="form-group row pl-2 mt-3">
-            <label for="name" class="col-form-label col-2 form_ic_label">Name:</label>
+            <label for="name" class="col-form-label col-2 form_ic_label">Nama:</label>
             <div class="col">
               <input id="name" name="name" value="" class="form-control" required>
             </div>
