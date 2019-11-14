@@ -18,4 +18,9 @@ class Villager extends Model
     {
     	return $this->hasOne('App\HousePOC');
     }
+
+    public function property()
+    {
+        return $this->hasMany('App\Property');
+    }
 }

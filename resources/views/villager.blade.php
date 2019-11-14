@@ -347,6 +347,80 @@
 				</div>
 			</div>
 
+			@if(count($villager->property) > 0) 
+			<div>
+				<div class="tanah_parent_div">
+					@foreach ($villager->property as $property_index => $property)
+					<div class="tanah_show_div">
+					<input type="hidden" class="tanah_count" value="1">
+					<fieldset class="scheduler-border">
+						<legend class="scheduler-border">Tanah {{$property_index+1}}</legend>
+						<div class="tanah_div">
+
+							<div class="form-group row pl-2 mt-3">
+								<label class="pr-2 pl-3 padding-top-calc col-2">Jenis Tanah</label>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="member[`+member_index+`][tanah][1][ncr]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="NCR" required>
+									<label for="member[`+member_index+`][tanah][1][ncr]" class="custom-control-label">NCR</label>
+
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input tanah" value="Geran">
+										<label class="custom-control-label">Geran</label>
+									</div>
+
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input tanah" value="FL">
+										<label class="custom-control-label">FL</label>
+									</div>
+
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input tanah" value="Mix Zone">
+										<label class="custom-control-label">Mix Zone</label>
+									</div>
+								</div>
+								<div class="col form-input-div">
+									{{$property->type}}
+								</div>
+							</div>
+
+
+							<div class="form-group row pl-2 mt-3">
+								<label class="pr-2 pl-3 padding-top-calc col-2">Kawasan</label>
+								<div class="col form-input-col d-none">
+									<input type="text" class="form-control tanah_kawasan" required>
+								</div>
+								<div class="col form-input-div">
+									{{$property->kawasan}}
+								</div>
+							</div>
+
+							<div class="form-group row pl-2 mt-3">
+								<label class="pr-2 pl-3 padding-top-calc col-2">Keluasan (Ekar)</label>
+								<div class="col form-input-col d-none">
+									<input type="number" class="form-control tanah_keluasan" step=".01" required>
+								</div>
+								<div class="col form-input-div">
+									{{$property->keluasan}}
+								</div>
+							</div>
+
+							<div class="form-group row pl-2 mt-3">
+								<label class="pr-2 pl-3 padding-top-calc col-2">Photo</label>
+								<div class="col form-input-col d-none">
+									<input type="" name="">
+								</div>
+								<div class="col form-input-div">
+									<img height="350" src="{{$property->image_path}}">
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					</div>
+					@endforeach
+				</div>
+			</div>
+			@endif
+
 		</fieldset>
 		</form>
 	</div>
