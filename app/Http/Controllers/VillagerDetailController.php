@@ -252,4 +252,31 @@ class VillagerDetailController extends Controller
 
     	return 200;
     }
+
+    public function addProperty(Request $request)
+    {
+    	$villager_id = $request->villager_id;
+
+    	$property = new Property;
+    	$property->villager_id = $villager_id;
+    	$property->type = $request->type;
+    	$property->kawasan = $request->kawasan;
+    	$property->keluasan = $request->keluasan;
+    	$property->save();
+
+    	$property_id = $property->id;
+
+    	if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $filename = time()."_".$villager_id."_".$property_id.".".$photo->getClientOriginalExtension();
+            $filepath = '/image/upload/'.$filename;
+            Image::make($photo)->save(public_path($filepath));
+
+            $property->image_path = $filepath;
+            $property->save();
+    	}
+    	
+    	return 200;
+
+    }
 }

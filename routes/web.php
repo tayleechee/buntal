@@ -75,6 +75,7 @@ Route::get('/getPropertyDetail', 'VillagerDetailController@getPropertyDetail');
 Route::post('/editPropertyDetail', 'VillagerDetailController@editPropertyDetail');
 Route::get('/deletePropertyPhoto', 'VillagerDetailController@deletePropertyPhoto');
 Route::get('/deleteProperty', 'VillagerDetailController@deleteProperty');
+Route::post('/addProperty', 'VillagerDetailController@addProperty');
 
 // statistics routes
 Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');

@@ -363,7 +363,7 @@
 		@if($villager->is_property_owner == '1') 
 			<div class="mt-5">
 				<div class="text-center">
-					<button class="btn btn-success" data-toggle="modal" data-target="#addPropertyModal">Tambah Tanah</button>
+					<button class="btn btn-success" id="addTanahBtn" data-id="{{$villager->id}}">Tambah Tanah</button>
 				</div>
 				<div class="tanah_parent_div">
 					@if(count($villager->property) > 0) 
@@ -964,6 +964,46 @@
     			id: property_id,
     		},
     		beforeSend: function() {
+				$("#loading_div").attr("data-text", "Sila Tunggu...");
+				$("#loading_div").addClass("is-active");
+			},
+			success: function(data) {
+				window.location.reload();
+			},
+			error: function (jqXHR, exception) {
+				$("#loading_div").removeClass("is-active");
+		        showAjaxErrorMessage(jqXHR, exception, "Tidak Berjaya:<br>");
+		    }
+    	});
+    });
+
+    $(document).on("click", "#addTanahBtn", function(){
+    	var villager_id = $(this).attr("data-id");
+    	$("#addProperty_villager_id").attr("data-id", villager_id);
+    	$("#addPropertyModal").modal('show');
+    });
+
+    $(document).on("click", "#addPropertySaveBtn", function(){
+
+		var form = $("#addPropertyForm");
+		var form_js = form[0];
+
+		if (!form_js.checkValidity())
+		{
+			form_js.reportValidity();
+			return;
+		}
+
+		var formData = new FormData(form[0]);
+
+    	$.ajax({
+    		type: 'POST',
+    		url: '/addProperty',
+    		data: formData,
+			dataType: "json",
+			processData: false,
+    		contentType: false,
+			beforeSend: function() {
 				$("#loading_div").attr("data-text", "Sila Tunggu...");
 				$("#loading_div").addClass("is-active");
 			},
