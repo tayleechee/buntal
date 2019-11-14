@@ -410,7 +410,11 @@
 									<input type="" name="">
 								</div>
 								<div class="col form-input-div">
-									<img height="350" src="{{$property->image_path}}">
+									@if (!empty($property->image_path))
+										<img height="350" src="{{$property->image_path}}">
+									@else
+										Not Available
+									@endif
 								</div>
 							</div>
 						</div>
