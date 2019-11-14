@@ -173,9 +173,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="ml-3 nav-item">
+                        <!-- <li class="ml-3 nav-item">
                             <a href="/welcome" class="nav-link">Welcome Page</a>
-                        </li>
+                        </li> -->
                         <li class="ml-3 nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="viewRecordsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Paparan Rekod
