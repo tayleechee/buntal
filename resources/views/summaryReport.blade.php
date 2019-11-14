@@ -149,6 +149,35 @@
             </tbody>
 		</table>
     </div>	
+	<h6 class="font-weight-bold">Jumlah Harta Tanah: {!! array_sum($property_type) !!}</h6>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered col-6">
+            <thead>
+                <tr>
+					<th style="width:50%">Jenis Tanah</th>
+                    <th style="width:50%">Bilangan Penduduk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+					<td>NCR</td>
+                    <td>{!! $property_type['ncr'] !!}</td>
+                </tr>
+				<tr>
+					<td>Geran</td>
+                    <td>{!! $property_type['geran'] !!}</td>
+                </tr>
+				<tr>
+					<td>FL</td>
+                    <td>{!! $property_type['fl'] !!}</td>
+                </tr>
+				<tr>
+					<td>Mix Zone</td>
+                    <td>{!! $property_type['mix'] !!}</td>
+                </tr>
+            </tbody>
+		</table>
+    </div>	
 	
 	<br />
 	<h5 class="font-weight-bold">Kelahiran & Kematian</h5>
