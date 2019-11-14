@@ -123,6 +123,11 @@ class AdminRecordsController extends Controller
     		return Response::json('Admin not found!', 412);
     	}
 
+    	if ($admin->is_superadmin)
+    	{
+    		return Response::json('Superadmin cannot be deleted!', 412);
+    	}
+
     	$admin->delete();
 
     	flash('Admin Deleted!')->success();

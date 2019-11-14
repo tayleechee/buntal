@@ -88,9 +88,18 @@
 	            		var button = `<div class="text-center">
 	            						<button class="btn btn-primary btn-sm editAdminDetail" data-id="` + data + `" data-toggle="tooltip" title="Edit">Edit General</button>
 	            						<button class="btn btn-success btn-sm editAdminPassword" data-id="` + data + `" data-toggle="tooltip" title="Edit Password">Edit Password</button>
-	            						<button class="btn btn-danger btn-sm deleteAdmin" data-id="` + data + `" data-toggle="tooltip" title="Delete Admin">Delete</button>
-	            					</div>
 	            					`;
+	            		if (row['is_superadmin'])
+	            		{
+	            			button += `</div>`;
+	            		}
+	            		else
+	            		{
+	            			button += 	`
+            							<button class="btn btn-danger btn-sm deleteAdmin" data-id="` + data + `" data-toggle="tooltip" title="Delete Admin">Delete</button>
+            							</div>
+	            						`
+	            		}
 	            		return button;
 	            	}
 	            }
