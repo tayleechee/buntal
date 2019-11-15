@@ -90,8 +90,14 @@ $(function() {
             $(this).addClass('active');
             event.preventDefault();
         });
+
+	$('.portfolio-menu ul li').trigger('click', function (event) {
+            $(this).siblings('.active').removeClass('active');
+            $(this).addClass('active');
+            event.preventDefault();
+        });
+
     });
-    
     
     //  Magnific Popup
 

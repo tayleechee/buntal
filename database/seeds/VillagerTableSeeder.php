@@ -80,7 +80,7 @@ class VillagerTableSeeder extends Seeder
              'marital_status' => "kahwin",
              'education_level' => "Primary School",
              'occupation' => "Hawker",
-             'is_property_owner' => "1",
+             'is_property_owner' => "0",
              'is_active' => "1",
         ]);
 
@@ -94,7 +94,7 @@ class VillagerTableSeeder extends Seeder
              'marital_status' => "kahwin",
              'education_level' => "Primary School",
              'occupation' => "Nelayan",
-             'is_property_owner' => "1",
+             'is_property_owner' => "0",
              'is_active' => "1",
         ]);
 

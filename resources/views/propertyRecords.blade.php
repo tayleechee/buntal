@@ -29,17 +29,17 @@
 
 <div class="container">
 	<div class="mt-3">
-		<h5>Senarai Ketua Rumah</h5>
+		<h5>Senarai Harta Tanah</h5>
 	</div>
 	<div class="card">
-	<table class="mt-4 table table-bordered table-sm" id="ketuaRumahTable">
+	<table class="mt-4 table table-bordered table-sm" id="propertyTable">
 		<thead class="thead-dark">
 			<tr class="text-center">
 				<th class="th-sm">No.</th>
-				<th class="th-sm">Nama</th>
-				<th class="th-sm">Alamat Rumah</th>
-				<th class="th-sm">No. K/P</th>
-				<th class="th-sm">Telefon</th>
+				<th class="th-sm">Pemilik</th>
+				<th class="th-sm">Type</th>
+				<th class="th-sm">Kawasan</th>
+				<th class="th-sm">Keluasan</th>
 				<th class="th-sm">Tindakan</th>
 			</tr>
 		</thead>
@@ -49,26 +49,50 @@
 	</div>
 </div>
 
+<!-- Creates the bootstrap modal where the image will appear -->
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      	<div class="modal-header">
+	        <h5 class="modal-title">Photo Tanah</h5>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>        
+	    </div>
+      	<div class="modal-body" id="imagemodal_modal_body">
+        	<img src="" id="image_modal_image" style="width: 100%; height: auto;" >
+      	</div>
+      	<!-- <div class="modal-footer">
+        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      	</div> -->
+    </div>
+  </div>
+</div>
+
+<!--====== Isotope js ======-->
+<script src="{{ asset('welcome_assets/js/isotope.pkgd.min.js') }}"></script>
+
+<!--====== Images Loaded js ======-->
+<script src="{{ asset('welcome_assets/js/imagesloaded.pkgd.min.js') }}"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#viewRecordsDropdown").addClass("active");
 
-		var ketuaRumahTable = $('#ketuaRumahTable').DataTable({
+		var propertyTable = $('#propertyTable').DataTable({
 	        processing: true,
 	        serverSide: true,
-	        ajax: '{!! route('ketuaRumahRecords.getKetuaRumahRecords') !!}',
+	        ajax: '{!! route('propertyRecords.getPropertyRecords') !!}',
 	        dom: 'Bf<"col mt-2 pl-0 pr-0 d-flex justify-content-start"l>rtip',
 	        buttons: [
 	            {
 	                extend: 'excelHtml5',
-	                title: 'Senarai Ketua Rumah',
+	                title: 'Senarai Harta Tanah',
 	                exportOptions: {
 	                    columns: 'th:not(:last-child, :first-child)'
 	                }
 	            },
 	            {
 	                extend: 'pdfHtml5',
-	                title: 'Senarai Ketua Rumah',
+	                title: 'Senarai Harta Tanah',
 	                customize: function (doc) {
 						doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
 						var objLayout = {};
@@ -86,7 +110,7 @@
 	            },
 	            {
 	                extend: 'print',
-	                title: 'Senarai Ketua Rumah',
+	                title: 'Senarai Harta Tanah',
 	                exportOptions: {
 	                    columns: 'th:not(:last-child, :first-child)'
 	                }
@@ -95,19 +119,32 @@
 	        columns: [
 	        	{ data: null, "orderable": false, "searchable": false},
 	        	{ data: 'villager.name'},
-	        	{ data: 'house.address' },
-	        	{ data: 'villager.ic' },
-	        	{ data: 'villager.phone'},
-	        	{ data: 'house_id', "orderable": false, "searchable": false, "render": function(data, type, row) {
-	            		var button = `	<div class="d-flex justify-content-center">
-	            						<div class="text-center mr-1">
-	            							<button class="btn btn-outline-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="Lihat Butiran Rumah">Lihat Butiran Rumah</button>
-	            						</div>
-	            						<div class="text-center">
-	            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="Lihat Butiran Individual">Lihat Butiran Individual</button>
-	            						</div>
+	        	{ data: 'type' },
+	        	{ data: 'kawasan' },
+	        	{ data: 'keluasan', "searchable":false },
+	        	{ data: 'image_path', "orderable": false, "searchable": false, "render": function(data, type, row) { 
+	        			var button;
+	        			if (data)
+	        			{
+	        				button = `	<div class="d-flex justify-content-center">
+		            						<div class="text-center mr-1">
+		            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="View Pemilik Detail">Lihat Butiran Pemilik</button>
+		            						</div>
+		            						<div class="text-center">
+		            							<button class="btn btn-outline-primary btn-sm viewPhotoBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View House Photo">Lihat Photo Tanah</button>
+		            						</div>
 	            						</div>
 	            					`;
+	        			}
+	        			else
+	        			{
+	        				button = `	<div class="d-flex justify-content-center">
+		            						<div class="text-center">
+		            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="View Pemilik Detail">Lihat Butiran Pemilik</button>
+		            						</div>
+	            						</div>
+	            					`;
+	        			}
 	            		return button;
 	            	}
 	            }
@@ -115,19 +152,30 @@
 	        "order": [[ 1, 'asc' ]],
 	    });
 
-	    ketuaRumahTable.on( 'draw.dt', function () {
+	    propertyTable.on( 'draw.dt', function () {
 	    	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
-	    	var info = ketuaRumahTable.page.info();
+	    	var info = propertyTable.page.info();
 	    	var iterator = info.start;
-	        ketuaRumahTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+	        propertyTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
 	            cell.innerHTML = iterator+1;
 	            iterator++;
 	        } );
 	    } );
 	});
 
-	$(document).on("click", ".viewHouseDetailBtn", function() {
-		window.location.href = "/house/"+ $(this).attr("data-id");
+	$(document).on("click", ".viewPhotoBtn", function() {
+		$("#image_modal_image").attr("src", $(this).attr("data-id"));
+		$("#loadingModal").modal('show');
+
+		$('#imagemodal_modal_body').imagesLoaded()
+		  .done( function( instance ) {
+		    $("#loadingModal").modal('hide');
+		    $("#imagemodal").modal('show');
+		  })
+		  .fail( function() {
+		    $("#loadingModal").modal('hide');
+		    showErrorMessage("Unable to show photo:<br>404 Not Found");
+		  })
 	});
 
 	$(document).on("click", ".viewVillagerDetailBtn", function() {
