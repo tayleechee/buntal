@@ -88,16 +88,16 @@
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#sejarah">SEJARAH</a>
                                     </li>
-									<li class="nav-item">
+                                    <li class="nav-item">
                                         <a class="page-scroll" href="#penduduk">PENDUDUK</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#pendidikan">PENDIDIKAN</a>
                                     </li>
-                                  	<li class="nav-item">
+                                    <li class="nav-item">
                                         <a class="page-scroll" href="#pelancongan">PELANCONGAN</a>
                                     </li>
-									<li class="nav-item">
+                                    <li class="nav-item">
                                         <a class="page-scroll" href="#homestay">HOMESTAY</a>
                                     </li>
                                     <li class="nav-item">
@@ -191,7 +191,7 @@
             </div> <!-- logo -->
             <div class="sidebar-menu">
                 <ul>
-                    <li><a href="/">e-Buntal</a></li>
+                    <li><a href="#">LOGIN</a></li>
                 </ul>
             </div> <!-- menu -->
             <div class="sidebar-social d-flex align-items-center justify-content-center">
@@ -527,8 +527,7 @@ Terdapat pelbagai keistimewaan di Kampung Buntal seperti:
 
     <!--====== ABOUT PART ENDS ======-->
 
-
-    <!--====== portfolio PART START ======-->
+     <!--====== portfolio PART START ======-->
 
     <section id="homestay" class="portfolio-area">
         <div class="container">
@@ -536,37 +535,49 @@ Terdapat pelbagai keistimewaan di Kampung Buntal seperti:
                 <div class="col-lg-6">
                     <div class="section-title text-center pb-20">
                         <h3 class="title">Homestay</h3>
-                        <p class="text">Terdapat 5 buah homestay di Kampung Buntal yang dibuka untuk tempahan buat percutian bekeluarga atau berkumpulan, nikmatilah penginapan yang selesa dan bersih.</p>
+                        <p class="text">Terdapat beberapa homestay di Kampung Buntal yang dibuka untuk tempahan buat percutian bekeluarga atau berkumpulan, nikmatilah penginapan yang selesa dan bersih.</p>
                     </div> <!-- row -->
                 </div>
             </div> <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portfolio-menu pt-30 text-center">
+                        <ul>
+                            <li data-filter=".kartini-3">Kartini Homestay</li>
+                            <li data-filter=".kamizan-3">Kamizan Homestay</li>
+                            <li data-filter=".raniah-3">Raniah Homestay</li>
+                        </ul>
+                    </div> <!-- portfolio menu -->
+                </div>
+            </div> <!-- row -->
             <div class="row grid">
-                <div class="col-lg-4 col-sm-6 branding-3 planning-3">
-                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                <div class="col-lg-4 col-sm-6 raniah-3">
+                    <div class="single-portfolio mt-30 wow">
                         <div class="portfolio-image">
                             <img src="{{ asset('welcome_assets/images/raniah1.jpg') }}" alt="">
                             <div class="portfolio d-flex align-items-center justify-content-center">
                             </div>
                         </div>
                         <div class="portfolio-text">
-                            <h4 class="portfolio-title"><a href="#">Bilik Tidur Tetamu</a></h4>
+                            <h4 class="portfolio-title"><a href="#">Bilik Tidur</a></h4>
                         </div>
                     </div> <!-- single portfolio -->
                 </div>
-                <div class="col-lg-4 col-sm-6 marketing-3 research-3">
-                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
+                <div class="col-lg-4 col-sm-6 raniah-3">
+                    <div class="single-portfolio mt-30 wow">
                         <div class="portfolio-image">
-                            <img src="{{ asset('welcome_assets/images/raniah2.jpg') }}" alt="">
+                            <img src="{{ asset('welcome_assets/images/raniah5.jpg') }}" alt="">
                             <div class="portfolio d-flex align-items-center justify-content-center">
                             </div>
                         </div>
                         <div class="portfolio-text">
-                            <h4 class="portfolio-title"><a href="#">Bilik Mandi</a></h4>
+                            <h4 class="portfolio-title"><a href="#">Ruang Makan</a></h4>
                         </div>
                     </div> <!-- single portfolio -->
                 </div>
-                <div class="col-lg-4 col-sm-6 branding-3 marketing-3">
-                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.7s">
+                
+                <div class="col-lg-4 col-sm-6 raniah-3">
+                    <div class="single-portfolio mt-30 wow">
                         <div class="portfolio-image">
                             <img src="{{ asset('welcome_assets/images/raniah3.jpg') }}" alt="">
                             <div class="portfolio d-flex align-items-center justify-content-center">
@@ -577,20 +588,9 @@ Terdapat pelbagai keistimewaan di Kampung Buntal seperti:
                         </div>
                     </div> <!-- single portfolio -->
                 </div>
-                <div class="col-lg-4 col-sm-6 planning-3 research-3">
-                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
-                        <div class="portfolio-image">
-                            <img src="{{ asset('welcome_assets/images/raniah4.jpg') }}" alt="">
-                            <div class="portfoliod-flex align-items-center justify-content-center">
-                            </div>
-                        </div>
-                        <div class="portfolio-text">
-                            <h4 class="portfolio-title"><a href="#">Ruang Tamu</a></h4>
-                        </div>
-                    </div> <!-- single portfolio -->
-                </div>
-                <div class="col-lg-4 col-sm-6 marketing-3">
-                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
+                
+                <div class="col-lg-4 col-sm-6 raniah-3">
+                    <div class="single-portfolio mt-30">
                         <div class="portfolio-image">
                             <img src="{{ asset('welcome_assets/images/homestay2.jpg') }}" alt="">
                             <div class="portfolio d-flex align-items-center justify-content-center">
@@ -601,14 +601,163 @@ Terdapat pelbagai keistimewaan di Kampung Buntal seperti:
                         </div>
                     </div> <!-- single portfolio -->
                 </div>
+                <div class="col-lg-4 col-sm-6 kartini-3">
+                    <div class="single-portfolio mt-30">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('welcome_assets/images/kartini1.jpg') }}" alt="">
+                            <div class="portfolio d-flex align-items-center justify-content-center">
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">Laman Depan</a></h4>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="col-lg-4 col-sm-6 kartini-3">
+                    <div class="single-portfolio mt-30">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('welcome_assets/images/kartini3.jpg') }}" alt="">
+                            <div class="portfolio d-flex align-items-center justify-content-center">
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">Dapur</a></h4>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="col-lg-4 col-sm-6 kartini-3">
+                    <div class="single-portfolio mt-30">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('welcome_assets/images/kartini4.jpg') }}" alt="">
+                            <div class="portfolio d-flex align-items-center justify-content-center">
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">Ruang Tamu</a></h4>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="col-lg-4 col-sm-6 kartini-3">
+                    <div class="single-portfolio mt-30">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('welcome_assets/images/kartini6.jpg') }}" alt="">
+                            <div class="portfolio d-flex align-items-center justify-content-center">
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">Bilik Double</a></h4>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="col-lg-4 col-sm-6 kamizan-3">
+                    <div class="single-portfolio mt-30">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('welcome_assets/images/kamizan1.jpg') }}" alt="">
+                            <div class="portfolio d-flex align-items-center justify-content-center">
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">Bilik Double</a></h4>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="col-lg-4 col-sm-6 kamizan-3">
+                    <div class="single-portfolio mt-30">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('welcome_assets/images/kamizan2.jpg') }}" alt="">
+                            <div class="portfolio d-flex align-items-center justify-content-center">
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">Bilik Single 1</a></h4>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="col-lg-4 col-sm-6 kamizan-3">
+                    <div class="single-portfolio mt-30">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('welcome_assets/images/kamizan5.jpg') }}" alt="">
+                            <div class="portfolio d-flex align-items-center justify-content-center">
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">Laman Depan</a></h4>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="col-lg-4 col-sm-6 kamizan-3">
+                    <div class="single-portfolio mt-30">
+                        <div class="portfolio-image">
+                            <img src="{{ asset('welcome_assets/images/kamizan4.jpg') }}" alt="">
+                            <div class="portfolio d-flex align-items-center justify-content-center">
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">Bilik Single 2</a></h4>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                 <!-- Price & Detail Cards -->
+                <div class="col-lg-8 col-md-7 col-sm-9 kamizan-3">
+                    <div class="pricing-style-one mt-40">
+                        <div class="pricing-header text-center">
+                            <h5 class="sub-title">Kamizan Homestay</h5>
+                            <p class="month"><span class="price">RM 250</span>/malam</p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li><i class="lni-check-mark-circle"></i> Satu rumah sesuai untuk sekeluarga. Mempunyai 3 Bilik dan 2 Tandas.</li>
+                                <li><i class="lni-check-mark-circle"></i> Dilengkapi dapur, TV & ruang tamu.</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn rounded-buttons text-center">
+                            <a class="main-btn rounded-three">HUBUNGI: 013-8949570</a>
+                        </div>
+                    </div> <!-- pricing style one -->
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-9 kartini-3">
+                    <div class="pricing-style-one mt-40">
+                        <div class="pricing-header text-center">
+                            <h5 class="sub-title">KARTINI HOMESTAY</h5>
+                            <p class="month"><span class="price">RM 80</span>/malam(seorang)</p>
+                            <p class="month"><span class="price">RM 150-230</span>/malam(4 orang atau lebih)</p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li><i class="lni-check-mark-circle"></i> Rumah besar 3 bilik atau rumah sederhana 2 bilik</li>
+                                <li><i class="lni-check-mark-circle"></i> Ruang tamu yang luas serta dapur serba lengkap</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn rounded-buttons text-center">
+                            <a class="main-btn rounded-three">HUBUNGI: 013-5614666</a>
+                        </div>
+                    </div> <!-- pricing style one -->
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-9 raniah-3">
+                    <div class="pricing-style-one mt-40">
+                        <div class="pricing-header text-center">
+                            <h1 class="sub-title">RANIAH HOMESTAY</h>
+                            <p class="month"><span class="price">RM 100</span>/malam</p>
+                            <p class="month"><span class="price">RM 250</span>/malam</p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li><i class="lni-check-mark-circle"></i> Rumah sederhana bagi 4-6 orang /rumah besar bagi 7 orang (RM100/RM250)</li>
+                                <li><i class="lni-check-mark-circle"></i> Serba lengkap dengan dapur, TV, peti sejuk & ruang tamu.</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn rounded-buttons text-center">
+                            <a class="main-btn rounded-three">HUBUNGI: 019-4101076</a>
+                        </div>
+                    </div> <!-- pricing style one -->
+                </div>
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
 
     <!--====== portfolio PART ENDS ======-->
 
-
-	<!--     Senarai AJK Part -->
+    <!--     Senarai AJK Part -->
 
     <section id="AJK" class="about-area" style="background-image: url({{ asset('welcome_assets/images/ajkback.jpeg') }});background-repeat:no-repeat;background-size:cover; background-attachment:fixed;">
         <div class="container">
@@ -628,27 +777,27 @@ Terdapat pelbagai keistimewaan di Kampung Buntal seperti:
                         <div class="about-content media-body">
                             <h4 class="about-title"></h4>
                             <p class="text"> 
-                            	<p><b>Pemanca</b></p>
-								<ul>
-								<li>- <i>Rosidi Bin Junaidi</i></li>
-								</ul>
-								<p><b>Penghulu</b></p>
-								<ul>
-								<li><i>- Madli Bin Sah</i></li>
-								</ul>
-								<p><b>Ketua Kaum</b></p>
-								<ul>
-								<li><i>- Joni Bin Pawi</i></li>
-								</ul>
-								<p><b>Bendahari</b></p>
-								<ul>
-								<li><i>- Sauji Bin Zamari</i></li>
-								</ul>
-								<p><b>Setiausaha</b></p>
-								<ul>
-								<li><i>- Abdul Rasid Bin Bujang</i></li>
-								</ul>
-							</p>
+                                <p><b>Pemanca</b></p>
+                                <ul>
+                                <li>- <i>Rosidi Bin Junaidi</i></li>
+                                </ul>
+                                <p><b>Penghulu</b></p>
+                                <ul>
+                                <li><i>- Madli Bin Sah</i></li>
+                                </ul>
+                                <p><b>Ketua Kaum</b></p>
+                                <ul>
+                                <li><i>- Joni Bin Pawi</i></li>
+                                </ul>
+                                <p><b>Bendahari</b></p>
+                                <ul>
+                                <li><i>- Sauji Bin Zamari</i></li>
+                                </ul>
+                                <p><b>Setiausaha</b></p>
+                                <ul>
+                                <li><i>- Abdul Rasid Bin Bujang</i></li>
+                                </ul>
+                            </p>
                         </div>
                     </div> <!-- single about -->
                 </div>
@@ -657,22 +806,22 @@ Terdapat pelbagai keistimewaan di Kampung Buntal seperti:
                         <div class="about-content media-body">
                             <h4 class="about-title"></h4>
                             <p class="text">
-								<p><b>AJK</b></p>
-								<ul>
-								<li><i>- Fauzian Bin Boh</i></li>
-								<li><i>- Saleh Bin Ben</i></li>
-								<li><i>- Ahoi Bin Serah</i></li>
-								<li><i>- Awang Hamzah Bin Awang Bujang</i></li>
-								<li><i>- Saleh Bin Ghazali</i></li>
-								<li><i>- Ustaz Hasibullah Bin Roslan</i></li>
-								<li><i>- Sarbini Bin Oren</i></li>
-								<li><i>- Hamzah Bin Jaladin</i></li>
-								<li><i>- Fuad Bin Ben</i></li>
-								<li><i>- Nazri Bin Hamid</i></li>
-								<li><i>- Wan Tambi Binti Sahari</i></li>
-								<li><i>- Puan Peah Binti Khan</i></li>
-								</ul>
-							</p>
+                                <p><b>AJK</b></p>
+                                <ul>
+                                <li><i>- Fauzian Bin Boh</i></li>
+                                <li><i>- Saleh Bin Ben</i></li>
+                                <li><i>- Ahoi Bin Serah</i></li>
+                                <li><i>- Awang Hamzah Bin Awang Bujang</i></li>
+                                <li><i>- Saleh Bin Ghazali</i></li>
+                                <li><i>- Ustaz Hasibullah Bin Roslan</i></li>
+                                <li><i>- Sarbini Bin Oren</i></li>
+                                <li><i>- Hamzah Bin Jaladin</i></li>
+                                <li><i>- Fuad Bin Ben</i></li>
+                                <li><i>- Nazri Bin Hamid</i></li>
+                                <li><i>- Wan Tambi Binti Sahari</i></li>
+                                <li><i>- Puan Peah Binti Khan</i></li>
+                                </ul>
+                            </p>
                         </div>
                     </div> <!-- single about -->
                 </div>
@@ -681,7 +830,7 @@ Terdapat pelbagai keistimewaan di Kampung Buntal seperti:
     </section>
 
 
-	<!--	Senarai AJK Part Ends Here -->
+    <!--    Senarai AJK Part Ends Here -->
     
     <!--====== CONTACT TWO PART START ======-->
 
@@ -777,6 +926,7 @@ Terdapat pelbagai keistimewaan di Kampung Buntal seperti:
 
     <!--====== Main js ======-->
     <script src="{{ asset('welcome_assets/js/main.js') }}"></script>
+    
 
 </body>
 
