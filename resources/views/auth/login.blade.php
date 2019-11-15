@@ -193,7 +193,7 @@
             <div class="mt-4" style="color:white">
                 Bukan admin? Sila isi borang. <a href="{{route('fillForm.step1')}}">Klik sini!</a> 
                 <p>Atau kembali ke halaman
-                <a href="/welcome">Buntal.</a></p>
+                <a href="{{route('welcome')}}">Buntal.</a></p>
             </div>
            
         </div>

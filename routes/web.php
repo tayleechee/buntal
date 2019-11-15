@@ -18,10 +18,10 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/welcome', function(){
 	return view('welcome');
-});
+})->name('welcome');
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('ebuntal');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/chart','HomeController@chart');

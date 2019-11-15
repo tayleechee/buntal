@@ -4,6 +4,7 @@
     </IfModule>
 
     RewriteEngine On
+	RewriteBase /buntal/
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
