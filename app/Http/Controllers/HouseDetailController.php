@@ -98,7 +98,7 @@ class HouseDetailController extends Controller
 		$house->family_number = $request->numberOfFamily;
 		$house->save();
 
-		flash('Changes Saved!')->success();
+		flash('Segala ubahsuai telah disimpan!')->success();
     }
 
     public function deleteHouse(Request $request)
@@ -166,7 +166,7 @@ class HouseDetailController extends Controller
 
 		$villager->save();
 
-		flash('Telah Berjaya!')->success();		
+		flash('Ahli keluarga baru telah berjaya ditambah!')->success();
 
 		return Response::json("Success", 200);
     }

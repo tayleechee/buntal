@@ -98,13 +98,13 @@
 	        	{ data: 'house.address' },
 	        	{ data: 'villager.ic' },
 	        	{ data: 'villager.phone'},
-	        	{ data: 'house_id', "orderable": false, "searchable": false, "render": function(data, type, row) { 
+	        	{ data: 'house_id', "orderable": false, "searchable": false, "render": function(data, type, row) {
 	            		var button = `	<div class="d-flex justify-content-center">
 	            						<div class="text-center mr-1">
-	            							<button class="btn btn-outline-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View House Detail">Lihat Butiran Rumah</button>
+	            							<button class="btn btn-outline-primary btn-sm viewHouseDetailBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="Lihat Butiran Rumah">Lihat Butiran Rumah</button>
 	            						</div>
 	            						<div class="text-center">
-	            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="View Ketua Rumah Detail">Lihat Butiran Individu</button>
+	            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="Lihat Butiran Individual">Lihat Butiran Individual</button>
 	            						</div>
 	            						</div>
 	            					`;
