@@ -184,6 +184,7 @@
                               <a class="dropdown-item" href="{{route('villagerRecords.index')}}">Penduduk</a>
                               <a class="dropdown-item" href="{{route('houseRecords.index')}}">Rumah</a>
                               <a class="dropdown-item" href="{{route('ketuaRumahRecords.index')}}">Ketua Rumah</a>
+                              <a class="dropdown-item" href="{{route('propertyRecords.index')}}">Harta Tanah</a>
 
                               @if (Auth::user()->is_superadmin)
                               <a class="dropdown-item" href="{{route('adminRecords.index')}}">Admin</a>
@@ -476,6 +477,12 @@
                 msg = $.parseJSON(jqXHR.responseText);
             }
             $('#errorModal_msg').html(extra_msg+msg);
+            $('#errorModal').modal('show');
+        }
+
+        function showErrorMessage(message)
+        {
+            $('#errorModal_msg').html(message);
             $('#errorModal').modal('show');
         }
 

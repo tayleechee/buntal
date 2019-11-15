@@ -119,7 +119,7 @@
 	        columns: [
 	        	{ data: null, "orderable": false, "searchable": false},
 	        	{ data: 'villager.name'},
-	        	{ data: 'type', "searchable":false },
+	        	{ data: 'type' },
 	        	{ data: 'kawasan' },
 	        	{ data: 'keluasan', "searchable":false },
 	        	{ data: 'image_path', "orderable": false, "searchable": false, "render": function(data, type, row) { 
@@ -171,6 +171,10 @@
 		  .done( function( instance ) {
 		    $("#loadingModal").modal('hide');
 		    $("#imagemodal").modal('show');
+		  })
+		  .fail( function() {
+		    $("#loadingModal").modal('hide');
+		    showErrorMessage("Unable to show photo:<br>404 Not Found");
 		  })
 	});
 
