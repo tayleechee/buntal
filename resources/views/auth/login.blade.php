@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=1024">
 
     <title>e-Buntal</title>
 
@@ -16,8 +17,11 @@
     <style>
         html,
         body {
-            background-image: url('image/login.jpg');
-            background-size: 100% 100%;
+            background: url(image/login.jpg) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
             color: black;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
