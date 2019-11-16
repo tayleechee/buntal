@@ -477,7 +477,7 @@
 											<label class="col-form-label col-2">Upload Image (Tidak Wajib)</label>
 											<div class="col">
 												<div class="custom-file">
-												  	<input type="file" class="custom-file-input" id="member[`+member_index+`][tanah][1][photo]" name="member[`+member_index+`][tanah][1][photo]">
+												  	<input type="file" accept="image/*" class="custom-file-input" id="member[`+member_index+`][tanah][1][photo]" name="member[`+member_index+`][tanah][1][photo]">
 												  	<label class="custom-file-label" for="member[`+member_index+`][tanah][1][photo]">Choose Image to Upload</label>
 												</div>
 											</div>
@@ -553,7 +553,7 @@
 									<label class="col-form-label col-2">Upload Image (Tidak Wajib)</label>
 									<div class="col">
 										<div class="custom-file">
-										  	<input type="file" class="custom-file-input" id="member[`+member_index+`][tanah][`+tanah_index+`][photo]" name="member[`+member_index+`][tanah][`+tanah_index+`][photo]">
+										  	<input type="file" accept="image/*" class="custom-file-input" id="member[`+member_index+`][tanah][`+tanah_index+`][photo]" name="member[`+member_index+`][tanah][`+tanah_index+`][photo]">
 										  	<label class="custom-file-label" for="member[`+member_index+`][tanah][`+tanah_index+`][photo]">Choose Image to Upload</label>
 										</div>
 									</div>

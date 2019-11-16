@@ -436,7 +436,7 @@
 								<label class="pr-2 pl-3 padding-top-calc col-2">Photo</label>
 								<div class="col form-input-col d-none">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" id="tanah[{{$property_index+1}}][photo]" name="photo">
+										<input type="file" accept="image/*" class="custom-file-input" id="tanah[{{$property_index+1}}][photo]" name="photo">
 									  	<label class="custom-file-label" for="tanah[{{$property_index+1}}][photo]">Choose Image (Upload only if wish to change)</label>
 								  	</div>
 								</div>
