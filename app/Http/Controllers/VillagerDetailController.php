@@ -205,7 +205,7 @@ class VillagerDetailController extends Controller
     	if($request->hasFile('photo')){
             $photo = $request->file('photo');
             $filename = time()."_".$villager_id."_".$property_id.".".$photo->getClientOriginalExtension();
-            $filepath = '/image/upload/'.$filename;
+            $filepath = 'image/upload/'.$filename;
             Image::make($photo)->save(public_path($filepath));
 
             $property->image_path = $filepath;
