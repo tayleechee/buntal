@@ -439,22 +439,24 @@
 								<fieldset class="scheduler-border">
 									<legend class="scheduler-border">Tanah 1</legend>
 									<div id="tanah_`+member_index+`_1" class="tanah_div">
-										<label class="pr-2">Jenis Tanah</label>
-										<div class="custom-control custom-radio custom-control-inline">
-											<input type="radio" id="member[`+member_index+`][tanah][1][ncr]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="NCR" required>
-											<label for="member[`+member_index+`][tanah][1][ncr]" class="custom-control-label">NCR</label>
-										</div>
-										<div class="custom-control custom-radio custom-control-inline">
-											<input type="radio" id="member[`+member_index+`][tanah][1][geran]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="Geran">
-											<label for="member[`+member_index+`][tanah][1][geran]" class="custom-control-label">Geran</label>
-										</div>
-										<div class="custom-control custom-radio custom-control-inline">
-											<input type="radio" id="member[`+member_index+`][tanah][1][fl]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="FL">
-											<label for="member[`+member_index+`][tanah][1][fl]" class="custom-control-label">FL</label>
-										</div>
-										<div class="custom-control custom-radio custom-control-inline">
-											<input type="radio" id="member[`+member_index+`][tanah][1][mixzone]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="Mix Zone">
-											<label for="member[`+member_index+`][tanah][1][mixzone]" class="custom-control-label">Mix Zone</label>
+										<div class="form-group row mt-3">
+											<label class="pr-2 col-2 mr-3">Jenis Tanah</label>
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="member[`+member_index+`][tanah][1][ncr]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="NCR" required>
+												<label for="member[`+member_index+`][tanah][1][ncr]" class="custom-control-label">NCR</label>
+											</div>
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="member[`+member_index+`][tanah][1][geran]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="Geran">
+												<label for="member[`+member_index+`][tanah][1][geran]" class="custom-control-label">Geran</label>
+											</div>
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="member[`+member_index+`][tanah][1][fl]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="FL">
+												<label for="member[`+member_index+`][tanah][1][fl]" class="custom-control-label">FL</label>
+											</div>
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="member[`+member_index+`][tanah][1][mixzone]" name="member[`+member_index+`][tanah][1][type]" class="custom-control-input tanah" value="Mix Zone">
+												<label for="member[`+member_index+`][tanah][1][mixzone]" class="custom-control-label">Mix Zone</label>
+											</div>
 										</div>
 
 										<div class="form-group row mt-3">
@@ -513,22 +515,24 @@
 						<fieldset class="scheduler-border">
 							<legend class="scheduler-border">Tanah `+tanah_index+`</legend>
 							<div id="tanah_`+member_index+`_`+tanah_index+`" class="tanah_div">
-								<label class="pr-2">Jenis Tanah</label>
-								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][ncr]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="NCR" required>
-									<label for="member[`+member_index+`][tanah][`+tanah_index+`][ncr]" class="custom-control-label">NCR</label>
-								</div>
-								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][geran]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="Geran">
-									<label for="member[`+member_index+`][tanah][`+tanah_index+`][geran]" class="custom-control-label">Geran</label>
-								</div>
-								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][fl]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="FL">
-									<label for="member[`+member_index+`][tanah][`+tanah_index+`][fl]" class="custom-control-label">FL</label>
-								</div>
-								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][mixzone]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="Mix Zone">
-									<label for="member[`+member_index+`][tanah][`+tanah_index+`][mixzone]" class="custom-control-label">Mix Zone</label>
+								<div class="form-group row mt-3">
+									<label class="pr-2 col-2 mr-3">Jenis Tanah</label>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][ncr]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="NCR" required>
+										<label for="member[`+member_index+`][tanah][`+tanah_index+`][ncr]" class="custom-control-label">NCR</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][geran]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="Geran">
+										<label for="member[`+member_index+`][tanah][`+tanah_index+`][geran]" class="custom-control-label">Geran</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][fl]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="FL">
+										<label for="member[`+member_index+`][tanah][`+tanah_index+`][fl]" class="custom-control-label">FL</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" id="member[`+member_index+`][tanah][`+tanah_index+`][mixzone]" name="member[`+member_index+`][tanah][`+tanah_index+`][type]" class="custom-control-input tanah" value="Mix Zone">
+										<label for="member[`+member_index+`][tanah][`+tanah_index+`][mixzone]" class="custom-control-label">Mix Zone</label>
+									</div>
 								</div>
 
 								<div class="form-group row mt-3">
