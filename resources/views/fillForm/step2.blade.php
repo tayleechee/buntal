@@ -636,6 +636,14 @@
             
             reader.readAsDataURL(input.files[0]);
         }
+
+        if (!$(this).val())
+        {
+        	var input_row = $(input).closest(".photo_input_row");
+			var photo_preview = $(input_row).next(".photo_preview");
+			    
+			$(photo_preview).html("");
+        }
     });
 
 </script>

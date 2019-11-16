@@ -48,7 +48,7 @@
 	}
 
 	.photo_input_preview {
-		max-width: auto;
+		width: auto;
 		height: 350px;
 	}
 
@@ -56,6 +56,13 @@
 		padding: 5px;
 		border: 1px solid #a9c4df;
 		min-height: 350px;
+	}
+
+	#addProperty_photo_input_preview {
+		width: 100%;
+		height: auto;
+		padding: 5px;
+		border: 1px solid #a9c4df;
 	}
 </style>
 @endsection
@@ -1088,6 +1095,36 @@
             }
             
             reader.readAsDataURL(input.files[0]);
+        }
+
+        if (!$(this).val())
+        {
+        	var input_row = $(input).closest(".photo_input_row");
+           	var photo_preview_row = $(input_row).next(".photo_preview_row");
+           	var photo_input_preview = $(photo_preview_row).find(".photo_input_preview");
+           	$(photo_input_preview).attr('src', "");
+        }
+    });
+
+    $(document).on('change', '#addProperty_photo', function(){
+    	var input = $(this)[0];
+
+    	if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+            	var img = 	`
+            				<img src="`+e.target.result+`" id="addProperty_photo_input_preview">
+            				`;
+                $("#addProperty_photo_preview_div").html(img);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        if (!$(this).val())
+        {
+        	$("#addProperty_photo_preview_div").html("");
         }
     });
 </script>

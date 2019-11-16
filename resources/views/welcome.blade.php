@@ -43,7 +43,7 @@
     
     <!--====== PRELOADER PART START ======-->
 
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="loader">
             <div class="ytp-spinner">
                 <div class="ytp-spinner-container">
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!--====== PRELOADER PART ENDS ======-->
 

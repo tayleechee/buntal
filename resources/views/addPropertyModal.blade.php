@@ -58,6 +58,13 @@
                   </div>
                 </div>
               </div>
+              <div class="form group row pl-2 mt-3">
+                <div class="col-2"></div>
+                <div class="col-10">
+                  <div id="addProperty_photo_preview_div">
+                  </div>
+                </div>
+              </div>
           </form>
         </div>
         
