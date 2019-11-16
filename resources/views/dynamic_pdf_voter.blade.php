@@ -47,9 +47,10 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-					<th style="width:10%">#</th>
-                    <th style="width:30%">Nama</th>
-                    <th style="width:30%">No. K/P</th>
+					<th style="width:5%">#</th>
+                    <th style="width:25%">Nama</th>
+                    <th style="width:20%">No. K/P</th>					
+					<th style="width:20%">No. Telefon</th>
                     <th style="width:15%">Jantina</th>
                     <th style="width:15%">Kaum</th>
                 </tr>
@@ -70,6 +71,11 @@
 					<td>{{ $count }}</td>
                     <td>{{ $villager->name }}</td>
                     <td>{{ $villager->ic }}</td>
+					@if ($villager->phone != null)
+						<td>{{ $villager->phone }}</td>
+					@else 
+						<td>-</td>
+					@endif	
                     <td>{{ $gender }}</td>
                     <td>{{ $ethinicity }}</td>
                 </tr>
@@ -85,9 +91,10 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-					<th style="width:10%">#</th>
-                    <th style="width:30%">Nama</th>
-                    <th style="width:30%">No. K/P</th>
+					<th style="width:5%">#</th>
+                    <th style="width:25%">Nama</th>
+                    <th style="width:20%">No. K/P</th>					
+					<th style="width:20%">No. Telefon</th>
                     <th style="width:15%">Jantina</th>
                     <th style="width:15%">Kaum</th>
                 </tr>
@@ -108,6 +115,11 @@
 					<td>{{ $count }}</td>
                     <td>{{ $villager->name }}</td>
                     <td>{{ $villager->ic }}</td>
+					@if ($villager->phone != null)
+						<td>{{ $villager->phone }}</td>
+					@else 
+						<td>-</td>
+					@endif		
                     <td>{{ $gender }}</td>
                     <td>{{ $ethinicity }}</td>
                 </tr>
