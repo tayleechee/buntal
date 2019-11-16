@@ -896,6 +896,11 @@
 					$(photo_input_preview).attr('src', "");
 				}
 
+				var photo_input = $(form).find(".photo_input");
+				$(photo_input).val("");
+				var photo_label = $(photo_input).next(".custom-file-label");
+				$(photo_label).html(" ");
+
 				$(form).find(".form-control").addClass("d-none");
 				$(form).find(".form-input-col").addClass("d-none");
 				$(form).find(".custom-control").addClass("d-none");
