@@ -55,7 +55,7 @@
 				setTimeout(function () { updateCounter() }, 1000);
 			}
 			else {
-				location.href = "/";
+				location.href = "{{$base_url}}";
 			}
 		};
 		setTimeout(function () { updateCounter() }, 1000);
