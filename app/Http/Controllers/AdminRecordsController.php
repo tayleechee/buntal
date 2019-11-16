@@ -63,7 +63,7 @@ class AdminRecordsController extends Controller
     	$admin->password = Hash::make($request->password);
     	$admin->save();
 
-    	flash('Telah Berjaya!')->success();
+    	flash('Admin telah berjaya ditambah!')->success();
     }
 
     public function editAdmin(Request $request)
@@ -87,7 +87,7 @@ class AdminRecordsController extends Controller
 
     	if (!$admin)
     	{
-    		return Response::json('Admin not found!', 412);
+    		return Response::json('Tidak ada admin tersebut dalam sistem!', 412);
     	}
     	else
     	{
@@ -95,7 +95,7 @@ class AdminRecordsController extends Controller
     		$admin->name = $request->name;
     		$admin->save();
 
-    		flash('Telah Berjaya!')->success();
+    		flash(' Username telah berjaya diubah!')->success();
     	}
     }
 
@@ -105,13 +105,13 @@ class AdminRecordsController extends Controller
 
     	if (!$admin)
     	{
-    		return Response::json('Admin not found!', 412);
+    		return Response::json('Tidak ada admin tersebut dalam sistem!', 412);
     	}
 
     	$admin->password = Hash::make($request->password);
     	$admin->save();
 
-    	flash('Password Changed!')->success();
+    	flash('Kata Laluan telah berjaya berubah!')->success();
     }
 
     public function deleteAdmin(Request $request)
@@ -120,7 +120,7 @@ class AdminRecordsController extends Controller
 
     	if (!$admin)
     	{
-    		return Response::json('Admin not found!', 412);
+    		return Response::json('Tidak ada admin tersebut dalam sistem!', 412);
     	}
 
     	if ($admin->is_superadmin)
@@ -130,6 +130,6 @@ class AdminRecordsController extends Controller
 
     	$admin->delete();
 
-    	flash('Admin Deleted!')->success();
+    	flash('Admin itu telah dipadamkan!')->success();
     }
 }

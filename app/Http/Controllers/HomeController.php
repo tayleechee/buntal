@@ -90,7 +90,7 @@ class HomeController extends Controller
         $propertyOwnerChart = new Chartjs;
         $propertyOwnerChart->title("Pemilik Harta Tanah");
         $propertyOwnerChart->labels(['Ya', 'Tidak']);
-        $propertyOwnerChart->dataset('Pemilik Harta Tanah','bar', [$data_noProperty,$data_haveProperty])->options([
+        $propertyOwnerChart->dataset('Pemilik Harta Tanah','bar', [$data_haveProperty, $data_noProperty])->options([
             'backgroundColor' => ['#B9DBFA', '#FFABE7'],
             'borderColor' => ['#2D7AC1','#AA408C'],
         ]);

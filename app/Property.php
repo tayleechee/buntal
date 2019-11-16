@@ -8,4 +8,9 @@ class Property extends Model
 {
     public $timestamps = false;
     protected $table = 'property';
+
+    public function villager()
+    {
+    	return $this->belongsTo('App\Villager');
+    }
 }
