@@ -36,13 +36,20 @@
 	.ketuaRumah_title {
 		color: blue;
 	}
+
+	.photo_input_preview {
+		max-width: auto;
+		height: 350px;
+		padding: 5px;
+		border: 1px solid #a9c4df;
+	}
 </style>
 @endsection
 
 @section('content')
 
 @if( empty($step1_address) || empty($step1_householdIncome) || empty($step1_numberOfFamily) || empty($step1_numberOfFamilyMember) )
-	<script>window.location = "/fillForm/step1";</script>
+	<script>window.location.href = "{{url('fillForm/step1')}}";</script>
 @endif
 
 @isset($step1_numberOfFamilyMember)
@@ -407,7 +414,7 @@
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
-				window.location.href = "fillForm/success";
+				window.location.href = "{{url('fillForm/success')}}";
 				//$("#loading_div").removeClass("is-active");
 			},
 			error: function (jqXHR, exception) {
@@ -473,14 +480,16 @@
 											</div>
 										</div>
 
-										<div class="form-group row mt-3">
+										<div class="form-group row mt-3 photo_input_row">
 											<label class="col-form-label col-2">Upload Image (Tidak Wajib)</label>
 											<div class="col">
 												<div class="custom-file">
-												  	<input type="file" accept="image/*" class="custom-file-input" id="member[`+member_index+`][tanah][1][photo]" name="member[`+member_index+`][tanah][1][photo]">
+												  	<input type="file" accept="image/*" class="photo_input custom-file-input" id="member[`+member_index+`][tanah][1][photo]" name="member[`+member_index+`][tanah][1][photo]">
 												  	<label class="custom-file-label" for="member[`+member_index+`][tanah][1][photo]">Choose Image to Upload</label>
 												</div>
 											</div>
+										</div>
+										<div class="photo_preview row">
 										</div>
 
 									</div>
@@ -549,14 +558,16 @@
 									</div>
 								</div>
 
-								<div class="form-group row mt-3">
+								<div class="form-group row mt-3 photo_input_row">
 									<label class="col-form-label col-2">Upload Image (Tidak Wajib)</label>
 									<div class="col">
 										<div class="custom-file">
-										  	<input type="file" accept="image/*" class="custom-file-input" id="member[`+member_index+`][tanah][`+tanah_index+`][photo]" name="member[`+member_index+`][tanah][`+tanah_index+`][photo]">
+										  	<input type="file" accept="image/*" class="photo_input custom-file-input" id="member[`+member_index+`][tanah][`+tanah_index+`][photo]" name="member[`+member_index+`][tanah][`+tanah_index+`][photo]">
 										  	<label class="custom-file-label" for="member[`+member_index+`][tanah][`+tanah_index+`][photo]">Choose Image to Upload</label>
 										</div>
 									</div>
+								</div>
+								<div class="photo_preview row">
 								</div>
 
 							</div>
@@ -602,6 +613,30 @@
         //replace the "Choose a file" label
         $(this).next('.custom-file-label').html(fileName);
     })
+
+    $(document).on('change', '.photo_input', function(){
+    	var input = $(this)[0];
+
+    	if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                //$('#avatar-img').attr('src', e.target.result);
+                var input_row = $(input).closest(".photo_input_row");
+               	var photo_preview = $(input_row).next(".photo_preview");
+			    var img = 	`
+			    			<div class="col-2">
+			    			</div>
+			    			<div class="col-10">
+			        			<img src="`+e.target.result+`" class="photo_input_preview">
+			        		</div>
+			        		`;
+			    $(photo_preview).html(img);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
 
 </script>
 

@@ -46,6 +46,17 @@
 		box-shadow: 2px 2px 5px #AED6F1 !important;
 		border: 2px solid #AED6F1 !important;
 	}
+
+	.photo_input_preview {
+		max-width: auto;
+		height: 350px;
+	}
+
+	.photo_input_preview_div {
+		padding: 5px;
+		border: 1px solid #a9c4df;
+		min-height: 350px;
+	}
 </style>
 @endsection
 
@@ -432,11 +443,11 @@
 								</div>
 							</div>
 
-							<div class="form-group row pl-2 mt-3">
+							<div class="form-group row pl-2 mt-3 photo_input_row">
 								<label class="pr-2 pl-3 padding-top-calc col-2">Photo</label>
 								<div class="col form-input-col d-none">
 									<div class="custom-file">
-										<input type="file" accept="image/*" class="custom-file-input" id="tanah[{{$property_index+1}}][photo]" name="photo">
+										<input type="file" accept="image/*" class="photo_input custom-file-input" id="tanah[{{$property_index+1}}][photo]" name="photo">
 									  	<label class="custom-file-label" for="tanah[{{$property_index+1}}][photo]">Choose Image (Upload only if wish to change)</label>
 								  	</div>
 								</div>
@@ -446,6 +457,18 @@
 									@else
 										Not Available
 									@endif
+								</div>
+							</div>
+							<div class="photo_preview_row form-input-col row pl-2 d-none">
+								<div class="col-2"></div>
+								<div class="col-10">
+									<div class="photo_input_preview_div">
+								@if (!empty($property->image_path))
+									<img class="photo_input_preview" src="{{asset($property->image_path)}}">
+								@else
+									<img class="photo_input_preview" src="">
+								@endif
+									</div>
 								</div>
 							</div>
 						</div>
@@ -659,6 +682,7 @@
 						$("input[name='propertyOwner'][value='0']")[0].checked = true;
 					}
 				}
+
 				var form = document.getElementById("villagerDetail_form");
 				$(form).find(".form-control").addClass("d-none");
 				$(form).find(".form-input-col").addClass("d-none");
@@ -853,6 +877,25 @@
 					}
 				}
 
+				if (typeof data.image_path !== 'undefined')
+				{	
+               		var photo_input_preview = $(tanah_show_div).find(".photo_input_preview");
+               		if (data.image_path) 
+               		{
+               			var path = '{{ url("", "id") }}';
+						path = path.replace('id', data.image_path);
+               			$(photo_input_preview).attr('src', path);
+               		}
+               		else
+               		{
+               			$(photo_input_preview).attr('src', " ");
+               		}
+				}
+				else
+				{
+					$(photo_input_preview).attr('src', "");
+				}
+
 				$(form).find(".form-control").addClass("d-none");
 				$(form).find(".form-input-col").addClass("d-none");
 				$(form).find(".custom-control").addClass("d-none");
@@ -1023,6 +1066,24 @@
         var fileName = $(this).val().replace('C:\\fakepath\\', "")
         //replace the "Choose a file" label
         $(this).next('.custom-file-label').html(fileName);
+    });
+
+    $(document).on('change', '.photo_input', function(){
+    	var input = $(this)[0];
+
+    	if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                //$('#avatar-img').attr('src', e.target.result);
+                var input_row = $(input).closest(".photo_input_row");
+               	var photo_preview_row = $(input_row).next(".photo_preview_row");
+               	var photo_input_preview = $(photo_preview_row).find(".photo_input_preview");
+               	$(photo_input_preview).attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
     });
 </script>
 

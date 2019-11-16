@@ -35,8 +35,8 @@
 	</div>
 
 	<div class="text-center mt-4">
-
-		<button class="btn btn-primary" onclick="location.href='/'">Redirect</button>
+		<?php $base_url = url('/'); ?>
+		<button class="btn btn-primary" onclick="location.href='{{$base_url}}'">Redirect</button>
 	</div>
 </div>
 
