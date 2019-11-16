@@ -344,9 +344,10 @@ class DynamicPDFController extends Controller
 			<h4>Senarai Penduduk yang Belum Daftar sebagai Pengundi</h4>
 			<table width="100%" style="border-collapse: collapse; border: 1px;">
 				<tr>
-					<th style="border: 1px solid; padding:12px;" width="10%">#</th>
-					<th style="border: 1px solid; padding:12px;" width="30%">Nama</th>
-					<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+					<th style="border: 1px solid; padding:12px;" width="25%">Nama</th>
+					<th style="border: 1px solid; padding:12px;" width="20%">No. K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="20%">No. Telefon</th>
 					<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
 					<th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
 				</tr>
@@ -364,6 +365,14 @@ class DynamicPDFController extends Controller
 						<td style="border: 1px solid; padding:12px;">'.$count.'</td>
 						<td style="border: 1px solid; padding:12px;">'.$villager->name.'</td>
 						<td style="border: 1px solid; padding:12px;">'.$villager->ic.'</td>
+						<td style="border: 1px solid; padding:12px;">';
+				if ($villager->phone != null)
+					$output .= $villager->phone;
+				else
+					$output .= '-';
+				
+				$output .= '
+						</td>
 						<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
 						<td style="border: 1px solid; padding:12px;">'.ucwords($villager->race).'</td>
 					</tr>
@@ -379,9 +388,10 @@ class DynamicPDFController extends Controller
 			<h4>Senarai Penduduk yang Sudah Daftar sebagai Pengundi</h4>
 			<table width="100%" style="border-collapse: collapse; border: 1px;">
 				<tr>
-					<th style="border: 1px solid; padding:12px;" width="10%">#</th>
-					<th style="border: 1px solid; padding:12px;" width="30%">Nama</th>
-					<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+					<th style="border: 1px solid; padding:12px;" width="25%">Nama</th>
+					<th style="border: 1px solid; padding:12px;" width="20%">No. K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="20%">No. Telefon</th>
 					<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
 					<th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
 				</tr>
@@ -399,6 +409,14 @@ class DynamicPDFController extends Controller
 						<td style="border: 1px solid; padding:12px;">'.$count.'</td>
 						<td style="border: 1px solid; padding:12px;">'.$villager->name.'</td>
 						<td style="border: 1px solid; padding:12px;">'.$villager->ic.'</td>
+						<td style="border: 1px solid; padding:12px;">';
+				if ($villager->phone != null)
+					$output .= $villager->phone;
+				else
+					$output .= '-';
+				
+				$output .= '
+						</td>
 						<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
 						<td style="border: 1px solid; padding:12px;">'.ucwords($villager->race).'</td>
 					</tr>
