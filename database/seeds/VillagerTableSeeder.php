@@ -15,7 +15,7 @@ class VillagerTableSeeder extends Seeder
         	 'house_id' => "1",
              'name' => "Elvin Heng",
              'ic' => "960104130005",
-             'phone' => "0167159613",
+             'phone' => "016-7159613",
              'gender' => "m",
              'dob' => "1996-01-04",
              'race' => "cina",
@@ -43,14 +43,14 @@ class VillagerTableSeeder extends Seeder
 
         DB::table('villagers')->insert([
              'house_id' => "2",
-             'name' => "Ali Abang",
+             'name' => "Ali ak Robert",
              'ic' => "901101133713",
-             'phone' => "0105056633",
+             'phone' => "010-5056633",
              'gender' => "m",
              'dob' => "1990-10-11",
              'race' => "bumiputera",
              'marital_status' => "bujang",
-             'education_level' => "Non-educated",
+             'education_level' => "Secondary School",
              'occupation' => "Nelayan",
              'is_property_owner' => "0",
              'is_active' => "1",
@@ -58,13 +58,13 @@ class VillagerTableSeeder extends Seeder
 
         DB::table('villagers')->insert([
              'house_id' => "2",
-             'name' => "Abu Abang",
+             'name' => "Abu ak Robert",
              'ic' => "901101133719",
              'gender' => "m",
              'dob' => "1990-10-11",
              'race' => "bumiputera",
              'marital_status' => "bujang",
-             'education_level' => "Non-educated",
+             'education_level' => "Secondary School",
              'occupation' => "Nelayan",
              'is_property_owner' => "0",
              'is_active' => "1",
@@ -72,7 +72,7 @@ class VillagerTableSeeder extends Seeder
 
         DB::table('villagers')->insert([
              'house_id' => "2",
-             'name' => "Rosiah Anak",
+             'name' => "Rosiah ak Joe",
              'ic' => "630705131222",
              'gender' => "f",
              'dob' => "1963-07-05",
@@ -86,7 +86,7 @@ class VillagerTableSeeder extends Seeder
 
         DB::table('villagers')->insert([
              'house_id' => "2",
-             'name' => "Hank Anak",
+             'name' => "Robert ak Peter",
              'ic' => "620304131753",
              'gender' => "f",
              'dob' => "1962-03-04",
@@ -100,7 +100,7 @@ class VillagerTableSeeder extends Seeder
 
         DB::table('villagers')->insert([
              'house_id' => "2",
-             'name' => "Vincent Anak",
+             'name' => "Vincent ak Robert",
              'ic' => "160808135877",
              'gender' => "f",
              'dob' => "2016-08-08",

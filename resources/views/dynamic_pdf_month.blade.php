@@ -57,9 +57,11 @@
 						</tr>
 					</thead>
 					<tbody>
+					@php
+						$count = 1;
+					@endphp
 					@foreach($data as $d)
 						@php
-							$count = 1;
 							if ($d->gender == 'm')
 								$gender = 'Lelaki';
 							else
