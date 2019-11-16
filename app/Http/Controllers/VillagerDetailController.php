@@ -208,6 +208,13 @@ class VillagerDetailController extends Controller
             $filepath = 'image/upload/'.$filename;
             Image::make($photo)->save(public_path($filepath));
 
+            //delete old image file
+            if (!empty($property->image_path))
+            {
+                $old_image_path = public_path($property->image_path);
+                unlink($old_image_path);
+            }
+
             $property->image_path = $filepath;
     	}
     	$property->save();
@@ -227,6 +234,13 @@ class VillagerDetailController extends Controller
     	{
     		return Response::json("Maklumat tanah tidak dijumpai.", 455);
     	}
+
+        //delete old image file
+        if (!empty($property->image_path))
+        {
+            $old_image_path = public_path($property->image_path);
+            unlink($old_image_path);
+        }
 
     	$property->image_path = null;
     	$property->save();
