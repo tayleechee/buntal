@@ -140,7 +140,7 @@ class FillFormController extends Controller
 						if($request->hasFile('member.'.($index).'.tanah.'.($tanah_index).'.photo')){
 				            $photo = $request->file('member.'.($index).'.tanah.'.($tanah_index).'.photo');
 				            $filename = time()."_".$villager_id."_".$property_id.".".$photo->getClientOriginalExtension();
-				            $filepath = '/image/upload/'.$filename;
+				            $filepath = 'image/upload/'.$filename;
 				            Image::make($photo)->save(public_path($filepath));
 
 				            $property->image_path = $filepath;

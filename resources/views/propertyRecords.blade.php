@@ -179,7 +179,7 @@
 	});
 
 	$(document).on("click", ".viewVillagerDetailBtn", function() {
-		window.location.href = "/villager/"+ $(this).attr("data-id");
+		window.location.href = "villager/"+ $(this).attr("data-id");
 	});
 </script>
 

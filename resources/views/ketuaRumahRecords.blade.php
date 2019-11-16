@@ -127,11 +127,11 @@
 	});
 
 	$(document).on("click", ".viewHouseDetailBtn", function() {
-		window.location.href = "/house/"+ $(this).attr("data-id");
+		window.location.href = "house/"+ $(this).attr("data-id");
 	});
 
 	$(document).on("click", ".viewVillagerDetailBtn", function() {
-		window.location.href = "/villager/"+ $(this).attr("data-id");
+		window.location.href = "villager/"+ $(this).attr("data-id");
 	});
 </script>
 

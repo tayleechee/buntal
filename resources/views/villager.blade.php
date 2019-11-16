@@ -442,7 +442,7 @@
 								</div>
 								<div class="col form-input-div">
 									@if (!empty($property->image_path))
-										<img height="350" src="{{$property->image_path}}">
+										<img height="350" src="{{asset($property->image_path)}}">
 									@else
 										Not Available
 									@endif
@@ -591,7 +591,7 @@
 		var villager_id = document.getElementById("villager_id").getAttribute("value");
 		$.ajax({
 			type: "GET",
-			url: '/getVillagerDetail',
+			url: "{{url('getVillagerDetail')}}",
 			data: {
 				id: villager_id,
 			},
@@ -690,7 +690,7 @@
 		}
 		$.ajax({
 			type: "POST",
-			url: "/setVillagerDetail",
+			url: "{{url('/setVillagerDetail')}}",
 			data: $("#villagerDetail_form").serialize(),
 			beforeSend: function() {
 				$("#loading_div").attr("data-text", "Sila Tunggu...");
@@ -710,7 +710,7 @@
 		var id = $("#villager_id").val();
 		$.ajax({
 			type: "POST",
-			url: "/markLive",
+			url: "{{url('/markLive')}}",
 			data: {
 				id: id,
 				_token: _token
@@ -743,7 +743,7 @@
 		var deathDate = $("#mark_death_date").val();
 		$.ajax({
 			type: "POST",
-			url: "/markDead",
+			url: "{{url('/markDead')}}",
 			data: {
 				id: id,
 				deathDate: deathDate,
@@ -768,7 +768,7 @@
 		var id = $("#villager_id").val();
 		$.ajax({
 			type: "POST",
-			url: "/deleteVillager",
+			url: "{{url('/deleteVillager')}}",
 			data: {
 				id: id,
 				_token: _token
@@ -821,7 +821,7 @@
 
 		$.ajax({
 			type: "GET",
-			url: '/getPropertyDetail',
+			url: "{{url('/getPropertyDetail')}}",
 			data: {
 				id: property_id,
 			},
@@ -893,7 +893,7 @@
 			return;
 		}
 
-		var url = "/editPropertyDetail";
+		var url = "{{url('/editPropertyDetail')}}";
 
 		var formData = new FormData(form[0]);
 
@@ -929,7 +929,7 @@
 
     	$.ajax({
     		type: "GET",
-    		url: "/deletePropertyPhoto",
+    		url: "{{url('/deletePropertyPhoto')}}",
     		data: {
     			id: property_id,
     		},
@@ -959,7 +959,7 @@
 
     	$.ajax({
     		type: "GET",
-    		url: "/deleteProperty",
+    		url: "{{url('/deleteProperty')}}",
     		data: {
     			id: property_id,
     		},
@@ -998,7 +998,7 @@
 
     	$.ajax({
     		type: 'POST',
-    		url: '/addProperty',
+    		url: "{{url('/addProperty')}}",
     		data: formData,
 			dataType: "json",
 			processData: false,

@@ -390,7 +390,7 @@
 	    e.preventDefault();
 
 	    //var form = $(this);
-	    var url = "/fillForm/processStep2";
+	    var url = "{{url('/fillForm/processStep2')}}";
 
 	    var form = $(this).closest("form");
 		var formData = new FormData(form[0]);
@@ -407,7 +407,7 @@
 				$("#loading_div").addClass("is-active");
 			},
 			success: function(data) {
-				window.location.href = "/fillForm/success";
+				window.location.href = "fillForm/success";
 				//$("#loading_div").removeClass("is-active");
 			},
 			error: function (jqXHR, exception) {

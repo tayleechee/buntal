@@ -123,7 +123,7 @@
 
 		$.ajax({
 			type: "GET",
-			url: "/getAdminDetail",
+			url: "{{url('/getAdminDetail')}}",
 			data: {
 				id: id,
 			},
@@ -161,7 +161,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "/editAdmin",
+			url: "{{url('/editAdmin')}}",
 			data: $("#editAdminForm").serialize(),
 			beforeSend: function() {
 				$("#loading_div").attr("data-text", "Sila Tunggu...");
@@ -203,7 +203,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "/addAdmin",
+			url: "{{url('/addAdmin')}}",
 			data: $("#addAdminForm").serialize(),
 			beforeSend: function() {
 				$("#loading_div").attr("data-text", "Sila Tunggu...");
@@ -235,7 +235,7 @@
 
 		$.ajax({
 			type: "GET",
-			url: "/deleteAdmin",
+			url: "{{url('/deleteAdmin')}}",
 			data: {
 				id: id,
 			},
@@ -261,7 +261,7 @@
 
 		$.ajax({
 			type: "GET",
-			url: "/getAdminDetail",
+			url: "{{url('/getAdminDetail')}}",
 			data: {
 				id: id,
 			},
@@ -308,7 +308,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "/editAdminPassword",
+			url: "{{url('/editAdminPassword')}}",
 			data: $("#editAdminPasswordForm").serialize(),
 			beforeSend: function() {
 				$("#loading_div").attr("data-text", "Sila Tunggu...");
