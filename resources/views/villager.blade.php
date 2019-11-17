@@ -65,6 +65,9 @@
 		border: 1px solid #a9c4df;
 	}
 </style>
+
+<link rel="stylesheet" href="{{ asset('welcome_assets/css/magnific-popup.css') }}">
+<script src="{{ asset('welcome_assets/js/jquery.magnific-popup.min.js') }}"></script>
 @endsection
 
 @section('content')
@@ -460,7 +463,9 @@
 								</div>
 								<div class="col form-input-div">
 									@if (!empty($property->image_path))
+									<a href="{{asset($property->image_path)}}" class="tanah_photo_anchor">
 										<img height="350" src="{{asset($property->image_path)}}">
+									</a>
 									@else
 										Not Available
 									@endif
@@ -594,6 +599,16 @@
 			$(tanahForms[i]).find(".form-input-col").addClass("d-none");
 			$(tanahForms[i]).find(".custom-control").addClass("d-none");
 		}
+
+		$('.tanah_photo_anchor').magnificPopup({
+		  type: 'image',
+		  tLoading: 'Loading...',
+		  image: {
+		  	tError: '<a href="%url%">The image</a> could not be loaded: 404 Not Found'
+		  },
+		  mainClass: 'mfp-fade',
+		  removalDelay: 300,
+		});
 	});
 	$(document).on("click", "#editBtn", function() {
 		var form = document.getElementById("villagerDetail_form");

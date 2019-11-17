@@ -12,43 +12,6 @@
 	/*.mfp-zoom-out-cur {
 		cursor: default !important;
 	}*/
-
-	.mfp-zoom-out-cur .mfp-image-holder .mfp-close {
-		cursor: pointer !important;
-	}
-
-	.mfp-fade.mfp-bg {
-	  opacity: 0;
-
-	  -webkit-transition: all 0.15s ease-out;
-	  -moz-transition: all 0.15s ease-out;
-	  transition: all 0.15s ease-out;
-	}
-	/* overlay animate in */
-	.mfp-fade.mfp-bg.mfp-ready {
-	  opacity: 0.8;
-	}
-	/* overlay animate out */
-	.mfp-fade.mfp-bg.mfp-removing {
-	  opacity: 0;
-	}
-
-	/* content at start */
-	.mfp-fade.mfp-wrap .mfp-content {
-	  opacity: 0;
-
-	  -webkit-transition: all 0.15s ease-out;
-	  -moz-transition: all 0.15s ease-out;
-	  transition: all 0.15s ease-out;
-	}
-	/* content animate it */
-	.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
-	  opacity: 1;
-	}
-	/* content animate out */
-	.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
-	  opacity: 0;
-	}
 </style>
 @endsection
 @section('content')
