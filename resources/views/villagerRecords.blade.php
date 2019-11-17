@@ -76,14 +76,15 @@
 	                extend: 'excelHtml5',
 	                title: 'Senarai Penduduk',
 	                exportOptions: {
-	                    columns: 'th:not(:last-child, :first-child)'
+	                    columns: 'th:not(:last-child)'
 	                }
 	            },
 	            {
 	                extend: 'pdfHtml5',
 	                title: 'Senarai Penduduk',
 	                customize: function (doc) {
-						doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+						//doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+						doc.content[1].table.widths = [ '5%', '25%', '15%', '30%', '15%', '15%'];
 						var objLayout = {};
 						objLayout['hLineWidth'] = function(i) { return .5; };
 						objLayout['vLineWidth'] = function(i) { return .5; };
@@ -94,20 +95,20 @@
 						doc.content[1].layout = objLayout;
 					},
 	                exportOptions: {
-			            columns: 'th:not(:last-child, :first-child)'
+			            columns: 'th:not(:last-child)'
 			        }
 	            },
 	            {
 	                extend: 'print',
 	                title: 'Senarai Penduduk',
 	                exportOptions: {
-	                    columns: 'th:not(:last-child, :first-child)'
+	                    columns: 'th:not(:last-child)'
 	                }
 	            },
 	        ],
 	        ajax: '{!! route('villagerRecords.getVillagerRecords') !!}',
 	        columns: [
-	        	{ data: null, "orderable": false, "searchable": false},
+	        	{ data: "id", "defaultContent": '',  "orderable": false, "searchable": false},
 	            { data: 'name' },
 	            { data: 'ic' },
 	            { data: 'house.address' },
@@ -148,6 +149,7 @@
 	    	console.log(iterator);
 	        villagersTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
 	            cell.innerHTML = iterator+1;
+	            villagersTable.cell(cell).invalidate('dom');
 	            iterator++;
 	        } );
 	    } );

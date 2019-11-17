@@ -131,14 +131,15 @@
 	                extend: 'excelHtml5',
 	                title: 'Senarai Harta Tanah',
 	                exportOptions: {
-	                    columns: 'th:not(:last-child, :first-child)'
+	                    columns: 'th:not(:last-child)'
 	                }
 	            },
 	            {
 	                extend: 'pdfHtml5',
 	                title: 'Senarai Harta Tanah',
 	                customize: function (doc) {
-						doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+						//doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+						doc.content[1].table.widths = [ '5%', '30%', '15%', '40%', '10%'];
 						var objLayout = {};
 						objLayout['hLineWidth'] = function(i) { return .5; };
 						objLayout['vLineWidth'] = function(i) { return .5; };
@@ -149,19 +150,19 @@
 						doc.content[1].layout = objLayout;
 					},
 	                exportOptions: {
-			            columns: 'th:not(:last-child, :first-child)'
+			            columns: 'th:not(:last-child)'
 			        }
 	            },
 	            {
 	                extend: 'print',
 	                title: 'Senarai Harta Tanah',
 	                exportOptions: {
-	                    columns: 'th:not(:last-child, :first-child)'
+	                    columns: 'th:not(:last-child)'
 	                }
 	            },
 	        ],
 	        columns: [
-	        	{ data: null, "orderable": false, "searchable": false},
+	        	{ data: "id", "defaultContent": '', "orderable": false, "searchable": false},
 	        	{ data: 'villager.name'},
 	        	{ data: 'type' },
 	        	{ data: 'kawasan' },
@@ -202,6 +203,7 @@
 	    	var iterator = info.start;
 	        propertyTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
 	            cell.innerHTML = iterator+1;
+	            propertyTable.cell(cell).invalidate('dom');
 	            iterator++;
 	        } );
 	        $('.viewPhotoBtn').magnificPopup({
