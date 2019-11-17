@@ -124,6 +124,7 @@ class DynamicPDFController extends Controller
 		$count_newborn = $data[10];
 		$sum_death = $data[11];
 		$count_death = $data[12];
+		$education = $data[13];
 		
 		$output = '
 			<h3 align="center">Ringkasan Laporan Terkini Demografi Kampung Buntal '.$year.'</h3>
@@ -208,7 +209,50 @@ class DynamicPDFController extends Controller
                     <td style="border:1px solid;padding:8px;">'.$marital['janda'].'</td>
                 </tr>
 			</table>	
-			<br>			
+			<br>
+			<h5 class="font-weight-bold">Tahap Pendidikan</h5>
+			<table width="50%" style="border-collapse:collapse;border:0px;">
+				<tr>
+					<th style="border:1px solid;padding:8px;width:50%">Status Perkahwinan</th>
+                    <th style="border:1px solid;padding:8px;width:50%">Bilangan Penduduk</th>
+				</tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">Tidak Berpendidikan Formal</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['non-educated'].'</td>
+                </tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">Pendidikan Rendah</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['primary'].'</td>
+                </tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">Pendidikan Menengah</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['secondary'].'</td>
+                </tr>
+				<tr>
+					<td style="border:1px solid;padding:8px;">Tingkatan 6</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['form6'].'</td>
+                </tr>
+                <tr>
+					<td style="border:1px solid;padding:8px;">Diploma</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['diploma'].'</td>
+                </tr>
+                <tr>
+					<td style="border:1px solid;padding:8px;">Ijazah Sarjana Muda</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['degree'].'</td>
+                </tr>
+                <tr>
+					<td style="border:1px solid;padding:8px;">Ijazah Sarjana</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['master'].'</td>
+                </tr>
+                <tr>
+					<td style="border:1px solid;padding:8px;">Doktor Falsafah</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['phd'].'</td>
+                </tr>
+                <tr>
+					<td style="border:1px solid;padding:8px;">Tiada Katian</td>
+                    <td style="border:1px solid;padding:8px;">'.$education['n/a'].'</td>
+                </tr>
+			</table>			
 			<h5 class="font-weight-bold">Memiliki Tanah</h5>
 			<table width="50%" style="border-collapse:collapse;border:0px;">
 				<tr>
