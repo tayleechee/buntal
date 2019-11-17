@@ -294,7 +294,7 @@ class StatisticsController extends Controller
 				$dec++;
 		}
 		
-		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December'];
+		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','Disember'];
 		$data = [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec];		
 		
 		$graph_type = 'line';
@@ -397,7 +397,7 @@ class StatisticsController extends Controller
 				$dec++;
 		}
 		
-		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December'];
+		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','Disember'];
 		$data = [$jan,$feb,$mar,$apr,$may,$jun,$jul,$aug,$sep,$oct,$nov,$dec];		
 		
 		$graph_type = 'line';
