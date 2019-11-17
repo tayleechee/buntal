@@ -54,7 +54,7 @@
                     <td>{!! $gender['m'] !!}</td>
                 </tr>
 				<tr>
-					<td>Perempuran</td>
+					<td>Perempuan</td>
                     <td>{!! $gender['f'] !!}</td>
                 </tr>
             </tbody>
