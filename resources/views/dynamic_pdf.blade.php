@@ -13,16 +13,22 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-7">
-			<select name="column_select" id="column_select">
+		<div class="col-md-5">
+			<select class="form-control" name="column_select" id="column_select">
 				<option value="col11">Mengikut Jantina</option>
 				<option value="col12">Mengikut Kaum</option>
 			</select>
 		</div>
-		<div class="col-md-5" align="right">
+		<div class="col-md" align="right">
 			<div>
-				<a href="{{ url('dynamic_pdf/pdf_gender') }}" class="btn btn-danger col11 kotak" target="_blank">Simpan PDF</a>
-				<a href="{{ url('dynamic_pdf/pdf_race') }}" class="btn btn-danger col12 kotak" target="_blank" style="display:none;">Simpan PDF</a>
+				<a href="{{ url('dynamic_pdf/pdf_gender') }}" class="btn btn-primary col11 kotak" target="_blank">
+                    <span class="mr-2">Simpan PDF</span>
+                    <i class="fas fa-file-pdf"></i>
+                </a>
+				<a href="{{ url('dynamic_pdf/pdf_race') }}" class="btn btn-primary col12 kotak" target="_blank" style="display:none;">
+                    <span class="mr-2">Simpan PDF</span>
+                    <i class="fas fa-file-pdf"></i>            
+                </a>
 			</div>
 		</div>
     </div>
@@ -32,7 +38,7 @@
 		$count = 1;
 	@endphp
 
-    <div class="Table-responsive col11 kotak">
+    <div class="Table-responsive col11 kotak card p-3" style="background: white">
     <h1 align='center'>Penduduk Kampung Buntal mengikut Jantina</h1>
     <br>
     <h5 class="font-weight-bold">Jumlah Penduduk: {{ $villager_count }} orang</h5>
@@ -123,9 +129,9 @@
             </table>
     </div>
 
-    <div class="Table-responsive col12 kotak ">
+    <div class="Table-responsive col12 kotak card p-3" style="background: white">
     <h1 align='center'>Penduduk Kampung Buntal mengikut Kaum</h1>
-    <br><br>
+    <br>
     <h5 class="font-weight-bold">Jumlah Penduduk: {{ $villager_count }} orang</h5>
     <br>
     <table class="table table-striped table-bordered col-6">

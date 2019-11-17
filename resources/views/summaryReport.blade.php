@@ -1,15 +1,27 @@
 @extends('layouts.app')
 
+@section('css')
+<style type="text/css">
+/*thead th {
+    background-color: #5384ad !important;
+    color: white !important;
+}*/
+</style>
+@endsection
+
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <div class="container">
 	<div align="right">
-		<a href="{{ url('dynamic_pdf/summaryReportPdf') }}" class="btn btn-danger" target="_blank">Simpan PDF</a>
+		<a href="{{ url('dynamic_pdf/summaryReportPdf') }}" class="btn btn-primary" target="_blank">
+            <span class="mr-2">Simpan PDF</span>
+            <i class="fas fa-file-pdf"></i>
+        </a>
 	</div> 	
-	<br>
+    <div class="card p-3 mt-2" style="background: white;">
 	<h1 align="center">Ringkasan Laporan Terkini</h1>
 	<h1 align="center">Demografi Kampung Buntal Tahun {!! $year !!}</h1>
 	<br>
@@ -256,6 +268,7 @@
                 </tr>
             </tbody>
 		</table>
+    </div>
     </div>	
 </div>
 @endsection

@@ -13,14 +13,18 @@
 
 <div class="container">	
 	<div align="right">
-		<a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger" target="_blank">Simpan PDF</a>
-	</div>   
+		<a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-primary" target="_blank">
+            <span class="mr-2">Simpan PDF</span>
+            <i class="fas fa-file-pdf"></i>
+        </a>
+	</div> 
+    <div class="card p-3 mt-2" style="background: white;">  
 	<h1 align="center">Senarai Penduduk Kampung Buntal</h1>
     <br />
 	@php
 		$count = 1;
 	@endphp
-	<h5 class="font-weight-bold">Jumlah Penduduk: {{ $villager_count }} orang</h5>
+	<h5 class="font-weight-bold my-3">Jumlah Penduduk: {{ $villager_count }} orang</h5>
     <div class="table-responsive">
             <table class="table table-striped table-bordered">
             <thead>
@@ -52,6 +56,7 @@
                 @endforeach
             </tbody>
             </table>
+    </div>
     </div>
 </div>
 
