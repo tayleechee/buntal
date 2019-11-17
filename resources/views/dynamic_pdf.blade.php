@@ -124,7 +124,7 @@
     </div>
 
     <div class="Table-responsive col12 kotak ">
-    <h1>Penduduk Kampung Buntal mengikut Kaum</h1>
+    <h1 align='center'>Penduduk Kampung Buntal mengikut Kaum</h1>
     <br><br>
     <h5 class="font-weight-bold">Jumlah Penduduk: {{ $villager_count }} orang</h5>
     <br>
