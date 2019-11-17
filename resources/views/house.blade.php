@@ -391,7 +391,10 @@
 
 <script type="text/javascript">
 	$(document).on("click", ".viewMemberDetailBtn", function(){
-		location.href = "/villager/"+ $(this).attr("data-id");
+		var url = '{{ url("villager", "id") }}';
+		url = url.replace('id', $(this).attr("data-id"));
+		location.href = url;
+		//location.href = "villager/"+ $(this).attr("data-id");
 	});
 
 	$(document).on("click", "#edit_house_btn", function(){
@@ -418,7 +421,7 @@
 		var villager_id = document.getElementById("house_id").getAttribute("value");
 		$.ajax({
 			type: "GET",
-			url: '/getHouseDetail',
+			url: "{{url('getHouseDetail')}}",
 			data: {
 				id: villager_id,
 			},
@@ -476,7 +479,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "/setHouseDetail",
+			url: "{{url('setHouseDetail')}}",
 			data: $("#house_form").serialize(),
 			beforeSend: function() {
 				$("#loading_div").attr("data-text", "Sila Tunggu...");
@@ -498,7 +501,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "/deleteHouse",
+			url: "{{url('deleteHouse')}}",
 			data: {
 				id: id,
 				_token: _token
@@ -528,7 +531,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "/addMember",
+			url: "{{url('addMember')}}",
 			data: $("#addMemberForm").serialize(),
 			beforeSend: function() {
 				$("#loading_div").attr("data-text", "Sila Tunggu...");
@@ -557,7 +560,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "/deleteVillager",
+			url: "{{url('deleteVillager')}}",
 			data: {
 				id: member_id,
 				_token: _token
@@ -582,7 +585,7 @@
 
 		$.ajax({
 			type: "GET",
-			url: '/getVillagerDetail',
+			url: "{{url('getVillagerDetail')}}",
 			data: {
 				id: villager_id,
 			},
@@ -683,7 +686,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "/setVillagerDetail",
+			url: "{{url('setVillagerDetail')}}",
 			data: $("#editMemberForm").serialize(),
 			beforeSend: function() {
 				$("editMemberModal").modal('hide');
