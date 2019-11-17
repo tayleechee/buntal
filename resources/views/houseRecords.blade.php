@@ -14,10 +14,18 @@
 <!-- DataTable JS -->
 <script src="{{ URL::asset('DataTables/datatables.min.js')}}"></script>
 <script src="{{ URL::asset('DataTables/FixedHeader-3.1.4/js/dataTables.fixedHeader.min.js')}}"></script>
+<script src="{{ URL::asset('DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js')}}"></script>
+<script type="text/javascript" src="{{ URL::asset('DataTables/pdfmake/pdfmake.min.js')}}"></script>
+<script type="text/javascript" src="{{ URL::asset('DataTables/pdfmake/vfs_fonts.js')}}"></script>
+<script type="text/javascript" src="{{ URL::asset('DataTables/jszip.min.js')}}"></script>
+<script src="{{ URL::asset('DataTables/Buttons-1.6.1/js/buttons.flash.min.js')}}"></script>
+<script src="{{ URL::asset('DataTables/Buttons-1.6.1/js/buttons.html5.min.js')}}"></script>
+<script src="{{ URL::asset('DataTables/Buttons-1.6.1/js/buttons.print.min.js')}}"></script>
 
 <!-- DataTable CSS -->
 <link href="{{ URL::asset('DataTables/datatables.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css')}}">
 
 <div class="container">
 	<div class="mt-3">
@@ -49,8 +57,44 @@
 	        processing: true,
 	        serverSide: true,
 	        ajax: '{!! route('houseRecords.getHouseRecords') !!}',
+	        dom: 'Bf<"col mt-2 pl-0 pr-0 d-flex justify-content-start"l>rtip',
+	        buttons: [
+	            {
+	                extend: 'excelHtml5',
+	                title: 'Senarai Rekod Rumah',
+	                exportOptions: {
+	                    columns: 'th:not(:last-child)'
+	                }
+	            },
+	            {
+	                extend: 'pdfHtml5',
+	                title: 'Senarai Rekod Rumah',
+	                customize: function (doc) {
+						//doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+						doc.content[1].table.widths = [ '5%', '50%', '10%', '10%', '25%'];
+						var objLayout = {};
+						objLayout['hLineWidth'] = function(i) { return .5; };
+						objLayout['vLineWidth'] = function(i) { return .5; };
+						objLayout['hLineColor'] = function(i) { return '#aaa'; };
+						objLayout['vLineColor'] = function(i) { return '#aaa'; };
+						objLayout['paddingLeft'] = function(i) { return 4; };
+						objLayout['paddingRight'] = function(i) { return 4; };
+						doc.content[1].layout = objLayout;
+					},
+	                exportOptions: {
+			            columns: 'th:not(:last-child)'
+			        }
+	            },
+	            {
+	                extend: 'print',
+	                title: 'Senarai Rekod Rumah',
+	                exportOptions: {
+	                    columns: 'th:not(:last-child)'
+	                }
+	            },
+	        ],
 	        columns: [
-	        	{ data: null, "orderable": false, "searchable": false},
+	        	{ data: 'id', "defaultContent":'', "orderable": false, "searchable": false},
 	            { data: 'address' },
 	            { data: 'family_number' , "searchable": false},
 	            { data: 'alive_villagers_count', "searchable": false},
@@ -77,6 +121,7 @@
 	    	console.log(iterator);
 	        housesTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
 	            cell.innerHTML = iterator+1;
+	            housesTable.cell(cell).invalidate('dom');
 	            iterator++;
 	        } );
 	    } );
