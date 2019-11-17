@@ -8,6 +8,47 @@
 	div.dataTables_processing {
 		z-index: 1
 	}
+
+	/*.mfp-zoom-out-cur {
+		cursor: default !important;
+	}*/
+
+	.mfp-zoom-out-cur .mfp-image-holder .mfp-close {
+		cursor: pointer !important;
+	}
+
+	.mfp-fade.mfp-bg {
+	  opacity: 0;
+
+	  -webkit-transition: all 0.15s ease-out;
+	  -moz-transition: all 0.15s ease-out;
+	  transition: all 0.15s ease-out;
+	}
+	/* overlay animate in */
+	.mfp-fade.mfp-bg.mfp-ready {
+	  opacity: 0.8;
+	}
+	/* overlay animate out */
+	.mfp-fade.mfp-bg.mfp-removing {
+	  opacity: 0;
+	}
+
+	/* content at start */
+	.mfp-fade.mfp-wrap .mfp-content {
+	  opacity: 0;
+
+	  -webkit-transition: all 0.15s ease-out;
+	  -moz-transition: all 0.15s ease-out;
+	  transition: all 0.15s ease-out;
+	}
+	/* content animate it */
+	.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+	  opacity: 1;
+	}
+	/* content animate out */
+	.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+	  opacity: 0;
+	}
 </style>
 @endsection
 @section('content')
@@ -26,6 +67,9 @@
 <link href="{{ URL::asset('DataTables/datatables.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css')}}">
+
+<link rel="stylesheet" href="{{ asset('welcome_assets/css/magnific-popup.css') }}">
+<script src="{{ asset('welcome_assets/js/jquery.magnific-popup.min.js') }}"></script>
 
 <div class="container">
 	<div class="mt-3">
@@ -51,14 +95,14 @@
 
 <!-- Creates the bootstrap modal where the image will appear -->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       	<div class="modal-header">
 	        <h5 class="modal-title">Photo Tanah</h5>
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>        
 	    </div>
       	<div class="modal-body" id="imagemodal_modal_body">
-        	<img src="" id="image_modal_image" style="width: 100%; height: auto;" >
+        	<img src="" id="image_modal_image" style="width: 100%; height: auto;">
       	</div>
       	<!-- <div class="modal-footer">
         	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -131,7 +175,7 @@
 		            							<button class="btn btn-outline-secondary btn-sm viewVillagerDetailBtn" data-id="` + row['villager_id'] + `" data-toggle="tooltip" data-placement="right" title="View Pemilik Detail">Lihat Butiran Pemilik</button>
 		            						</div>
 		            						<div class="text-center">
-		            							<button class="btn btn-outline-primary btn-sm viewPhotoBtn" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View House Photo">Lihat Photo Tanah</button>
+		            							<a class="btn btn-outline-primary btn-sm viewPhotoBtn" href="` + data + `" data-id="` + data + `" data-toggle="tooltip" data-placement="right" title="View House Photo">Lihat Photo Tanah</a>
 		            						</div>
 	            						</div>
 	            					`;
@@ -160,10 +204,19 @@
 	            cell.innerHTML = iterator+1;
 	            iterator++;
 	        } );
+	        $('.viewPhotoBtn').magnificPopup({
+			  type: 'image',
+			  tLoading: 'Loading...',
+			  image: {
+			  	tError: '<a href="%url%">The image</a> could not be loaded: 404 Not Found'
+			  },
+			  mainClass: 'mfp-fade',
+			  removalDelay: 300,
+			});
 	    } );
 	});
 
-	$(document).on("click", ".viewPhotoBtn", function() {
+	/*$(document).on("click", ".viewPhotoBtn", function() {
 		$("#image_modal_image").attr("src", $(this).attr("data-id"));
 		$("#loadingModal").modal('show');
 
@@ -176,7 +229,7 @@
 		    $("#loadingModal").modal('hide');
 		    showErrorMessage("Unable to show photo:<br>404 Not Found");
 		  })
-	});
+	});*/
 
 	$(document).on("click", ".viewVillagerDetailBtn", function() {
 		window.location.href = "villager/"+ $(this).attr("data-id");
