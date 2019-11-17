@@ -35,9 +35,10 @@ class DynamicPDFController extends Controller
 		$sum_newborn = $data[9];
 		$count_newborn = $data[10];
 		$sum_death = $data[11];
-		$count_death = $data[12];		
+		$count_death = $data[12];
+		$education = $data[13];
 		
-		return view('summaryReport', compact('year','sum','permanent','gender','race','marital','property','property_type','label','sum_newborn','count_newborn','sum_death','count_death'));
+		return view('summaryReport', compact('year','sum','permanent','gender','race','marital','property','property_type','label','sum_newborn','count_newborn','sum_death','count_death', 'education'));
 	}
 	
 	function get_summary_data()
@@ -74,6 +75,17 @@ class DynamicPDFController extends Controller
         $property_type['geran'] = Property::wheretype('Geran')->count();
 		$property_type['fl'] = Property::wheretype('FL')->count();
 		$property_type['mix'] = Property::wheretype('Mix Zone')->count();
+
+		$education = [];
+		$education['non-educated'] = Villager::whereeducation_level('Non-educated')->where('death_date', null)->count();
+		$education['primary'] = Villager::whereeducation_level('Primary School')->where('death_date', null)->count();
+		$education['secondary'] = Villager::whereeducation_level('Secondary School')->where('death_date', null)->count();
+		$education['form6'] = Villager::whereeducation_level('Form 6')->where('death_date', null)->count();
+		$education['diploma'] = Villager::whereeducation_level('Diploma')->where('death_date', null)->count();
+		$education['degree'] = Villager::whereeducation_level('Degree')->where('death_date', null)->count();
+		$education['master'] = Villager::whereeducation_level('Master')->where('death_date', null)->count();
+		$education['phd'] = Villager::whereeducation_level('PhD')->where('death_date', null)->count();
+		$education['n/a'] = Villager::whereeducation_level('N/A')->where('death_date', null)->count();
 		
 		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December'];
 		$year = date("Y");
@@ -92,7 +104,7 @@ class DynamicPDFController extends Controller
 		$sum_death = $data[1];
 		$count_death = $data[2];
 		
-		return [$year,$sum,$permanent,$gender,$race,$marital,$property,$property_type,$label,$sum_newborn,$count_newborn,$sum_death,$count_death];	
+		return [$year,$sum,$permanent,$gender,$race,$marital,$property,$property_type,$label,$sum_newborn,$count_newborn,$sum_death,$count_death,$education];	
 	}
 	
 	function summary_report_pdf()

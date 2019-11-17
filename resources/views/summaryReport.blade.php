@@ -126,6 +126,57 @@
             </tbody>
 		</table>
     </div>
+
+    <br />
+    <h5 class="font-weight-bold">Tahap Pendidikan</h5>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered col-6">
+            <thead>
+                <tr>
+                    <th style="width:50%">Tahap Pendidikan</th>
+                    <th style="width:50%">Bilangan Penduduk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tidak Berpendidikan Formal</td>
+                    <td>{!! $education['non-educated'] !!}</td>
+                </tr>
+                <tr>
+                    <td>Pendidikan Rendah</td>
+                    <td>{!! $education['primary'] !!}</td>
+                </tr>
+                <tr>
+                    <td>Pendidikan Menengah</td>
+                    <td>{!! $education['secondary'] !!}</td>
+                </tr>
+                <tr>
+                    <td>Tingkatan 6</td>
+                    <td>{!! $education['form6'] !!}</td>
+                </tr>
+                <tr>
+                    <td>Diploma</td>
+                    <td>{!! $education['diploma'] !!}</td>
+                </tr>
+                <tr>
+                    <td>Ijazah Sarjana Muda</td>
+                    <td>{!! $education['degree'] !!}</td>
+                </tr>
+                <tr>
+                    <td>Ijazah Sarjana</td>
+                    <td>{!!$education['master'] !!}</td>
+                </tr>
+                <tr>
+                    <td>Doktor Falsafah</td>
+                    <td>{!! $education['phd'] !!}</td>
+                </tr>
+                <tr>
+                    <td>Tiada Kaitan</td>
+                    <td>{!! $education['n/a'] !!}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 	
 	<br />
 	<h5 class="font-weight-bold">Memiliki Tanah</h5>
