@@ -74,7 +74,7 @@
 						@endphp
 						<tr>
 							<td>{!! $count !!}</td>
-							<td>{!! $d->name !!}</td>
+							<td><a href="{{url('villager/'.$d->id)}}"> {{ $d->name }}</a></td>
 							<td>{!! $d->ic !!}</td>
 							@if ($type == "kelahiran")
 								<td>{!! $d->dob !!}</td>

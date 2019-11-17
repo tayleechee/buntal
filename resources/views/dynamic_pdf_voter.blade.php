@@ -72,7 +72,7 @@
 				@endphp
                 <tr>
 					<td>{{ $count }}</td>
-                    <td>{{ $villager->name }}</td>
+                    <td><a href="{{url('villager/'.$villager->id)}}"> {{ $villager->name }}</a></td>
                     <td>{{ $villager->ic }}</td>
 					@if ($villager->phone != null)
 						<td>{{ $villager->phone }}</td>
@@ -116,7 +116,7 @@
 				@endphp
                 <tr>
 					<td>{{ $count }}</td>
-                    <td>{{ $villager->name }}</td>
+                    <td><a href="{{url('villager/'.$villager->id)}}"> {{ $villager->name }}</a></td>
                     <td>{{ $villager->ic }}</td>
 					@if ($villager->phone != null)
 						<td>{{ $villager->phone }}</td>

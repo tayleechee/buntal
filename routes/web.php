@@ -109,7 +109,7 @@ Route::get('/dynamic_pdf/voterReportPdf', 'DynamicPDFController@voter_report_pdf
 Route::get('/dynamic_pdf/pdf', 'DynamicPDFController@pdf');
 Route::get('/dynamic_pdf/pdf_gender', 'DynamicPDFController@pdf_gender');
 Route::get('/dynamic_pdf/pdf_race', 'DynamicPDFController@pdf_race');
+Route::get('/dynamic_pdf/pdf_marital', 'DynamicPDFController@pdf_marital');
 Route::get('/dynamic_pdf/newborn', 'DynamicPDFController@newborn')->name('dynamicpdf.newborn');
 Route::get('/dynamic_pdf/death', 'DynamicPDFController@death')->name('dynamicpdf.death');
 Route::get('/dynamic_pdf/pdf_month/{type}', 'DynamicPDFController@pdf_month')->name('dynamicpdf.pdf_month');
-

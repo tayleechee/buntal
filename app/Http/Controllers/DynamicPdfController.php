@@ -16,9 +16,10 @@ class DynamicPDFController extends Controller
     {
         $this->middleware('auth');
     }
-      
+
 	function general()
     {
+
 		$villager_data = $this->get_villager_data();
 		$villager_count = $villager_data->count();
 		return view('dynamic_pdf_general', compact('villager_data','villager_count'));
@@ -495,23 +496,82 @@ class DynamicPDFController extends Controller
 	function population_report()
     {
 		$villager_data = $this->get_villager_data();
+
+		$m_villager_count = $this->get_m_villager_data()->count();
 		$m_villager_data = $this->get_m_villager_data();
+		$f_villager_count = $this->get_f_villager_data()->count();
 		$f_villager_data = $this->get_f_villager_data();
+
+		$malay_villager_count = $this->get_malay_data()->count();
+		$bumi_villager_count = $this->get_bumi_data()->count();
+		$cina_villager_count = $this->get_cina_data()->count();
+		$india_villager_count = $this->get_india_data()->count();
+		$lain_villager_count = $this->get_lain_data()->count();
 		$malay_villager_data = $this->get_malay_data();
 		$bumi_villager_data = $this->get_bumi_data();
 		$cina_villager_data = $this->get_cina_data();
 		$india_villager_data = $this->get_india_data();
 		$lain_villager_data = $this->get_lain_data();
 		$villager_count = $villager_data->count();
+
+		$bujang_villager = Villager::wheremarital_status('bujang')->where('death_date', null)->get();
+		$kahwin_villager = Villager::wheremarital_status('kahwin')->where('death_date', null)->get();
+		$duda_villager = Villager::wheremarital_status('duda')->where('death_date', null)->get();	
+		$janda_villager = Villager::wheremarital_status('janda')->where('death_date', null)->get();
+		$bujang_count = $bujang_villager->count();
+		$kahwin_count = $kahwin_villager->count();
+		$duda_count = $duda_villager->count();
+		$janda_count = $janda_villager->count();
+		
+		$property_owner_villager = Villager::whereis_property_owner('1')->where('death_date', null)->get();
+		$non_property_owner_villager = Villager::whereis_property_owner('0')->where('death_date', null)->get();
+		$property_owner_count = $property_owner_villager->count();
+		$non_property_owner_count = $non_property_owner_villager->count();
+
+		$non_educated_villager = Villager::whereeducation_level('Non-educated')->where('death_date', null)->get();
+		$primary_villager = Villager::whereeducation_level('Primary School')->where('death_date', null)->get();
+		$secondary_villager = Villager::whereeducation_level('Secondary School')->where('death_date', null)->get();
+		$form6_villager = Villager::whereeducation_level('Form 6')->where('death_date', null)->get();
+		$diploma_villager = Villager::whereeducation_level('Diploma')->where('death_date', null)->get();
+		$education_villager = Villager::whereeducation_level('Degree')->where('death_date', null)->get();
+		$master_villager = Villager::whereeducation_level('Master')->where('death_date', null)->get();
+		$phd_villager = Villager::whereeducation_level('PhD')->where('death_date', null)->get();
+		$na_villager = Villager::whereeducation_level('N/A')->where('death_date', null)->get();
+		$non_educated_count = $non_educated_villager->count();
+		$primary_count = $primary_villager->count();
+		$secondary_count = $secondary_villager->count();
+		$form6_count = $form6_villager->count();
+		$diploma_count = $diploma_villager->count();
+		$education_count = $education_villager->count();
+		$master_count = $master_villager->count();
+		$phd_count = $phd_villager->count();
+		$na_count = $na_villager->count();
+
+
 		return view('dynamic_pdf', compact('villager_data',
 											'villager_count',
+											'm_villager_count',
+											'f_villager_count',
 											'm_villager_data',
 											'f_villager_data',
+											'malay_villager_count',
+											'bumi_villager_count',
+											'cina_villager_count',
+											'india_villager_count',
+											'lain_villager_count',
 											'malay_villager_data',
 											'bumi_villager_data',
 											'cina_villager_data',
 											'india_villager_data',
-											'lain_villager_data'
+											'lain_villager_data',
+											'bujang_count',
+											'kahwin_count',
+											'duda_count',
+											'janda_count',
+											'bujang_villager',
+											'kahwin_villager',
+											'duda_villager',
+											'janda_villager'
 											));
     }
 
@@ -595,6 +655,13 @@ class DynamicPDFController extends Controller
     {
 		$pdf = \App::make('dompdf.wrapper');
 		$pdf->loadHTML($this->convert_villager_race_data_to_html());
+		return $pdf->stream();
+    }
+
+    public function pdf_marital()
+    {
+    	$pdf = \App::make('dompdf.wrapper');
+		$pdf->loadHTML($this->convert_villager_marital_data_to_html());
 		return $pdf->stream();
     }
 
@@ -913,6 +980,190 @@ class DynamicPDFController extends Controller
 		 $output .= '</table>';
 	 }
      return $output;
+    }
+
+    function convert_villager_marital_data_to_html()
+    {
+    	$villager_data = $this->get_villager_data();
+     	$bujang_villager = Villager::wheremarital_status('bujang')->where('death_date', null)->get();
+		$kahwin_villager = Villager::wheremarital_status('kahwin')->where('death_date', null)->get();
+		$duda_villager = Villager::wheremarital_status('duda')->where('death_date', null)->get();	
+		$janda_villager = Villager::wheremarital_status('janda')->where('death_date', null)->get();
+		$bujang_count = $bujang_villager->count();
+		$kahwin_count = $kahwin_villager->count();
+		$duda_count = $duda_villager->count();
+		$janda_count = $janda_villager->count();
+
+		 $output = '
+		 <h3 align="center">Penduduk Kampung Buntal mengikut Status Perkahwinan</h3>
+		 <h4 style="font-weight:bold;">Jumlah Penduduk: '.$villager_data->count().' orang</h4>
+		 <table width="100%" style="border-collapse: collapse; border: 1px;">
+		    <tr>
+		        <th style="border: 1px solid; padding:12px;" width="10%">Status Perkahwinan</th>
+		        <th style="border: 1px solid; padding:12px;" width="20%">Bilangan</th>
+		    </tr>
+		 ';
+		 $output .= '
+		    <tr>
+		        <td style="border: 1px solid; padding:12px;">Bujang</td>
+		        <td style="border: 1px solid; padding:12px;">'.$bujang_count.'</td>
+		    </tr>
+		    <tr>
+		        <td style="border: 1px solid; padding:12px;">Kahwin</td>
+		        <td style="border: 1px solid; padding:12px;">'.$kahwin_count.'</td>
+		    </tr>
+		    <tr>
+		    <td style="border: 1px solid; padding:12px;">Duda</td>
+		    <td style="border: 1px solid; padding:12px;">'.$duda_count.'</td>
+		    </tr>
+		    <tr>
+		    <td style="border: 1px solid; padding:12px;">Janda</td>
+		    <td style="border: 1px solid; padding:12px;">'.$janda_count.'</td>
+		    </tr>
+		  ';
+		 $output .= '</table>';
+
+		 if (count($bujang_villager) != 0)
+		 {
+			 $output .= '
+			 <h4 align="left">Bujang</h4>
+			 <table width="100%" style="border-collapse: collapse; border: 1px;">
+				<tr>
+					<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+					<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+					<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
+				</tr>
+			 ';	 
+		 
+			 $count = 1;
+			 foreach($bujang_villager as $villager)
+			 {
+			  if ($villager->gender == 'm')
+				  $gender = 'Lelaki';
+			  else
+				  $gender = 'Perempuan';
+			  $output .= '
+				<tr>
+					<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$villager->name.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$villager->ic.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+					<td style="border: 1px solid; padding:12px;">'.ucfirst($villager->race).'</td>
+				</tr>
+			  ';
+			  $count++;
+			 }
+			 $output .= '</table>';
+		 }
+		 
+		 if (count($kahwin_villager) != 0)
+		 {
+			 $output .= '
+			 <h4 align="left">Kahwin</h4>
+			 <table width="100%" style="border-collapse: collapse; border: 1px;">
+				<tr>
+					<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+					<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+					<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
+				</tr>
+			 ';	 
+		 
+			 $count = 1;
+			 foreach($kahwin_villager as $villager)
+			 {
+			  if ($villager->gender == 'm')
+				  $gender = 'Lelaki';
+			  else
+				  $gender = 'Perempuan';
+			  $output .= '
+				<tr>
+					<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$villager->name.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$villager->ic.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+					<td style="border: 1px solid; padding:12px;">'.ucfirst($villager->race).'</td>
+				</tr>
+			  ';
+			  $count++;
+			 }
+			 $output .= '</table>';
+		 }
+		 
+		 if (count($duda_villager) != 0)
+		 {
+			 $output .= '
+			 <h4 align="left">Duda</h4>
+			 <table width="100%" style="border-collapse: collapse; border: 1px;">
+				<tr>
+					<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+					<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+					<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
+				</tr>
+			 ';
+		 
+			 $count = 1;
+			 foreach($duda_villager as $villager)
+			 {
+			  if ($villager->gender == 'm')
+				  $gender = 'Lelaki';
+			  else
+				  $gender = 'Perempuan';
+			  $output .= '
+				<tr>
+					<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$villager->name.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$villager->ic.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+					<td style="border: 1px solid; padding:12px;">'.ucfirst($villager->race).'</td>
+				</tr>
+			  ';
+			  $count++;
+			 }
+			 $output .= '</table>';
+		 }
+		 
+		 if (count($janda_villager) != 0)
+		 {
+			 $output .= '
+			 <h4 align="left">Janda</h4>
+			 <table width="100%" style="border-collapse: collapse; border: 1px;">
+				<tr>
+					<th style="border: 1px solid; padding:12px;" width="5%">#</th>
+					<th style="border: 1px solid; padding:12px;" width="20%">Nama</th>
+					<th style="border: 1px solid; padding:12px;" width="30%">No K/P</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Jantina</th>
+					<th style="border: 1px solid; padding:12px;" width="15%">Kaum</th>
+				</tr>
+			 ';
+			 
+			 $count = 1;
+			 foreach($janda_villager as $villager)
+			 {
+			  if ($villager->gender == 'm')
+				  $gender = 'Lelaki';
+			  else
+				  $gender = 'Perempuan';
+			  $output .= '
+				<tr>
+					<td style="border: 1px solid; padding:12px;">'.$count.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$villager->name.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$villager->ic.'</td>
+					<td style="border: 1px solid; padding:12px;">'.$gender.'</td>
+					<td style="border: 1px solid; padding:12px;">'.ucfirst($villager->race).'</td>
+				</tr>
+			  ';
+			  $count++;
+			 }
+			 $output .= '</table>';
+		 }
+
+		 return $output;
     }
 
     function pdf()
