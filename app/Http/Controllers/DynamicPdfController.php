@@ -211,10 +211,10 @@ class DynamicPDFController extends Controller
 			</table>	
 			<br>
 			<h5 class="font-weight-bold">Tahap Pendidikan</h5>
-			<table width="50%" style="border-collapse:collapse;border:0px;">
+			<table width="60%" style="border-collapse:collapse;border:0px;">
 				<tr>
-					<th style="border:1px solid;padding:8px;width:50%">Status Perkahwinan</th>
-                    <th style="border:1px solid;padding:8px;width:50%">Bilangan Penduduk</th>
+					<th style="border:1px solid;padding:8px;width:60%">Status Perkahwinan</th>
+                    <th style="border:1px solid;padding:8px;width:40%">Bilangan Penduduk</th>
 				</tr>
 				<tr>
 					<td style="border:1px solid;padding:8px;">Tidak Berpendidikan Formal</td>
