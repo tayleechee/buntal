@@ -11,7 +11,12 @@ use App\House;
 use App\Property;
 
 class DynamicPDFController extends Controller
-{  
+{
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+      
 	function general()
     {
 		$villager_data = $this->get_villager_data();
