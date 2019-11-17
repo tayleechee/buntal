@@ -87,7 +87,7 @@ class DynamicPDFController extends Controller
 		$education['phd'] = Villager::whereeducation_level('PhD')->where('death_date', null)->count();
 		$education['n/a'] = Villager::whereeducation_level('N/A')->where('death_date', null)->count();
 		
-		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December'];
+		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','Disember'];
 		$year = date("Y");
 		
 		$newborn = Villager::whereYear('dob', $year)
@@ -1066,7 +1066,7 @@ class DynamicPDFController extends Controller
 		}
 		$villager_data = [$jan_data,$feb_data,$mar_data,$apr_data,$may_data,$jun_data,$jul_data,$aug_data,$sep_data,$oct_data,$nov_data,$dec_data];
 		$sum = array_sum($count);
-		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','December'];
+		$label = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','Disember'];
 		
 		return [$label,$sum,$count,$villager_data];
     }
