@@ -141,6 +141,16 @@
             display:block;
         }
 
+        .navbar-nav li.dropdown-submenu .btn-group > a.dropdown-item:active {
+            background-color: inherit !important;
+            color: inherit !important;
+        }
+
+        /*.navbar-nav li.dropdown-submenu .btn-group > a.dropdown-item:focus {
+            background-color: inherit !important;
+            color: inherit !important;
+        }*/
+
         .dropdown-submenu{
             position:relative;
         }
@@ -528,6 +538,11 @@
             $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
             $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
         })
+
+        $(document).on("click", ".navbar-nav li.dropdown-submenu", function(e){
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+        });
     </script>
     <!-- <script>
         $(".dropdown-toggle").on("mouseenter", function () {
